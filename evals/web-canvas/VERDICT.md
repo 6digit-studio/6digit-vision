@@ -27,3 +27,13 @@ Chrome, 1200x800.
 Boundary documented: DOM-text detectors assume semantic raster;
 canvas/WebGL needs a different witness layer (this is the Omni/
 Metal problem arriving early — framebuffer content has no DOM).
+
+## Update — nonuniform-scale detector landed (candidate-level catch)
+
+`detectors/nonuniform-scale/` closes the MISS at candidate level:
+text-band glyph w/h median 0.90 on defect vs 0.65 control — the
+scaleX(1.35) inflation recovered almost exactly. Corpus clean
+(0.467-0.65 isotropic, 3 honest insufficient_witnesses). Wired into
+ask packs. Verdict upgraded MISS -> detector-backed PARTIAL (single-
+band evidence is thin; corroboration with blob witnesses would
+strengthen).

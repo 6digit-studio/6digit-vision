@@ -101,6 +101,11 @@ def evidence_pack(image, question: str | None = None) -> dict:
         findings_extra["luminance_theme"] = lt.census(image)
     except Exception:
         detector_errors.append("luminance-theme")
+    try:
+        ns = _load_detector("nonuniform-scale/nonuniform_scale.py")
+        findings_extra["nonuniform_scale"] = ns.census(image)
+    except Exception:
+        detector_errors.append("nonuniform-scale")
 
     pack = {
         "scene": rec.get("scene"),
