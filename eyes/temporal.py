@@ -161,11 +161,22 @@ def estimate_vshift(a_path, b_path, max_dim: int = 256) -> dict:
             err = float(np.abs(A[:th + dy] - B[-dy:]).mean())
         if err < best_err:
             best_err, best_dy = err, dy
-    # confidence: error at best vs error at dy=0 — a real shift wins big
-    err0 = float(np.abs(A - B).mean())
-    conf = round(max(0.0, 1.0 - best_err / max(err0, 1e-6)), 3)
+    # confidence: fraction of overlapping rows where the shifted diff
+    # beats the unshifted diff — measures consistent agreement, not
+    # just best-vs-zero error ratio (which understates on content-heavy
+    # pages where most content genuinely changed)
+    if best_dy >= 0:
+        ov_a, ov_b = A[best_dy:], B[:th - best_dy]
+        ov_a0, ov_b0 = A[:th - best_dy], B[best_dy:]
+    else:
+        ov_a, ov_b = A[:th + best_dy], B[-best_dy:]
+        ov_a0, ov_b0 = A[-best_dy:], B[:th + best_dy]
+    d_shift = np.abs(ov_a - ov_b).mean(axis=1)
+    d_zero = np.abs(ov_a0 - ov_b0).mean(axis=1)
+    agree = float((d_shift < d_zero).mean()) if len(d_shift) else 0.0
+    conf = round(agree, 3)
     return {"dy_px": round(best_dy / scale, 1), "confidence": conf,
-            "best_err": round(best_err, 2), "zero_err": round(err0, 2)}
+            "best_err": round(best_err, 2)}
 
 
 def scroll_persistence(rec_a: dict, rec_b: dict, dy_px: float,
