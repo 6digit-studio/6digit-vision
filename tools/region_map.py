@@ -78,12 +78,15 @@ def _local_diff(ref_arr, cand_arr, rect) -> float:
     return round(float(max(0.0, 1.0 - d * 4)), 3)
 
 
-def map_regions(ref_png, cand_png, elements, max_regions: int = 8) -> dict:
-    """Match pixdiff regions to candidate elements."""
-    pd = pixdiff(ref_png, cand_png)
+def map_regions(ref_png, cand_png, elements, max_regions: int = 8,
+                regions: list | None = None) -> dict:
+    """Match diff regions (pixdiff default, or supplied e.g. fdiff's)
+    to candidate elements."""
+    pd = pixdiff(ref_png, cand_png) if regions is None else {"regions": regions, "score": None, "size": None}
     A, B = _prep(ref_png, cand_png)
-    W, H = pd["size"][1], pd["size"][0]  # size is [w,h]
-    img_w, img_h = W, H
+    from PIL import Image as _I
+    img_w, img_h = _I.open(str(cand_png)).size
+    W, H = img_w, img_h
 
     mapped = []
     for reg in pd["regions"][:max_regions]:

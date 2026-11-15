@@ -103,6 +103,11 @@ def main() -> int:
         vw, vh = _I.open(str(cand_png)).size
         els = rm.dump_elements(html, vw, vh)
         pack["region_map"] = rm.map_regions(str(ref), str(cand_png), els)
+        # fdiff regions ride the same mapping (same bbox_px format)
+        fd_regs = (pack.get("fdiff") or {}).get("regions") or []
+        if fd_regs:
+            pack["fdiff_region_map"] = rm.map_regions(
+                str(ref), str(cand_png), els, regions=fd_regs)
     except Exception as e:
         pack["region_map"] = {"error": str(e)[:120]}
 
