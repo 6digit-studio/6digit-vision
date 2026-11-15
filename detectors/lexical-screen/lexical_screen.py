@@ -240,6 +240,19 @@ def classify_token(token: str, lex: set[str], zipf_fn=None) -> dict:
         return {"token": token, "status": "inflected",
                 "stem": stem, "rule": rule}
 
+    # prefix-noise gate: dense-UI glyphs (vote triangles, icons) OCR as
+    # a single leading char glued to the real word ('AShow' <- 'A'+'Show').
+    # If stripping one leading char yields a resolvable token, the OOV
+    # is measurement noise, not hostile type. Hostile tokens survive:
+    # 'delvered'->'elpered', 'bouguets'->'ouguets' don't resolve.
+    if len(token) >= MIN_TOKEN_LEN + 1 and token[0].isupper():
+        rest = token[1:]
+        if len(rest) >= MIN_TOKEN_LEN and (
+                rest.lower() in lex
+                or inflection_match(rest, lex, zipf_fn)):
+            return {"token": token, "status": "prefix_noise",
+                    "stripped": rest}
+
     return {"token": token, "status": "out_of_vocabulary"}
 
 
