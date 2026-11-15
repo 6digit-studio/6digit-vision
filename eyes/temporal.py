@@ -131,6 +131,93 @@ def _resolve(inputs: list[str]) -> list[Path]:
     return paths
 
 
+def estimate_vshift(a_path, b_path, max_dim: int = 256) -> dict:
+    """Estimate vertical scroll offset between frames via row-profile
+    correlation on downsampled grayscale. Returns dy in ORIGINAL pixels
+    (positive = B's content sits higher = scrolled down) plus confidence.
+    """
+    import numpy as np
+    from PIL import Image
+
+    ia = Image.open(str(a_path)).convert("L")
+    ib = Image.open(str(b_path)).convert("L")
+    w, h = ia.size
+    scale = min(1.0, max_dim / max(w, h))
+    tw, th = max(8, int(w * scale)), max(8, int(h * scale))
+    A = np.asarray(ia.resize((tw, th)), dtype=np.float32)
+    B = np.asarray(ib.resize((tw, th)), dtype=np.float32)
+    best_dy, best_err = 0, float("inf")
+    # full-height span: viewport scrolls move content up to ~1 viewport —
+    # th//3 capped the search at ~265px original and missed 700px steps
+    span = th
+    for dy in range(-span, span + 1, 4):
+        if dy >= 0:
+            if th - dy < 8:
+                continue
+            err = float(np.abs(A[dy:] - B[:th - dy]).mean())
+        else:
+            if th + dy < 8:
+                continue
+            err = float(np.abs(A[:th + dy] - B[-dy:]).mean())
+        if err < best_err:
+            best_err, best_dy = err, dy
+    # confidence: error at best vs error at dy=0 — a real shift wins big
+    err0 = float(np.abs(A - B).mean())
+    conf = round(max(0.0, 1.0 - best_err / max(err0, 1e-6)), 3)
+    return {"dy_px": round(best_dy / scale, 1), "confidence": conf,
+            "best_err": round(best_err, 2), "zero_err": round(err0, 2)}
+
+
+def scroll_persistence(rec_a: dict, rec_b: dict, dy_px: float,
+                       img_h: int) -> dict:
+    """Scroll-compensated element persistence: shift B's bboxes down by
+    the scroll offset (B content sits dy_px higher than A's frame), then
+    count A objects/text with a positional match in B. Separates
+    'new content scrolled in' from 'detector churn' — the reel record-
+    stability upgrade the web-real reel eval named."""
+    dy_norm = dy_px / img_h * 1000.0 if img_h else 0.0
+
+    def shifted(rec):
+        out = []
+        for o in rec.get("objects", []):
+            if "bbox" in o:
+                x0, y0, x1, y1 = o["bbox"]
+                out.append({"name": o.get("name"), "kind": "object",
+                            "bbox": [x0, y0 + dy_norm, x1, y1 + dy_norm]})
+        for t in rec.get("text", []):
+            if "bbox" in t:
+                x0, y0, x1, y1 = t["bbox"]
+                out.append({"name": t.get("string", ""), "kind": "text",
+                            "bbox": [x0, y0 + dy_norm, x1, y1 + dy_norm]})
+        return out
+
+    a_els = [{"name": o.get("name"), "kind": "object", "bbox": o["bbox"]}
+             for o in rec_a.get("objects", []) if "bbox" in o]
+    a_els += [{"name": t.get("string", ""), "kind": "text", "bbox": t["bbox"]}
+              for t in rec_a.get("text", []) if "bbox" in t]
+    b_els = shifted(rec_b)
+
+    def center(b):
+        return ((b[0] + b[2]) / 2, (b[1] + b[3]) / 2)
+
+    persistent, departed = 0, []
+    for a in a_els:
+        ac = center(a["bbox"])
+        hit = any(e["kind"] == a["kind"] and
+                  ((center(e["bbox"])[0] - ac[0]) ** 2 +
+                   (center(e["bbox"])[1] - ac[1]) ** 2) ** 0.5 < 80.0
+                  for e in b_els)
+        if hit:
+            persistent += 1
+        else:
+            departed.append(a["name"])
+    total = len(a_els)
+    return {"dy_norm": round(dy_norm, 1), "elements_a": total,
+            "persistent": persistent,
+            "persistent_frac": round(persistent / total, 3) if total else 1.0,
+            "departed": departed[:20]}
+
+
 def reel_report(inputs: list[str], *, with_records: bool = True,
                 tol: int = 24) -> dict:
     """Coherence report over a frame sequence.
@@ -160,6 +247,17 @@ def reel_report(inputs: list[str], *, with_records: bool = True,
         if with_records:
             pair["labels"] = label_stability(records[i], records[i + 1])
             pair["ocr"] = ocr_overlap(records[i], records[i + 1])
+            try:
+                from PIL import Image
+                sh = estimate_vshift(paths[i], paths[i + 1])
+                if sh["confidence"] >= 0.15:
+                    ih = Image.open(str(paths[i + 1])).height
+                    pair["scroll"] = scroll_persistence(
+                        records[i], records[i + 1], sh["dy_px"], ih)
+                    pair["scroll"]["dy_px"] = sh["dy_px"]
+                    pair["scroll"]["confidence"] = sh["confidence"]
+            except Exception:
+                pass
         # static-pair fact: near-zero pixel change. Mid-sequence static is
         # the freeze signature; first/last holds are legitimate — the
         # reasoning layer judges position, the instrument reports the fact.
