@@ -1,0 +1,2522 @@
+{
+  "scene": {
+    "background": "dark",
+    "style": "webpage screenshot"
+  },
+  "objects": [
+    {
+      "name": "logo",
+      "position": "top center",
+      "score": 0.555,
+      "description": {
+        "color": "white"
+      }
+    },
+    {
+      "name": "text",
+      "position": "center",
+      "score": 0.602,
+      "description": {
+        "color": "white"
+      }
+    },
+    {
+      "name": "text",
+      "position": "center",
+      "score": 0.591,
+      "description": {
+        "color": "white"
+      }
+    },
+    {
+      "name": "text",
+      "position": "center",
+      "score": 0.435,
+      "description": {
+        "color": "white"
+      }
+    },
+    {
+      "name": "button",
+      "position": "center",
+      "score": 0.326,
+      "description": {
+        "color": "green"
+      }
+    },
+    {
+      "name": "text",
+      "position": "center",
+      "score": 0.526,
+      "description": {
+        "color": "white"
+      }
+    },
+    {
+      "name": "button",
+      "position": "center",
+      "score": 0.618,
+      "description": {
+        "color": "green"
+      }
+    },
+    {
+      "name": "text",
+      "position": "center",
+      "score": 0.482,
+      "description": {
+        "color": "white"
+      }
+    },
+    {
+      "name": "webpage",
+      "position": "center",
+      "score": 0.49,
+      "description": {
+        "color": "dark"
+      }
+    },
+    {
+      "name": "text",
+      "position": "center",
+      "score": 0.415,
+      "description": {
+        "color": "white"
+      }
+    },
+    {
+      "name": "text",
+      "position": "center",
+      "score": 0.341,
+      "description": {
+        "color": "white"
+      }
+    },
+    {
+      "name": "text",
+      "position": "center",
+      "score": 0.368,
+      "description": {
+        "color": "white"
+      }
+    },
+    {
+      "name": "text",
+      "position": "center",
+      "score": 0.34,
+      "description": {
+        "color": "white"
+      }
+    },
+    {
+      "name": "text",
+      "position": "center",
+      "score": 0.417,
+      "description": {
+        "color": "white"
+      }
+    },
+    {
+      "name": "text",
+      "position": "center",
+      "score": 0.399,
+      "description": {
+        "color": "white"
+      }
+    }
+  ],
+  "text": [
+    {
+      "string": "Sign in to GitHub",
+      "score": 0.816,
+      "bbox": [
+        400,
+        132,
+        598,
+        169
+      ]
+    },
+    {
+      "string": "Username or email address",
+      "score": 0.72,
+      "bbox": [
+        422,
+        200,
+        580,
+        226
+      ]
+    },
+    {
+      "string": "Password",
+      "score": 0.577,
+      "bbox": [
+        404,
+        309,
+        462,
+        331
+      ]
+    },
+    {
+      "string": "asswordForgot password?",
+      "score": 0.312,
+      "bbox": [
+        410,
+        314,
+        614,
+        344
+      ]
+    },
+    {
+      "string": "Forgot password",
+      "score": 0.5,
+      "bbox": [
+        492,
+        319,
+        592,
+        341
+      ]
+    },
+    {
+      "string": "Sign in",
+      "score": 0.538,
+      "bbox": [
+        468,
+        424,
+        528,
+        456
+      ]
+    },
+    {
+      "string": "New to GitHub?",
+      "score": 0.603,
+      "bbox": [
+        403,
+        483,
+        495,
+        511
+      ]
+    },
+    {
+      "string": "New to GitHub? Create.anaccou",
+      "score": 0.413,
+      "bbox": [
+        403,
+        484,
+        585,
+        511
+      ]
+    },
+    {
+      "string": "Privacy",
+      "score": 0.369,
+      "bbox": [
+        263,
+        959,
+        306,
+        983
+      ]
+    },
+    {
+      "string": "Contact GitHub Support",
+      "score": 0.368,
+      "bbox": [
+        354,
+        956,
+        481,
+        981
+      ]
+    },
+    {
+      "string": "Manage cookie",
+      "score": 0.412,
+      "bbox": [
+        499,
+        960,
+        571,
+        981
+      ]
+    },
+    {
+      "string": "o not share my personal information",
+      "score": 0.382,
+      "bbox": [
+        601,
+        959,
+        783,
+        981
+      ]
+    }
+  ],
+  "findings": {
+    "objects_at_edge": [
+      {
+        "name": "logo",
+        "sides": [
+          "top"
+        ],
+        "bbox": [
+          481,
+          37,
+          522,
+          85
+        ],
+        "score": 0.555,
+        "suspect": false
+      },
+      {
+        "name": "webpage",
+        "sides": [
+          "left",
+          "right"
+        ],
+        "bbox": [
+          42,
+          65,
+          952,
+          927
+        ],
+        "score": 0.49,
+        "suspect": true
+      },
+      {
+        "name": "text",
+        "sides": [
+          "bottom"
+        ],
+        "bbox": [
+          265,
+          961,
+          304,
+          982
+        ],
+        "score": 0.415,
+        "suspect": true
+      },
+      {
+        "name": "text",
+        "sides": [
+          "bottom"
+        ],
+        "bbox": [
+          317,
+          962,
+          344,
+          980
+        ],
+        "score": 0.341,
+        "suspect": true
+      },
+      {
+        "name": "text",
+        "sides": [
+          "bottom"
+        ],
+        "bbox": [
+          362,
+          961,
+          474,
+          978
+        ],
+        "score": 0.368,
+        "suspect": true
+      },
+      {
+        "name": "text",
+        "sides": [
+          "bottom"
+        ],
+        "bbox": [
+          240,
+          954,
+          771,
+          988
+        ],
+        "score": 0.34,
+        "suspect": true
+      },
+      {
+        "name": "text",
+        "sides": [
+          "bottom"
+        ],
+        "bbox": [
+          424,
+          963,
+          648,
+          979
+        ],
+        "score": 0.417,
+        "suspect": true
+      },
+      {
+        "name": "text",
+        "sides": [
+          "bottom"
+        ],
+        "bbox": [
+          606,
+          962,
+          779,
+          979
+        ],
+        "score": 0.399,
+        "suspect": true
+      }
+    ],
+    "bbox_overlaps": [
+      {
+        "a": "text",
+        "b": "text",
+        "iou": 0.158
+      }
+    ],
+    "text_edge_flush": [],
+    "legibility_flagged": [
+      {
+        "string": "Password",
+        "bbox": [
+          404,
+          309,
+          462,
+          331
+        ],
+        "contrast": 18.92,
+        "ocr_score": 0.577,
+        "flags": [
+          "low_ocr_confidence"
+        ]
+      },
+      {
+        "string": "asswordForgot password?",
+        "bbox": [
+          410,
+          314,
+          614,
+          344
+        ],
+        "contrast": 18.42,
+        "ocr_score": 0.312,
+        "flags": [
+          "low_ocr_confidence"
+        ]
+      },
+      {
+        "string": "Forgot password",
+        "bbox": [
+          492,
+          319,
+          592,
+          341
+        ],
+        "contrast": 6.11,
+        "ocr_score": 0.5,
+        "flags": [
+          "low_ocr_confidence"
+        ]
+      },
+      {
+        "string": "Sign in",
+        "bbox": [
+          468,
+          424,
+          528,
+          456
+        ],
+        "contrast": 4.63,
+        "ocr_score": 0.538,
+        "flags": [
+          "low_ocr_confidence"
+        ]
+      },
+      {
+        "string": "New to GitHub? Create.anaccou",
+        "bbox": [
+          403,
+          484,
+          585,
+          511
+        ],
+        "contrast": 6.12,
+        "ocr_score": 0.413,
+        "flags": [
+          "low_ocr_confidence"
+        ]
+      },
+      {
+        "string": "Privacy",
+        "bbox": [
+          263,
+          959,
+          306,
+          983
+        ],
+        "contrast": 6.11,
+        "ocr_score": 0.369,
+        "flags": [
+          "low_ocr_confidence"
+        ]
+      },
+      {
+        "string": "Contact GitHub Support",
+        "bbox": [
+          354,
+          956,
+          481,
+          981
+        ],
+        "contrast": 6.11,
+        "ocr_score": 0.368,
+        "flags": [
+          "low_ocr_confidence"
+        ]
+      },
+      {
+        "string": "Manage cookie",
+        "bbox": [
+          499,
+          960,
+          571,
+          981
+        ],
+        "contrast": 6.11,
+        "ocr_score": 0.412,
+        "flags": [
+          "low_ocr_confidence"
+        ]
+      },
+      {
+        "string": "o not share my personal information",
+        "bbox": [
+          601,
+          959,
+          783,
+          981
+        ],
+        "contrast": 6.11,
+        "ocr_score": 0.382,
+        "flags": [
+          "low_ocr_confidence"
+        ]
+      }
+    ]
+  },
+  "detectors": {
+    "status_icons": {
+      "image": "loop_runs/vlm1/candidate.png",
+      "size": [
+        1200,
+        800
+      ],
+      "candidates": 1,
+      "regions": [
+        {
+          "object_id": 1,
+          "name": "logo",
+          "mirage_score": 0.555,
+          "position": "top center",
+          "bbox_px": [
+            577,
+            30,
+            626,
+            68
+          ],
+          "container_hex": "#081818",
+          "container_hue": "black",
+          "glyph_px": 124,
+          "glyph_aspect": 1.048,
+          "glyph_fill": 0.268,
+          "scores": {
+            "spinner": 0.129,
+            "warning": 0.1337,
+            "play": 0.1474,
+            "trash": 0.1526,
+            "download": 0.1807
+          },
+          "best_score": 0.129,
+          "margin": 0.0047,
+          "glyph": "spinner",
+          "confidence": 0.194
+        }
+      ],
+      "status_icons": {
+        "1": "spinner"
+      }
+    },
+    "hue_census": {
+      "image": "loop_runs/vlm1/candidate.png",
+      "size": [
+        1200,
+        800
+      ],
+      "saturated_px": 8813,
+      "saturated_pct_of_image": 0.918,
+      "mask": {
+        "s_min": 0.35,
+        "v_min": 0.35,
+        "bin_deg": 15.0
+      },
+      "thresholds": {
+        "min_family_share": 0.01,
+        "rel_to_dominant": 0.1
+      },
+      "families": [
+        {
+          "hue_center_deg": 216.2,
+          "hue_name": "azure",
+          "hue_span_deg": 45.0,
+          "pixel_count": 5065,
+          "share_of_saturated": 0.5747,
+          "share_pct": 57.47,
+          "bbox": [
+            263,
+            187,
+            935,
+            783
+          ],
+          "x_profile": [
+            0.0,
+            0.0,
+            0.058,
+            0.061,
+            0.2938,
+            0.3941,
+            0.1191,
+            0.074,
+            0.0,
+            0.0
+          ],
+          "significant": true
+        },
+        {
+          "hue_center_deg": 131.3,
+          "hue_name": "green",
+          "hue_span_deg": 15.0,
+          "pixel_count": 3748,
+          "share_of_saturated": 0.4253,
+          "share_pct": 42.53,
+          "bbox": [
+            552,
+            332,
+            647,
+            373
+          ],
+          "x_profile": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.4925,
+            0.5075,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "significant": true
+        }
+      ],
+      "significant_families": 2,
+      "verdict": "accent_hue_split",
+      "notes": [
+        "2 hue families over significance floors: azure(57.47%) + green(42.53%). Candidate theme-token split \u2014 e.g. shared chrome on one accent and regenerated content on another. Check family bboxes/x_profiles for chrome-vs-content segregation."
+      ],
+      "dominant_family": "azure"
+    },
+    "lexical_screen": {
+      "sources": [
+        "dict:words",
+        "dict:connectives"
+      ],
+      "flagged": [
+        {
+          "string": "Username or email address",
+          "bbox": [
+            422,
+            200,
+            580,
+            226
+          ],
+          "ocr_score": 0.72,
+          "verdict": "non_lexical_text",
+          "oov_fraction": 0.667,
+          "tokens": [
+            {
+              "token": "Username",
+              "status": "out_of_vocabulary"
+            },
+            {
+              "token": "or",
+              "status": "exempt",
+              "reason": "<3 chars"
+            },
+            {
+              "token": "email",
+              "status": "out_of_vocabulary"
+            },
+            {
+              "token": "address",
+              "status": "known"
+            }
+          ],
+          "oov_tokens": [
+            "Username",
+            "email"
+          ]
+        },
+        {
+          "string": "New to GitHub? Create.anaccou",
+          "bbox": [
+            403,
+            484,
+            585,
+            511
+          ],
+          "ocr_score": 0.413,
+          "verdict": "contains_out_of_vocabulary",
+          "oov_fraction": 0.25,
+          "tokens": [
+            {
+              "token": "New",
+              "status": "known"
+            },
+            {
+              "token": "to",
+              "status": "exempt",
+              "reason": "<3 chars"
+            },
+            {
+              "token": "GitHub",
+              "status": "merged",
+              "parts": [
+                "Git",
+                "Hub"
+              ],
+              "unknown_parts": []
+            },
+            {
+              "token": "Create",
+              "status": "known"
+            },
+            {
+              "token": "anaccou",
+              "status": "out_of_vocabulary"
+            }
+          ],
+          "oov_tokens": [
+            "anaccou"
+          ]
+        },
+        {
+          "string": "Manage cookie",
+          "bbox": [
+            499,
+            960,
+            571,
+            981
+          ],
+          "ocr_score": 0.412,
+          "verdict": "non_lexical_text",
+          "oov_fraction": 0.5,
+          "tokens": [
+            {
+              "token": "Manage",
+              "status": "known"
+            },
+            {
+              "token": "cookie",
+              "status": "out_of_vocabulary"
+            }
+          ],
+          "oov_tokens": [
+            "cookie"
+          ]
+        }
+      ],
+      "frag_bands": [
+        {
+          "kind": "ocr_line_fragmented",
+          "y_band": [
+            309,
+            341
+          ],
+          "n_records": 3,
+          "records": [
+            {
+              "string": "Password",
+              "bbox": [
+                404,
+                309,
+                462,
+                331
+              ],
+              "score": 0.577
+            },
+            {
+              "string": "asswordForgot password?",
+              "bbox": [
+                410,
+                314,
+                614,
+                344
+              ],
+              "score": 0.312
+            },
+            {
+              "string": "Forgot password",
+              "bbox": [
+                492,
+                319,
+                592,
+                341
+              ],
+              "score": 0.5
+            }
+          ],
+          "x_overlap_example": [
+            "Password",
+            "asswordForgot password?",
+            0.897
+          ],
+          "encompassing_record": "asswordForgot password?"
+        },
+        {
+          "kind": "ocr_line_fragmented",
+          "y_band": [
+            483,
+            511
+          ],
+          "n_records": 2,
+          "records": [
+            {
+              "string": "New to GitHub?",
+              "bbox": [
+                403,
+                483,
+                495,
+                511
+              ],
+              "score": 0.603
+            },
+            {
+              "string": "New to GitHub? Create.anaccou",
+              "bbox": [
+                403,
+                484,
+                585,
+                511
+              ],
+              "score": 0.413
+            }
+          ],
+          "x_overlap_example": [
+            "New to GitHub?",
+            "New to GitHub? Create.anaccou",
+            1.0
+          ],
+          "encompassing_record": "New to GitHub? Create.anaccou"
+        }
+      ]
+    },
+    "anisotropy": {
+      "image": "loop_runs/vlm1/candidate.png",
+      "size": [
+        1200,
+        800
+      ],
+      "thresholds": {
+        "ink_dist": 22.0,
+        "erode_iters": 2,
+        "min_cluster_members": 4,
+        "log_aspect_min": 0.15,
+        "glyph_w_over_h_band": [
+          0.35,
+          0.75
+        ]
+      },
+      "blobs": {
+        "surfaces": {
+          "page_bg": "#0d1117",
+          "card": "#242426"
+        },
+        "ink_px": 14464,
+        "cores": 36,
+        "candidates": 2,
+        "blobs": [
+          {
+            "bbox": [
+              552,
+              332,
+              647,
+              373
+            ],
+            "w": 96,
+            "h": 42,
+            "aspect_h_over_w": 0.438,
+            "log_aspect": -0.8267,
+            "core_area": 3492,
+            "core_fill": 0.999,
+            "round_witness": false
+          },
+          {
+            "bbox": [
+              523,
+              116,
+              529,
+              134
+            ],
+            "w": 7,
+            "h": 19,
+            "aspect_h_over_w": 2.714,
+            "log_aspect": 0.9985,
+            "core_area": 27,
+            "core_fill": 0.6,
+            "round_witness": true
+          }
+        ],
+        "round_witnesses": 1,
+        "cluster": null,
+        "cluster_members": [],
+        "notes": [
+          "only 1 round-witness blobs (< 3); no unanimity witnesses \u2014 aspect census unreliable"
+        ]
+      },
+      "glyphs": {
+        "ink_px": 0,
+        "lum_threshold": 200.0,
+        "n_lines": 0,
+        "median_glyph_w_over_h": null,
+        "population_median": null,
+        "notes": [
+          "dark background (border luminance <128); glyph census assumes dark-on-light \u2014 skipped"
+        ]
+      },
+      "glyph_lines": [],
+      "verdict": "insufficient_witnesses",
+      "notes": [
+        "only 1 round-witness blobs (< 3); no unanimity witnesses \u2014 aspect census unreliable",
+        "dark background (border luminance <128); glyph census assumes dark-on-light \u2014 skipped"
+      ]
+    },
+    "totals_consistency": {
+      "image": "loop_runs/vlm1/candidate.png",
+      "verdict": "no_currency_amounts",
+      "n_text_records": 12,
+      "n_amount_rows": 0,
+      "rows": [],
+      "findings": [],
+      "checks": [],
+      "notes": []
+    },
+    "edge_census": {
+      "params": {
+        "floor": 3.0,
+        "min_n": 2,
+        "xgap": 30.0,
+        "ygap": 25.0,
+        "row_min": 40.0,
+        "col_min": 40.0,
+        "row_same": 8.0,
+        "col_same": 8.0,
+        "width_guard": 15.0
+      },
+      "text_records": 12,
+      "repeated_strings": 0,
+      "clusters_audited": 0,
+      "audit": [],
+      "findings": [],
+      "verdict": "CLEAN"
+    },
+    "pixel_edge_drift": {
+      "image_size": [
+        1200,
+        800
+      ],
+      "bg": [
+        13.0,
+        17.0,
+        23.0
+      ],
+      "bands": [
+        {
+          "y": [
+            32,
+            71
+          ],
+          "h": 40
+        },
+        {
+          "y": [
+            110,
+            136
+          ],
+          "h": 27
+        },
+        {
+          "y": [
+            165,
+            176
+          ],
+          "h": 12
+        },
+        {
+          "y": [
+            250,
+            273
+          ],
+          "h": 24
+        },
+        {
+          "y": [
+            332,
+            373
+          ],
+          "h": 42
+        },
+        {
+          "y": [
+            393,
+            403
+          ],
+          "h": 11
+        },
+        {
+          "y": [
+            771,
+            783
+          ],
+          "h": 13
+        }
+      ],
+      "intervals": 14,
+      "params": {
+        "bg_dist": 30,
+        "surf_dist": 30,
+        "min_band_h": 8,
+        "min_col_ink": 3,
+        "merge_gap": 8,
+        "xcluster": 12,
+        "width_max": 25.0,
+        "min_bands": 3,
+        "floor_px": 3.0
+      },
+      "audit": [
+        {
+          "n_bands": 3,
+          "n_intervals": 3,
+          "x0_range": [
+            486,
+            488
+          ],
+          "x1_range": [
+            546,
+            713
+          ],
+          "width_spread": 169,
+          "left_spread": 2,
+          "right_spread": 167,
+          "center_spread": 82.5,
+          "anchored_spread": 2,
+          "bands": [
+            1,
+            3,
+            5
+          ],
+          "skipped": "variable_width"
+        }
+      ],
+      "findings": [],
+      "verdict": "CLEAN"
+    },
+    "luminance_theme": {
+      "image": "loop_runs/vlm1/candidate.png",
+      "size": [
+        1200,
+        800
+      ],
+      "bg_luminance": 0.065,
+      "theme": "dark",
+      "island_frac": 0.0045,
+      "coherent_bands": 0,
+      "band_rows": 0,
+      "verdict": "single_luminance_theme",
+      "notes": [
+        "island frac 0.4% / coherent rows 0 below floors"
+      ]
+    },
+    "nonuniform_scale": {
+      "image": "loop_runs/vlm1/candidate.png",
+      "size": [
+        1200,
+        800
+      ],
+      "text_bands": [],
+      "n_bands": 0,
+      "population_median_w_over_h": null,
+      "verdict": "insufficient_witnesses",
+      "notes": [
+        "no qualifying text bands"
+      ]
+    }
+  },
+  "question": "what differs from the reference UI?",
+  "instruction": "Answer the question using ONLY the evidence above. Report facts you can cite; say 'insufficient evidence' rather than guessing.",
+  "element_diff": {
+    "object_changes": [
+      {
+        "element": "text label",
+        "bbox": [
+          401,
+          133,
+          599,
+          170
+        ],
+        "deltas": {
+          "renamed": {
+            "ref": "text label",
+            "cand": "text"
+          }
+        }
+      },
+      {
+        "element": "text label",
+        "bbox": [
+          362,
+          961,
+          474,
+          978
+        ],
+        "deltas": {
+          "renamed": {
+            "ref": "text label",
+            "cand": "text"
+          }
+        }
+      },
+      {
+        "element": "text label",
+        "bbox": [
+          317,
+          962,
+          344,
+          980
+        ],
+        "deltas": {
+          "renamed": {
+            "ref": "text label",
+            "cand": "text"
+          }
+        }
+      },
+      {
+        "element": "text label",
+        "bbox": [
+          42,
+          65,
+          952,
+          927
+        ],
+        "deltas": {
+          "renamed": {
+            "ref": "text label",
+            "cand": "webpage"
+          }
+        }
+      },
+      {
+        "element": "text label",
+        "bbox": [
+          424,
+          963,
+          648,
+          979
+        ],
+        "deltas": {
+          "renamed": {
+            "ref": "text label",
+            "cand": "text"
+          }
+        }
+      },
+      {
+        "element": "text label",
+        "bbox": [
+          460,
+          412,
+          543,
+          467
+        ],
+        "deltas": {
+          "moved": 0.0108,
+          "renamed": {
+            "ref": "text label",
+            "cand": "button"
+          }
+        }
+      },
+      {
+        "element": "text label",
+        "bbox": [
+          606,
+          962,
+          779,
+          979
+        ],
+        "deltas": {
+          "moved": 0.0187,
+          "renamed": {
+            "ref": "text label",
+            "cand": "text"
+          }
+        }
+      },
+      {
+        "element": "text label",
+        "bbox": [
+          265,
+          961,
+          304,
+          982
+        ],
+        "deltas": {
+          "moved": 0.0206,
+          "renamed": {
+            "ref": "text label",
+            "cand": "text"
+          }
+        }
+      },
+      {
+        "element": "text label",
+        "bbox": [
+          399,
+          223,
+          618,
+          347
+        ],
+        "deltas": {
+          "moved": 0.0237,
+          "renamed": {
+            "ref": "text label",
+            "cand": "button"
+          }
+        }
+      },
+      {
+        "element": "button",
+        "bbox": [
+          412,
+          308,
+          610,
+          350
+        ],
+        "deltas": {
+          "moved": 0.0257,
+          "renamed": {
+            "ref": "button",
+            "cand": "text"
+          }
+        }
+      },
+      {
+        "element": "logo",
+        "bbox": [
+          481,
+          37,
+          522,
+          85
+        ],
+        "deltas": {
+          "moved": 0.0265
+        }
+      },
+      {
+        "element": "text label",
+        "bbox": [
+          404,
+          310,
+          461,
+          334
+        ],
+        "deltas": {
+          "moved": 0.052,
+          "renamed": {
+            "ref": "text label",
+            "cand": "text"
+          }
+        }
+      },
+      {
+        "element": "text label",
+        "bbox": [
+          418,
+          198,
+          585,
+          228
+        ],
+        "deltas": {
+          "moved": 0.0691,
+          "renamed": {
+            "ref": "text label",
+            "cand": "text"
+          }
+        }
+      }
+    ],
+    "objects_added": [
+      {
+        "name": "text",
+        "bbox": [
+          404,
+          487,
+          494,
+          513
+        ]
+      },
+      {
+        "name": "text",
+        "bbox": [
+          240,
+          954,
+          771,
+          988
+        ]
+      }
+    ],
+    "objects_removed": [
+      {
+        "name": "text label",
+        "bbox": [
+          547,
+          308,
+          645,
+          332
+        ]
+      },
+      {
+        "name": "text label",
+        "bbox": [
+          190,
+          955,
+          226,
+          983
+        ]
+      },
+      {
+        "name": "software interface",
+        "bbox": [
+          624,
+          955,
+          798,
+          980
+        ]
+      }
+    ],
+    "text_changes": [
+      {
+        "type": "text_edited",
+        "ref": "New to GitHub? Create an account",
+        "cand": "New to GitHub? Create.anaccou",
+        "bbox": [
+          403,
+          484,
+          585,
+          511
+        ]
+      },
+      {
+        "type": "text_edited",
+        "ref": "Manage cookies",
+        "cand": "Manage cookie",
+        "bbox": [
+          499,
+          960,
+          571,
+          981
+        ]
+      },
+      {
+        "type": "text_edited",
+        "ref": "Do not share my personal information",
+        "cand": "o not share my personal information",
+        "bbox": [
+          601,
+          959,
+          783,
+          981
+        ]
+      },
+      {
+        "type": "text_edited",
+        "ref": "Forgot password?",
+        "cand": "Forgot password",
+        "bbox": [
+          492,
+          319,
+          592,
+          341
+        ]
+      },
+      {
+        "type": "text_removed",
+        "ref": "Terms",
+        "bbox": [
+          190,
+          956,
+          225,
+          980
+        ]
+      },
+      {
+        "type": "text_removed",
+        "ref": "Docs",
+        "bbox": [
+          305,
+          956,
+          337,
+          980
+        ]
+      },
+      {
+        "type": "text_added",
+        "cand": "asswordForgot password?",
+        "bbox": [
+          410,
+          314,
+          614,
+          344
+        ]
+      },
+      {
+        "type": "text_added",
+        "cand": "New to GitHub?",
+        "bbox": [
+          403,
+          483,
+          495,
+          511
+        ]
+      }
+    ],
+    "counts": {
+      "ref_objects": 16,
+      "cand_objects": 15,
+      "ref_text": 12,
+      "cand_text": 12
+    }
+  },
+  "score": {
+    "score": 62.9,
+    "components": {
+      "palette": {
+        "score": 0.8933
+      },
+      "objects": {
+        "score": 0.4578,
+        "matched": 13,
+        "missing": [
+          "text label",
+          "text label",
+          "software interface"
+        ],
+        "extra": [
+          "text",
+          "text"
+        ],
+        "attr_sim": 0.5458,
+        "attr_changes": [
+          {
+            "ref": "text label",
+            "cand": "text",
+            "attr_sim": 0.706
+          },
+          {
+            "ref": "text label",
+            "cand": "text",
+            "attr_sim": 0.651
+          },
+          {
+            "ref": "text label",
+            "cand": "text",
+            "attr_sim": 0.754
+          },
+          {
+            "ref": "text label",
+            "cand": "webpage",
+            "attr_sim": 0.385
+          },
+          {
+            "ref": "text label",
+            "cand": "text",
+            "attr_sim": 0.45
+          },
+          {
+            "ref": "text label",
+            "cand": "button",
+            "attr_sim": 0.284
+          },
+          {
+            "ref": "text label",
+            "cand": "text",
+            "attr_sim": 0.631
+          },
+          {
+            "ref": "text label",
+            "cand": "text",
+            "attr_sim": 0.659
+          },
+          {
+            "ref": "text label",
+            "cand": "button",
+            "attr_sim": 0.0
+          },
+          {
+            "ref": "button",
+            "cand": "text",
+            "attr_sim": 0.0
+          },
+          {
+            "ref": "text label",
+            "cand": "text",
+            "attr_sim": 0.783
+          }
+        ]
+      },
+      "layout": {
+        "score": 0.4143,
+        "mean_center_dist": 0.205,
+        "pairs": 13
+      },
+      "text": {
+        "score": 0.8666
+      },
+      "scene": {
+        "score": 0.5577
+      }
+    },
+    "weights": {
+      "palette": 0.25,
+      "objects": 0.3,
+      "layout": 0.2,
+      "text": 0.15,
+      "scene": 0.1
+    }
+  },
+  "pixdiff": {
+    "score": 0.8233,
+    "ssim_mean": 0.9149,
+    "mismatch_frac": 0.03927,
+    "n_regions": 12,
+    "regions": [
+      {
+        "bbox_px": [
+          226,
+          172,
+          414,
+          199
+        ],
+        "area_px": 3538,
+        "area_frac": 0.01298
+      },
+      {
+        "bbox_px": [
+          258,
+          132,
+          414,
+          169
+        ],
+        "area_px": 1133,
+        "area_frac": 0.00416
+      },
+      {
+        "bbox_px": [
+          226,
+          99,
+          414,
+          124
+        ],
+        "area_px": 1023,
+        "area_frac": 0.00375
+      },
+      {
+        "bbox_px": [
+          260,
+          58,
+          326,
+          74
+        ],
+        "area_px": 573,
+        "area_frac": 0.0021
+      },
+      {
+        "bbox_px": [
+          391,
+          409,
+          512,
+          417
+        ],
+        "area_px": 558,
+        "area_frac": 0.00205
+      },
+      {
+        "bbox_px": [
+          308,
+          17,
+          333,
+          49
+        ],
+        "area_px": 468,
+        "area_frac": 0.00172
+      },
+      {
+        "bbox_px": [
+          317,
+          209,
+          381,
+          218
+        ],
+        "area_px": 395,
+        "area_frac": 0.00145
+      },
+      {
+        "bbox_px": [
+          230,
+          409,
+          308,
+          417
+        ],
+        "area_px": 378,
+        "area_frac": 0.00139
+      },
+      {
+        "bbox_px": [
+          327,
+          58,
+          361,
+          71
+        ],
+        "area_px": 304,
+        "area_frac": 0.00112
+      },
+      {
+        "bbox_px": [
+          226,
+          132,
+          293,
+          140
+        ],
+        "area_px": 298,
+        "area_frac": 0.00109
+      },
+      {
+        "bbox_px": [
+          318,
+          409,
+          374,
+          418
+        ],
+        "area_px": 274,
+        "area_frac": 0.001
+      },
+      {
+        "bbox_px": [
+          123,
+          409,
+          194,
+          417
+        ],
+        "area_px": 268,
+        "area_frac": 0.00098
+      }
+    ],
+    "size": [
+      640,
+      426
+    ],
+    "notes": [],
+    "heat": [
+      [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.002,
+        0.002,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.33,
+        0.327,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.229,
+        0.254,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.446,
+        0.362,
+        0.364,
+        0.355,
+        0.393,
+        0.401,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.035,
+        0.014,
+        0.0,
+        0.002,
+        0.002,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.21,
+        0.288,
+        0.26,
+        0.279,
+        0.268,
+        0.29,
+        0.317,
+        0.177,
+        0.105,
+        0.079,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.131,
+        0.12,
+        0.265,
+        0.265,
+        0.265,
+        0.265,
+        0.265,
+        0.265,
+        0.247,
+        0.107,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.132,
+        0.183,
+        0.203,
+        0.133,
+        0.019,
+        0.131,
+        0.171,
+        0.263,
+        0.161,
+        0.102,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.018,
+        0.054,
+        0.209,
+        0.209,
+        0.212,
+        0.256,
+        0.259,
+        0.246,
+        0.191,
+        0.018,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.166,
+        0.268,
+        0.359,
+        0.357,
+        0.348,
+        0.348,
+        0.357,
+        0.359,
+        0.347,
+        0.166,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.594,
+        0.862,
+        0.862,
+        0.637,
+        0.294,
+        0.239,
+        0.637,
+        0.862,
+        0.862,
+        0.594,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.008,
+        0.094,
+        0.155,
+        0.309,
+        0.297,
+        0.116,
+        0.071,
+        0.004,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.005,
+        0.139,
+        0.132,
+        0.124,
+        0.118,
+        0.117,
+        0.126,
+        0.007,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.045,
+        0.045,
+        0.045,
+        0.045,
+        0.045,
+        0.045,
+        0.045,
+        0.045,
+        0.045,
+        0.045,
+        0.045,
+        0.045,
+        0.045,
+        0.045,
+        0.045,
+        0.045,
+        0.045,
+        0.045,
+        0.045,
+        0.045,
+        0.045,
+        0.045,
+        0.045,
+        0.045,
+        0.045,
+        0.045,
+        0.045,
+        0.045,
+        0.045,
+        0.045,
+        0.045,
+        0.045
+      ],
+      [
+        0.094,
+        0.094,
+        0.094,
+        0.094,
+        0.094,
+        0.094,
+        0.169,
+        0.209,
+        0.185,
+        0.187,
+        0.202,
+        0.15,
+        0.219,
+        0.215,
+        0.211,
+        0.154,
+        0.231,
+        0.205,
+        0.171,
+        0.198,
+        0.211,
+        0.2,
+        0.207,
+        0.197,
+        0.209,
+        0.155,
+        0.094,
+        0.094,
+        0.094,
+        0.094,
+        0.094,
+        0.094
+      ]
+    ]
+  },
+  "fdiff": {
+    "score": 0.7913,
+    "regions": [
+      {
+        "bbox_px": [
+          407,
+          22,
+          805,
+          417
+        ],
+        "area_px": 97242,
+        "area_frac": 0.10129,
+        "mean_diff": 0.0781
+      },
+      {
+        "bbox_px": [
+          595,
+          768,
+          981,
+          798
+        ],
+        "area_px": 7069,
+        "area_frac": 0.00736,
+        "mean_diff": 0.0598
+      },
+      {
+        "bbox_px": [
+          227,
+          768,
+          417,
+          798
+        ],
+        "area_px": 3635,
+        "area_frac": 0.00379,
+        "mean_diff": 0.0586
+      },
+      {
+        "bbox_px": [
+          431,
+          768,
+          581,
+          789
+        ],
+        "area_px": 2619,
+        "area_frac": 0.00273,
+        "mean_diff": 0.0677
+      }
+    ],
+    "notes": [
+      "global_align_px=[0, 0]",
+      "levels=6",
+      "level_mean_diff=[0.02161, 0.01971, 0.01812, 0.01632, 0.01446, 0.01188]",
+      "soft_energy=0.01167 changed_frac=0.09243"
+    ],
+    "n_regions": 4,
+    "align_shift_px": [
+      0,
+      0
+    ],
+    "size": [
+      1200,
+      800
+    ]
+  },
+  "region_map": {
+    "error": "No module named 'playwright'"
+  }
+}
