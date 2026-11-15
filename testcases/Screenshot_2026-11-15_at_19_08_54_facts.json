@@ -1,0 +1,90 @@
+{
+  "image": "testcases/Screenshot 2026-11-15 at 19.08.54.png",
+  "questions": [
+    {
+      "id": "background",
+      "question": "What kind of background?",
+      "answer": "mixed/textured; dominant #040404 (56%)",
+      "probe": "grid+palette",
+      "confidence": "measured"
+    },
+    {
+      "id": "glow",
+      "question": "Is there a glow/gradient accent?",
+      "answer": "bright region near cell (13,3) mean_rgb=[180, 102, 124]",
+      "probe": "grid",
+      "confidence": "measured"
+    },
+    {
+      "id": "text_inventory",
+      "question": "What text is present?",
+      "answer": {
+        "count": 5,
+        "strings": [
+          "Daily Goals",
+          "Goals",
+          "Day",
+          "5",
+          "6"
+        ]
+      },
+      "probe": "describe+structure",
+      "confidence": "measured"
+    },
+    {
+      "id": "layout_family",
+      "question": "What layout family?",
+      "answer": "unstructured (2 rows x 16 cols detected)",
+      "probe": "structure",
+      "confidence": "measured"
+    },
+    {
+      "id": "alignment",
+      "question": "How are text blocks aligned?",
+      "answer": [
+        {
+          "y": 372,
+          "alignment": "left",
+          "text": "Daily Goals Goals"
+        },
+        {
+          "y": 637,
+          "alignment": "right",
+          "text": "Day 5 6"
+        }
+      ],
+      "probe": "structure+bboxes",
+      "confidence": "measured"
+    },
+    {
+      "id": "selection_state",
+      "question": "Is anything selected/highlighted?",
+      "answer": {
+        "blobs": [
+          {
+            "bbox_px": [
+              258,
+              114,
+              109,
+              63
+            ],
+            "centroid_px": [
+              313,
+              145
+            ],
+            "mean_rgb": [
+              202,
+              108,
+              126
+            ],
+            "fill": 0.796,
+            "shape": "disc-ish",
+            "zoomed_label": "4"
+          }
+        ]
+      },
+      "probe": "accent-census+zoom",
+      "confidence": "measured"
+    }
+  ]
+}
