@@ -87,6 +87,15 @@ def evidence_pack(image, question: str | None = None) -> dict:
             width_guard=ec.WIDTH_GUARD)
     except Exception:
         detector_errors.append("edge-census")
+    try:
+        pe = _load_detector("edge-census/pixel_edges.py")
+        import numpy as np
+        from PIL import Image
+        arr = np.asarray(Image.open(str(image)).convert("RGB"))
+        findings_extra["pixel_edge_drift"] = pe.census(
+            arr, floor_px=pe.FLOOR_PX, width_max=pe.WIDTH_MAX)
+    except Exception:
+        detector_errors.append("pixel-edge-drift")
 
     pack = {
         "scene": rec.get("scene"),

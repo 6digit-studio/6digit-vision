@@ -74,3 +74,12 @@ Post-fix verification:
 - low-contrast defect: still fires at **1.47** — true positive preserved
 - synthetic low-contrast eval: 3 flags, unchanged
 - 30 tests green
+
+## Update 2 — pixel_edges wired into ask packs
+
+`pixel_edge_drift` now surfaces in ask packs alongside `edge_census`.
+Verified: grid-misalign defect FLAGGED (edge_drift, anchored_spread
+9px across 7 bands), both controls CLEAN. Honest residual: web-real
+misalign stays CLEAN — its margin-top drift pattern doesn't form the
+uniform-width multi-band clusters the detector keys on; real-layout
+drift detection remains partially dark. 30 tests green.
