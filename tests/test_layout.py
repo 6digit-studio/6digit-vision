@@ -39,11 +39,14 @@ def test_edge_contact_full_bleed_bg_not_flagged():
 def test_objects_at_edge():
     rec = {"objects": [
         {"name": "card", "bbox": [100, 100, 500, 500]},
-        {"name": "cutoff", "bbox": [850, 400, 1000, 600]},
+        {"name": "cutoff", "bbox": [850, 400, 1000, 600], "score": 0.3},
+        {"name": "near-edge-ok", "bbox": [100, 920, 400, 960], "score": 0.9},
     ]}
     hits = layout.objects_at_edge(rec)
-    assert [h["name"] for h in hits] == ["cutoff"]
-    assert "right" in hits[0]["sides"]
+    by_name = {h["name"]: h for h in hits}
+    assert "cutoff" in by_name and "right" in by_name["cutoff"]["sides"]
+    assert by_name["cutoff"]["suspect"] is True
+    assert by_name["near-edge-ok"]["suspect"] is False
 
 
 def test_bbox_overlaps_flags_crossing_not_nesting():

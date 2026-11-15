@@ -83,9 +83,17 @@ def edge_contact(image, tol: int = 64, strip_frac: float = 0.02,
     return out
 
 
-def objects_at_edge(record: dict, margin: float = 0.02) -> list[dict]:
+def objects_at_edge(record: dict, margin: float = 0.05,
+                    suspect_score: float = 0.5) -> list[dict]:
     """Objects whose Mirage bbox comes within `margin` (of 1000-space)
-    of any frame edge — candidates for clipped/off-frame content."""
+    of any frame edge — candidates for clipped/off-frame content.
+
+    margin defaults to 5%: measured on evals/clipped-card, Mirage
+    under-covers physically-clipped objects by ~3%, so 2% misses them.
+    'suspect' marks edge objects whose detection score is low — the
+    confidence-collapse signature of a cut object (0.899 -> 0.309 on the
+    clipped-card case).
+    """
     m = margin * 1000.0
     hits = []
     for obj in record.get("objects", []):
@@ -98,8 +106,10 @@ def objects_at_edge(record: dict, margin: float = 0.02) -> list[dict]:
         if x1 >= 1000 - m: sides.append("right")
         if y1 >= 1000 - m: sides.append("bottom")
         if sides:
+            score = obj.get("score")
             hits.append({"name": obj.get("name"), "sides": sides,
-                         "bbox": obj["bbox"], "score": obj.get("score")})
+                         "bbox": obj["bbox"], "score": score,
+                         "suspect": score is not None and score < suspect_score})
     return hits
 
 

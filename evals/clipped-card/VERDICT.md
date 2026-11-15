@@ -60,3 +60,25 @@ cannot separate "dark scene gradient bleeding to edge" (intentional) from
 **MISS.** The defect is real, typical, and the instrument walked past it.
 This entry exists to be fixed against: re-run after the truncation-
 signature detector lands and this case should flip to CAUGHT.
+
+## Re-run 2026-11-15 — CAUGHT (after object-level fix)
+
+Fix applied: `objects_at_edge` margin 2%→5% (Mirage under-covers clipped
+objects ~3%) + `suspect` flag for edge objects with score <0.5.
+
+Defect case now reports:
+
+```
+objects at edge:
+  light       right          score=0.341  suspect=True
+  smartphone  top,right,bottom  score=0.309  suspect=True
+```
+
+Controls (uncropped originals): `.47` and `.53` clean; `.39` flags
+`smartphone bottom` at score 0.881 → `suspect=False` — an honest edge
+fact (the phone does sit near the bottom there), not a clip alarm.
+
+**Flipped MISS → CAUGHT** on the object-level signal. The pixel-side
+truncation signature remains unbuilt — edge_contact still can't see
+dark-on-dark content — but the named suspect list is now strong enough
+that a reasoning model reading this JSON would investigate.
