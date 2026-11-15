@@ -51,6 +51,25 @@ def cmd_score(args) -> int:
     return 0
 
 
+def cmd_structure(args) -> int:
+    from . import mirage, structure
+
+    rec = mirage.describe(args.image)
+    texts = [t for t in rec.get("text", []) if t.get("score", 0) > args.min_score]
+    s = structure.summarize(texts)
+    if args.json:
+        print(json.dumps(s, indent=2, ensure_ascii=False))
+        return 0
+    print(f"rows: {s['n_rows']}  cols: {s['n_cols']}  col_xs: {s['col_xs']}")
+    for r in s["grid"]:
+        print(f"  y={r['y']:>5}  {' | '.join('' if c is None else c for c in r['cells'])}")
+    if "inference" in s:
+        print(f"\ninference: {s['inference']['kind']}")
+        print(f"  header: {s['inference']['weekday_header']}")
+        print(f"  days: {s['inference']['day_sequence']}")
+    return 0
+
+
 def cmd_layout(args) -> int:
     from . import layout, mirage
 
@@ -230,6 +249,12 @@ def main(argv: list[str] | None = None) -> int:
     p.add_argument("b")
     p.add_argument("--json", action="store_true")
     p.set_defaults(fn=cmd_pixdiff)
+
+    p = sub.add_parser("structure", help="induce rows/columns/grids from OCR layout")
+    p.add_argument("image")
+    p.add_argument("--min-score", type=float, default=0.4)
+    p.add_argument("--json", action="store_true")
+    p.set_defaults(fn=cmd_structure)
 
     p = sub.add_parser("layout", help="overflow/layout facts: edge contact, edge objects, overlaps")
     p.add_argument("image")
