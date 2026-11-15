@@ -10,7 +10,9 @@ As a *measurement instrument* it is genuinely additive: vision-only averages
 **0.684 SSIM**, a measurement loop averages **0.888** — a +0.20 jump, and the
 same jump the agents got from building their own rigs (B 0.890, C 0.888). The
 useful artifact for this task is `parse`/`score`/`pixdiff`, not `interrogate`'s
-fact sheet.
+fact sheet. One caveat matters: what measurement buys is *capture* fidelity —
+B and C reproduce the reference's blur while A stays crisp, so on the
+legibility axis the unmeasured arm is the better UI (see "Fidelity ≠ quality").
 
 ![A/B/C at a glance — reference, vision-only, facts, measurement loop](gallery_cover.png)
 
@@ -401,6 +403,69 @@ scores that *fell* while pixel fidelity rose (see calibration above). The
 agents that succeeded used the score as a coarse signal and SSIM/pixdiff as
 truth. The agents that trusted the composite would have shipped worse images.
 
+## Fidelity ≠ quality — the blur trap
+
+The +0.20 that measurement buys is fidelity to the *capture*, not necessarily
+quality of the *UI*. On the dark text-heavy references, B and C reproduce the
+screenshot's softness; A renders crisp — and the agent that was not measuring
+produced the more legible artifact.
+
+Measured on a fixed text crop (Laplacian variance relative to the reference;
+1.0 = same softness):
+
+| reference (text crop) | A | B | C |
+|---|---|---|---|
+| ref1 collage — card-1 title | 0.94× | 1.01× | 1.16× |
+| ref3 BP — 82/mmhg | 5.98× | 6.62× | 0.29× |
+| ref4 flight — title/SFO | **4.85×** | 0.30× | 0.35× |
+
+![flight-card text, 4×](blur_crop.png)
+
+On the flight card A is ~4.8× sharper than the reference, while B and C are
+*softer than the reference itself*. It is deliberate: B/ref4 added "a single 1px
+stage blur to imitate the reference's 2x-downsampled softness"; C/ref4 swept
+blur σ, found the reference's effective softening at ~0.6–0.8px, and used 1px
+because Chromium quantizes everything below ~0.75px to zero. C/ref3 did the same
+with `feGaussianBlur 0.8`. On ref1, where the reference text is already crisp, C
+stays crisp (1.16×) — this is local softness matching, not a blanket blur.
+
+![text sharpness vs the reference](sharpness.png)
+
+**Is the score only rewarding blur?** No. Blur both images to a common σ before
+re-scoring, and B/C stay ahead: on ref4 at σ=2.5, A 0.783 / B 0.961 / C 0.935,
+with the B−A gap narrowing from .225 to .179. Roughly a fifth to a quarter of
+the advantage is softness matching; the rest is real geometry, type and colour.
+But the metric cannot tell "correctly soft" from "faithfully reproducing a
+downscaled JPEG", so a loop optimizing it will buy fidelity with legibility.
+
+**Why this matters beyond one image.** A screenshot is a degraded sample of a
+design, not the design. The blur belongs to the capture pipeline (downscale,
+JPEG, device scaling), not to the UI. An agent that can infer intent — this is a
+crisp iOS card, these are ~16px labels, this glow should be clean — is
+recovering the spec behind the sample, which the pixels cannot do. Pixel
+matching has a ceiling at the reference's own quality; on a lossy reference that
+ceiling sits below a good reconstruction.
+
+This is the limit of algorithmic matching: it is a **check on intent, not a
+substitute for it.** When the reference and the intent disagree — and on a lossy
+capture they do — the model should follow the intent and use the metric to stay
+honest about the drift, not to erase the disagreement. That does not make
+measurement useless; it narrows its role. **Measurement calibrates and
+localizes; it cannot define the target.** The target comes from the model's
+reading of intent and the human's judgment of the result — the division
+`SCENE.md` already asserts (the instrument reports facts, judgment belongs to the
+reasoning layer).
+
+If the goal is design fidelity rather than capture fidelity:
+
+- capture references at native resolution, not downscaled or JPEG-compressed;
+- score geometry and colour blur-invariantly (ink mass, edge positions, palette)
+  and set a *legibility floor* instead of rewarding matched softness;
+- report both numbers — capture SSIM and a design-fidelity score;
+- let the model choose crispness when the evidence says the softness is an
+  artifact (a downscale kernel, chroma subsampling), and record that choice in
+  the trace.
+
 ### Self-calibration is weak
 
 Every agent was asked for a 1-10 fidelity estimate. The estimates cluster in
@@ -427,8 +492,10 @@ vision, and a lossy one.
 
 *As a measurement instrument: yes, decisively.* Vision-only averages 0.684 SSIM.
 With a measurement loop — `eyes score`/`pixdiff`/`zoom` (C) or the agent's own
-recording rigs (B) — the average is 0.889 (B 0.890, C 0.888). That +0.20 is the difference between
-"recognizable approximation" and "same widget". The loop supplies the two things
+recording rigs (B) — the average is 0.889 (B 0.890, C 0.888). That +0.20 is
+the difference between "recognizable approximation" and "same widget" — with the
+caveat that it is fidelity to the *capture*. On the sharpness axis A is the
+better UI, because B and C copied the screenshot's blur (see above). The loop supplies the two things
 perception does not: a calibration signal (the agents' own 1-10 estimates
 correlate at only r≈0.42 with measured fidelity) and localization (where the
 error is, in pixels, at what magnitude). It also explains why the package's A/B

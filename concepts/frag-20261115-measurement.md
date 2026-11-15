@@ -1,8 +1,8 @@
 ---
 type: concept
 id: frag-20261115-measurement
-provenance: ab_runs/REPORT.md — A/B/C reproduction run, 2026-11-15
-ts: 2026-11-15T20:00:00+01:00
+provenance: ab_runs/REPORT.md — A/B/C run + fidelity/quality analysis, 2026-11-15
+ts: 2026-11-15T20:24:00+01:00
 tags: [perception, measurement, reproduction, regime-change]
 ---
 
@@ -29,6 +29,13 @@ first gift is calibration, not pixels.
 The load-bearing consequence: the product surface is `parse`/`pixdiff` plus
 measurement primitives, not `interrogate`'s answers. Facts are for the
 text-only user the project was founded for; a seeing agent needs calipers.
+
+**Sharpness is not quality.** The loop can buy SSIM by reproducing a degraded
+capture's blur: on the flight card, B and C render text at 0.30× and 0.35× the
+reference's sharpness while vision-only A renders at 4.85×. Measurement
+calibrates and localizes; it cannot define the target. On a lossy reference the
+intended design sits *above* the sample, and the model's reading of intent is the
+differentiator — the algorithm is a check on intent, not a substitute for it.
 
 **What would correct this belief:** a fact sheet that materially raises a
 seeing agent's fidelity *without* a measurement loop, or a measurement loop
