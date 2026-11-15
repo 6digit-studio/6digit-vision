@@ -374,6 +374,17 @@ def glyph_census(px: np.ndarray, w: int, h: int) -> dict:
             "median_glyph_w_over_h": round(med, 4),
         })
 
+    # merged-band guard: dense text merges adjacent lines into one band,
+    # inflating band_h and deflating w/h into false anisotropy (HN
+    # corpus finding). A band >2.5x the median band height is a
+    # multi-line merge, not a text line — exclude before the median.
+    if len(lines) >= 4:
+        bh = np.array([l["band_ink_h"] for l in lines])
+        med_bh = float(np.median(bh))
+        if med_bh > 0:
+            lines = [l for l in lines
+                     if l["band_ink_h"] <= 2.5 * med_bh]
+
     out["n_lines"] = len(lines)
     out["lines"] = lines[:MAX_LINES_REPORTED]
     if len(lines) >= MIN_TEXT_LINES:

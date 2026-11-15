@@ -201,3 +201,16 @@ correctly, `--json` emits full per-blob and per-line detail. The
 attribution gap the eval named — "nothing says *why* the legibility
 flags fired" — now has a named answer: `glyph_anisotropy` /
 `anisotropic_squash`, cause not symptom.
+
+## Update — merged-band guard (2026-11-15, corpus finding)
+
+HN corpus fired glyph_anisotropy on dense small text. Hypothesis:
+adjacent lines merge into one band, inflating band_h and deflating
+w/h. Guard added: bands >2.5x median band_ink_h excluded before the
+population median. RESULT: HN still fires — mechanism is NOT merged
+bands; tiny glyphs (~10px) have genuinely different w/h pixel
+statistics. Guard kept (merged bands are a real failure mode) but the
+HN FP persists via small-text geometry — documented limitation,
+needs min-cap-height witness gate calibrated on measured data, not
+threshold fishing. aspect-abuse defect still fires anisotropic_squash,
+control isotropic — no regression.
