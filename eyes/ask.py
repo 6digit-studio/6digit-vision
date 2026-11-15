@@ -5,10 +5,11 @@ model (SWE-2, DeepSeek, the agent running eyes). `ask` emits a compact
 evidence pack — record + flagged findings only — optionally framed with
 the question the reasoning layer should answer.
 
-Measured limitation (2026-11-15): cactus.Needle().extract returned null
-on a text-truncation judgment task — the on-device model is not yet a
-reliable reasoning court. The pack is the deliverable; the consumer is
-the court.
+Measured limitation (2026-11-15): cactus.Needle is a TOOL-CALLING model
+(function_calls envelope, `tools=` param, agentic `run` loop) — it is
+for plumbing variables into tool calls, not a reasoning court.
+Needle().extract returned null on a text-truncation judgment. The pack
+is the deliverable; the call-site LLM is the court by design.
 """
 
 from __future__ import annotations
