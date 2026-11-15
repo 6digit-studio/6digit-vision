@@ -57,3 +57,20 @@ stroke-density correction or a smaller sampling window for small text.
 2. edge-census: wire pixel_edges into ask packs for icon/shape drift.
 3. Recalibrate every detector floor on a real-render corpus — this eval
    is the first data point that floors don't transfer.
+
+## Fix landed 2026-11-15 — root cause was color space, not sampling
+
+The false positive traced to WCAG math, not stroke dilution: the
+estimator used PIL `convert("L")` non-linear luma. WCAG contrast is
+defined on LINEAR-light sRGB — `legibility.py` now computes per-pixel
+linear luminance (`_lin` channel transfer + Rec.709 luma) before
+percentiles.
+
+Post-fix verification:
+- control 'Revenue overview': contrast **2.11 -> 4.83** (true WCAG for
+  #6b7280-on-white is ~4.8) — `low_contrast` flag gone; residual
+  `low_ocr_confidence` is honest (OCR genuinely scored 0.363 on the
+  '-Q3' artifact string)
+- low-contrast defect: still fires at **1.47** — true positive preserved
+- synthetic low-contrast eval: 3 flags, unchanged
+- 30 tests green

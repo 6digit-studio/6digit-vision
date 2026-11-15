@@ -20,9 +20,18 @@ _MIN_RATIO = 3.0
 _LOW_OCR = 0.6
 
 
+def _lin(c: float) -> float:
+    """sRGB channel -> linear light (WCAG 2.x relative luminance)."""
+    c = c / 255.0
+    return c / 12.92 if c <= 0.04045 else ((c + 0.055) / 1.055) ** 2.4
+
+
 def _luma(px) -> float:
-    r, g, b = px[0], px[1], px[2]
-    return 0.2126 * r + 0.7152 * g + 0.0722 * b
+    """Relative luminance in LINEAR light — WCAG contrast ratios are
+    defined on linearized sRGB. Using raw sRGB luma underestimates
+    mid-tone contrast ~2x (#6b7280 on white: 2.1 raw vs 4.9 true) and
+    false-positives real anti-aliased text (web-real eval finding)."""
+    return 0.2126 * _lin(px[0]) + 0.7152 * _lin(px[1]) + 0.0722 * _lin(px[2])
 
 
 def text_legibility(image, record: dict,
@@ -30,24 +39,26 @@ def text_legibility(image, record: dict,
                     low_ocr: float = _LOW_OCR) -> list[dict]:
     """Per-text-region legibility facts from a compact Mirage record."""
     img = _open(image).convert("RGB")
-    gray = img.convert("L")
     findings = []
     for t in record.get("text", []):
         if "bbox" not in t:
             continue
         x0, y0, x1, y1 = denorm(t["bbox"], img.width, img.height)
-        crop = gray.crop((x0, y0, x1, y1))
+        crop = img.crop((x0, y0, x1, y1))
         w, h = crop.size
         if w < 2 or h < 2:
             continue
-        px = sorted(crop.getdata())
+        # linear-light luminance per pixel — WCAG ratios live in linear
+        # sRGB; PIL's convert("L") is non-linear and reads mid-tone
+        # contrast ~2x too low (web-real false-positive finding)
+        px = sorted(_luma(p) for p in crop.getdata())
         n = len(px)
         # 2nd/98th percentile: glyph cores vs background. A 10% decile is
         # diluted by anti-aliased edges on thin text and underestimates
         # true contrast (measured: 3.28 for black-on-white at n//10).
         k = max(1, n // 50)
-        lo = sum(px[:k]) / k / 255.0
-        hi = sum(px[-k:]) / k / 255.0
+        lo = sum(px[:k]) / k
+        hi = sum(px[-k:]) / k
         ratio = (hi + 0.05) / (lo + 0.05)
         score = t.get("score")
         flags = []
