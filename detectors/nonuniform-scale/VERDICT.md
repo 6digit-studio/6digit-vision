@@ -24,3 +24,18 @@ Measured gap: isotropic corpus max 0.65 vs defect 0.90 — threshold
 0.85 sits in real separation. Honest scope: candidate-level (single
 band = thin evidence); fires as scale_suspect not definitive squash.
 The 1.35x inflation factor recovered almost exactly (0.65->0.90).
+
+## Corroboration attempt — measured stall, documented honestly
+
+Commissioned to upgrade scale_suspect candidate->verified via a second
+independent witness. Analysis: intra-canvas ratios are scale-invariant
+(uniform stretch preserves bar/gap/text proportions) — the only absolute
+priors are glyph-shape (channel 1, shipped) and corner-circularity
+(rx~ry for border-radius). Corner probe measured: canvas #fff on
+#f8fafc page is a ~2% luminance step — below cheap threshold detection;
+needs edge-aware segmentation (Canny-class), disproportionate for a
+candidate-level signal. scale_suspect stays single-witness BY DESIGN:
+it's a review flag, not a verdict — same tier as motion-coherence's
+honest PARTIAL. Named future channel: corner-ellipticity via real edge
+detection, or DOM-corner analysis when the stretched element is DOM
+(not canvas — DOM corners ARE detectable via objects_at_edge geometry).
