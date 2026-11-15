@@ -226,19 +226,45 @@ def score_text(ref_strings: list[str], cand_strings: list[str]) -> dict:
     return {"score": round(total / len(ref_n), 4)}
 
 
+# Mirage's scene.style is a small-vocabulary categorical label that
+# churns on near-identical images ("screenshot" -> "digital interface"
+# -> "software interface" for the same UI). These tokens carry no
+# discriminative information for UI-vs-UI comparison — strip them so
+# the component measures scene CONTENT, not label luck. Genuine scene
+# changes (letterbox bars, photo vs UI) survive: their tokens aren't
+# in this list.
+_SCENE_GENERIC = {
+    "screenshot", "screen", "screenshots", "interface", "digital",
+    "software", "website", "webpage", "web", "page", "application",
+    "app", "window", "display", "ui", "gui", "desktop", "mobile",
+    "photo", "image", "picture", "graphic", "graphics", "icon",
+    "icons", "logo", "text", "button", "buttons", "menu", "view",
+}
+
+
+def _scene_content_tokens(s: str) -> set[str]:
+    return {t for t in re.findall(r"[a-z]+", s) if t not in _SCENE_GENERIC}
+
+
 def score_scene(ref_rec: dict, cand_rec: dict) -> dict:
-    """Scene background/style similarity via token overlap + string ratio."""
+    """Scene similarity on discriminative tokens only: generic
+    UI-category labels are stripped before jaccard + string ratio so
+    Mirage label churn can't crater the component on correct edits."""
     def flat(rec):
         scene = rec.get("scene") or {}
         return " ".join(str(v) for v in scene.values()).lower()
     r, c = flat(ref_rec), flat(cand_rec)
-    if not r and not c:
+    rt, ct = _scene_content_tokens(r), _scene_content_tokens(c)
+    if not rt and not ct:
         return {"score": 1.0}
-    if not r or not c:
+    if not rt or not ct:
         return {"score": 0.0}
-    rt, ct = set(re.findall(r"[a-z]+", r)), set(re.findall(r"[a-z]+", c))
     jaccard = len(rt & ct) / max(len(rt | ct), 1)
-    ratio = SequenceMatcher(None, r, c).ratio()
+    # ratio on the filtered token stream, not raw strings — generic
+    # label churn can't dilute the content comparison
+    rs = " ".join(sorted(rt))
+    cs = " ".join(sorted(ct))
+    ratio = SequenceMatcher(None, rs, cs).ratio()
     return {"score": round(0.5 * jaccard + 0.5 * ratio, 4)}
 
 
