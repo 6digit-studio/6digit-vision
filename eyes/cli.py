@@ -96,6 +96,11 @@ def cmd_reel(args) -> int:
         print(line)
     if report.get("static_pairs"):
         print(f"\nstatic pairs: {report['static_pairs']}")
+    lc = report.get("lifecycle") or {}
+    if lc.get("departures"):
+        print(f"\nlifecycle departures ({lc.get('verdict','?')}):")
+        for d in lc["departures"]:
+            print(f"  {d.get('kind','?'):<22} {d.get('element','?')}  {d.get('detail','')}")
     return 0
 
 

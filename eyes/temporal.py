@@ -166,10 +166,26 @@ def reel_report(inputs: list[str], *, with_records: bool = True,
         pair["static"] = pair["pixel"]["changed_pct"] < 0.001
         pairs.append(pair)
 
-    return {
+    report = {
         "frames": len(paths),
         "with_records": with_records,
         "frames_detail": frames,
         "pairs": pairs,
         "static_pairs": [p["pair"] for p in pairs if p.get("static")],
     }
+    report["lifecycle"] = _lifecycle_diff(report)
+    return report
+
+
+def _lifecycle_diff(report: dict) -> dict:
+    """Entity-lifecycle departures via the verified detector catalog entry
+    (detectors/lifecycle-diff). Lazy-loaded: detectors/ is the catalog,
+    eyes/ stays import-clean without it."""
+    import importlib.util
+
+    path = (Path(__file__).resolve().parents[1]
+            / "detectors" / "lifecycle-diff" / "lifecycle_diff.py")
+    spec = importlib.util.spec_from_file_location("lifecycle_diff", path)
+    mod = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(mod)
+    return mod.detect(report, min_present=2, min_absent=2)
