@@ -1,0 +1,335 @@
+{
+  "scene": {
+    "background": "white",
+    "style": "webpage screenshot"
+  },
+  "objects": [
+    {
+      "id": 1,
+      "name": "text",
+      "bbox": [
+        47,
+        27,
+        271,
+        91
+      ],
+      "score": 0.503,
+      "position": "center",
+      "description": {
+        "color": "black"
+      }
+    },
+    {
+      "id": 2,
+      "name": "text",
+      "bbox": [
+        756,
+        57,
+        801,
+        85
+      ],
+      "score": 0.365,
+      "position": "bottom",
+      "description": {
+        "color": "gray"
+      }
+    },
+    {
+      "id": 3,
+      "name": "text",
+      "bbox": [
+        822,
+        56,
+        877,
+        83
+      ],
+      "score": 0.489,
+      "position": "top right",
+      "description": {
+        "color": "black"
+      }
+    },
+    {
+      "id": 4,
+      "name": "text",
+      "bbox": [
+        762,
+        51,
+        1000,
+        87
+      ],
+      "score": 0.383,
+      "position": "center",
+      "description": {
+        "color": "black"
+      }
+    },
+    {
+      "id": 5,
+      "name": "text",
+      "bbox": [
+        899,
+        55,
+        997,
+        82
+      ],
+      "score": 0.513,
+      "position": "top left",
+      "description": {
+        "color": "black"
+      }
+    },
+    {
+      "id": 6,
+      "name": "text",
+      "bbox": [
+        291,
+        330,
+        715,
+        364
+      ],
+      "score": 0.623,
+      "position": "top right",
+      "description": {
+        "color": "black"
+      }
+    },
+    {
+      "id": 7,
+      "name": "text",
+      "bbox": [
+        129,
+        397,
+        870,
+        614
+      ],
+      "score": 0.722,
+      "position": "bottom",
+      "description": {
+        "color": "black"
+      }
+    },
+    {
+      "id": 8,
+      "name": "text",
+      "bbox": [
+        264,
+        516,
+        740,
+        598
+      ],
+      "score": 0.521,
+      "position": "top right",
+      "description": {
+        "color": "black"
+      }
+    },
+    {
+      "id": 9,
+      "name": "text",
+      "bbox": [
+        261,
+        615,
+        742,
+        644
+      ],
+      "score": 0.467,
+      "position": "top left",
+      "description": {
+        "color": "black"
+      }
+    },
+    {
+      "id": 10,
+      "name": "button",
+      "bbox": [
+        390,
+        708,
+        613,
+        774
+      ],
+      "score": 0.601,
+      "position": "center",
+      "description": {
+        "color": "orange",
+        "shape": "rounded rectangle"
+      }
+    },
+    {
+      "id": 11,
+      "name": "text",
+      "bbox": [
+        323,
+        929,
+        679,
+        953
+      ],
+      "score": 0.567,
+      "position": "center",
+      "description": {
+        "color": "black"
+      }
+    }
+  ],
+  "regions": [
+    {
+      "id": 12,
+      "name": "webpage",
+      "position": "center",
+      "description": {
+        "color": "white"
+      }
+    }
+  ],
+  "text": [
+    {
+      "string": "Bloom & Stem",
+      "bbox": [
+        39,
+        18,
+        269,
+        100
+      ],
+      "score": 0.451
+    },
+    {
+      "string": "Shop",
+      "bbox": [
+        754,
+        54,
+        803,
+        87
+      ],
+      "score": 0.535
+    },
+    {
+      "string": "ShopJournal",
+      "bbox": [
+        754,
+        51,
+        884,
+        89
+      ],
+      "score": 0.345
+    },
+    {
+      "string": "Journal",
+      "bbox": [
+        818,
+        53,
+        881,
+        87
+      ],
+      "score": 0.626
+    },
+    {
+      "string": "hopJournalAbout Cart (",
+      "bbox": [
+        773,
+        50,
+        994,
+        88
+      ],
+      "score": 0.344
+    },
+    {
+      "string": "About Cart (O",
+      "bbox": [
+        896,
+        52,
+        998,
+        86
+      ],
+      "score": 0.689
+    },
+    {
+      "string": "NE W",
+      "bbox": [
+        286,
+        330,
+        357,
+        361
+      ],
+      "score": 0.31
+    },
+    {
+      "string": "SPRING",
+      "bbox": [
+        385,
+        330,
+        506,
+        360
+      ],
+      "score": 0.329
+    },
+    {
+      "string": "NE WSPRINGCOLLECTIoN",
+      "bbox": [
+        296,
+        329,
+        709,
+        362
+      ],
+      "score": 0.676
+    },
+    {
+      "string": "Hand tied bouguets,",
+      "bbox": [
+        242,
+        408,
+        755,
+        515
+      ],
+      "score": 0.552
+    },
+    {
+      "string": "delvered wechly",
+      "bbox": [
+        266,
+        504,
+        728,
+        612
+      ],
+      "score": 0.502
+    },
+    {
+      "string": "easonal stems, wrapped by hand and couriered the same day",
+      "bbox": [
+        255,
+        612,
+        747,
+        644
+      ],
+      "score": 0.714
+    },
+    {
+      "string": "Shop the collection",
+      "bbox": [
+        409,
+        720,
+        593,
+        755
+      ],
+      "score": 0.697
+    },
+    {
+      "string": "Portland, ORest. 2019 - Open Tue-Sun ·- Same-day until 2pm",
+      "bbox": [
+        303,
+        925,
+        692,
+        955
+      ],
+      "score": 0.714
+    }
+  ],
+  "relations": [
+    {
+      "subject": 10,
+      "predicate": "on",
+      "object": 12
+    }
+  ],
+  "events": [],
+  "reasoning": "lang: en | white webpage with black text, orange button, gray text | webpages are digital interfaces; buttons trigger actions; text blocks are elements | orange button is a call to action, not a label | cannot know the site's purpose or the text content"
+}

@@ -1,0 +1,784 @@
+{
+  "scene": {
+    "background": "white",
+    "style": "screenshot"
+  },
+  "objects": [
+    {
+      "id": 1,
+      "name": "text label",
+      "bbox": [
+        105,
+        142,
+        267,
+        184
+      ],
+      "score": 0.456,
+      "position": "on window",
+      "description": {
+        "color": "black"
+      }
+    },
+    {
+      "id": 1,
+      "name": "text label",
+      "bbox": [
+        105,
+        191,
+        276,
+        217
+      ],
+      "score": 0.437,
+      "position": "on window",
+      "description": {
+        "color": "black"
+      }
+    },
+    {
+      "id": 1,
+      "name": "text label",
+      "bbox": [
+        167,
+        329,
+        213,
+        354
+      ],
+      "score": 0.322,
+      "position": "on window",
+      "description": {
+        "color": "black"
+      }
+    },
+    {
+      "id": 1,
+      "name": "text label",
+      "bbox": [
+        452,
+        328,
+        511,
+        354
+      ],
+      "score": 0.449,
+      "position": "on window",
+      "description": {
+        "color": "black"
+      }
+    },
+    {
+      "id": 1,
+      "name": "text label",
+      "bbox": [
+        733,
+        328,
+        786,
+        354
+      ],
+      "score": 0.392,
+      "position": "on window",
+      "description": {
+        "color": "black"
+      }
+    },
+    {
+      "id": 1,
+      "name": "text label",
+      "bbox": [
+        119,
+        386,
+        190,
+        427
+      ],
+      "score": 0.323,
+      "position": "on window",
+      "description": {
+        "color": "black"
+      }
+    },
+    {
+      "id": 1,
+      "name": "text label",
+      "bbox": [
+        402,
+        388,
+        462,
+        431
+      ],
+      "score": 0.367,
+      "position": "on window",
+      "description": {
+        "color": "black"
+      }
+    },
+    {
+      "id": 1,
+      "name": "text label",
+      "bbox": [
+        686,
+        385,
+        742,
+        425
+      ],
+      "score": 0.319,
+      "position": "on window",
+      "description": {
+        "color": "black"
+      }
+    },
+    {
+      "id": 1,
+      "name": "text label",
+      "bbox": [
+        127,
+        530,
+        179,
+        559
+      ],
+      "score": 0.368,
+      "position": "on window",
+      "description": {
+        "color": "black"
+      }
+    },
+    {
+      "id": 1,
+      "name": "text label",
+      "bbox": [
+        831,
+        530,
+        891,
+        557
+      ],
+      "score": 0.426,
+      "position": "on window",
+      "description": {
+        "color": "black"
+      }
+    },
+    {
+      "id": 1,
+      "name": "text label",
+      "bbox": [
+        128,
+        560,
+        218,
+        588
+      ],
+      "score": 0.418,
+      "position": "on window",
+      "description": {
+        "color": "black"
+      }
+    },
+    {
+      "id": 1,
+      "name": "text label",
+      "bbox": [
+        673,
+        567,
+        725,
+        594
+      ],
+      "score": 0.342,
+      "position": "on window",
+      "description": {
+        "color": "black"
+      }
+    },
+    {
+      "id": 1,
+      "name": "text label",
+      "bbox": [
+        761,
+        568,
+        817,
+        593
+      ],
+      "score": 0.393,
+      "position": "on window",
+      "description": {
+        "color": "black"
+      }
+    },
+    {
+      "id": 1,
+      "name": "text label",
+      "bbox": [
+        121,
+        851,
+        180,
+        880
+      ],
+      "score": 0.461,
+      "position": "on window",
+      "description": {
+        "color": "black"
+      }
+    },
+    {
+      "id": 1,
+      "name": "text label",
+      "bbox": [
+        121,
+        899,
+        174,
+        932
+      ],
+      "score": 0.358,
+      "position": "on window",
+      "description": {
+        "color": "black"
+      }
+    },
+    {
+      "id": 1,
+      "name": "text label",
+      "bbox": [
+        459,
+        884,
+        491,
+        912
+      ],
+      "score": 0.306,
+      "position": "on window",
+      "description": {
+        "color": "black"
+      }
+    },
+    {
+      "id": 1,
+      "name": "text label",
+      "bbox": [
+        532,
+        883,
+        582,
+        907
+      ],
+      "score": 0.332,
+      "position": "on window",
+      "description": {
+        "color": "black"
+      }
+    },
+    {
+      "id": 1,
+      "name": "text label",
+      "bbox": [
+        534,
+        914,
+        698,
+        942
+      ],
+      "score": 0.341,
+      "position": "on window",
+      "description": {
+        "color": "black"
+      }
+    },
+    {
+      "id": 1,
+      "name": "text label",
+      "bbox": [
+        524,
+        902,
+        802,
+        925
+      ],
+      "score": 0.36,
+      "position": "on window",
+      "description": {
+        "color": "black"
+      }
+    },
+    {
+      "id": 2,
+      "name": "button",
+      "bbox": [
+        782,
+        142,
+        927,
+        203
+      ],
+      "score": 0.525,
+      "position": "on window",
+      "description": {
+        "color": "blue"
+      }
+    },
+    {
+      "id": 2,
+      "name": "button",
+      "bbox": [
+        929,
+        149,
+        964,
+        202
+      ],
+      "score": 0.424,
+      "position": "on window",
+      "description": {
+        "color": "blue"
+      }
+    },
+    {
+      "id": 2,
+      "name": "button",
+      "bbox": [
+        415,
+        337,
+        433,
+        365
+      ],
+      "score": 0.311,
+      "position": "on window",
+      "description": {
+        "color": "blue"
+      }
+    },
+    {
+      "id": 2,
+      "name": "button",
+      "bbox": [
+        692,
+        327,
+        726,
+        378
+      ],
+      "score": 0.358,
+      "position": "on window",
+      "description": {
+        "color": "blue"
+      }
+    },
+    {
+      "id": 2,
+      "name": "button",
+      "bbox": [
+        391,
+        303,
+        473,
+        462
+      ],
+      "score": 0.331,
+      "position": "on window",
+      "description": {
+        "color": "blue"
+      }
+    },
+    {
+      "id": 2,
+      "name": "button",
+      "bbox": [
+        367,
+        296,
+        650,
+        466
+      ],
+      "score": 0.508,
+      "position": "on window",
+      "description": {
+        "color": "blue"
+      }
+    },
+    {
+      "id": 2,
+      "name": "button",
+      "bbox": [
+        71,
+        74,
+        944,
+        943
+      ],
+      "score": 0.784,
+      "position": "on window",
+      "description": {
+        "color": "blue"
+      }
+    },
+    {
+      "id": 2,
+      "name": "button",
+      "bbox": [
+        761,
+        568,
+        817,
+        593
+      ],
+      "score": 0.393,
+      "position": "on window",
+      "description": {
+        "color": "blue"
+      }
+    },
+    {
+      "id": 2,
+      "name": "button",
+      "bbox": [
+        121,
+        851,
+        180,
+        880
+      ],
+      "score": 0.461,
+      "position": "on window",
+      "description": {
+        "color": "blue"
+      }
+    },
+    {
+      "id": 2,
+      "name": "button",
+      "bbox": [
+        534,
+        914,
+        698,
+        942
+      ],
+      "score": 0.341,
+      "position": "on window",
+      "description": {
+        "color": "blue"
+      }
+    }
+  ],
+  "regions": [
+    {
+      "id": 3,
+      "name": "window",
+      "position": "center",
+      "description": {
+        "color": "white",
+        "shape": "rectangular"
+      }
+    },
+    {
+      "id": 4,
+      "name": "arrow",
+      "count": "several",
+      "position": "on window",
+      "description": {
+        "color": "blue"
+      }
+    }
+  ],
+  "text": [
+    {
+      "string": "Weekly metrics",
+      "bbox": [
+        100,
+        139,
+        271,
+        184
+      ],
+      "score": 0.76
+    },
+    {
+      "string": "Share report",
+      "bbox": [
+        822,
+        155,
+        892,
+        183
+      ],
+      "score": 0.515
+    },
+    {
+      "string": "Nor 10 - Nov 16, 2025 -all regions",
+      "bbox": [
+        97,
+        189,
+        282,
+        220
+      ],
+      "score": 0.634
+    },
+    {
+      "string": "Revenue",
+      "bbox": [
+        163,
+        327,
+        217,
+        355
+      ],
+      "score": 0.664
+    },
+    {
+      "string": "U",
+      "bbox": [
+        413,
+        337,
+        436,
+        362
+      ],
+      "score": 0.353
+    },
+    {
+      "string": "Acive users",
+      "bbox": [
+        449,
+        327,
+        514,
+        355
+      ],
+      "score": 0.677
+    },
+    {
+      "string": "%",
+      "bbox": [
+        695,
+        335,
+        724,
+        368
+      ],
+      "score": 0.348
+    },
+    {
+      "string": "Chum nisk",
+      "bbox": [
+        730,
+        327,
+        789,
+        355
+      ],
+      "score": 0.73
+    },
+    {
+      "string": "$48.2k",
+      "bbox": [
+        115,
+        383,
+        195,
+        427
+      ],
+      "score": 0.551
+    },
+    {
+      "string": "8,341",
+      "bbox": [
+        399,
+        383,
+        466,
+        429
+      ],
+      "score": 0.579
+    },
+    {
+      "string": "3.8%",
+      "bbox": [
+        683,
+        382,
+        744,
+        428
+      ],
+      "score": 0.6
+    },
+    {
+      "string": "124%",
+      "bbox": [
+        119,
+        426,
+        164,
+        455
+      ],
+      "score": 0.566
+    },
+    {
+      "string": "+3.1%",
+      "bbox": [
+        400,
+        428,
+        442,
+        455
+      ],
+      "score": 0.559
+    },
+    {
+      "string": "-04%",
+      "bbox": [
+        686,
+        427,
+        723,
+        455
+      ],
+      "score": 0.465
+    },
+    {
+      "string": "Revenue",
+      "bbox": [
+        120,
+        526,
+        186,
+        560
+      ],
+      "score": 0.76
+    },
+    {
+      "string": "Export CSV",
+      "bbox": [
+        829,
+        528,
+        893,
+        557
+      ],
+      "score": 0.645
+    },
+    {
+      "string": "Traling 7 days-U50",
+      "bbox": [
+        124,
+        558,
+        221,
+        589
+      ],
+      "score": 0.671
+    },
+    {
+      "string": "Cunen",
+      "bbox": [
+        670,
+        564,
+        728,
+        596
+      ],
+      "score": 0.578
+    },
+    {
+      "string": "Previous",
+      "bbox": [
+        760,
+        565,
+        818,
+        594
+      ],
+      "score": 0.614
+    },
+    {
+      "string": "Tue",
+      "bbox": [
+        251,
+        761,
+        276,
+        783
+      ],
+      "score": 0.434
+    },
+    {
+      "string": "Wed",
+      "bbox": [
+        374,
+        761,
+        400,
+        783
+      ],
+      "score": 0.452
+    },
+    {
+      "string": "Thu",
+      "bbox": [
+        496,
+        762,
+        519,
+        783
+      ],
+      "score": 0.405
+    },
+    {
+      "string": "Sat",
+      "bbox": [
+        741,
+        761,
+        763,
+        783
+      ],
+      "score": 0.411
+    },
+    {
+      "string": "Top poges",
+      "bbox": [
+        116,
+        846,
+        185,
+        883
+      ],
+      "score": 0.837
+    },
+    {
+      "string": "Goals",
+      "bbox": [
+        524,
+        846,
+        569,
+        878
+      ],
+      "score": 0.532
+    },
+    {
+      "string": "bloglaunch",
+      "bbox": [
+        118,
+        906,
+        176,
+        931
+      ],
+      "score": 0.707
+    },
+    {
+      "string": "12.4k",
+      "bbox": [
+        455,
+        883,
+        491,
+        909
+      ],
+      "score": 0.749
+    },
+    {
+      "string": "04 revenue",
+      "bbox": [
+        527,
+        880,
+        586,
+        907
+      ],
+      "score": 0.658
+    },
+    {
+      "string": "New sigups",
+      "bbox": [
+        531,
+        913,
+        588,
+        937
+      ],
+      "score": 0.471
+    },
+    {
+      "string": "Idocslapi",
+      "bbox": [
+        119,
+        927,
+        167,
+        952
+      ],
+      "score": 0.568
+    }
+  ],
+  "relations": [
+    {
+      "subject": 2,
+      "predicate": "on",
+      "object": 3
+    },
+    {
+      "subject": 1,
+      "predicate": "on",
+      "object": 3
+    },
+    {
+      "subject": 4,
+      "predicate": "on",
+      "object": 3
+    }
+  ],
+  "events": [],
+  "reasoning": "lang: en | white window with blue buttons, black text labels, blue arrows | windows are software interfaces with buttons and labels | arrows indicate direction or flow | labels are read as text buttons | cannot know software name or purpose"
+}

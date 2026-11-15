@@ -1,0 +1,568 @@
+{
+  "scene": {
+    "setting": "computer screen",
+    "background": "white",
+    "style": "screenshot"
+  },
+  "objects": [
+    {
+      "id": 1,
+      "name": "text label",
+      "bbox": [
+        105,
+        139,
+        273,
+        215
+      ],
+      "score": 0.418,
+      "position": "center",
+      "description": {
+        "color": "blue"
+      }
+    },
+    {
+      "id": 2,
+      "name": "button",
+      "bbox": [
+        790,
+        152,
+        919,
+        196
+      ],
+      "score": 0.579,
+      "position": "center",
+      "description": {
+        "color": "blue"
+      }
+    },
+    {
+      "id": 2,
+      "name": "button",
+      "bbox": [
+        933,
+        154,
+        961,
+        200
+      ],
+      "score": 0.475,
+      "position": "center",
+      "description": {
+        "color": "blue"
+      }
+    },
+    {
+      "id": 2,
+      "name": "button",
+      "bbox": [
+        131,
+        330,
+        154,
+        367
+      ],
+      "score": 0.363,
+      "position": "center",
+      "description": {
+        "color": "blue"
+      }
+    },
+    {
+      "id": 2,
+      "name": "button",
+      "bbox": [
+        124,
+        391,
+        183,
+        424
+      ],
+      "score": 0.38,
+      "position": "center",
+      "description": {
+        "color": "blue"
+      }
+    },
+    {
+      "id": 2,
+      "name": "button",
+      "bbox": [
+        167,
+        330,
+        215,
+        353
+      ],
+      "score": 0.366,
+      "position": "center",
+      "description": {
+        "color": "blue"
+      }
+    },
+    {
+      "id": 2,
+      "name": "button",
+      "bbox": [
+        416,
+        335,
+        433,
+        363
+      ],
+      "score": 0.372,
+      "position": "center",
+      "description": {
+        "color": "blue"
+      }
+    },
+    {
+      "id": 2,
+      "name": "button",
+      "bbox": [
+        405,
+        388,
+        459,
+        433
+      ],
+      "score": 0.513,
+      "position": "center",
+      "description": {
+        "color": "blue"
+      }
+    },
+    {
+      "id": 2,
+      "name": "button",
+      "bbox": [
+        450,
+        330,
+        510,
+        352
+      ],
+      "score": 0.425,
+      "position": "center",
+      "description": {
+        "color": "blue"
+      }
+    },
+    {
+      "id": 2,
+      "name": "button",
+      "bbox": [
+        696,
+        330,
+        722,
+        369
+      ],
+      "score": 0.435,
+      "position": "center",
+      "description": {
+        "color": "blue"
+      }
+    },
+    {
+      "id": 2,
+      "name": "button",
+      "bbox": [
+        690,
+        391,
+        739,
+        427
+      ],
+      "score": 0.483,
+      "position": "center",
+      "description": {
+        "color": "blue"
+      }
+    },
+    {
+      "id": 2,
+      "name": "button",
+      "bbox": [
+        734,
+        331,
+        784,
+        350
+      ],
+      "score": 0.359,
+      "position": "center",
+      "description": {
+        "color": "blue"
+      }
+    },
+    {
+      "id": 2,
+      "name": "button",
+      "bbox": [
+        130,
+        530,
+        177,
+        557
+      ],
+      "score": 0.315,
+      "position": "center",
+      "description": {
+        "color": "blue"
+      }
+    },
+    {
+      "id": 2,
+      "name": "button",
+      "bbox": [
+        833,
+        527,
+        891,
+        556
+      ],
+      "score": 0.38,
+      "position": "center",
+      "description": {
+        "color": "blue"
+      }
+    },
+    {
+      "id": 2,
+      "name": "button",
+      "bbox": [
+        134,
+        558,
+        213,
+        585
+      ],
+      "score": 0.355,
+      "position": "center",
+      "description": {
+        "color": "blue"
+      }
+    },
+    {
+      "id": 2,
+      "name": "button",
+      "bbox": [
+        674,
+        568,
+        723,
+        593
+      ],
+      "score": 0.387,
+      "position": "center",
+      "description": {
+        "color": "blue"
+      }
+    },
+    {
+      "id": 2,
+      "name": "button",
+      "bbox": [
+        762,
+        565,
+        815,
+        592
+      ],
+      "score": 0.41,
+      "position": "center",
+      "description": {
+        "color": "blue"
+      }
+    },
+    {
+      "id": 2,
+      "name": "button",
+      "bbox": [
+        125,
+        857,
+        176,
+        883
+      ],
+      "score": 0.368,
+      "position": "center",
+      "description": {
+        "color": "blue"
+      }
+    },
+    {
+      "id": 2,
+      "name": "button",
+      "bbox": [
+        125,
+        917,
+        166,
+        944
+      ],
+      "score": 0.356,
+      "position": "center",
+      "description": {
+        "color": "blue"
+      }
+    },
+    {
+      "id": 2,
+      "name": "button",
+      "bbox": [
+        463,
+        903,
+        489,
+        947
+      ],
+      "score": 0.334,
+      "position": "center",
+      "description": {
+        "color": "blue"
+      }
+    }
+  ],
+  "regions": [
+    {
+      "id": 3,
+      "name": "window",
+      "position": "center",
+      "description": {
+        "color": "white"
+      }
+    },
+    {
+      "id": 4,
+      "name": "toolbar",
+      "position": "top",
+      "description": {
+        "color": "gray"
+      }
+    }
+  ],
+  "text": [
+    {
+      "string": "Weekly metrics",
+      "bbox": [
+        104,
+        135,
+        266,
+        186
+      ],
+      "score": 0.741
+    },
+    {
+      "string": "Nov 10 - Nov 16, 2025 - all regions",
+      "bbox": [
+        104,
+        184,
+        277,
+        221
+      ],
+      "score": 0.748
+    },
+    {
+      "string": "Share report",
+      "bbox": [
+        820,
+        155,
+        890,
+        188
+      ],
+      "score": 0.593
+    },
+    {
+      "string": "$48.2k",
+      "bbox": [
+        118,
+        380,
+        189,
+        429
+      ],
+      "score": 0.527
+    },
+    {
+      "string": "Revenue",
+      "bbox": [
+        165,
+        326,
+        216,
+        357
+      ],
+      "score": 0.655
+    },
+    {
+      "string": "U",
+      "bbox": [
+        415,
+        333,
+        436,
+        365
+      ],
+      "score": 0.377
+    },
+    {
+      "string": "8,341",
+      "bbox": [
+        401,
+        382,
+        463,
+        432
+      ],
+      "score": 0.711
+    },
+    {
+      "string": "Active users",
+      "bbox": [
+        448,
+        325,
+        512,
+        357
+      ],
+      "score": 0.677
+    },
+    {
+      "string": "3.8%",
+      "bbox": [
+        685,
+        382,
+        744,
+        434
+      ],
+      "score": 0.711
+    },
+    {
+      "string": "Churn risk",
+      "bbox": [
+        732,
+        327,
+        785,
+        355
+      ],
+      "score": 0.656
+    },
+    {
+      "string": "Revenue",
+      "bbox": [
+        125,
+        523,
+        182,
+        558
+      ],
+      "score": 0.651
+    },
+    {
+      "string": "Export CsV",
+      "bbox": [
+        832,
+        525,
+        891,
+        558
+      ],
+      "score": 0.564
+    },
+    {
+      "string": "Traling 7 days - USD",
+      "bbox": [
+        129,
+        559,
+        217,
+        590
+      ],
+      "score": 0.585
+    },
+    {
+      "string": "Current",
+      "bbox": [
+        672,
+        563,
+        725,
+        596
+      ],
+      "score": 0.42
+    },
+    {
+      "string": "Previous",
+      "bbox": [
+        760,
+        562,
+        816,
+        597
+      ],
+      "score": 0.47
+    },
+    {
+      "string": "Tue",
+      "bbox": [
+        253,
+        757,
+        274,
+        785
+      ],
+      "score": 0.324
+    },
+    {
+      "string": "Wed",
+      "bbox": [
+        376,
+        758,
+        398,
+        785
+      ],
+      "score": 0.375
+    },
+    {
+      "string": "Thu",
+      "bbox": [
+        497,
+        761,
+        518,
+        785
+      ],
+      "score": 0.475
+    },
+    {
+      "string": "Top pages",
+      "bbox": [
+        120,
+        847,
+        181,
+        882
+      ],
+      "score": 0.633
+    },
+    {
+      "string": "Idocs/api",
+      "bbox": [
+        121,
+        916,
+        169,
+        951
+      ],
+      "score": 0.6
+    },
+    {
+      "string": "12.4k",
+      "bbox": [
+        458,
+        878,
+        491,
+        915
+      ],
+      "score": 0.596
+    },
+    {
+      "string": "Q4 revenue",
+      "bbox": [
+        531,
+        879,
+        582,
+        905
+      ],
+      "score": 0.432
+    }
+  ],
+  "relations": [
+    {
+      "subject": 2,
+      "predicate": "part_of",
+      "object": 3
+    },
+    {
+      "subject": 1,
+      "predicate": "part_of",
+      "object": 3
+    },
+    {
+      "subject": 4,
+      "predicate": "part_of",
+      "object": 3
+    }
+  ],
+  "events": [],
+  "reasoning": "lang: en | white window with blue buttons, blue text labels, gray toolbar | software interfaces use buttons for actions and labels for navigation | toolbars hold commands, buttons trigger actions | screenshot shows a computer screen, not a physical object | software name and purpose cannot be read"
+}

@@ -1,0 +1,382 @@
+{
+  "scene": {
+    "background": "white",
+    "style": "screenshot"
+  },
+  "objects": [
+    {
+      "id": 1,
+      "name": "text",
+      "bbox": [
+        172,
+        250,
+        662,
+        322
+      ],
+      "score": 0.486,
+      "position": "center",
+      "description": {
+        "color": "black"
+      }
+    },
+    {
+      "id": 2,
+      "name": "text",
+      "bbox": [
+        172,
+        394,
+        244,
+        422
+      ],
+      "score": 0.495,
+      "position": "center",
+      "description": {
+        "color": "black"
+      }
+    },
+    {
+      "id": 3,
+      "name": "text",
+      "bbox": [
+        480,
+        391,
+        545,
+        422
+      ],
+      "score": 0.521,
+      "position": "center",
+      "description": {
+        "color": "black"
+      }
+    },
+    {
+      "id": 4,
+      "name": "text",
+      "bbox": [
+        588,
+        391,
+        654,
+        422
+      ],
+      "score": 0.47,
+      "position": "center",
+      "description": {
+        "color": "black"
+      }
+    },
+    {
+      "id": 5,
+      "name": "text",
+      "bbox": [
+        173,
+        449,
+        249,
+        487
+      ],
+      "score": 0.566,
+      "position": "center",
+      "description": {
+        "color": "black"
+      }
+    },
+    {
+      "id": 6,
+      "name": "text",
+      "bbox": [
+        172,
+        513,
+        262,
+        545
+      ],
+      "score": 0.535,
+      "position": "center",
+      "description": {
+        "color": "black"
+      }
+    },
+    {
+      "id": 7,
+      "name": "dialog box",
+      "bbox": [
+        145,
+        236,
+        688,
+        747
+      ],
+      "score": 0.809,
+      "position": "center",
+      "description": {
+        "color": "white",
+        "shape": "rectangular"
+      }
+    },
+    {
+      "id": 8,
+      "name": "text",
+      "bbox": [
+        484,
+        451,
+        535,
+        483
+      ],
+      "score": 0.604,
+      "position": "center",
+      "description": {
+        "color": "black"
+      }
+    },
+    {
+      "id": 9,
+      "name": "text",
+      "bbox": [
+        486,
+        512,
+        535,
+        544
+      ],
+      "score": 0.56,
+      "position": "center",
+      "description": {
+        "color": "black"
+      }
+    },
+    {
+      "id": 10,
+      "name": "checkmark",
+      "bbox": [
+        588,
+        452,
+        639,
+        485
+      ],
+      "score": 0.544,
+      "position": "center",
+      "description": {
+        "color": "green"
+      }
+    },
+    {
+      "id": 11,
+      "name": "text",
+      "bbox": [
+        592,
+        513,
+        651,
+        543
+      ],
+      "score": 0.519,
+      "position": "center",
+      "description": {
+        "color": "black"
+      }
+    },
+    {
+      "id": 12,
+      "name": "button",
+      "bbox": [
+        524,
+        654,
+        659,
+        718
+      ],
+      "score": 0.637,
+      "position": "bottom center",
+      "description": {
+        "color": "blue",
+        "shape": "rectangular"
+      }
+    }
+  ],
+  "regions": [],
+  "text": [
+    {
+      "string": "Q3 financial summary - updated 2h ago",
+      "bbox": [
+        167,
+        309,
+        472,
+        343
+      ],
+      "score": 0.458
+    },
+    {
+      "string": "3 financial summary - updated 2h ago",
+      "bbox": [
+        173,
+        304,
+        656,
+        343
+      ],
+      "score": 0.524
+    },
+    {
+      "string": "Quarterly Revenue Overview Rep",
+      "bbox": [
+        171,
+        250,
+        662,
+        306
+      ],
+      "score": 0.762
+    },
+    {
+      "string": "Revenue",
+      "bbox": [
+        169,
+        391,
+        246,
+        423
+      ],
+      "score": 0.664
+    },
+    {
+      "string": "$1.24M",
+      "bbox": [
+        479,
+        388,
+        545,
+        424
+      ],
+      "score": 0.666
+    },
+    {
+      "string": "+12.4%",
+      "bbox": [
+        587,
+        389,
+        655,
+        423
+      ],
+      "score": 0.621
+    },
+    {
+      "string": "Expenses",
+      "bbox": [
+        168,
+        447,
+        254,
+        488
+      ],
+      "score": 0.799
+    },
+    {
+      "string": "Net income",
+      "bbox": [
+        167,
+        509,
+        266,
+        549
+      ],
+      "score": 0.732
+    },
+    {
+      "string": "$842K",
+      "bbox": [
+        480,
+        447,
+        541,
+        487
+      ],
+      "score": 0.823
+    },
+    {
+      "string": "$398K",
+      "bbox": [
+        480,
+        508,
+        540,
+        547
+      ],
+      "score": 0.77
+    },
+    {
+      "string": "3.1%",
+      "bbox": [
+        587,
+        448,
+        640,
+        487
+      ],
+      "score": 0.74
+    },
+    {
+      "string": "+18.9%",
+      "bbox": [
+        590,
+        510,
+        652,
+        547
+      ],
+      "score": 0.74
+    },
+    {
+      "string": "View report",
+      "bbox": [
+        545,
+        668,
+        638,
+        701
+      ],
+      "score": 0.59
+    }
+  ],
+  "relations": [
+    {
+      "subject": 1,
+      "predicate": "in",
+      "object": 7
+    },
+    {
+      "subject": 2,
+      "predicate": "in",
+      "object": 7
+    },
+    {
+      "subject": 5,
+      "predicate": "in",
+      "object": 7
+    },
+    {
+      "subject": 3,
+      "predicate": "in",
+      "object": 7
+    },
+    {
+      "subject": 4,
+      "predicate": "in",
+      "object": 7
+    },
+    {
+      "subject": 8,
+      "predicate": "in",
+      "object": 7
+    },
+    {
+      "subject": 9,
+      "predicate": "in",
+      "object": 7
+    },
+    {
+      "subject": 6,
+      "predicate": "in",
+      "object": 7
+    },
+    {
+      "subject": 11,
+      "predicate": "in",
+      "object": 7
+    },
+    {
+      "subject": 12,
+      "predicate": "in",
+      "object": 7
+    },
+    {
+      "subject": 10,
+      "predicate": "in",
+      "object": 12
+    }
+  ],
+  "events": [],
+  "reasoning": "lang: en | white dialog box with black text, blue button, green checkmark | dialog boxes prompt user action | checkmarks indicate completed or selected options | button label reads as action, not status | cannot know what the checkmark means"
+}

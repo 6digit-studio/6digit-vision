@@ -1,0 +1,392 @@
+{
+  "scene": {
+    "background": "white",
+    "style": "screenshot"
+  },
+  "objects": [
+    {
+      "id": 1,
+      "name": "text label",
+      "bbox": [
+        423,
+        116,
+        579,
+        146
+      ],
+      "score": 0.521,
+      "position": "inside dialog",
+      "description": {
+        "color": "black"
+      }
+    },
+    {
+      "id": 1,
+      "name": "text label",
+      "bbox": [
+        399,
+        163,
+        601,
+        215
+      ],
+      "score": 0.557,
+      "position": "inside dialog",
+      "description": {
+        "color": "black"
+      }
+    },
+    {
+      "id": 1,
+      "name": "text label",
+      "bbox": [
+        196,
+        308,
+        282,
+        343
+      ],
+      "score": 0.498,
+      "position": "inside dialog",
+      "description": {
+        "color": "black"
+      }
+    },
+    {
+      "id": 1,
+      "name": "text label",
+      "bbox": [
+        731,
+        307,
+        802,
+        342
+      ],
+      "score": 0.386,
+      "position": "inside dialog",
+      "description": {
+        "color": "black"
+      }
+    },
+    {
+      "id": 1,
+      "name": "text label",
+      "bbox": [
+        200,
+        437,
+        241,
+        465
+      ],
+      "score": 0.375,
+      "position": "inside dialog",
+      "description": {
+        "color": "black"
+      }
+    },
+    {
+      "id": 1,
+      "name": "text label",
+      "bbox": [
+        198,
+        371,
+        286,
+        407
+      ],
+      "score": 0.599,
+      "position": "inside dialog",
+      "description": {
+        "color": "black"
+      }
+    },
+    {
+      "id": 1,
+      "name": "text label",
+      "bbox": [
+        742,
+        432,
+        801,
+        465
+      ],
+      "score": 0.549,
+      "position": "inside dialog",
+      "description": {
+        "color": "black"
+      }
+    },
+    {
+      "id": 1,
+      "name": "text label",
+      "bbox": [
+        741,
+        370,
+        802,
+        407
+      ],
+      "score": 0.615,
+      "position": "inside dialog",
+      "description": {
+        "color": "black"
+      }
+    },
+    {
+      "id": 1,
+      "name": "text label",
+      "bbox": [
+        196,
+        537,
+        261,
+        576
+      ],
+      "score": 0.515,
+      "position": "inside dialog",
+      "description": {
+        "color": "black"
+      }
+    },
+    {
+      "id": 1,
+      "name": "text label",
+      "bbox": [
+        722,
+        535,
+        804,
+        578
+      ],
+      "score": 0.489,
+      "position": "inside dialog",
+      "description": {
+        "color": "black"
+      }
+    },
+    {
+      "id": 1,
+      "name": "text label",
+      "bbox": [
+        419,
+        613,
+        580,
+        682
+      ],
+      "score": 0.623,
+      "position": "inside dialog",
+      "description": {
+        "color": "black"
+      }
+    },
+    {
+      "id": 1,
+      "name": "text label",
+      "bbox": [
+        275,
+        779,
+        730,
+        861
+      ],
+      "score": 0.386,
+      "position": "inside dialog",
+      "description": {
+        "color": "black"
+      }
+    },
+    {
+      "id": 1,
+      "name": "text label",
+      "bbox": [
+        284,
+        841,
+        710,
+        874
+      ],
+      "score": 0.35,
+      "position": "inside dialog",
+      "description": {
+        "color": "black"
+      }
+    },
+    {
+      "id": 2,
+      "name": "dialog box",
+      "bbox": [
+        122,
+        45,
+        883,
+        965
+      ],
+      "score": 0.847,
+      "position": "center",
+      "description": {
+        "color": "white",
+        "shape": "rectangular"
+      }
+    },
+    {
+      "id": 3,
+      "name": "button",
+      "bbox": [
+        419,
+        613,
+        580,
+        682
+      ],
+      "score": 0.623,
+      "position": "center of dialog",
+      "description": {
+        "color": "blue",
+        "shape": "rectangular"
+      }
+    }
+  ],
+  "regions": [],
+  "text": [
+    {
+      "string": "ORDER SUMMARY",
+      "bbox": [
+        424,
+        114,
+        578,
+        146
+      ],
+      "score": 0.762
+    },
+    {
+      "string": "Order #1042",
+      "bbox": [
+        393,
+        157,
+        604,
+        217
+      ],
+      "score": 0.72
+    },
+    {
+      "string": "Subtotal",
+      "bbox": [
+        193,
+        304,
+        285,
+        345
+      ],
+      "score": 0.707
+    },
+    {
+      "string": "$48.00",
+      "bbox": [
+        727,
+        302,
+        805,
+        345
+      ],
+      "score": 0.534
+    },
+    {
+      "string": "Tax",
+      "bbox": [
+        196,
+        431,
+        242,
+        470
+      ],
+      "score": 0.507
+    },
+    {
+      "string": "Shipping",
+      "bbox": [
+        193,
+        365,
+        291,
+        411
+      ],
+      "score": 0.765
+    },
+    {
+      "string": "$4.20",
+      "bbox": [
+        738,
+        426,
+        805,
+        471
+      ],
+      "score": 0.788
+    },
+    {
+      "string": "$5.00",
+      "bbox": [
+        737,
+        363,
+        807,
+        410
+      ],
+      "score": 0.793
+    },
+    {
+      "string": "Total",
+      "bbox": [
+        192,
+        533,
+        265,
+        578
+      ],
+      "score": 0.678
+    },
+    {
+      "string": "$57.20",
+      "bbox": [
+        720,
+        531,
+        806,
+        579
+      ],
+      "score": 0.665
+    },
+    {
+      "string": "View details",
+      "bbox": [
+        441,
+        625,
+        557,
+        663
+      ],
+      "score": 0.678
+    },
+    {
+      "string": "and may differ. Delivery times shown in UTC. See terms fo",
+      "bbox": [
+        285,
+        809,
+        710,
+        839
+      ],
+      "score": 0.669
+    },
+    {
+      "string": "Prices are estimates. Final amount is calculated at checkout",
+      "bbox": [
+        282,
+        772,
+        722,
+        803
+      ],
+      "score": 0.494
+    },
+    {
+      "string": "details and refund policy before confirming your order.",
+      "bbox": [
+        295,
+        844,
+        698,
+        873
+      ],
+      "score": 0.757
+    }
+  ],
+  "relations": [
+    {
+      "subject": 3,
+      "predicate": "part_of",
+      "object": 2
+    },
+    {
+      "subject": 1,
+      "predicate": "in",
+      "object": 2
+    }
+  ],
+  "events": [],
+  "reasoning": "lang: en | white dialog box with blue button, black text labels | dialog boxes prompt user action | buttons trigger actions when clicked | labels name or submit actions | cannot know what the dialog asks"
+}

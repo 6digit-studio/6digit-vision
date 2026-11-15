@@ -1,0 +1,376 @@
+{
+  "scene": {
+    "background": "white",
+    "style": "screenshot"
+  },
+  "objects": [
+    {
+      "id": 1,
+      "name": "text",
+      "bbox": [
+        170,
+        249,
+        696,
+        323
+      ],
+      "score": 0.497,
+      "position": "center",
+      "description": {
+        "color": "black"
+      }
+    },
+    {
+      "id": 2,
+      "name": "text",
+      "bbox": [
+        172,
+        394,
+        244,
+        422
+      ],
+      "score": 0.494,
+      "position": "center",
+      "description": {
+        "color": "black"
+      }
+    },
+    {
+      "id": 3,
+      "name": "text",
+      "bbox": [
+        526,
+        391,
+        590,
+        422
+      ],
+      "score": 0.525,
+      "position": "center",
+      "description": {
+        "color": "black"
+      }
+    },
+    {
+      "id": 4,
+      "name": "text",
+      "bbox": [
+        635,
+        391,
+        699,
+        422
+      ],
+      "score": 0.472,
+      "position": "center",
+      "description": {
+        "color": "black"
+      }
+    },
+    {
+      "id": 5,
+      "name": "text",
+      "bbox": [
+        174,
+        450,
+        249,
+        486
+      ],
+      "score": 0.572,
+      "position": "center",
+      "description": {
+        "color": "black"
+      }
+    },
+    {
+      "id": 6,
+      "name": "text",
+      "bbox": [
+        172,
+        513,
+        262,
+        545
+      ],
+      "score": 0.542,
+      "position": "center",
+      "description": {
+        "color": "black"
+      }
+    },
+    {
+      "id": 7,
+      "name": "text",
+      "bbox": [
+        526,
+        452,
+        582,
+        483
+      ],
+      "score": 0.568,
+      "position": "center",
+      "description": {
+        "color": "black"
+      }
+    },
+    {
+      "id": 8,
+      "name": "text",
+      "bbox": [
+        529,
+        512,
+        582,
+        543
+      ],
+      "score": 0.533,
+      "position": "center",
+      "description": {
+        "color": "black"
+      }
+    },
+    {
+      "id": 9,
+      "name": "checkmark",
+      "bbox": [
+        636,
+        452,
+        685,
+        485
+      ],
+      "score": 0.508,
+      "position": "center",
+      "description": {
+        "color": "green"
+      }
+    },
+    {
+      "id": 10,
+      "name": "text",
+      "bbox": [
+        639,
+        513,
+        697,
+        543
+      ],
+      "score": 0.526,
+      "position": "center",
+      "description": {
+        "color": "black"
+      }
+    },
+    {
+      "id": 11,
+      "name": "button",
+      "bbox": [
+        569,
+        651,
+        708,
+        719
+      ],
+      "score": 0.626,
+      "position": "center",
+      "description": {
+        "color": "blue",
+        "shape": "rectangular"
+      }
+    }
+  ],
+  "regions": [
+    {
+      "id": 12,
+      "name": "window",
+      "position": "center",
+      "description": {
+        "color": "white",
+        "shape": "rectangular"
+      }
+    }
+  ],
+  "text": [
+    {
+      "string": "Q3 financial summary - updated 2h ago",
+      "bbox": [
+        166,
+        309,
+        475,
+        343
+      ],
+      "score": 0.428
+    },
+    {
+      "string": "Quarterly Revenue Overview Repor",
+      "bbox": [
+        178,
+        250,
+        686,
+        307
+      ],
+      "score": 0.775
+    },
+    {
+      "string": "nancial summary - updated 2h ago",
+      "bbox": [
+        206,
+        305,
+        659,
+        343
+      ],
+      "score": 0.443
+    },
+    {
+      "string": "Revenue",
+      "bbox": [
+        169,
+        390,
+        246,
+        423
+      ],
+      "score": 0.659
+    },
+    {
+      "string": "$1.24M",
+      "bbox": [
+        523,
+        387,
+        592,
+        425
+      ],
+      "score": 0.673
+    },
+    {
+      "string": "+124%",
+      "bbox": [
+        633,
+        389,
+        700,
+        423
+      ],
+      "score": 0.634
+    },
+    {
+      "string": "Expenses",
+      "bbox": [
+        168,
+        447,
+        254,
+        488
+      ],
+      "score": 0.795
+    },
+    {
+      "string": "Net income",
+      "bbox": [
+        167,
+        509,
+        266,
+        549
+      ],
+      "score": 0.733
+    },
+    {
+      "string": "$842K",
+      "bbox": [
+        524,
+        448,
+        585,
+        486
+      ],
+      "score": 0.811
+    },
+    {
+      "string": "$398K",
+      "bbox": [
+        526,
+        508,
+        586,
+        548
+      ],
+      "score": 0.78
+    },
+    {
+      "string": "-3.1%",
+      "bbox": [
+        633,
+        448,
+        688,
+        487
+      ],
+      "score": 0.683
+    },
+    {
+      "string": "+18.9%",
+      "bbox": [
+        637,
+        510,
+        699,
+        548
+      ],
+      "score": 0.71
+    },
+    {
+      "string": "View report",
+      "bbox": [
+        592,
+        669,
+        685,
+        700
+      ],
+      "score": 0.611
+    }
+  ],
+  "relations": [
+    {
+      "subject": 1,
+      "predicate": "in",
+      "object": 12
+    },
+    {
+      "subject": 2,
+      "predicate": "in",
+      "object": 12
+    },
+    {
+      "subject": 5,
+      "predicate": "in",
+      "object": 12
+    },
+    {
+      "subject": 3,
+      "predicate": "in",
+      "object": 12
+    },
+    {
+      "subject": 4,
+      "predicate": "in",
+      "object": 12
+    },
+    {
+      "subject": 8,
+      "predicate": "in",
+      "object": 12
+    },
+    {
+      "subject": 7,
+      "predicate": "in",
+      "object": 12
+    },
+    {
+      "subject": 6,
+      "predicate": "in",
+      "object": 12
+    },
+    {
+      "subject": 10,
+      "predicate": "in",
+      "object": 12
+    },
+    {
+      "subject": 11,
+      "predicate": "in",
+      "object": 12
+    },
+    {
+      "subject": 9,
+      "predicate": "on",
+      "object": 11
+    }
+  ],
+  "events": [],
+  "reasoning": "lang: en | white window with black text, blue button, green checkmark | checkmarks indicate completed or selected items | buttons trigger actions when clicked | screenshot shows interface, not physical object | cannot know what the checkmark means"
+}

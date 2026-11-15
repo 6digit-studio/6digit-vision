@@ -1,0 +1,549 @@
+{
+  "scene": {
+    "background": "dark",
+    "lighting": "dim",
+    "style": "digital interface"
+  },
+  "objects": [
+    {
+      "id": 1,
+      "name": "light",
+      "bbox": [
+        294,
+        278,
+        345,
+        329
+      ],
+      "score": 0.456,
+      "position": "on screen",
+      "description": {
+        "color": "orange",
+        "state": "glowing"
+      }
+    },
+    {
+      "id": 1,
+      "name": "light",
+      "bbox": [
+        428,
+        258,
+        474,
+        311
+      ],
+      "score": 0.374,
+      "position": "on screen",
+      "description": {
+        "color": "orange",
+        "state": "glowing"
+      }
+    },
+    {
+      "id": 1,
+      "name": "light",
+      "bbox": [
+        541,
+        247,
+        599,
+        313
+      ],
+      "score": 0.47,
+      "position": "on screen",
+      "description": {
+        "color": "orange",
+        "state": "glowing"
+      }
+    },
+    {
+      "id": 1,
+      "name": "light",
+      "bbox": [
+        825,
+        274,
+        871,
+        331
+      ],
+      "score": 0.426,
+      "position": "on screen",
+      "description": {
+        "color": "orange",
+        "state": "glowing"
+      }
+    },
+    {
+      "id": 1,
+      "name": "light",
+      "bbox": [
+        146,
+        312,
+        178,
+        347
+      ],
+      "score": 0.353,
+      "position": "on screen",
+      "description": {
+        "color": "orange",
+        "state": "glowing"
+      }
+    },
+    {
+      "id": 1,
+      "name": "light",
+      "bbox": [
+        936,
+        290,
+        968,
+        343
+      ],
+      "score": 0.341,
+      "position": "on screen",
+      "description": {
+        "color": "orange",
+        "state": "glowing"
+      }
+    },
+    {
+      "id": 1,
+      "name": "light",
+      "bbox": [
+        766,
+        523,
+        863,
+        611
+      ],
+      "score": 0.472,
+      "position": "on screen",
+      "description": {
+        "color": "orange",
+        "state": "glowing"
+      }
+    },
+    {
+      "id": 2,
+      "name": "text",
+      "bbox": [
+        162,
+        348,
+        586,
+        405
+      ],
+      "score": 0.571,
+      "position": "center",
+      "description": {
+        "color": "white",
+        "content": "mobile"
+      }
+    },
+    {
+      "id": 3,
+      "name": "text",
+      "bbox": [
+        443,
+        479,
+        485,
+        503
+      ],
+      "score": 0.368,
+      "position": "center",
+      "description": {
+        "color": "white",
+        "content": "mobile"
+      }
+    },
+    {
+      "id": 4,
+      "name": "smartphone",
+      "bbox": [
+        76,
+        37,
+        972,
+        953
+      ],
+      "score": 0.309,
+      "position": "center",
+      "description": {
+        "color": "black",
+        "state": "on"
+      }
+    },
+    {
+      "id": 5,
+      "name": "text",
+      "bbox": [
+        551,
+        471,
+        612,
+        509
+      ],
+      "score": 0.414,
+      "position": "center",
+      "description": {
+        "color": "white",
+        "content": "mobile"
+      }
+    },
+    {
+      "id": 6,
+      "name": "text",
+      "bbox": [
+        454,
+        552,
+        476,
+        579
+      ],
+      "score": 0.339,
+      "position": "center",
+      "description": {
+        "color": "white",
+        "content": "mobile"
+      }
+    },
+    {
+      "id": 7,
+      "name": "text",
+      "bbox": [
+        509,
+        601,
+        650,
+        720
+      ],
+      "score": 0.395,
+      "position": "center",
+      "description": {
+        "color": "white",
+        "content": "mobile"
+      }
+    }
+  ],
+  "regions": [],
+  "text": [
+    {
+      "string": "Lunar New Year",
+      "bbox": [
+        164,
+        343,
+        583,
+        408
+      ],
+      "score": 0.528
+    },
+    {
+      "string": "MON",
+      "bbox": [
+        207,
+        477,
+        253,
+        502
+      ],
+      "score": 0.603
+    },
+    {
+      "string": "TUE",
+      "bbox": [
+        326,
+        477,
+        370,
+        502
+      ],
+      "score": 0.585
+    },
+    {
+      "string": "WED",
+      "bbox": [
+        441,
+        479,
+        487,
+        501
+      ],
+      "score": 0.628
+    },
+    {
+      "string": "THU",
+      "bbox": [
+        559,
+        477,
+        605,
+        502
+      ],
+      "score": 0.61
+    },
+    {
+      "string": "FRI",
+      "bbox": [
+        675,
+        478,
+        720,
+        502
+      ],
+      "score": 0.579
+    },
+    {
+      "string": "SAT",
+      "bbox": [
+        792,
+        478,
+        837,
+        503
+      ],
+      "score": 0.573
+    },
+    {
+      "string": "SUN",
+      "bbox": [
+        908,
+        478,
+        953,
+        502
+      ],
+      "score": 0.622
+    },
+    {
+      "string": "2",
+      "bbox": [
+        331,
+        549,
+        365,
+        583
+      ],
+      "score": 0.464
+    },
+    {
+      "string": "4",
+      "bbox": [
+        568,
+        552,
+        596,
+        581
+      ],
+      "score": 0.478
+    },
+    {
+      "string": "5",
+      "bbox": [
+        682,
+        550,
+        713,
+        581
+      ],
+      "score": 0.495
+    },
+    {
+      "string": "8",
+      "bbox": [
+        215,
+        643,
+        247,
+        675
+      ],
+      "score": 0.505
+    },
+    {
+      "string": "9",
+      "bbox": [
+        331,
+        642,
+        364,
+        675
+      ],
+      "score": 0.53
+    },
+    {
+      "string": "10",
+      "bbox": [
+        437,
+        641,
+        491,
+        677
+      ],
+      "score": 0.657
+    },
+    {
+      "string": "11",
+      "bbox": [
+        555,
+        640,
+        607,
+        678
+      ],
+      "score": 0.626
+    },
+    {
+      "string": "12",
+      "bbox": [
+        670,
+        640,
+        725,
+        678
+      ],
+      "score": 0.626
+    },
+    {
+      "string": "13",
+      "bbox": [
+        787,
+        639,
+        841,
+        678
+      ],
+      "score": 0.557
+    },
+    {
+      "string": "14",
+      "bbox": [
+        903,
+        640,
+        957,
+        678
+      ],
+      "score": 0.6
+    },
+    {
+      "string": "15",
+      "bbox": [
+        203,
+        733,
+        257,
+        771
+      ],
+      "score": 0.637
+    },
+    {
+      "string": "16",
+      "bbox": [
+        321,
+        734,
+        373,
+        771
+      ],
+      "score": 0.582
+    },
+    {
+      "string": "17",
+      "bbox": [
+        438,
+        734,
+        488,
+        770
+      ],
+      "score": 0.631
+    },
+    {
+      "string": "18",
+      "bbox": [
+        555,
+        734,
+        607,
+        770
+      ],
+      "score": 0.588
+    },
+    {
+      "string": "19",
+      "bbox": [
+        671,
+        733,
+        725,
+        770
+      ],
+      "score": 0.563
+    },
+    {
+      "string": "20",
+      "bbox": [
+        787,
+        732,
+        841,
+        771
+      ],
+      "score": 0.545
+    },
+    {
+      "string": "N1",
+      "bbox": [
+        901,
+        731,
+        957,
+        783
+      ],
+      "score": 0.662
+    },
+    {
+      "string": "22",
+      "bbox": [
+        202,
+        824,
+        259,
+        867
+      ],
+      "score": 0.581
+    },
+    {
+      "string": "23",
+      "bbox": [
+        321,
+        825,
+        374,
+        866
+      ],
+      "score": 0.457
+    },
+    {
+      "string": "24",
+      "bbox": [
+        436,
+        825,
+        493,
+        865
+      ],
+      "score": 0.483
+    },
+    {
+      "string": "25",
+      "bbox": [
+        554,
+        825,
+        608,
+        866
+      ],
+      "score": 0.491
+    },
+    {
+      "string": "26",
+      "bbox": [
+        670,
+        824,
+        726,
+        866
+      ],
+      "score": 0.5
+    },
+    {
+      "string": "27",
+      "bbox": [
+        787,
+        824,
+        840,
+        866
+      ],
+      "score": 0.48
+    },
+    {
+      "string": "28",
+      "bbox": [
+        902,
+        823,
+        959,
+        866
+      ],
+      "score": 0.513
+    }
+  ],
+  "relations": [
+    {
+      "subject": 1,
+      "predicate": "on",
+      "object": 4
+    }
+  ],
+  "events": [],
+  "reasoning": "lang: en | black smartphone, orange glowing lights, white text \"mobile\", \"mobile\", \"mobile\", \"mobile\", \"mobile\", \"mobile\", \"mobile\", \"mobile\", \"mobile\" | smartphones display apps and interfaces | orange glowing lights suggest powered or active state | text on screen is read as app or message content | cannot know app name or purpose"
+}

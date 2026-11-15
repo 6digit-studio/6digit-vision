@@ -1,0 +1,949 @@
+{
+  "scene": {
+    "setting": "computer screen",
+    "style": "screenshot"
+  },
+  "objects": [
+    {
+      "id": 1,
+      "name": "text label",
+      "bbox": [
+        23,
+        28,
+        56,
+        74
+      ],
+      "score": 0.445,
+      "position": "inside window",
+      "description": {
+        "color": "blue"
+      }
+    },
+    {
+      "id": 1,
+      "name": "text label",
+      "bbox": [
+        62,
+        30,
+        167,
+        67
+      ],
+      "score": 0.436,
+      "position": "inside window",
+      "description": {
+        "color": "blue"
+      }
+    },
+    {
+      "id": 1,
+      "name": "text label",
+      "bbox": [
+        236,
+        36,
+        332,
+        73
+      ],
+      "score": 0.474,
+      "position": "inside window",
+      "description": {
+        "color": "blue"
+      }
+    },
+    {
+      "id": 1,
+      "name": "text label",
+      "bbox": [
+        640,
+        43,
+        718,
+        77
+      ],
+      "score": 0.502,
+      "position": "inside window",
+      "description": {
+        "color": "blue"
+      }
+    },
+    {
+      "id": 1,
+      "name": "text label",
+      "bbox": [
+        637,
+        31,
+        805,
+        87
+      ],
+      "score": 0.357,
+      "position": "inside window",
+      "description": {
+        "color": "blue"
+      }
+    },
+    {
+      "id": 1,
+      "name": "text label",
+      "bbox": [
+        830,
+        30,
+        960,
+        84
+      ],
+      "score": 0.544,
+      "position": "inside window",
+      "description": {
+        "color": "blue"
+      }
+    },
+    {
+      "id": 1,
+      "name": "text label",
+      "bbox": [
+        974,
+        39,
+        997,
+        74
+      ],
+      "score": 0.419,
+      "position": "inside window",
+      "description": {
+        "color": "blue"
+      }
+    },
+    {
+      "id": 1,
+      "name": "text label",
+      "bbox": [
+        19,
+        118,
+        57,
+        142
+      ],
+      "score": 0.302,
+      "position": "inside window",
+      "description": {
+        "color": "blue"
+      }
+    },
+    {
+      "id": 1,
+      "name": "text label",
+      "bbox": [
+        23,
+        156,
+        114,
+        188
+      ],
+      "score": 0.483,
+      "position": "inside window",
+      "description": {
+        "color": "blue"
+      }
+    },
+    {
+      "id": 1,
+      "name": "text label",
+      "bbox": [
+        24,
+        147,
+        181,
+        196
+      ],
+      "score": 0.305,
+      "position": "inside window",
+      "description": {
+        "color": "blue"
+      }
+    },
+    {
+      "id": 1,
+      "name": "text label",
+      "bbox": [
+        254,
+        140,
+        318,
+        168
+      ],
+      "score": 0.483,
+      "position": "inside window",
+      "description": {
+        "color": "blue"
+      }
+    },
+    {
+      "id": 1,
+      "name": "text label",
+      "bbox": [
+        350,
+        140,
+        416,
+        167
+      ],
+      "score": 0.513,
+      "position": "inside window",
+      "description": {
+        "color": "blue"
+      }
+    },
+    {
+      "id": 1,
+      "name": "text label",
+      "bbox": [
+        26,
+        219,
+        94,
+        246
+      ],
+      "score": 0.367,
+      "position": "inside window",
+      "description": {
+        "color": "blue"
+      }
+    },
+    {
+      "id": 1,
+      "name": "text label",
+      "bbox": [
+        256,
+        232,
+        280,
+        263
+      ],
+      "score": 0.358,
+      "position": "inside window",
+      "description": {
+        "color": "blue"
+      }
+    },
+    {
+      "id": 1,
+      "name": "text label",
+      "bbox": [
+        294,
+        234,
+        337,
+        263
+      ],
+      "score": 0.325,
+      "position": "inside window",
+      "description": {
+        "color": "blue"
+      }
+    },
+    {
+      "id": 1,
+      "name": "text label",
+      "bbox": [
+        505,
+        230,
+        532,
+        264
+      ],
+      "score": 0.346,
+      "position": "inside window",
+      "description": {
+        "color": "blue"
+      }
+    },
+    {
+      "id": 1,
+      "name": "text label",
+      "bbox": [
+        545,
+        231,
+        605,
+        263
+      ],
+      "score": 0.366,
+      "position": "inside window",
+      "description": {
+        "color": "blue"
+      }
+    },
+    {
+      "id": 1,
+      "name": "text label",
+      "bbox": [
+        756,
+        229,
+        786,
+        265
+      ],
+      "score": 0.326,
+      "position": "inside window",
+      "description": {
+        "color": "blue"
+      }
+    },
+    {
+      "id": 1,
+      "name": "text label",
+      "bbox": [
+        795,
+        231,
+        854,
+        263
+      ],
+      "score": 0.353,
+      "position": "inside window",
+      "description": {
+        "color": "blue"
+      }
+    },
+    {
+      "id": 1,
+      "name": "text label",
+      "bbox": [
+        27,
+        275,
+        92,
+        305
+      ],
+      "score": 0.403,
+      "position": "inside window",
+      "description": {
+        "color": "blue"
+      }
+    },
+    {
+      "id": 1,
+      "name": "text label",
+      "bbox": [
+        26,
+        336,
+        94,
+        359
+      ],
+      "score": 0.33,
+      "position": "inside window",
+      "description": {
+        "color": "blue"
+      }
+    },
+    {
+      "id": 1,
+      "name": "text label",
+      "bbox": [
+        246,
+        260,
+        311,
+        319
+      ],
+      "score": 0.364,
+      "position": "inside window",
+      "description": {
+        "color": "blue"
+      }
+    },
+    {
+      "id": 1,
+      "name": "text label",
+      "bbox": [
+        498,
+        261,
+        550,
+        320
+      ],
+      "score": 0.433,
+      "position": "inside window",
+      "description": {
+        "color": "blue"
+      }
+    },
+    {
+      "id": 1,
+      "name": "text label",
+      "bbox": [
+        748,
+        261,
+        800,
+        317
+      ],
+      "score": 0.374,
+      "position": "inside window",
+      "description": {
+        "color": "blue"
+      }
+    },
+    {
+      "id": 1,
+      "name": "text label",
+      "bbox": [
+        257,
+        375,
+        313,
+        414
+      ],
+      "score": 0.396,
+      "position": "inside window",
+      "description": {
+        "color": "blue"
+      }
+    },
+    {
+      "id": 1,
+      "name": "text label",
+      "bbox": [
+        688,
+        407,
+        741,
+        432
+      ],
+      "score": 0.345,
+      "position": "inside window",
+      "description": {
+        "color": "blue"
+      }
+    },
+    {
+      "id": 1,
+      "name": "text label",
+      "bbox": [
+        774,
+        406,
+        829,
+        434
+      ],
+      "score": 0.345,
+      "position": "inside window",
+      "description": {
+        "color": "blue"
+      }
+    },
+    {
+      "id": 1,
+      "name": "text label",
+      "bbox": [
+        893,
+        375,
+        956,
+        402
+      ],
+      "score": 0.389,
+      "position": "inside window",
+      "description": {
+        "color": "blue"
+      }
+    },
+    {
+      "id": 1,
+      "name": "text label",
+      "bbox": [
+        584,
+        683,
+        625,
+        697
+      ],
+      "score": 0.367,
+      "position": "inside window",
+      "description": {
+        "color": "blue"
+      }
+    },
+    {
+      "id": 1,
+      "name": "text label",
+      "bbox": [
+        255,
+        766,
+        316,
+        788
+      ],
+      "score": 0.374,
+      "position": "inside window",
+      "description": {
+        "color": "blue"
+      }
+    },
+    {
+      "id": 1,
+      "name": "text label",
+      "bbox": [
+        718,
+        766,
+        760,
+        789
+      ],
+      "score": 0.347,
+      "position": "inside window",
+      "description": {
+        "color": "blue"
+      }
+    },
+    {
+      "id": 1,
+      "name": "text label",
+      "bbox": [
+        723,
+        796,
+        811,
+        830
+      ],
+      "score": 0.301,
+      "position": "inside window",
+      "description": {
+        "color": "blue"
+      }
+    },
+    {
+      "id": 1,
+      "name": "text label",
+      "bbox": [
+        931,
+        805,
+        959,
+        827
+      ],
+      "score": 0.311,
+      "position": "inside window",
+      "description": {
+        "color": "blue"
+      }
+    },
+    {
+      "id": 1,
+      "name": "text label",
+      "bbox": [
+        38,
+        871,
+        125,
+        916
+      ],
+      "score": 0.357,
+      "position": "inside window",
+      "description": {
+        "color": "blue"
+      }
+    },
+    {
+      "id": 1,
+      "name": "text label",
+      "bbox": [
+        145,
+        882,
+        181,
+        912
+      ],
+      "score": 0.393,
+      "position": "inside window",
+      "description": {
+        "color": "blue"
+      }
+    },
+    {
+      "id": 1,
+      "name": "text label",
+      "bbox": [
+        256,
+        836,
+        352,
+        867
+      ],
+      "score": 0.416,
+      "position": "inside window",
+      "description": {
+        "color": "blue"
+      }
+    },
+    {
+      "id": 1,
+      "name": "text label",
+      "bbox": [
+        595,
+        797,
+        677,
+        906
+      ],
+      "score": 0.352,
+      "position": "inside window",
+      "description": {
+        "color": "blue"
+      }
+    },
+    {
+      "id": 1,
+      "name": "text label",
+      "bbox": [
+        930,
+        907,
+        959,
+        930
+      ],
+      "score": 0.319,
+      "position": "inside window",
+      "description": {
+        "color": "blue"
+      }
+    },
+    {
+      "id": 2,
+      "name": "window",
+      "bbox": [
+        6,
+        7,
+        991,
+        983
+      ],
+      "score": 0.645,
+      "position": "center",
+      "description": {
+        "color": "white",
+        "state": "open"
+      }
+    }
+  ],
+  "regions": [
+    {
+      "id": 3,
+      "name": "sidebar",
+      "position": "left",
+      "description": {
+        "color": "gray"
+      }
+    },
+    {
+      "id": 4,
+      "name": "button",
+      "count": "several",
+      "position": "inside window",
+      "description": {
+        "color": "blue"
+      }
+    }
+  ],
+  "text": [
+    {
+      "string": "Acme Analytics",
+      "bbox": [
+        64,
+        27,
+        165,
+        60
+      ],
+      "score": 0.579
+    },
+    {
+      "string": "Week of Nov 10- 16,2025",
+      "bbox": [
+        235,
+        65,
+        371,
+        95
+      ],
+      "score": 0.756
+    },
+    {
+      "string": "Search",
+      "bbox": [
+        642,
+        39,
+        716,
+        79
+      ],
+      "score": 0.578
+    },
+    {
+      "string": "New report",
+      "bbox": [
+        862,
+        40,
+        924,
+        71
+      ],
+      "score": 0.653
+    },
+    {
+      "string": "Dashboard",
+      "bbox": [
+        20,
+        152,
+        116,
+        190
+      ],
+      "score": 0.716
+    },
+    {
+      "string": "This week",
+      "bbox": [
+        256,
+        139,
+        316,
+        167
+      ],
+      "score": 0.69
+    },
+    {
+      "string": "This month",
+      "bbox": [
+        350,
+        138,
+        416,
+        170
+      ],
+      "score": 0.714
+    },
+    {
+      "string": "Projects",
+      "bbox": [
+        22,
+        211,
+        98,
+        251
+      ],
+      "score": 0.599
+    },
+    {
+      "string": "Conversion",
+      "bbox": [
+        796,
+        233,
+        853,
+        263
+      ],
+      "score": 0.567
+    },
+    {
+      "string": "il Reports",
+      "bbox": [
+        23,
+        271,
+        96,
+        309
+      ],
+      "score": 0.652
+    },
+    {
+      "string": "Settings",
+      "bbox": [
+        23,
+        330,
+        98,
+        365
+      ],
+      "score": 0.551
+    },
+    {
+      "string": "$48.2k",
+      "bbox": [
+        245,
+        270,
+        313,
+        310
+      ],
+      "score": 0.58
+    },
+    {
+      "string": "8,341",
+      "bbox": [
+        496,
+        270,
+        553,
+        312
+      ],
+      "score": 0.755
+    },
+    {
+      "string": "3.8%",
+      "bbox": [
+        747,
+        270,
+        802,
+        313
+      ],
+      "score": 0.723
+    },
+    {
+      "string": "Tralling 30 days - USD",
+      "bbox": [
+        255,
+        401,
+        363,
+        429
+      ],
+      "score": 0.733
+    },
+    {
+      "string": "Current",
+      "bbox": [
+        687,
+        405,
+        742,
+        434
+      ],
+      "score": 0.697
+    },
+    {
+      "string": "Previous",
+      "bbox": [
+        773,
+        406,
+        829,
+        434
+      ],
+      "score": 0.659
+    },
+    {
+      "string": "Nov 1",
+      "bbox": [
+        239,
+        677,
+        272,
+        704
+      ],
+      "score": 0.6
+    },
+    {
+      "string": "Nov 7",
+      "bbox": [
+        412,
+        676,
+        445,
+        704
+      ],
+      "score": 0.622
+    },
+    {
+      "string": "Nov 14",
+      "bbox": [
+        584,
+        676,
+        624,
+        704
+      ],
+      "score": 0.707
+    },
+    {
+      "string": "Nov 21",
+      "bbox": [
+        758,
+        676,
+        799,
+        704
+      ],
+      "score": 0.563
+    },
+    {
+      "string": "Top pages",
+      "bbox": [
+        249,
+        759,
+        322,
+        792
+      ],
+      "score": 0.741
+    },
+    {
+      "string": "Goals",
+      "bbox": [
+        716,
+        759,
+        761,
+        789
+      ],
+      "score": 0.7
+    },
+    {
+      "string": "O4 revenue target",
+      "bbox": [
+        720,
+        800,
+        813,
+        830
+      ],
+      "score": 0.596
+    },
+    {
+      "string": "72%",
+      "bbox": [
+        929,
+        800,
+        960,
+        830
+      ],
+      "score": 0.566
+    },
+    {
+      "string": "/blog/producH-aunch",
+      "bbox": [
+        249,
+        834,
+        358,
+        866
+      ],
+      "score": 0.824
+    },
+    {
+      "string": "9,317 +14.6%",
+      "bbox": [
+        597,
+        833,
+        675,
+        867
+      ],
+      "score": 0.85
+    },
+    {
+      "string": "New signups",
+      "bbox": [
+        720,
+        854,
+        789,
+        879
+      ],
+      "score": 0.663
+    },
+    {
+      "string": "lenterprise",
+      "bbox": [
+        249,
+        909,
+        307,
+        936
+      ],
+      "score": 0.671
+    },
+    {
+      "string": "3,891",
+      "bbox": [
+        597,
+        906,
+        635,
+        935
+      ],
+      "score": 0.646
+    },
+    {
+      "string": "NPS score",
+      "bbox": [
+        717,
+        900,
+        777,
+        931
+      ],
+      "score": 0.606
+    },
+    {
+      "string": "88%",
+      "bbox": [
+        928,
+        902,
+        961,
+        931
+      ],
+      "score": 0.604
+    }
+  ],
+  "relations": [
+    {
+      "subject": 4,
+      "predicate": "part_of",
+      "object": 2
+    },
+    {
+      "subject": 1,
+      "predicate": "in",
+      "object": 2
+    }
+  ],
+  "events": [],
+  "reasoning": "lang: en | white window with blue buttons, gray sidebar, blue text labels | windows are software interfaces with buttons and sidebars | screenshots capture a screen's state | labels sit inside the window, not beside it | cannot know the software name or purpose"
+}

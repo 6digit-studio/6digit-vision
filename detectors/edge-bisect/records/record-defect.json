@@ -1,0 +1,469 @@
+{
+  "scene": {
+    "background": "white",
+    "style": "screenshot"
+  },
+  "objects": [
+    {
+      "id": 1,
+      "name": "text",
+      "bbox": [
+        121,
+        27,
+        227,
+        66
+      ],
+      "score": 0.554,
+      "position": "inside window",
+      "description": {
+        "color": "black"
+      }
+    },
+    {
+      "id": 1,
+      "name": "text",
+      "bbox": [
+        203,
+        178,
+        409,
+        254
+      ],
+      "score": 0.487,
+      "position": "inside window",
+      "description": {
+        "color": "black"
+      }
+    },
+    {
+      "id": 1,
+      "name": "text",
+      "bbox": [
+        645,
+        269,
+        717,
+        298
+      ],
+      "score": 0.54,
+      "position": "inside window",
+      "description": {
+        "color": "black"
+      }
+    },
+    {
+      "id": 1,
+      "name": "text",
+      "bbox": [
+        212,
+        379,
+        368,
+        436
+      ],
+      "score": 0.467,
+      "position": "inside window",
+      "description": {
+        "color": "black"
+      }
+    },
+    {
+      "id": 1,
+      "name": "text",
+      "bbox": [
+        212,
+        401,
+        425,
+        447
+      ],
+      "score": 0.398,
+      "position": "inside window",
+      "description": {
+        "color": "black"
+      }
+    },
+    {
+      "id": 1,
+      "name": "text",
+      "bbox": [
+        207,
+        575,
+        407,
+        648
+      ],
+      "score": 0.441,
+      "position": "inside window",
+      "description": {
+        "color": "black"
+      }
+    },
+    {
+      "id": 2,
+      "name": "button",
+      "bbox": [
+        670,
+        20,
+        714,
+        69
+      ],
+      "score": 0.443,
+      "position": "inside window",
+      "description": {
+        "color": "blue"
+      }
+    },
+    {
+      "id": 2,
+      "name": "button",
+      "bbox": [
+        728,
+        21,
+        846,
+        68
+      ],
+      "score": 0.514,
+      "position": "inside window",
+      "description": {
+        "color": "blue"
+      }
+    },
+    {
+      "id": 2,
+      "name": "button",
+      "bbox": [
+        147,
+        174,
+        204,
+        243
+      ],
+      "score": 0.453,
+      "position": "inside window",
+      "description": {
+        "color": "blue"
+      }
+    },
+    {
+      "id": 2,
+      "name": "button",
+      "bbox": [
+        94,
+        135,
+        891,
+        304
+      ],
+      "score": 0.482,
+      "position": "inside window",
+      "description": {
+        "color": "blue"
+      }
+    },
+    {
+      "id": 2,
+      "name": "button",
+      "bbox": [
+        733,
+        191,
+        803,
+        235
+      ],
+      "score": 0.418,
+      "position": "inside window",
+      "description": {
+        "color": "blue"
+      }
+    },
+    {
+      "id": 2,
+      "name": "button",
+      "bbox": [
+        810,
+        197,
+        851,
+        234
+      ],
+      "score": 0.453,
+      "position": "inside window",
+      "description": {
+        "color": "blue"
+      }
+    },
+    {
+      "id": 2,
+      "name": "button",
+      "bbox": [
+        151,
+        368,
+        201,
+        439
+      ],
+      "score": 0.577,
+      "position": "inside window",
+      "description": {
+        "color": "blue"
+      }
+    },
+    {
+      "id": 2,
+      "name": "button",
+      "bbox": [
+        722,
+        390,
+        794,
+        427
+      ],
+      "score": 0.564,
+      "position": "inside window",
+      "description": {
+        "color": "blue"
+      }
+    },
+    {
+      "id": 2,
+      "name": "button",
+      "bbox": [
+        152,
+        566,
+        198,
+        633
+      ],
+      "score": 0.528,
+      "position": "inside window",
+      "description": {
+        "color": "blue"
+      }
+    },
+    {
+      "id": 2,
+      "name": "button",
+      "bbox": [
+        741,
+        586,
+        795,
+        620
+      ],
+      "score": 0.396,
+      "position": "inside window",
+      "description": {
+        "color": "blue"
+      }
+    },
+    {
+      "id": 3,
+      "name": "window",
+      "bbox": [
+        19,
+        10,
+        974,
+        982
+      ],
+      "score": 0.353,
+      "position": "center",
+      "description": {
+        "color": "white"
+      }
+    }
+  ],
+  "regions": [
+    {
+      "id": 4,
+      "name": "button",
+      "count": "several",
+      "position": "inside window",
+      "description": {
+        "color": "green"
+      }
+    },
+    {
+      "id": 5,
+      "name": "button",
+      "count": "several",
+      "position": "inside window",
+      "description": {
+        "color": "purple"
+      }
+    }
+  ],
+  "text": [
+    {
+      "string": "Projects",
+      "bbox": [
+        120,
+        23,
+        228,
+        69
+      ],
+      "score": 0.662
+    },
+    {
+      "string": "New project",
+      "bbox": [
+        738,
+        28,
+        836,
+        58
+      ],
+      "score": 0.576
+    },
+    {
+      "string": "w",
+      "bbox": [
+        155,
+        182,
+        196,
+        230
+      ],
+      "score": 0.364
+    },
+    {
+      "string": "Sara Chen",
+      "bbox": [
+        216,
+        219,
+        294,
+        245
+      ],
+      "score": 0.323
+    },
+    {
+      "string": "Website redesign",
+      "bbox": [
+        212,
+        180,
+        397,
+        220
+      ],
+      "score": 0.833
+    },
+    {
+      "string": "Sara Chen - Updated 2h agc",
+      "bbox": [
+        210,
+        215,
+        405,
+        249
+      ],
+      "score": 0.65
+    },
+    {
+      "string": "Active",
+      "bbox": [
+        738,
+        194,
+        790,
+        227
+      ],
+      "score": 0.426
+    },
+    {
+      "string": "Rename",
+      "bbox": [
+        644,
+        265,
+        718,
+        299
+      ],
+      "score": 0.779
+    },
+    {
+      "string": "n..Eaakn",
+      "bbox": [
+        645,
+        311,
+        721,
+        335
+      ],
+      "score": 0.616
+    },
+    {
+      "string": "M",
+      "bbox": [
+        159,
+        382,
+        194,
+        424
+      ],
+      "score": 0.467
+    },
+    {
+      "string": "Mobile app V2",
+      "bbox": [
+        211,
+        379,
+        369,
+        416
+      ],
+      "score": 0.583
+    },
+    {
+      "string": "In review",
+      "bbox": [
+        725,
+        390,
+        792,
+        422
+      ],
+      "score": 0.775
+    },
+    {
+      "string": "Dev team · Updated yesterday",
+      "bbox": [
+        207,
+        410,
+        430,
+        445
+      ],
+      "score": 0.684
+    },
+    {
+      "string": "B",
+      "bbox": [
+        158,
+        578,
+        192,
+        617
+      ],
+      "score": 0.413
+    },
+    {
+      "string": "Brand guidelines",
+      "bbox": [
+        209,
+        573,
+        398,
+        609
+      ],
+      "score": 0.799
+    },
+    {
+      "string": "Active",
+      "bbox": [
+        740,
+        586,
+        795,
+        619
+      ],
+      "score": 0.463
+    }
+  ],
+  "relations": [
+    {
+      "subject": 2,
+      "predicate": "part_of",
+      "object": 3
+    },
+    {
+      "subject": 4,
+      "predicate": "part_of",
+      "object": 3
+    },
+    {
+      "subject": 5,
+      "predicate": "part_of",
+      "object": 3
+    },
+    {
+      "subject": 1,
+      "predicate": "in",
+      "object": 3
+    }
+  ],
+  "events": [],
+  "reasoning": "lang: en | white window with blue buttons, green and purple buttons, black text | windows are software interfaces with buttons and text | green button typically means confirm or cancel | text inside buttons is unreadable | cannot know software name or purpose"
+}

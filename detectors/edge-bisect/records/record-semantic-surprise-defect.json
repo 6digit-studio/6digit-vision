@@ -1,0 +1,176 @@
+{
+  "scene": {
+    "background": "white",
+    "style": "digital graphic"
+  },
+  "objects": [
+    {
+      "id": 1,
+      "name": "logo",
+      "bbox": [
+        446,
+        183,
+        557,
+        327
+      ],
+      "score": 0.609,
+      "position": "top center",
+      "description": {
+        "color": "green",
+        "shape": "circular"
+      }
+    },
+    {
+      "id": 2,
+      "name": "text",
+      "bbox": [
+        379,
+        386,
+        623,
+        427
+      ],
+      "score": 0.636,
+      "position": "center",
+      "description": {
+        "color": "black"
+      }
+    },
+    {
+      "id": 3,
+      "name": "text",
+      "bbox": [
+        269,
+        605,
+        313,
+        628
+      ],
+      "score": 0.391,
+      "position": "center",
+      "description": {
+        "color": "black"
+      }
+    },
+    {
+      "id": 4,
+      "name": "text",
+      "bbox": [
+        268,
+        635,
+        439,
+        667
+      ],
+      "score": 0.527,
+      "position": "center",
+      "description": {
+        "color": "black"
+      }
+    },
+    {
+      "id": 5,
+      "name": "text",
+      "bbox": [
+        678,
+        637,
+        732,
+        664
+      ],
+      "score": 0.507,
+      "position": "center",
+      "description": {
+        "color": "black"
+      }
+    },
+    {
+      "id": 6,
+      "name": "button",
+      "bbox": [
+        431,
+        779,
+        572,
+        830
+      ],
+      "score": 0.601,
+      "position": "bottom center",
+      "description": {
+        "color": "blue",
+        "shape": "rectangular"
+      }
+    }
+  ],
+  "regions": [],
+  "text": [
+    {
+      "string": "Payment failed",
+      "bbox": [
+        374,
+        378,
+        626,
+        432
+      ],
+      "score": 0.805
+    },
+    {
+      "string": "Your card ending in 4242 was declined.",
+      "bbox": [
+        353,
+        450,
+        649,
+        488
+      ],
+      "score": 0.782
+    },
+    {
+      "string": "No charge was made to your account.",
+      "bbox": [
+        354,
+        492,
+        648,
+        527
+      ],
+      "score": 0.773
+    },
+    {
+      "string": "Order",
+      "bbox": [
+        265,
+        600,
+        317,
+        631
+      ],
+      "score": 0.696
+    },
+    {
+      "string": "#48213- Apr 12, 2026",
+      "bbox": [
+        263,
+        630,
+        444,
+        671
+      ],
+      "score": 0.769
+    },
+    {
+      "string": "$49.00",
+      "bbox": [
+        674,
+        630,
+        736,
+        670
+      ],
+      "score": 0.675
+    },
+    {
+      "string": "Try again",
+      "bbox": [
+        459,
+        786,
+        543,
+        820
+      ],
+      "score": 0.688
+    }
+  ],
+  "relations": [],
+  "events": [],
+  "reasoning": "lang: en | green circular logo, black text, blue button | logos identify brands, buttons trigger actions | text on a logo is read as the brand name | button not link: it is a clickable interface element | cannot know the company or its purpose"
+}
