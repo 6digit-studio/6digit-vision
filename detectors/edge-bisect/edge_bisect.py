@@ -215,6 +215,11 @@ def _scan_axis(gray: np.ndarray, x0: int, y0: int, x1: int, y1: int,
                 continue
             if not _dense_cut_edge(ink, y - y0):
                 continue
+            # underline guard: a local rule (link underline, divider)
+            # ends at the text bbox; a container edge continues past
+            # it. Require the gradient to persist beyond the span.
+            if not _edge_continues(gray, y, x0, x1, "h"):
+                continue
             findings.append({
                 "axis": "horizontal", "line": y,
                 "coverage": round(cov, 3), "median_step": round(med, 1),
@@ -247,6 +252,8 @@ def _scan_axis(gray: np.ndarray, x0: int, y0: int, x1: int, y1: int,
                 continue
             if not _dense_cut_edge(ink, x - x0):
                 continue
+            if not _edge_continues(gray, x, y0, y1, "v"):
+                continue
             findings.append({
                 "axis": "vertical", "line": x,
                 "coverage": round(cov, 3), "median_step": round(med, 1),
@@ -254,6 +261,40 @@ def _scan_axis(gray: np.ndarray, x0: int, y0: int, x1: int, y1: int,
                 "ink_dist_px": dist,
             })
     return findings
+
+
+def _edge_continues(gray: np.ndarray, pos: int, lo: int, hi: int,
+                    axis: str, ext: int = 24) -> bool:
+    """Does the edge gradient persist beyond the text span?
+
+    A container boundary (card edge slicing text) continues past the
+    bbox; a local decoration (link underline, text divider) ends at it.
+    Samples the same transition EXT px beyond each side; requires >=50%
+    of the extension window to hold the gradient on at least one side.
+    """
+    h, w = gray.shape
+    d = DIFF
+    if axis == "h":
+        y = pos
+        if y < 1 or y >= h:
+            return False
+        for a, b in ((max(0, lo - ext), lo), (hi, min(w, hi + ext))):
+            if b - a < 8:
+                continue
+            cov = float((np.abs(gray[y, a:b] - gray[y - 1, a:b]) >= d).mean())
+            if cov >= 0.5:
+                return True
+        return False
+    x = pos
+    if x < 1 or x >= w:
+        return False
+    for a, b in ((max(0, lo - ext), lo), (hi, min(h, hi + ext))):
+        if b - a < 8:
+            continue
+        cov = float((np.abs(gray[a:b, x] - gray[a:b, x - 1]) >= d).mean())
+        if cov >= 0.5:
+            return True
+    return False
 
 
 def _cluster(rows: list[dict], gap: int = 3) -> list[dict]:

@@ -185,3 +185,15 @@ images swept for FP confidence. Vertical axis proven on a synthetic
 fixture; three real FP classes found in the sweep and killed with
 measured thresholds. Standalone: no edits to `eyes/`, `tests/`, or other
 detectors; `records/` + `synthetic/` are reproducible fixtures.
+
+## Update — underline guard (2026-11-15, web-real sweep finding)
+
+Real-page sweep found a false-positive class: underlined links read as
+bisected text (example.com 'Learn more', line=756 cov=0.953
+ink_dist=2px — the underline IS an edge line ~2px below ink).
+
+Fix: `_edge_continues` requires the gradient to persist >=50% beyond
+the text span on at least one side — container edges continue, local
+decorations end at the bbox. Verified: example.com now CLEAN, z-order
+defect still fires ('n..Eaakn' line=239 — card border continues past
+the label), z-order control clean.
