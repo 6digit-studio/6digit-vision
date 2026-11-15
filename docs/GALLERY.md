@@ -207,6 +207,39 @@ Division of labor: semantic score = WHAT, pixdiff = WHERE.
 Honest blinds: no alignment step, AA/compression noise on dense text,
 fidelity-not-correctness (color swaps score high).
 
+
+## The diff stack — three channels, one job each
+
+`eyes pixdiff` (pixel truth) gained two siblings in the
+EYES_FDIFF_CHALLENGE wave — four parallel contestants built standalone
+frequency-domain diffs against a shared falsifiable bar; ALL FIVE
+criteria CAUGHT by every entry:
+
+| contestant | mechanism | block-shift | 1px-translate | ui1 pair |
+|-----------|-----------|------------|---------------|----------|
+| **pyramid** (winner) | Gaussian pyramid + phase-corr alignment | .9865 | 1.0 | .8277 |
+| phasecorr | FFT phase-correlation + PSR gating | .9806 | 1.0 | .7994 |
+| dct-phash | DCT low-band perceptual | .9491 | .995 | .7453 |
+| fft-lowband | FFT magnitude low-band | .7512 | ~1.0 | .3720 |
+
+**Winner: pyramid** -> `eyes/fdiff.py` + `pack.fdiff` in ui_loop.
+Runner-up phasecorr has the deepest mechanism (PSR-gated subpixel
+alignment, semantic-data localization to the glyph) — hybrid candidate.
+Honest catalog notes: dct-phash can't see sub-3px motion by
+construction; fft-lowband's ui1 signal was weakest.
+
+**The completed division of labor:**
+- `score` = WHAT (semantic similarity, Mirage-grounded)
+- `pixdiff` = pixel truth (SSIM + AA-aware regions + heat)
+- `fdiff` = frequency structure + alignment (kills the 1px-shift
+  blindness pixdiff documented)
+- `region_map` / `fdiff_region_map` = WHICH-ELEMENT (diff regions ->
+  DOM selectors + local diffs + computed styles)
+
+ui_loop packs now carry all of it per iteration — the critic reads
+score components, element_diff, detectors, pixdiff, fdiff, and dual
+region maps in one JSON.
+
 ## The loop that built this
 
 `challenges/EYES_EVAL_CHALLENGE.md` generates defect cases →
