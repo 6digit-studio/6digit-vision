@@ -83,6 +83,14 @@ def main() -> int:
     pd_res = _pd.pixdiff(str(ref), str(cand_png), max_dim=640)
     pack["pixdiff"] = {k: v for k, v in pd_res.items() if k != "heat"}
     pack["pixdiff"]["heat"] = pd_res["heat"]
+    # fdiff: frequency-domain channel — pyramid winner of the
+    # EYES_FDIFF_CHALLENGE wave (alignment + noise-robust structure diff)
+    try:
+        from eyes import fdiff as _fd
+        fd_res = _fd.fdiff(str(ref), str(cand_png))
+        pack["fdiff"] = fd_res
+    except Exception as e:
+        pack["fdiff"] = {"error": str(e)[:120]}
     # region->element mapping: pixdiff WHERE -> DOM WHICH (earned by
     # the ui3 payoff test — mechanism verified at element level)
     try:
