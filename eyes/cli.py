@@ -109,6 +109,22 @@ def cmd_zoom(args) -> int:
     return 0
 
 
+def cmd_interrogate(args) -> int:
+    from . import interrogate
+
+    r = interrogate.interrogate(args.image)
+    if args.json:
+        print(json.dumps(r, indent=2, ensure_ascii=False))
+        return 0
+    for q in r["questions"]:
+        ans = q["answer"]
+        if isinstance(ans, (dict, list)):
+            ans = json.dumps(ans, ensure_ascii=False)
+        print(f"[{q['id']}] {q['question']}")
+        print(f"    -> {ans}   ({q['probe']})")
+    return 0
+
+
 def cmd_structure(args) -> int:
     from . import mirage, structure
 
@@ -329,6 +345,11 @@ def main(argv: list[str] | None = None) -> int:
     p.add_argument("--hi-std", type=float, default=30.0)
     p.add_argument("--min-score", type=float, default=0.4)
     p.set_defaults(fn=cmd_zoom)
+
+    p = sub.add_parser("interrogate", help="question battery: standing+conditional probes -> fact sheet")
+    p.add_argument("image")
+    p.add_argument("--json", action="store_true")
+    p.set_defaults(fn=cmd_interrogate)
 
     p = sub.add_parser("structure", help="induce rows/columns/grids from OCR layout")
     p.add_argument("image")
