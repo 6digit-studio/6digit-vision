@@ -95,6 +95,20 @@ def cmd_layout(args) -> int:
     return 0
 
 
+def cmd_pixdiff(args) -> int:
+    from . import pixdiff as _pd
+
+    r = _pd.pixdiff(args.a, args.b)
+    if args.json:
+        print(json.dumps(r, indent=2))
+        return 0
+    print(f"pixdiff score={r['score']} ssim={r['ssim_mean']} "
+          f"mismatch={r['mismatch_frac']} regions={r['n_regions']}")
+    for reg in r["regions"][:8]:
+        print(f"  {reg}")
+    return 0
+
+
 def cmd_reel(args) -> int:
     from . import temporal
 
@@ -210,6 +224,12 @@ def main(argv: list[str] | None = None) -> int:
     p.add_argument("candidate")
     p.add_argument("--json", action="store_true")
     p.set_defaults(fn=cmd_score)
+
+    p = sub.add_parser("pixdiff", help="pixel-level diff: SSIM map + change regions")
+    p.add_argument("a")
+    p.add_argument("b")
+    p.add_argument("--json", action="store_true")
+    p.set_defaults(fn=cmd_pixdiff)
 
     p = sub.add_parser("layout", help="overflow/layout facts: edge contact, edge objects, overlaps")
     p.add_argument("image")

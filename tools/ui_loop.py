@@ -77,6 +77,12 @@ def main() -> int:
                              question="what differs from the reference UI?")
     pack["element_diff"] = diff
     pack["score"] = scores
+    # pixel-level channel: the fine-edit signal semantic score can't
+    # see under Mirage jitter — identical renders ~1.0, edits localize
+    from eyes import pixdiff as _pd
+    pd_res = _pd.pixdiff(str(ref), str(cand_png), max_dim=640)
+    pack["pixdiff"] = {k: v for k, v in pd_res.items() if k != "heat"}
+    pack["pixdiff"]["heat"] = pd_res["heat"]
 
     trace = run / "trace.jsonl"
     it = args.iter
@@ -88,6 +94,7 @@ def main() -> int:
     row = {
         "iter": it, "ts": time.strftime("%H:%M:%S"),
         "score": scores.get("total") or scores.get("score"),
+        "pixdiff": pd_res["score"],
         "components": scores.get("components"),
         "diff_changes": len(diff.get("changes") or []),
         "pack": str(pack_path.name),

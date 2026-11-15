@@ -1,0 +1,1661 @@
+{
+  "scene": {
+    "background": "dark blue",
+    "style": "digital display"
+  },
+  "objects": [
+    {
+      "name": "text",
+      "position": "top center",
+      "score": 0.523,
+      "description": {
+        "color": "white"
+      }
+    },
+    {
+      "name": "dots",
+      "position": "on display",
+      "score": 0.656,
+      "description": {
+        "color": "white"
+      }
+    },
+    {
+      "name": "square",
+      "position": "center right",
+      "score": 0.612,
+      "description": {
+        "color": "blue",
+        "shape": "square"
+      }
+    },
+    {
+      "name": "digital display",
+      "position": "center",
+      "score": 0.457,
+      "description": {
+        "color": "dark blue"
+      }
+    },
+    {
+      "name": "square",
+      "position": "bottom center",
+      "score": 0.458,
+      "description": {
+        "color": "yellow",
+        "shape": "square"
+      }
+    }
+  ],
+  "text": [
+    {
+      "string": "November 2025",
+      "score": 0.745,
+      "bbox": [
+        450,
+        47,
+        580,
+        78
+      ]
+    },
+    {
+      "string": "27",
+      "score": 0.331,
+      "bbox": [
+        270,
+        143,
+        289,
+        164
+      ]
+    },
+    {
+      "string": "MON",
+      "score": 0.383,
+      "bbox": [
+        287,
+        101,
+        314,
+        124
+      ]
+    },
+    {
+      "string": "28",
+      "score": 0.392,
+      "bbox": [
+        337,
+        144,
+        355,
+        164
+      ]
+    },
+    {
+      "string": "TUE",
+      "score": 0.494,
+      "bbox": [
+        353,
+        99,
+        380,
+        125
+      ]
+    },
+    {
+      "string": "29",
+      "score": 0.428,
+      "bbox": [
+        404,
+        144,
+        421,
+        165
+      ]
+    },
+    {
+      "string": "WED",
+      "score": 0.487,
+      "bbox": [
+        420,
+        99,
+        448,
+        125
+      ]
+    },
+    {
+      "string": "30",
+      "score": 0.387,
+      "bbox": [
+        469,
+        143,
+        488,
+        165
+      ]
+    },
+    {
+      "string": "THU",
+      "score": 0.317,
+      "bbox": [
+        483,
+        101,
+        514,
+        126
+      ]
+    },
+    {
+      "string": "FRI",
+      "score": 0.354,
+      "bbox": [
+        556,
+        101,
+        578,
+        124
+      ]
+    },
+    {
+      "string": "SAT",
+      "score": 0.347,
+      "bbox": [
+        622,
+        100,
+        643,
+        123
+      ]
+    },
+    {
+      "string": "SUN",
+      "score": 0.358,
+      "bbox": [
+        687,
+        100,
+        713,
+        125
+      ]
+    },
+    {
+      "string": "5",
+      "score": 0.321,
+      "bbox": [
+        406,
+        243,
+        417,
+        264
+      ]
+    },
+    {
+      "string": "10",
+      "score": 0.354,
+      "bbox": [
+        271,
+        342,
+        289,
+        366
+      ]
+    },
+    {
+      "string": "11",
+      "score": 0.441,
+      "bbox": [
+        337,
+        343,
+        355,
+        366
+      ]
+    },
+    {
+      "string": "12",
+      "score": 0.505,
+      "bbox": [
+        405,
+        341,
+        422,
+        367
+      ]
+    },
+    {
+      "string": "13",
+      "score": 0.527,
+      "bbox": [
+        471,
+        342,
+        490,
+        367
+      ]
+    },
+    {
+      "string": "14",
+      "score": 0.412,
+      "bbox": [
+        539,
+        344,
+        558,
+        365
+      ]
+    },
+    {
+      "string": "18",
+      "score": 0.339,
+      "bbox": [
+        338,
+        440,
+        356,
+        465
+      ]
+    },
+    {
+      "string": "19",
+      "score": 0.331,
+      "bbox": [
+        404,
+        440,
+        423,
+        466
+      ]
+    },
+    {
+      "string": "27",
+      "score": 0.341,
+      "bbox": [
+        469,
+        543,
+        487,
+        568
+      ]
+    },
+    {
+      "string": "29",
+      "score": 0.307,
+      "bbox": [
+        604,
+        543,
+        621,
+        567
+      ]
+    }
+  ],
+  "findings": {
+    "objects_at_edge": [
+      {
+        "name": "text",
+        "sides": [
+          "top"
+        ],
+        "bbox": [
+          452,
+          50,
+          584,
+          77
+        ],
+        "score": 0.523,
+        "suspect": false
+      },
+      {
+        "name": "digital display",
+        "sides": [
+          "left",
+          "top",
+          "right",
+          "bottom"
+        ],
+        "bbox": [
+          4,
+          5,
+          994,
+          986
+        ],
+        "score": 0.457,
+        "suspect": true
+      }
+    ],
+    "bbox_overlaps": [],
+    "text_edge_flush": [],
+    "legibility_flagged": [
+      {
+        "string": "27",
+        "bbox": [
+          270,
+          143,
+          289,
+          164
+        ],
+        "contrast": 11.14,
+        "ocr_score": 0.331,
+        "flags": [
+          "low_ocr_confidence"
+        ]
+      },
+      {
+        "string": "MON",
+        "bbox": [
+          287,
+          101,
+          314,
+          124
+        ],
+        "contrast": 5.59,
+        "ocr_score": 0.383,
+        "flags": [
+          "low_ocr_confidence"
+        ]
+      },
+      {
+        "string": "28",
+        "bbox": [
+          337,
+          144,
+          355,
+          164
+        ],
+        "contrast": 11.14,
+        "ocr_score": 0.392,
+        "flags": [
+          "low_ocr_confidence"
+        ]
+      },
+      {
+        "string": "TUE",
+        "bbox": [
+          353,
+          99,
+          380,
+          125
+        ],
+        "contrast": 5.59,
+        "ocr_score": 0.494,
+        "flags": [
+          "low_ocr_confidence"
+        ]
+      },
+      {
+        "string": "29",
+        "bbox": [
+          404,
+          144,
+          421,
+          165
+        ],
+        "contrast": 11.14,
+        "ocr_score": 0.428,
+        "flags": [
+          "low_ocr_confidence"
+        ]
+      },
+      {
+        "string": "WED",
+        "bbox": [
+          420,
+          99,
+          448,
+          125
+        ],
+        "contrast": 5.59,
+        "ocr_score": 0.487,
+        "flags": [
+          "low_ocr_confidence"
+        ]
+      },
+      {
+        "string": "30",
+        "bbox": [
+          469,
+          143,
+          488,
+          165
+        ],
+        "contrast": 11.14,
+        "ocr_score": 0.387,
+        "flags": [
+          "low_ocr_confidence"
+        ]
+      },
+      {
+        "string": "THU",
+        "bbox": [
+          483,
+          101,
+          514,
+          126
+        ],
+        "contrast": 5.59,
+        "ocr_score": 0.317,
+        "flags": [
+          "low_ocr_confidence"
+        ]
+      },
+      {
+        "string": "FRI",
+        "bbox": [
+          556,
+          101,
+          578,
+          124
+        ],
+        "contrast": 5.59,
+        "ocr_score": 0.354,
+        "flags": [
+          "low_ocr_confidence"
+        ]
+      },
+      {
+        "string": "SAT",
+        "bbox": [
+          622,
+          100,
+          643,
+          123
+        ],
+        "contrast": 5.59,
+        "ocr_score": 0.347,
+        "flags": [
+          "low_ocr_confidence"
+        ]
+      },
+      {
+        "string": "SUN",
+        "bbox": [
+          687,
+          100,
+          713,
+          125
+        ],
+        "contrast": 5.59,
+        "ocr_score": 0.358,
+        "flags": [
+          "low_ocr_confidence"
+        ]
+      },
+      {
+        "string": "5",
+        "bbox": [
+          406,
+          243,
+          417,
+          264
+        ],
+        "contrast": 11.14,
+        "ocr_score": 0.321,
+        "flags": [
+          "low_ocr_confidence"
+        ]
+      },
+      {
+        "string": "10",
+        "bbox": [
+          271,
+          342,
+          289,
+          366
+        ],
+        "contrast": 11.14,
+        "ocr_score": 0.354,
+        "flags": [
+          "low_ocr_confidence"
+        ]
+      },
+      {
+        "string": "11",
+        "bbox": [
+          337,
+          343,
+          355,
+          366
+        ],
+        "contrast": 11.14,
+        "ocr_score": 0.441,
+        "flags": [
+          "low_ocr_confidence"
+        ]
+      },
+      {
+        "string": "12",
+        "bbox": [
+          405,
+          341,
+          422,
+          367
+        ],
+        "contrast": 11.14,
+        "ocr_score": 0.505,
+        "flags": [
+          "low_ocr_confidence"
+        ]
+      },
+      {
+        "string": "13",
+        "bbox": [
+          471,
+          342,
+          490,
+          367
+        ],
+        "contrast": 11.14,
+        "ocr_score": 0.527,
+        "flags": [
+          "low_ocr_confidence"
+        ]
+      },
+      {
+        "string": "14",
+        "bbox": [
+          539,
+          344,
+          558,
+          365
+        ],
+        "contrast": 11.14,
+        "ocr_score": 0.412,
+        "flags": [
+          "low_ocr_confidence"
+        ]
+      },
+      {
+        "string": "18",
+        "bbox": [
+          338,
+          440,
+          356,
+          465
+        ],
+        "contrast": 11.14,
+        "ocr_score": 0.339,
+        "flags": [
+          "low_ocr_confidence"
+        ]
+      },
+      {
+        "string": "19",
+        "bbox": [
+          404,
+          440,
+          423,
+          466
+        ],
+        "contrast": 11.14,
+        "ocr_score": 0.331,
+        "flags": [
+          "low_ocr_confidence"
+        ]
+      },
+      {
+        "string": "27",
+        "bbox": [
+          469,
+          543,
+          487,
+          568
+        ],
+        "contrast": 11.14,
+        "ocr_score": 0.341,
+        "flags": [
+          "low_ocr_confidence"
+        ]
+      },
+      {
+        "string": "29",
+        "bbox": [
+          604,
+          543,
+          621,
+          567
+        ],
+        "contrast": 11.14,
+        "ocr_score": 0.307,
+        "flags": [
+          "low_ocr_confidence"
+        ]
+      }
+    ]
+  },
+  "detectors": {
+    "status_icons": {
+      "image": "loop_runs/ui2/candidate.png",
+      "size": [
+        1200,
+        800
+      ],
+      "candidates": 2,
+      "regions": [
+        {
+          "object_id": 3,
+          "name": "square",
+          "mirage_score": 0.612,
+          "position": "center right",
+          "bbox_px": [
+            718,
+            270,
+            811,
+            358
+          ],
+          "container_hex": "#1868e8",
+          "container_hue": "blue",
+          "glyph": "solid",
+          "glyph_px": 0
+        },
+        {
+          "object_id": 5,
+          "name": "square",
+          "mirage_score": 0.458,
+          "position": "bottom center",
+          "bbox_px": [
+            407,
+            445,
+            472,
+            466
+          ],
+          "container_hex": "#181828",
+          "container_hue": "blue",
+          "glyph": "solid",
+          "glyph_px": 0
+        }
+      ],
+      "status_icons": {}
+    },
+    "hue_census": {
+      "image": "loop_runs/ui2/candidate.png",
+      "size": [
+        1200,
+        800
+      ],
+      "saturated_px": 6749,
+      "saturated_pct_of_image": 0.703,
+      "mask": {
+        "s_min": 0.35,
+        "v_min": 0.35,
+        "bin_deg": 15.0
+      },
+      "thresholds": {
+        "min_family_share": 0.01,
+        "rel_to_dominant": 0.1
+      },
+      "families": [
+        {
+          "hue_center_deg": 216.0,
+          "hue_name": "azure",
+          "hue_span_deg": 15.0,
+          "pixel_count": 6045,
+          "share_of_saturated": 0.8957,
+          "share_pct": 89.57,
+          "bbox": [
+            721,
+            271,
+            799,
+            348
+          ],
+          "x_profile": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "significant": true
+        },
+        {
+          "hue_center_deg": 39.6,
+          "hue_name": "amber",
+          "hue_span_deg": 15.0,
+          "pixel_count": 704,
+          "share_of_saturated": 0.1043,
+          "share_pct": 10.43,
+          "bbox": [
+            406,
+            453,
+            474,
+            464
+          ],
+          "x_profile": [
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "significant": true
+        }
+      ],
+      "significant_families": 2,
+      "verdict": "dominant_with_accent",
+      "notes": [
+        "dominant azure (89.57%) with secondary amber (10.43%) \u2014 accent, not a split"
+      ],
+      "dominant_family": "azure"
+    },
+    "lexical_screen": {
+      "sources": [
+        "dict:words",
+        "dict:connectives"
+      ],
+      "flagged": [
+        {
+          "string": "THU",
+          "bbox": [
+            483,
+            101,
+            514,
+            126
+          ],
+          "ocr_score": 0.317,
+          "verdict": "non_lexical_text",
+          "oov_fraction": 1.0,
+          "tokens": [
+            {
+              "token": "THU",
+              "status": "out_of_vocabulary"
+            }
+          ],
+          "oov_tokens": [
+            "THU"
+          ]
+        },
+        {
+          "string": "FRI",
+          "bbox": [
+            556,
+            101,
+            578,
+            124
+          ],
+          "ocr_score": 0.354,
+          "verdict": "non_lexical_text",
+          "oov_fraction": 1.0,
+          "tokens": [
+            {
+              "token": "FRI",
+              "status": "out_of_vocabulary"
+            }
+          ],
+          "oov_tokens": [
+            "FRI"
+          ]
+        }
+      ],
+      "frag_bands": []
+    },
+    "anisotropy": {
+      "image": "loop_runs/ui2/candidate.png",
+      "size": [
+        1200,
+        800
+      ],
+      "thresholds": {
+        "ink_dist": 22.0,
+        "erode_iters": 2,
+        "min_cluster_members": 4,
+        "log_aspect_min": 0.15,
+        "glyph_w_over_h_band": [
+          0.35,
+          0.75
+        ]
+      },
+      "blobs": {
+        "surfaces": {
+          "page_bg": "#141c24",
+          "card": "#1f6feb"
+        },
+        "ink_px": 5854,
+        "cores": 11,
+        "candidates": 3,
+        "blobs": [
+          {
+            "bbox": [
+              433,
+              453,
+              453,
+              464
+            ],
+            "w": 21,
+            "h": 12,
+            "aspect_h_over_w": 0.571,
+            "log_aspect": -0.5596,
+            "core_area": 76,
+            "core_fill": 0.559,
+            "round_witness": true
+          },
+          {
+            "bbox": [
+              412,
+              453,
+              431,
+              464
+            ],
+            "w": 20,
+            "h": 12,
+            "aspect_h_over_w": 0.6,
+            "log_aspect": -0.5108,
+            "core_area": 116,
+            "core_fill": 0.906,
+            "round_witness": false
+          },
+          {
+            "bbox": [
+              459,
+              453,
+              474,
+              464
+            ],
+            "w": 16,
+            "h": 12,
+            "aspect_h_over_w": 0.75,
+            "log_aspect": -0.2877,
+            "core_area": 59,
+            "core_fill": 0.615,
+            "round_witness": true
+          }
+        ],
+        "round_witnesses": 2,
+        "cluster": null,
+        "cluster_members": [],
+        "notes": [
+          "only 2 round-witness blobs (< 3); no unanimity witnesses \u2014 aspect census unreliable"
+        ]
+      },
+      "glyphs": {
+        "ink_px": 0,
+        "lum_threshold": 200.0,
+        "n_lines": 0,
+        "median_glyph_w_over_h": null,
+        "population_median": null,
+        "notes": [
+          "dark background (border luminance <128); glyph census assumes dark-on-light \u2014 skipped"
+        ]
+      },
+      "glyph_lines": [],
+      "verdict": "insufficient_witnesses",
+      "notes": [
+        "only 2 round-witness blobs (< 3); no unanimity witnesses \u2014 aspect census unreliable",
+        "dark background (border luminance <128); glyph census assumes dark-on-light \u2014 skipped"
+      ]
+    },
+    "totals_consistency": {
+      "image": "loop_runs/ui2/candidate.png",
+      "verdict": "no_currency_amounts",
+      "n_text_records": 22,
+      "n_amount_rows": 0,
+      "rows": [],
+      "findings": [],
+      "checks": [],
+      "notes": []
+    },
+    "edge_census": {
+      "params": {
+        "floor": 3.0,
+        "min_n": 2,
+        "xgap": 30.0,
+        "ygap": 25.0,
+        "row_min": 40.0,
+        "col_min": 40.0,
+        "row_same": 8.0,
+        "col_same": 8.0,
+        "width_guard": 15.0
+      },
+      "text_records": 22,
+      "repeated_strings": 2,
+      "clusters_audited": 0,
+      "audit": [],
+      "findings": [],
+      "verdict": "CLEAN"
+    },
+    "pixel_edge_drift": {
+      "image_size": [
+        1200,
+        800
+      ],
+      "bg": [
+        20.0,
+        28.0,
+        36.0
+      ],
+      "bands": [
+        {
+          "y": [
+            43,
+            58
+          ],
+          "h": 16
+        },
+        {
+          "y": [
+            87,
+            94
+          ],
+          "h": 8
+        },
+        {
+          "y": [
+            118,
+            128
+          ],
+          "h": 11
+        },
+        {
+          "y": [
+            198,
+            208
+          ],
+          "h": 11
+        },
+        {
+          "y": [
+            271,
+            348
+          ],
+          "h": 78
+        },
+        {
+          "y": [
+            359,
+            369
+          ],
+          "h": 11
+        },
+        {
+          "y": [
+            439,
+            449
+          ],
+          "h": 11
+        },
+        {
+          "y": [
+            453,
+            464
+          ],
+          "h": 12
+        }
+      ],
+      "intervals": 46,
+      "params": {
+        "bg_dist": 30,
+        "surf_dist": 30,
+        "min_band_h": 8,
+        "min_col_ink": 3,
+        "merge_gap": 8,
+        "xcluster": 12,
+        "width_max": 25.0,
+        "min_bands": 3,
+        "floor_px": 3.0
+      },
+      "audit": [
+        {
+          "n_bands": 6,
+          "n_intervals": 6,
+          "x0_range": [
+            322,
+            331
+          ],
+          "x1_range": [
+            324,
+            341
+          ],
+          "width_spread": 11,
+          "left_spread": 9,
+          "right_spread": 17,
+          "center_spread": 13.0,
+          "anchored_spread": 9,
+          "bands": [
+            0,
+            2,
+            3,
+            4,
+            5,
+            6
+          ]
+        },
+        {
+          "n_bands": 6,
+          "n_intervals": 6,
+          "x0_range": [
+            406,
+            411
+          ],
+          "x1_range": [
+            413,
+            474
+          ],
+          "width_spread": 64,
+          "left_spread": 5,
+          "right_spread": 61,
+          "center_spread": 29.0,
+          "anchored_spread": 5,
+          "bands": [
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+          ],
+          "skipped": "variable_width"
+        },
+        {
+          "n_bands": 5,
+          "n_intervals": 5,
+          "x0_range": [
+            489,
+            491
+          ],
+          "x1_range": [
+            494,
+            502
+          ],
+          "width_spread": 8,
+          "left_spread": 2,
+          "right_spread": 8,
+          "center_spread": 5.0,
+          "anchored_spread": 2,
+          "bands": [
+            2,
+            3,
+            4,
+            5,
+            6
+          ]
+        },
+        {
+          "n_bands": 5,
+          "n_intervals": 5,
+          "x0_range": [
+            569,
+            572
+          ],
+          "x1_range": [
+            575,
+            582
+          ],
+          "width_spread": 7,
+          "left_spread": 3,
+          "right_spread": 7,
+          "center_spread": 5.0,
+          "anchored_spread": 3,
+          "bands": [
+            2,
+            3,
+            4,
+            5,
+            6
+          ]
+        },
+        {
+          "n_bands": 5,
+          "n_intervals": 5,
+          "x0_range": [
+            650,
+            652
+          ],
+          "x1_range": [
+            655,
+            662
+          ],
+          "width_spread": 8,
+          "left_spread": 2,
+          "right_spread": 7,
+          "center_spread": 3.5,
+          "anchored_spread": 2,
+          "bands": [
+            2,
+            3,
+            4,
+            5,
+            6
+          ]
+        },
+        {
+          "n_bands": 5,
+          "n_intervals": 5,
+          "x0_range": [
+            721,
+            732
+          ],
+          "x1_range": [
+            734,
+            799
+          ],
+          "width_spread": 76,
+          "left_spread": 11,
+          "right_spread": 65,
+          "center_spread": 27.5,
+          "anchored_spread": 11,
+          "bands": [
+            2,
+            3,
+            4,
+            5,
+            6
+          ],
+          "skipped": "variable_width"
+        },
+        {
+          "n_bands": 5,
+          "n_intervals": 5,
+          "x0_range": [
+            810,
+            813
+          ],
+          "x1_range": [
+            816,
+            823
+          ],
+          "width_spread": 7,
+          "left_spread": 3,
+          "right_spread": 7,
+          "center_spread": 5.0,
+          "anchored_spread": 3,
+          "bands": [
+            2,
+            3,
+            4,
+            5,
+            6
+          ]
+        }
+      ],
+      "findings": [
+        {
+          "n_bands": 6,
+          "n_intervals": 6,
+          "x0_range": [
+            322,
+            331
+          ],
+          "x1_range": [
+            324,
+            341
+          ],
+          "width_spread": 11,
+          "left_spread": 9,
+          "right_spread": 17,
+          "center_spread": 13.0,
+          "anchored_spread": 9,
+          "bands": [
+            0,
+            2,
+            3,
+            4,
+            5,
+            6
+          ],
+          "kind": "edge_drift",
+          "floor_px": 3.0
+        }
+      ],
+      "verdict": "FLAGGED"
+    },
+    "luminance_theme": {
+      "image": "loop_runs/ui2/candidate.png",
+      "size": [
+        1200,
+        800
+      ],
+      "bg_luminance": 0.104,
+      "theme": "dark",
+      "island_frac": 0.0038,
+      "coherent_bands": 0,
+      "band_rows": 0,
+      "verdict": "single_luminance_theme",
+      "notes": [
+        "island frac 0.4% / coherent rows 0 below floors"
+      ]
+    },
+    "nonuniform_scale": {
+      "image": "loop_runs/ui2/candidate.png",
+      "size": [
+        1200,
+        800
+      ],
+      "text_bands": [],
+      "n_bands": 0,
+      "population_median_w_over_h": null,
+      "verdict": "insufficient_witnesses",
+      "notes": [
+        "no qualifying text bands"
+      ]
+    }
+  },
+  "question": "what differs from the reference UI?",
+  "instruction": "Answer the question using ONLY the evidence above. Report facts you can cite; say 'insufficient evidence' rather than guessing.",
+  "element_diff": {
+    "object_changes": [
+      {
+        "element": "smartphone",
+        "bbox": [
+          4,
+          5,
+          994,
+          986
+        ],
+        "deltas": {
+          "moved": 0.0364,
+          "renamed": {
+            "ref": "smartphone",
+            "cand": "digital display"
+          }
+        }
+      },
+      {
+        "element": "app icon",
+        "bbox": [
+          339,
+          556,
+          393,
+          583
+        ],
+        "deltas": {
+          "moved": 0.0714,
+          "renamed": {
+            "ref": "app icon",
+            "cand": "square"
+          }
+        }
+      },
+      {
+        "element": "app icon",
+        "bbox": [
+          598,
+          337,
+          676,
+          448
+        ],
+        "deltas": {
+          "moved": 0.1363,
+          "renamed": {
+            "ref": "app icon",
+            "cand": "square"
+          }
+        }
+      }
+    ],
+    "objects_added": [
+      {
+        "name": "text",
+        "bbox": [
+          452,
+          50,
+          584,
+          77
+        ]
+      },
+      {
+        "name": "dots",
+        "bbox": [
+          255,
+          62,
+          733,
+          555
+        ]
+      }
+    ],
+    "objects_removed": [
+      {
+        "name": "text",
+        "bbox": [
+          192,
+          333,
+          491,
+          382
+        ]
+      },
+      {
+        "name": "app icon",
+        "bbox": [
+          417,
+          516,
+          434,
+          540
+        ]
+      },
+      {
+        "name": "app icon",
+        "bbox": [
+          475,
+          573,
+          561,
+          640
+        ]
+      },
+      {
+        "name": "app icon",
+        "bbox": [
+          587,
+          594,
+          625,
+          624
+        ]
+      },
+      {
+        "name": "app icon",
+        "bbox": [
+          768,
+          593,
+          806,
+          624
+        ]
+      },
+      {
+        "name": "app icon",
+        "bbox": [
+          768,
+          677,
+          806,
+          705
+        ]
+      },
+      {
+        "name": "app icon",
+        "bbox": [
+          407,
+          759,
+          446,
+          790
+        ]
+      },
+      {
+        "name": "app icon",
+        "bbox": [
+          572,
+          735,
+          643,
+          815
+        ]
+      },
+      {
+        "name": "app icon",
+        "bbox": [
+          226,
+          842,
+          266,
+          871
+        ]
+      },
+      {
+        "name": "app icon",
+        "bbox": [
+          318,
+          842,
+          355,
+          871
+        ]
+      },
+      {
+        "name": "app icon",
+        "bbox": [
+          406,
+          843,
+          446,
+          870
+        ]
+      },
+      {
+        "name": "screen",
+        "bbox": [
+          149,
+          418,
+          897,
+          911
+        ]
+      },
+      {
+        "name": "home button",
+        "bbox": [
+          572,
+          735,
+          643,
+          815
+        ]
+      }
+    ],
+    "text_changes": [
+      {
+        "type": "text_edited",
+        "ref": "4",
+        "cand": "29",
+        "bbox": [
+          604,
+          543,
+          621,
+          567
+        ]
+      },
+      {
+        "type": "text_edited",
+        "ref": "9",
+        "cand": "27",
+        "bbox": [
+          469,
+          543,
+          487,
+          568
+        ]
+      },
+      {
+        "type": "text_edited",
+        "ref": "1",
+        "cand": "18",
+        "bbox": [
+          338,
+          440,
+          356,
+          465
+        ]
+      },
+      {
+        "type": "text_removed",
+        "ref": "Christmas Day",
+        "bbox": [
+          190,
+          330,
+          499,
+          384
+        ]
+      },
+      {
+        "type": "text_removed",
+        "ref": "6",
+        "bbox": [
+          773,
+          511,
+          799,
+          541
+        ]
+      },
+      {
+        "type": "text_removed",
+        "ref": "15",
+        "bbox": [
+          315,
+          675,
+          358,
+          707
+        ]
+      },
+      {
+        "type": "text_removed",
+        "ref": "16",
+        "bbox": [
+          405,
+          675,
+          448,
+          706
+        ]
+      },
+      {
+        "type": "text_removed",
+        "ref": "20",
+        "bbox": [
+          763,
+          673,
+          808,
+          708
+        ]
+      },
+      {
+        "type": "text_removed",
+        "ref": "21",
+        "bbox": [
+          223,
+          756,
+          267,
+          794
+        ]
+      },
+      {
+        "type": "text_removed",
+        "ref": "22",
+        "bbox": [
+          314,
+          754,
+          359,
+          792
+        ]
+      },
+      {
+        "type": "text_removed",
+        "ref": "23",
+        "bbox": [
+          404,
+          756,
+          448,
+          791
+        ]
+      },
+      {
+        "type": "text_removed",
+        "ref": "24",
+        "bbox": [
+          494,
+          753,
+          538,
+          792
+        ]
+      },
+      {
+        "type": "text_removed",
+        "ref": "26",
+        "bbox": [
+          673,
+          754,
+          719,
+          792
+        ]
+      },
+      {
+        "type": "text_removed",
+        "ref": "30",
+        "bbox": [
+          404,
+          839,
+          448,
+          871
+        ]
+      },
+      {
+        "type": "text_removed",
+        "ref": "31",
+        "bbox": [
+          493,
+          838,
+          537,
+          872
+        ]
+      },
+      {
+        "type": "text_added",
+        "cand": "November 2025",
+        "bbox": [
+          450,
+          47,
+          580,
+          78
+        ]
+      },
+      {
+        "type": "text_added",
+        "cand": "THU",
+        "bbox": [
+          483,
+          101,
+          514,
+          126
+        ]
+      }
+    ],
+    "counts": {
+      "ref_objects": 16,
+      "cand_objects": 5,
+      "ref_text": 32,
+      "cand_text": 22
+    }
+  },
+  "score": {
+    "score": 21.9,
+    "components": {
+      "palette": {
+        "score": 0.1956
+      },
+      "objects": {
+        "score": 0.0423,
+        "matched": 3,
+        "missing": [
+          "text",
+          "app icon",
+          "app icon",
+          "app icon",
+          "app icon",
+          "app icon",
+          "app icon",
+          "app icon",
+          "app icon",
+          "app icon",
+          "app icon",
+          "screen",
+          "home button"
+        ],
+        "extra": [
+          "text",
+          "dots"
+        ],
+        "attr_sim": 0.1479,
+        "attr_changes": [
+          {
+            "ref": "smartphone",
+            "cand": "digital display",
+            "attr_sim": 0.073
+          },
+          {
+            "ref": "app icon",
+            "cand": "square",
+            "attr_sim": 0.0
+          },
+          {
+            "ref": "app icon",
+            "cand": "square",
+            "attr_sim": 0.37
+          }
+        ]
+      },
+      "layout": {
+        "score": 0.0,
+        "mean_center_dist": 0.8278,
+        "pairs": 3
+      },
+      "text": {
+        "score": 0.7792
+      },
+      "scene": {
+        "score": 0.402
+      }
+    },
+    "weights": {
+      "palette": 0.25,
+      "objects": 0.3,
+      "layout": 0.2,
+      "text": 0.15,
+      "scene": 0.1
+    }
+  }
+}
