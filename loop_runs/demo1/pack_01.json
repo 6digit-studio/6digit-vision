@@ -1,0 +1,652 @@
+{
+  "question": "List the concrete visual differences vs the reference design and the single most impactful fix.",
+  "objects": [
+    {
+      "name": "text label",
+      "position": "inside dialog boxes",
+      "score": 0.528,
+      "description": {
+        "color": "gray"
+      }
+    },
+    {
+      "name": "text label",
+      "position": "inside dialog boxes",
+      "score": 0.436,
+      "description": {
+        "color": "gray"
+      }
+    },
+    {
+      "name": "text label",
+      "position": "inside dialog boxes",
+      "score": 0.462,
+      "description": {
+        "color": "gray"
+      }
+    },
+    {
+      "name": "text label",
+      "position": "inside dialog boxes",
+      "score": 0.351,
+      "description": {
+        "color": "gray"
+      }
+    },
+    {
+      "name": "text label",
+      "position": "inside dialog boxes",
+      "score": 0.485,
+      "description": {
+        "color": "gray"
+      }
+    },
+    {
+      "name": "text label",
+      "position": "inside dialog boxes",
+      "score": 0.469,
+      "description": {
+        "color": "gray"
+      }
+    },
+    {
+      "name": "text label",
+      "position": "inside dialog boxes",
+      "score": 0.353,
+      "description": {
+        "color": "gray"
+      }
+    },
+    {
+      "name": "text label",
+      "position": "inside dialog boxes",
+      "score": 0.416,
+      "description": {
+        "color": "gray"
+      }
+    },
+    {
+      "name": "dialog box",
+      "position": "center",
+      "score": 0.619,
+      "description": {
+        "color": "white",
+        "shape": "rectangular"
+      }
+    },
+    {
+      "name": "dialog box",
+      "position": "center",
+      "score": 0.664,
+      "description": {
+        "color": "white",
+        "shape": "rectangular"
+      }
+    },
+    {
+      "name": "dialog box",
+      "position": "center",
+      "score": 0.577,
+      "description": {
+        "color": "white",
+        "shape": "rectangular"
+      }
+    },
+    {
+      "name": "dialog box",
+      "position": "center",
+      "score": 0.393,
+      "description": {
+        "color": "white",
+        "shape": "rectangular"
+      }
+    },
+    {
+      "name": "dialog box",
+      "position": "center",
+      "score": 0.558,
+      "description": {
+        "color": "white",
+        "shape": "rectangular"
+      }
+    }
+  ],
+  "text": [
+    {
+      "string": "BuPYE BETEWBO9",
+      "score": 0.657,
+      "bbox": [
+        46,
+        191,
+        224,
+        245
+      ]
+    },
+    {
+      "string": "$1.2M",
+      "score": 0.644,
+      "bbox": [
+        67,
+        451,
+        125,
+        494
+      ]
+    },
+    {
+      "string": "Revenue",
+      "score": 0.761,
+      "bbox": [
+        68,
+        399,
+        143,
+        439
+      ]
+    },
+    {
+      "string": "48k",
+      "score": 0.421,
+      "bbox": [
+        386,
+        451,
+        425,
+        495
+      ]
+    },
+    {
+      "string": "Use rs",
+      "score": 0.627,
+      "bbox": [
+        386,
+        399,
+        435,
+        440
+      ]
+    },
+    {
+      "string": "NPS",
+      "score": 0.681,
+      "bbox": [
+        705,
+        397,
+        747,
+        441
+      ]
+    },
+    {
+      "string": "+62",
+      "score": 0.493,
+      "bbox": [
+        709,
+        451,
+        745,
+        493
+      ]
+    },
+    {
+      "string": "Viewdetails",
+      "score": 0.661,
+      "bbox": [
+        104,
+        651,
+        200,
+        693
+      ]
+    }
+  ],
+  "findings": {
+    "objects_at_edge": [
+      {
+        "name": "text label",
+        "sides": [
+          "left"
+        ],
+        "bbox": [
+          46,
+          195,
+          225,
+          249
+        ],
+        "score": 0.528,
+        "suspect": false
+      },
+      {
+        "name": "dialog box",
+        "sides": [
+          "left"
+        ],
+        "bbox": [
+          43,
+          384,
+          320,
+          531
+        ],
+        "score": 0.619,
+        "suspect": false
+      },
+      {
+        "name": "dialog box",
+        "sides": [
+          "right"
+        ],
+        "bbox": [
+          686,
+          376,
+          957,
+          515
+        ],
+        "score": 0.577,
+        "suspect": false
+      },
+      {
+        "name": "dialog box",
+        "sides": [
+          "left",
+          "top",
+          "right",
+          "bottom"
+        ],
+        "bbox": [
+          16,
+          10,
+          985,
+          1000
+        ],
+        "score": 0.393,
+        "suspect": true
+      },
+      {
+        "name": "dialog box",
+        "sides": [
+          "left"
+        ],
+        "bbox": [
+          46,
+          623,
+          349,
+          738
+        ],
+        "score": 0.558,
+        "suspect": false
+      }
+    ],
+    "bbox_overlaps": [],
+    "text_edge_flush": [],
+    "legibility_flagged": [
+      {
+        "string": "Revenue",
+        "bbox": [
+          68,
+          399,
+          143,
+          439
+        ],
+        "contrast": 2.02,
+        "ocr_score": 0.761,
+        "flags": [
+          "low_contrast"
+        ]
+      },
+      {
+        "string": "48k",
+        "bbox": [
+          386,
+          451,
+          425,
+          495
+        ],
+        "contrast": 5.82,
+        "ocr_score": 0.421,
+        "flags": [
+          "low_ocr_confidence"
+        ]
+      },
+      {
+        "string": "Use rs",
+        "bbox": [
+          386,
+          399,
+          435,
+          440
+        ],
+        "contrast": 2.0,
+        "ocr_score": 0.627,
+        "flags": [
+          "low_contrast"
+        ]
+      },
+      {
+        "string": "NPS",
+        "bbox": [
+          705,
+          397,
+          747,
+          441
+        ],
+        "contrast": 2.01,
+        "ocr_score": 0.681,
+        "flags": [
+          "low_contrast"
+        ]
+      },
+      {
+        "string": "+62",
+        "bbox": [
+          709,
+          451,
+          745,
+          493
+        ],
+        "contrast": 5.52,
+        "ocr_score": 0.493,
+        "flags": [
+          "low_ocr_confidence"
+        ]
+      },
+      {
+        "string": "Viewdetails",
+        "bbox": [
+          104,
+          651,
+          200,
+          693
+        ],
+        "contrast": 2.35,
+        "ocr_score": 0.661,
+        "flags": [
+          "low_contrast"
+        ]
+      }
+    ]
+  },
+  "detectors": {
+    "status_icons": {
+      "image": "/Users/larsde/src/6digit-vision/loop_runs/demo1/cand_01.png",
+      "size": [
+        640,
+        400
+      ],
+      "candidates": 0,
+      "regions": [],
+      "status_icons": {}
+    },
+    "hue_census": {
+      "image": "/Users/larsde/src/6digit-vision/loop_runs/demo1/cand_01.png",
+      "size": [
+        640,
+        400
+      ],
+      "saturated_px": 14485,
+      "saturated_pct_of_image": 5.658,
+      "mask": {
+        "s_min": 0.35,
+        "v_min": 0.35,
+        "bin_deg": 15.0
+      },
+      "thresholds": {
+        "min_family_share": 0.01,
+        "rel_to_dominant": 0.1
+      },
+      "families": [
+        {
+          "hue_center_deg": 261.2,
+          "hue_name": "violet",
+          "hue_span_deg": 15.0,
+          "pixel_count": 8725,
+          "share_of_saturated": 0.6023,
+          "share_pct": 60.23,
+          "bbox": [
+            32,
+            250,
+            220,
+            296
+          ],
+          "x_profile": [
+            0.1712,
+            0.3289,
+            0.3448,
+            0.1551,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "significant": true
+        },
+        {
+          "hue_center_deg": 220.2,
+          "hue_name": "blue",
+          "hue_span_deg": 15.0,
+          "pixel_count": 5760,
+          "share_of_saturated": 0.3977,
+          "share_pct": 39.77,
+          "bbox": [
+            0,
+            0,
+            639,
+            8
+          ],
+          "x_profile": [
+            0.1,
+            0.1,
+            0.1,
+            0.1,
+            0.1,
+            0.1,
+            0.1,
+            0.1,
+            0.1,
+            0.1
+          ],
+          "significant": true
+        }
+      ],
+      "significant_families": 2,
+      "verdict": "accent_hue_split",
+      "notes": [
+        "2 hue families over significance floors: violet(60.23%) + blue(39.77%). Candidate theme-token split \u2014 e.g. shared chrome on one accent and regenerated content on another. Check family bboxes/x_profiles for chrome-vs-content segregation."
+      ],
+      "dominant_family": "violet"
+    },
+    "lexical_screen": {
+      "sources": [
+        "dict:words",
+        "dict:connectives"
+      ],
+      "flagged": [
+        {
+          "string": "BuPYE BETEWBO9",
+          "bbox": [
+            46,
+            191,
+            224,
+            245
+          ],
+          "ocr_score": 0.657,
+          "verdict": "non_lexical_text",
+          "oov_fraction": 1.0,
+          "tokens": [
+            {
+              "token": "BuPYE",
+              "status": "out_of_vocabulary"
+            },
+            {
+              "token": "BETEWBO",
+              "status": "out_of_vocabulary"
+            }
+          ],
+          "oov_tokens": [
+            "BuPYE",
+            "BETEWBO"
+          ]
+        },
+        {
+          "string": "NPS",
+          "bbox": [
+            705,
+            397,
+            747,
+            441
+          ],
+          "ocr_score": 0.681,
+          "verdict": "non_lexical_text",
+          "oov_fraction": 1.0,
+          "tokens": [
+            {
+              "token": "NPS",
+              "status": "out_of_vocabulary"
+            }
+          ],
+          "oov_tokens": [
+            "NPS"
+          ]
+        },
+        {
+          "string": "Viewdetails",
+          "bbox": [
+            104,
+            651,
+            200,
+            693
+          ],
+          "ocr_score": 0.661,
+          "verdict": "non_lexical_text",
+          "oov_fraction": 1.0,
+          "tokens": [
+            {
+              "token": "Viewdetails",
+              "status": "out_of_vocabulary"
+            }
+          ],
+          "oov_tokens": [
+            "Viewdetails"
+          ]
+        }
+      ],
+      "frag_bands": []
+    },
+    "anisotropy": {
+      "image": "/Users/larsde/src/6digit-vision/loop_runs/demo1/cand_01.png",
+      "size": [
+        640,
+        400
+      ],
+      "thresholds": {
+        "ink_dist": 22.0,
+        "erode_iters": 2,
+        "min_cluster_members": 4,
+        "log_aspect_min": 0.15,
+        "glyph_w_over_h_band": [
+          0.35,
+          0.75
+        ]
+      },
+      "blobs": {
+        "surfaces": {
+          "page_bg": "#f8fafc",
+          "card": "#7c3aed"
+        },
+        "ink_px": 9841,
+        "cores": 1,
+        "candidates": 0,
+        "blobs": [],
+        "round_witnesses": 0,
+        "cluster": null,
+        "cluster_members": []
+      },
+      "glyphs": {
+        "ink_px": 15493,
+        "lum_threshold": 200.0,
+        "n_lines": 2,
+        "median_glyph_w_over_h": null,
+        "population_median": null,
+        "notes": [
+          "only 2 qualifying text lines (< 5); glyph census unreliable"
+        ]
+      },
+      "glyph_lines": [
+        {
+          "y": [
+            163,
+            172
+          ],
+          "band_ink_h": 8,
+          "segments": 11,
+          "median_glyph_w_over_h": 0.625
+        },
+        {
+          "y": [
+            185,
+            194
+          ],
+          "band_ink_h": 10,
+          "segments": 9,
+          "median_glyph_w_over_h": 0.5
+        }
+      ],
+      "verdict": "insufficient_witnesses",
+      "notes": [
+        "only 2 qualifying text lines (< 5); glyph census unreliable"
+      ]
+    },
+    "totals_consistency": {
+      "image": "/Users/larsde/src/6digit-vision/loop_runs/demo1/cand_01.png",
+      "verdict": "insufficient_structure",
+      "n_text_records": 8,
+      "n_amount_rows": 1,
+      "rows": [
+        {
+          "role": "item",
+          "value": 1200000.0,
+          "raw_amount": "$1.2M",
+          "rate_pct": null,
+          "label": "$1.2M 48k +62",
+          "y": [
+            451,
+            494
+          ],
+          "n_records": 3
+        }
+      ],
+      "findings": [],
+      "checks": [
+        {
+          "identity": "line_items_sum",
+          "result": "skipped",
+          "detail": "no subtotal row to verify against"
+        },
+        {
+          "identity": "totals_block",
+          "result": "skipped",
+          "detail": "no total row"
+        },
+        {
+          "identity": "tax_rate",
+          "result": "skipped",
+          "detail": "no tax row"
+        }
+      ],
+      "notes": []
+    },
+    "edge_census": {
+      "params": {
+        "floor": 3.0,
+        "min_n": 2,
+        "xgap": 30.0,
+        "ygap": 25.0,
+        "row_min": 40.0,
+        "col_min": 40.0,
+        "row_same": 8.0,
+        "col_same": 8.0,
+        "width_guard": 15.0
+      },
+      "text_records": 8,
+      "repeated_strings": 0,
+      "clusters_audited": 0,
+      "audit": [],
+      "findings": [],
+      "verdict": "CLEAN"
+    }
+  }
+}

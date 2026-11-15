@@ -1,0 +1,610 @@
+{
+  "question": "List the concrete visual differences vs the reference design and the single most impactful fix.",
+  "objects": [
+    {
+      "name": "text label",
+      "position": "inside boxes",
+      "score": 0.53,
+      "description": {
+        "color": "gray"
+      }
+    },
+    {
+      "name": "text label",
+      "position": "inside boxes",
+      "score": 0.441,
+      "description": {
+        "color": "gray"
+      }
+    },
+    {
+      "name": "text label",
+      "position": "inside boxes",
+      "score": 0.464,
+      "description": {
+        "color": "gray"
+      }
+    },
+    {
+      "name": "text label",
+      "position": "inside boxes",
+      "score": 0.353,
+      "description": {
+        "color": "gray"
+      }
+    },
+    {
+      "name": "text label",
+      "position": "inside boxes",
+      "score": 0.488,
+      "description": {
+        "color": "gray"
+      }
+    },
+    {
+      "name": "text label",
+      "position": "inside boxes",
+      "score": 0.471,
+      "description": {
+        "color": "gray"
+      }
+    },
+    {
+      "name": "text label",
+      "position": "inside boxes",
+      "score": 0.356,
+      "description": {
+        "color": "gray"
+      }
+    },
+    {
+      "name": "text label",
+      "position": "inside boxes",
+      "score": 0.431,
+      "description": {
+        "color": "gray"
+      }
+    },
+    {
+      "name": "text box",
+      "position": "center",
+      "score": 0.618,
+      "description": {
+        "color": "white",
+        "shape": "rectangular"
+      }
+    },
+    {
+      "name": "text box",
+      "position": "center",
+      "score": 0.665,
+      "description": {
+        "color": "white",
+        "shape": "rectangular"
+      }
+    },
+    {
+      "name": "text box",
+      "position": "center",
+      "score": 0.576,
+      "description": {
+        "color": "white",
+        "shape": "rectangular"
+      }
+    },
+    {
+      "name": "text box",
+      "position": "center",
+      "score": 0.538,
+      "description": {
+        "color": "white",
+        "shape": "rectangular"
+      }
+    },
+    {
+      "name": "software interface",
+      "position": "center",
+      "score": 0.39,
+      "description": {
+        "color": "white and blue"
+      }
+    }
+  ],
+  "text": [
+    {
+      "string": "BuPYE BETEWBO9",
+      "score": 0.657,
+      "bbox": [
+        46,
+        191,
+        224,
+        245
+      ]
+    },
+    {
+      "string": "$1.2M",
+      "score": 0.646,
+      "bbox": [
+        67,
+        451,
+        125,
+        494
+      ]
+    },
+    {
+      "string": "Revenue",
+      "score": 0.761,
+      "bbox": [
+        68,
+        400,
+        143,
+        439
+      ]
+    },
+    {
+      "string": "48k",
+      "score": 0.423,
+      "bbox": [
+        386,
+        451,
+        425,
+        495
+      ]
+    },
+    {
+      "string": "Use rs",
+      "score": 0.627,
+      "bbox": [
+        386,
+        399,
+        435,
+        440
+      ]
+    },
+    {
+      "string": "NPS",
+      "score": 0.681,
+      "bbox": [
+        705,
+        397,
+        747,
+        441
+      ]
+    },
+    {
+      "string": "+62",
+      "score": 0.494,
+      "bbox": [
+        709,
+        451,
+        745,
+        493
+      ]
+    },
+    {
+      "string": "Viewdetails",
+      "score": 0.658,
+      "bbox": [
+        104,
+        652,
+        200,
+        693
+      ]
+    }
+  ],
+  "findings": {
+    "objects_at_edge": [
+      {
+        "name": "text label",
+        "sides": [
+          "left"
+        ],
+        "bbox": [
+          46,
+          196,
+          225,
+          249
+        ],
+        "score": 0.53,
+        "suspect": false
+      },
+      {
+        "name": "text box",
+        "sides": [
+          "left"
+        ],
+        "bbox": [
+          43,
+          384,
+          320,
+          531
+        ],
+        "score": 0.618,
+        "suspect": false
+      },
+      {
+        "name": "text box",
+        "sides": [
+          "right"
+        ],
+        "bbox": [
+          686,
+          376,
+          957,
+          515
+        ],
+        "score": 0.576,
+        "suspect": false
+      },
+      {
+        "name": "software interface",
+        "sides": [
+          "left",
+          "top",
+          "right",
+          "bottom"
+        ],
+        "bbox": [
+          15,
+          8,
+          986,
+          1000
+        ],
+        "score": 0.39,
+        "suspect": true
+      }
+    ],
+    "bbox_overlaps": [],
+    "text_edge_flush": [],
+    "legibility_flagged": [
+      {
+        "string": "Revenue",
+        "bbox": [
+          68,
+          400,
+          143,
+          439
+        ],
+        "contrast": 2.02,
+        "ocr_score": 0.761,
+        "flags": [
+          "low_contrast"
+        ]
+      },
+      {
+        "string": "48k",
+        "bbox": [
+          386,
+          451,
+          425,
+          495
+        ],
+        "contrast": 5.82,
+        "ocr_score": 0.423,
+        "flags": [
+          "low_ocr_confidence"
+        ]
+      },
+      {
+        "string": "Use rs",
+        "bbox": [
+          386,
+          399,
+          435,
+          440
+        ],
+        "contrast": 2.0,
+        "ocr_score": 0.627,
+        "flags": [
+          "low_contrast"
+        ]
+      },
+      {
+        "string": "NPS",
+        "bbox": [
+          705,
+          397,
+          747,
+          441
+        ],
+        "contrast": 2.01,
+        "ocr_score": 0.681,
+        "flags": [
+          "low_contrast"
+        ]
+      },
+      {
+        "string": "+62",
+        "bbox": [
+          709,
+          451,
+          745,
+          493
+        ],
+        "contrast": 5.52,
+        "ocr_score": 0.494,
+        "flags": [
+          "low_ocr_confidence"
+        ]
+      },
+      {
+        "string": "Viewdetails",
+        "bbox": [
+          104,
+          652,
+          200,
+          693
+        ],
+        "contrast": 2.4,
+        "ocr_score": 0.658,
+        "flags": [
+          "low_contrast"
+        ]
+      }
+    ]
+  },
+  "detectors": {
+    "status_icons": {
+      "image": "/Users/larsde/src/6digit-vision/loop_runs/demo1/cand_02.png",
+      "size": [
+        640,
+        400
+      ],
+      "candidates": 0,
+      "regions": [],
+      "status_icons": {}
+    },
+    "hue_census": {
+      "image": "/Users/larsde/src/6digit-vision/loop_runs/demo1/cand_02.png",
+      "size": [
+        640,
+        400
+      ],
+      "saturated_px": 14491,
+      "saturated_pct_of_image": 5.661,
+      "mask": {
+        "s_min": 0.35,
+        "v_min": 0.35,
+        "bin_deg": 15.0
+      },
+      "thresholds": {
+        "min_family_share": 0.01,
+        "rel_to_dominant": 0.1
+      },
+      "families": [
+        {
+          "hue_center_deg": 220.2,
+          "hue_name": "blue",
+          "hue_span_deg": 15.0,
+          "pixel_count": 14491,
+          "share_of_saturated": 1.0,
+          "share_pct": 100.0,
+          "bbox": [
+            0,
+            0,
+            639,
+            296
+          ],
+          "x_profile": [
+            0.1428,
+            0.2382,
+            0.2473,
+            0.1331,
+            0.0397,
+            0.0397,
+            0.0397,
+            0.0397,
+            0.0397,
+            0.0397
+          ],
+          "significant": true
+        }
+      ],
+      "significant_families": 1,
+      "verdict": "single_accent_family",
+      "notes": [
+        "one significant family: blue (100.0% of saturated px)"
+      ],
+      "dominant_family": "blue"
+    },
+    "lexical_screen": {
+      "sources": [
+        "dict:words",
+        "dict:connectives"
+      ],
+      "flagged": [
+        {
+          "string": "BuPYE BETEWBO9",
+          "bbox": [
+            46,
+            191,
+            224,
+            245
+          ],
+          "ocr_score": 0.657,
+          "verdict": "non_lexical_text",
+          "oov_fraction": 1.0,
+          "tokens": [
+            {
+              "token": "BuPYE",
+              "status": "out_of_vocabulary"
+            },
+            {
+              "token": "BETEWBO",
+              "status": "out_of_vocabulary"
+            }
+          ],
+          "oov_tokens": [
+            "BuPYE",
+            "BETEWBO"
+          ]
+        },
+        {
+          "string": "NPS",
+          "bbox": [
+            705,
+            397,
+            747,
+            441
+          ],
+          "ocr_score": 0.681,
+          "verdict": "non_lexical_text",
+          "oov_fraction": 1.0,
+          "tokens": [
+            {
+              "token": "NPS",
+              "status": "out_of_vocabulary"
+            }
+          ],
+          "oov_tokens": [
+            "NPS"
+          ]
+        },
+        {
+          "string": "Viewdetails",
+          "bbox": [
+            104,
+            652,
+            200,
+            693
+          ],
+          "ocr_score": 0.658,
+          "verdict": "non_lexical_text",
+          "oov_fraction": 1.0,
+          "tokens": [
+            {
+              "token": "Viewdetails",
+              "status": "out_of_vocabulary"
+            }
+          ],
+          "oov_tokens": [
+            "Viewdetails"
+          ]
+        }
+      ],
+      "frag_bands": []
+    },
+    "anisotropy": {
+      "image": "/Users/larsde/src/6digit-vision/loop_runs/demo1/cand_02.png",
+      "size": [
+        640,
+        400
+      ],
+      "thresholds": {
+        "ink_dist": 22.0,
+        "erode_iters": 2,
+        "min_cluster_members": 4,
+        "log_aspect_min": 0.15,
+        "glyph_w_over_h_band": [
+          0.35,
+          0.75
+        ]
+      },
+      "blobs": {
+        "surfaces": {
+          "page_bg": "#f8fafc",
+          "card": "#2563eb"
+        },
+        "ink_px": 4083,
+        "cores": 0,
+        "candidates": 0,
+        "blobs": [],
+        "round_witnesses": 0,
+        "cluster": null,
+        "cluster_members": []
+      },
+      "glyphs": {
+        "ink_px": 15494,
+        "lum_threshold": 200.0,
+        "n_lines": 2,
+        "median_glyph_w_over_h": null,
+        "population_median": null,
+        "notes": [
+          "only 2 qualifying text lines (< 5); glyph census unreliable"
+        ]
+      },
+      "glyph_lines": [
+        {
+          "y": [
+            163,
+            172
+          ],
+          "band_ink_h": 8,
+          "segments": 11,
+          "median_glyph_w_over_h": 0.625
+        },
+        {
+          "y": [
+            185,
+            194
+          ],
+          "band_ink_h": 10,
+          "segments": 9,
+          "median_glyph_w_over_h": 0.5
+        }
+      ],
+      "verdict": "insufficient_witnesses",
+      "notes": [
+        "only 2 qualifying text lines (< 5); glyph census unreliable"
+      ]
+    },
+    "totals_consistency": {
+      "image": "/Users/larsde/src/6digit-vision/loop_runs/demo1/cand_02.png",
+      "verdict": "insufficient_structure",
+      "n_text_records": 8,
+      "n_amount_rows": 1,
+      "rows": [
+        {
+          "role": "item",
+          "value": 1200000.0,
+          "raw_amount": "$1.2M",
+          "rate_pct": null,
+          "label": "$1.2M 48k +62",
+          "y": [
+            451,
+            494
+          ],
+          "n_records": 3
+        }
+      ],
+      "findings": [],
+      "checks": [
+        {
+          "identity": "line_items_sum",
+          "result": "skipped",
+          "detail": "no subtotal row to verify against"
+        },
+        {
+          "identity": "totals_block",
+          "result": "skipped",
+          "detail": "no total row"
+        },
+        {
+          "identity": "tax_rate",
+          "result": "skipped",
+          "detail": "no tax row"
+        }
+      ],
+      "notes": []
+    },
+    "edge_census": {
+      "params": {
+        "floor": 3.0,
+        "min_n": 2,
+        "xgap": 30.0,
+        "ygap": 25.0,
+        "row_min": 40.0,
+        "col_min": 40.0,
+        "row_same": 8.0,
+        "col_same": 8.0,
+        "width_guard": 15.0
+      },
+      "text_records": 8,
+      "repeated_strings": 0,
+      "clusters_audited": 0,
+      "audit": [],
+      "findings": [],
+      "verdict": "CLEAN"
+    }
+  }
+}

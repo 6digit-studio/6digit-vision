@@ -1,0 +1,606 @@
+{
+  "question": "List the concrete visual differences vs the reference design and the single most impactful fix.",
+  "objects": [
+    {
+      "name": "title bar",
+      "position": "top",
+      "score": 0.572,
+      "description": {
+        "color": "blue"
+      }
+    },
+    {
+      "name": "text",
+      "position": "inside box",
+      "score": 0.649,
+      "description": {
+        "color": "black"
+      }
+    },
+    {
+      "name": "text",
+      "position": "inside box",
+      "score": 0.459,
+      "description": {
+        "color": "black"
+      }
+    },
+    {
+      "name": "text",
+      "position": "inside box",
+      "score": 0.483,
+      "description": {
+        "color": "black"
+      }
+    },
+    {
+      "name": "button",
+      "position": "center",
+      "score": 0.564,
+      "description": {
+        "color": "gray",
+        "shape": "rectangular"
+      }
+    },
+    {
+      "name": "text",
+      "position": "inside box",
+      "score": 0.39,
+      "description": {
+        "color": "black"
+      }
+    },
+    {
+      "name": "text",
+      "position": "inside box",
+      "score": 0.509,
+      "description": {
+        "color": "black"
+      }
+    },
+    {
+      "name": "button",
+      "position": "center",
+      "score": 0.68,
+      "description": {
+        "color": "gray",
+        "shape": "rectangular"
+      }
+    },
+    {
+      "name": "text",
+      "position": "inside box",
+      "score": 0.471,
+      "description": {
+        "color": "black"
+      }
+    },
+    {
+      "name": "text",
+      "position": "inside box",
+      "score": 0.317,
+      "description": {
+        "color": "black"
+      }
+    },
+    {
+      "name": "button",
+      "position": "center",
+      "score": 0.467,
+      "description": {
+        "color": "gray",
+        "shape": "rectangular"
+      }
+    },
+    {
+      "name": "text",
+      "position": "inside box",
+      "score": 0.438,
+      "description": {
+        "color": "black"
+      }
+    }
+  ],
+  "text": [
+    {
+      "string": "Quarterly Report",
+      "score": 0.651,
+      "bbox": [
+        47,
+        130,
+        179,
+        175
+      ]
+    },
+    {
+      "string": "Revenue overviewBO3",
+      "score": 0.834,
+      "bbox": [
+        45,
+        225,
+        227,
+        263
+      ]
+    },
+    {
+      "string": "$1.2M",
+      "score": 0.658,
+      "bbox": [
+        67,
+        450,
+        125,
+        495
+      ]
+    },
+    {
+      "string": "Revenue",
+      "score": 0.768,
+      "bbox": [
+        67,
+        398,
+        143,
+        440
+      ]
+    },
+    {
+      "string": "48k",
+      "score": 0.559,
+      "bbox": [
+        362,
+        453,
+        399,
+        493
+      ]
+    },
+    {
+      "string": "Use rs",
+      "score": 0.702,
+      "bbox": [
+        363,
+        398,
+        410,
+        441
+      ]
+    },
+    {
+      "string": "NPS",
+      "score": 0.707,
+      "bbox": [
+        653,
+        395,
+        698,
+        441
+      ]
+    },
+    {
+      "string": "+62",
+      "score": 0.557,
+      "bbox": [
+        659,
+        452,
+        696,
+        493
+      ]
+    },
+    {
+      "string": "Viewde tails",
+      "score": 0.663,
+      "bbox": [
+        104,
+        651,
+        201,
+        693
+      ]
+    }
+  ],
+  "findings": {
+    "objects_at_edge": [
+      {
+        "name": "title bar",
+        "sides": [
+          "left"
+        ],
+        "bbox": [
+          49,
+          137,
+          176,
+          170
+        ],
+        "score": 0.572,
+        "suspect": false
+      },
+      {
+        "name": "text",
+        "sides": [
+          "left"
+        ],
+        "bbox": [
+          46,
+          228,
+          226,
+          261
+        ],
+        "score": 0.649,
+        "suspect": false
+      },
+      {
+        "name": "button",
+        "sides": [
+          "left"
+        ],
+        "bbox": [
+          44,
+          388,
+          319,
+          527
+        ],
+        "score": 0.564,
+        "suspect": false
+      }
+    ],
+    "bbox_overlaps": [],
+    "text_edge_flush": [],
+    "legibility_flagged": [
+      {
+        "string": "Revenue overviewBO3",
+        "bbox": [
+          45,
+          225,
+          227,
+          263
+        ],
+        "contrast": 2.0,
+        "ocr_score": 0.834,
+        "flags": [
+          "low_contrast"
+        ]
+      },
+      {
+        "string": "Revenue",
+        "bbox": [
+          67,
+          398,
+          143,
+          440
+        ],
+        "contrast": 2.02,
+        "ocr_score": 0.768,
+        "flags": [
+          "low_contrast"
+        ]
+      },
+      {
+        "string": "48k",
+        "bbox": [
+          362,
+          453,
+          399,
+          493
+        ],
+        "contrast": 6.0,
+        "ocr_score": 0.559,
+        "flags": [
+          "low_ocr_confidence"
+        ]
+      },
+      {
+        "string": "Use rs",
+        "bbox": [
+          363,
+          398,
+          410,
+          441
+        ],
+        "contrast": 2.0,
+        "ocr_score": 0.702,
+        "flags": [
+          "low_contrast"
+        ]
+      },
+      {
+        "string": "NPS",
+        "bbox": [
+          653,
+          395,
+          698,
+          441
+        ],
+        "contrast": 2.01,
+        "ocr_score": 0.707,
+        "flags": [
+          "low_contrast"
+        ]
+      },
+      {
+        "string": "+62",
+        "bbox": [
+          659,
+          452,
+          696,
+          493
+        ],
+        "contrast": 5.52,
+        "ocr_score": 0.557,
+        "flags": [
+          "low_ocr_confidence"
+        ]
+      },
+      {
+        "string": "Viewde tails",
+        "bbox": [
+          104,
+          651,
+          201,
+          693
+        ],
+        "contrast": 2.4,
+        "ocr_score": 0.663,
+        "flags": [
+          "low_contrast"
+        ]
+      }
+    ]
+  },
+  "detectors": {
+    "status_icons": {
+      "image": "/Users/larsde/src/6digit-vision/loop_runs/demo1/cand_05.png",
+      "size": [
+        640,
+        400
+      ],
+      "candidates": 0,
+      "regions": [],
+      "status_icons": {}
+    },
+    "hue_census": {
+      "image": "/Users/larsde/src/6digit-vision/loop_runs/demo1/cand_05.png",
+      "size": [
+        640,
+        400
+      ],
+      "saturated_px": 14491,
+      "saturated_pct_of_image": 5.661,
+      "mask": {
+        "s_min": 0.35,
+        "v_min": 0.35,
+        "bin_deg": 15.0
+      },
+      "thresholds": {
+        "min_family_share": 0.01,
+        "rel_to_dominant": 0.1
+      },
+      "families": [
+        {
+          "hue_center_deg": 220.2,
+          "hue_name": "blue",
+          "hue_span_deg": 15.0,
+          "pixel_count": 14491,
+          "share_of_saturated": 1.0,
+          "share_pct": 100.0,
+          "bbox": [
+            0,
+            0,
+            639,
+            296
+          ],
+          "x_profile": [
+            0.1428,
+            0.2382,
+            0.2473,
+            0.1331,
+            0.0397,
+            0.0397,
+            0.0397,
+            0.0397,
+            0.0397,
+            0.0397
+          ],
+          "significant": true
+        }
+      ],
+      "significant_families": 1,
+      "verdict": "single_accent_family",
+      "notes": [
+        "one significant family: blue (100.0% of saturated px)"
+      ],
+      "dominant_family": "blue"
+    },
+    "lexical_screen": {
+      "sources": [
+        "dict:words",
+        "dict:connectives"
+      ],
+      "flagged": [
+        {
+          "string": "NPS",
+          "bbox": [
+            653,
+            395,
+            698,
+            441
+          ],
+          "ocr_score": 0.707,
+          "verdict": "non_lexical_text",
+          "oov_fraction": 1.0,
+          "tokens": [
+            {
+              "token": "NPS",
+              "status": "out_of_vocabulary"
+            }
+          ],
+          "oov_tokens": [
+            "NPS"
+          ]
+        },
+        {
+          "string": "Viewde tails",
+          "bbox": [
+            104,
+            651,
+            201,
+            693
+          ],
+          "ocr_score": 0.663,
+          "verdict": "non_lexical_text",
+          "oov_fraction": 0.5,
+          "tokens": [
+            {
+              "token": "Viewde",
+              "status": "out_of_vocabulary"
+            },
+            {
+              "token": "tails",
+              "status": "inflected",
+              "stem": "tail",
+              "rule": "-s"
+            }
+          ],
+          "oov_tokens": [
+            "Viewde"
+          ]
+        }
+      ],
+      "frag_bands": []
+    },
+    "anisotropy": {
+      "image": "/Users/larsde/src/6digit-vision/loop_runs/demo1/cand_05.png",
+      "size": [
+        640,
+        400
+      ],
+      "thresholds": {
+        "ink_dist": 22.0,
+        "erode_iters": 2,
+        "min_cluster_members": 4,
+        "log_aspect_min": 0.15,
+        "glyph_w_over_h_band": [
+          0.35,
+          0.75
+        ]
+      },
+      "blobs": {
+        "surfaces": {
+          "page_bg": "#f8fafc",
+          "card": "#2563eb"
+        },
+        "ink_px": 4083,
+        "cores": 0,
+        "candidates": 0,
+        "blobs": [],
+        "round_witnesses": 0,
+        "cluster": null,
+        "cluster_members": []
+      },
+      "glyphs": {
+        "ink_px": 15494,
+        "lum_threshold": 200.0,
+        "n_lines": 4,
+        "median_glyph_w_over_h": null,
+        "population_median": null,
+        "notes": [
+          "only 4 qualifying text lines (< 5); glyph census unreliable"
+        ]
+      },
+      "glyph_lines": [
+        {
+          "y": [
+            57,
+            66
+          ],
+          "band_ink_h": 9,
+          "segments": 9,
+          "median_glyph_w_over_h": 0.7778
+        },
+        {
+          "y": [
+            93,
+            102
+          ],
+          "band_ink_h": 8,
+          "segments": 10,
+          "median_glyph_w_over_h": 0.8125
+        },
+        {
+          "y": [
+            163,
+            172
+          ],
+          "band_ink_h": 8,
+          "segments": 11,
+          "median_glyph_w_over_h": 0.625
+        },
+        {
+          "y": [
+            185,
+            194
+          ],
+          "band_ink_h": 10,
+          "segments": 9,
+          "median_glyph_w_over_h": 0.5
+        }
+      ],
+      "verdict": "insufficient_witnesses",
+      "notes": [
+        "only 4 qualifying text lines (< 5); glyph census unreliable"
+      ]
+    },
+    "totals_consistency": {
+      "image": "/Users/larsde/src/6digit-vision/loop_runs/demo1/cand_05.png",
+      "verdict": "insufficient_structure",
+      "n_text_records": 9,
+      "n_amount_rows": 1,
+      "rows": [
+        {
+          "role": "item",
+          "value": 1200000.0,
+          "raw_amount": "$1.2M",
+          "rate_pct": null,
+          "label": "$1.2M 48k +62",
+          "y": [
+            450,
+            495
+          ],
+          "n_records": 3
+        }
+      ],
+      "findings": [],
+      "checks": [
+        {
+          "identity": "line_items_sum",
+          "result": "skipped",
+          "detail": "no subtotal row to verify against"
+        },
+        {
+          "identity": "totals_block",
+          "result": "skipped",
+          "detail": "no total row"
+        },
+        {
+          "identity": "tax_rate",
+          "result": "skipped",
+          "detail": "no tax row"
+        }
+      ],
+      "notes": []
+    },
+    "edge_census": {
+      "params": {
+        "floor": 3.0,
+        "min_n": 2,
+        "xgap": 30.0,
+        "ygap": 25.0,
+        "row_min": 40.0,
+        "col_min": 40.0,
+        "row_same": 8.0,
+        "col_same": 8.0,
+        "width_guard": 15.0
+      },
+      "text_records": 9,
+      "repeated_strings": 0,
+      "clusters_audited": 0,
+      "audit": [],
+      "findings": [],
+      "verdict": "CLEAN"
+    }
+  }
+}
