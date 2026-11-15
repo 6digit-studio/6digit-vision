@@ -83,3 +83,22 @@ Verified: grid-misalign defect FLAGGED (edge_drift, anchored_spread
 misalign stays CLEAN — its margin-top drift pattern doesn't form the
 uniform-width multi-band clusters the detector keys on; real-layout
 drift detection remains partially dark. 30 tests green.
+
+## Update 3 — real-page floor sweep (uncontrolled content)
+
+Two live captures: example.com + Wikipedia main page (headless Chrome,
+real DOM/CSS/fonts — not our HTML).
+
+| detector | example.com | Wikipedia |
+|----------|------------|-----------|
+| objects_at_edge | clean | 6 suspects — nav controls genuinely at frame edges (honest facts, scores 0.30-0.49) |
+| legibility | clean | **0 low_contrast on dense real text** — linear-light fix holds |
+| edge_bisect | **FALSE POSITIVE** — 'Learn more' flagged: link underline IS an edge line 2px from ink | clean |
+| edge_census / pixel_edges | clean | clean |
+
+New FP class catalogued: **underlined links read as bisected text**.
+The slice signature (edge through glyph mid-section) and underline
+(edge just below descender line) are separable — fix is a line-position
+vs ink-band check, queued not built. Everything else held: the
+linear-light legibility fix survived uncontrolled real text, and the
+edge-object suspect flags on Wikipedia are true facts about real UI.
