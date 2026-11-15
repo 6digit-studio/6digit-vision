@@ -240,6 +240,43 @@ ui_loop packs now carry all of it per iteration — the critic reads
 score components, element_diff, detectors, pixdiff, fdiff, and dual
 region maps in one JSON.
 
+
+## The VLM loop — screenshot -> generated UI -> measured convergence
+
+The mimicry arc's second half: a LOCAL vision model (mlx-vlm serving
+Qwen3-VL-8B-Instruct-4bit, keyless) generates HTML from the reference
+screenshot; eyes measures each render; surgical CSS-only edits iterate.
+Full-file regeneration degenerates at 8B-4bit (recursive SVG blobs) —
+scoped `<style>`-block edits preserve content and add measurable value.
+
+**vlm1 — GitHub login** (`loop_runs/vlm1/`): 23.0 -> 45.1 -> 45.3 ->
+52.6 -> **62.9** in 5 measured iterations. Positions converged to
+within ~2% of frame. Trace: `trace.jsonl`, per-iter packs `pack_XX.json`.
+
+Reference vs final candidate:
+
+![reference](../evals/web-real/corpus/github_com_login.png)
+![candidate](../loop_runs/vlm1/candidate_v6.png)
+
+Iteration evidence — palette fix (iter2) and centering fix (iter5):
+
+![iter2](../loop_runs/vlm1/candidate_v3.png)
+![iter5](../loop_runs/vlm1/candidate_v6.png)
+
+**vlm2 — calendar month view** (`loop_runs/vlm2/`): 9.7 -> 16.9 ->
+19.5 -> **22.5** — generalization test on the grid family. Slower,
+lower ceiling (dense cells + chrome harder for 8B-4bit), but every
+iteration added measurable value. Exact-hex palette feedback was the
+unlock (palette .05 -> .22).
+
+![calendar ref](../Screenshot%202026-11-15%20at%2003.00.39.png)
+![calendar cand](../loop_runs/vlm2/candidate_v4.png)
+
+Honest mechanics: ~20min per VLM call at ~3tok/s; degeneration modes
+documented (starfield soup on complex dark UIs, recursive SVG on
+revision); the instrument captures every delta honestly including
+plateaus.
+
 ## The loop that built this
 
 `challenges/EYES_EVAL_CHALLENGE.md` generates defect cases →
