@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The measurement discipline — 6digit-vision</title>
+<style>
+:root { --bg:#0d1117; --panel:#161b22; --border:#30363d; --fg:#e6edf3;
+        --dim:#8b949e; --accent:#58a6ff; }
+* { box-sizing:border-box; }
+body { background:var(--bg); color:var(--fg); margin:0;
+       font:15px/1.65 -apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif; }
+.wrap { max-width:1080px; margin:0 auto; padding:40px 28px 72px; }
+nav { font:12px/1.5 -apple-system,"SF Mono",Menlo,monospace; color:var(--dim);
+      border-bottom:1px solid var(--border); padding-bottom:14px; margin-bottom:30px; }
+nav a { color:var(--accent); text-decoration:none; margin-right:14px; }
+nav a:hover { text-decoration:underline; }
+h1 { font-size:30px; line-height:1.2; margin:0 0 18px; letter-spacing:-.01em; }
+h2 { font-size:21px; margin:42px 0 12px; padding-bottom:6px; border-bottom:1px solid var(--border); }
+h3 { font-size:16px; margin:28px 0 8px; color:#cdd5df; }
+p, li { color:#cfd6df; }
+a { color:var(--accent); text-decoration:none; }
+a:hover { text-decoration:underline; }
+strong { color:#fff; }
+code { font:0.88em/1.4 "SF Mono",Menlo,monospace; background:#0b0f14;
+       padding:1px 5px; border-radius:4px; color:#c9d1d9; }
+pre { background:#0b0f14; border:1px solid var(--border); border-radius:8px;
+      padding:14px 16px; overflow:auto; }
+pre code { background:none; padding:0; }
+img { max-width:100%; height:auto; display:block; margin:16px 0 8px;
+      border:1px solid var(--border); border-radius:8px; background:#000; }
+table { border-collapse:collapse; width:100%; margin:14px 0 22px; font-size:13px; }
+th, td { border-bottom:1px solid var(--border); padding:7px 9px; text-align:left; }
+th { color:var(--dim); font-weight:600; }
+blockquote { margin:16px 0; padding:4px 0 4px 16px; border-left:3px solid var(--border); color:var(--dim); }
+hr { border:0; border-top:1px solid var(--border); margin:34px 0; }
+.foot { color:#6e7681; font-size:11px; margin-top:48px; border-top:1px solid var(--border); padding-top:14px; }
+.foot code { background:none; padding:0; color:#6e7681; }
+</style></head>
+<body><div class="wrap">
+<nav>
+  <a href="../MIMICRY_GALLERY.html">← gallery</a>
+  <a href="../ab_runs/REPORT.html">report</a>
+  <a href="../ab_runs/TOOL_USAGE.html">tool usage</a>
+  <a href="../docs/MEASUREMENT_DISCIPLINE.html">discipline</a>
+  <a href="https://github.com/6digit-studio/6digit-vision">github</a>
+</nav>
+<h1 id="the-measurement-discipline">The measurement discipline</h1>
+<p><em>What four agents did when they stopped eyeballing and started measuring —
+distilled from the A/B/C reproduction run in <a href="../ab_runs/REPORT.html"><code>ab_runs/</code></a>.</em></p>
+<h2 id="why-this-exists">Why this exists</h2>
+<p>In a controlled run on four screenshot→HTML reproductions, the same model
+averaged <strong>0.684 SSIM</strong> when it worked by eye and <strong>0.889 SSIM</strong> when it closed a
+measurement loop — and the loop's source barely mattered (<code>eyes</code> tools or a
+hand-written PIL script). The agents' own 1–10 confidence estimates correlated
+with measured fidelity at only <strong>r ≈ 0.42</strong>.</p>
+<p>The lesson is not "use <code>eyes</code>". The lesson is that <strong>visual reproduction is a
+measurement problem before it is a drawing problem.</strong> This document is the
+protocol the successful cells converged on, written down so it can be repeated
+without re-deriving it each time.</p>
+<h2 id="the-loop">The loop</h2>
+<pre><code>        ┌─────────────────────────────────────────────────────────┐
+        │                                                         │
+  measure reference ──► build/edit one variable ──► render ──► measure candidate
+        │                                                         │
+        └──────────── localize delta ◄── rank regions ◄───────────┘
+                              │
+                    gate: did SSIM improve?
+                    yes → keep, next region
+                    no  → revert, try a different variable
+</code></pre>
+<p>Seven steps. The two that agents skip, and shouldn't:</p>
+<ol>
+<li><strong>Freeze the frame.</strong> Exact <code>W×H</code>, exact viewport, fixed font stack, fixed
+   device scale factor. A renderer that lies about its viewport invalidates every
+   measurement downstream. (On macOS headless Chrome, <code>--window-size=W,H</code> gives a
+   <code>max(500,W) × (H−87)</code> layout viewport; use CDP <code>setDeviceMetricsOverride</code> —
+   see <a href="../tools/cdp_shot.js"><code>tools/cdp_shot.js</code></a>.)</li>
+<li><strong>Measure the reference into a spec</strong> before writing HTML. Geometry, type
+   metrics, colour stops, softness. Do not "look and start typing."</li>
+<li><strong>Build the whole frame once</strong>, roughly, so the diff has something to say.</li>
+<li><strong>Render and measure the candidate with the <em>same</em> instruments</strong> used on the
+   reference. Symmetry is what makes the delta meaningful.</li>
+<li><strong>Localize and rank.</strong> Global SSIM tells you <em>whether</em>; region decomposition
+   tells you <em>where</em>; block ranking tells you <em>what next</em>. Never edit the whole
+   page on a global number.</li>
+<li><strong>Change one variable per cycle.</strong> Font size OR colour OR position. The
+   regression gate cannot attribute a mixed edit.</li>
+<li><strong>Freeze the best-measured state</strong>, not the last state. The best state is
+   chosen by <code>ssim_mean</code> / region RMSE, never by the semantic composite.</li>
+</ol>
+<h2 id="the-instrument-set">The instrument set</h2>
+<p>Each is cheap, deterministic, and takes minutes to write. All coordinates in
+source pixels.</p>
+<h3 id="frame-and-geometry">Frame and geometry</h3>
+<ul>
+<li><strong>Background-difference mask.</strong> <code>mask = max|rgb − median(border)| &gt; τ</code>.
+  Run-length the mask on rows and columns; the long runs are card/panel edges.
+  This found exact card boxes at 53/414/777/1139 × 60..755 on a four-up collage.</li>
+<li><strong>Sub-pixel edge crossing.</strong> Walk a scanline; find where luminance crosses the
+  midpoint between background and foreground; linearly interpolate. Gives ±0.2px
+  edges, and the <strong>10–90% ramp width</strong> is the reference's softness signature —
+  measure it separately for the card, the text, and the shadow.</li>
+<li><strong>Corner radius.</strong> First non-background x per row near the corner, then
+  least-squares circle fit over those points. Do not guess a border-radius.</li>
+<li><strong>Silhouette trace.</strong> Flood-fill the object region, ray-march from a seed to
+  the outermost filled pixel at N angles, subsample, and convert to a closed
+  Catmull-Rom→Bézier path. This is what turned a rounded-rect keycap into the
+  real organic squircle in B/ref2 and C/ref2.</li>
+<li><strong>Dot lattice.</strong> Local-maxima + non-max suppression on a fitted lattice,
+  then occupancy sampling. Recovers LED/speaker glyphs and the 21-column
+  waveform; a lattice fit is one parameterization instead of 84 guesses.</li>
+</ul>
+<h3 id="type">Type</h3>
+<ul>
+<li><strong>Ink bands.</strong> Row projection of dark/light pixels inside a region gives every
+  line's top and bottom; column projection gives x-extents. Line-height is the
+  delta between consecutive ink tops, not a guess.</li>
+<li><strong>Threshold ladder.</strong> Re-bbox at several thresholds (40/70/120/200). The core
+  shrinks while the halo grows; comparing the two separates <em>weight</em> from
+  <em>softness</em>.</li>
+<li><strong>Ink mass (blur-invariant).</strong> <code>Σ max(0, luma − background)</code> over a text
+  window. Blur redistributes ink but conserves it, so mass distinguishes "too
+  bold" from "too soft" where bbox comparison cannot. The BP/widget cells used
+  this to match <code>82</code>/<code>mmhg</code>/<code>5 min</code> weights.</li>
+<li><strong>Font fitting.</strong> FreeType <code>getbbox</code> / <code>getlength</code> and Chrome
+  <code>canvas.measureText().actualBoundingBox*</code> predict ink width/height for
+  family × weight × size; fit the reference's measured ink box. This is how
+  13px Helvetica Neue and 16.5px Avenir Next were identified without guessing.</li>
+<li><strong>Per-glyph segmentation.</strong> At a high threshold, digits separate into columns;
+  glyph widths and gaps confirm the font and size.</li>
+</ul>
+<h3 id="colour">Colour</h3>
+<ul>
+<li><strong>Scanline profiles.</strong> Sample RGB along a text-free column/row, every ~5% of
+  the range. Emit the samples directly as CSS gradient stops. The collage's
+  21-stop dawn gradient and the flight card's background field came from this.</li>
+<li><strong>Percentile text colour.</strong> Sort the patch's pixels by luminance; take p1/p5
+  for the glyph core and p30–p50 for the antialias skirt. Do not average, or the
+  background wins.</li>
+<li><strong>Saturation mask.</strong> <code>max(r,g,b) − min(r,g,b) &gt; τ</code> isolates coloured
+  elements (orbs, neon, beads) from neutral chrome.</li>
+<li><strong>Beware the bin centre.</strong> <code>eyes palette</code> reports 5-bit bin centres (±4 per
+  channel), not sampled pixels: <code>#17181f</code> → <code>#141c1c</code>. Use it for "roughly this
+  colour", then sample the actual pixel.</li>
+</ul>
+<h3 id="softness-and-texture">Softness and texture</h3>
+<ul>
+<li><strong>Blur signature.</strong> Blur your own candidate with σ = 0.3…1.0 and re-measure
+  SSIM against the reference. The σ that maximises SSIM is the reference's
+  effective softness. Chromium quantizes CSS/SVG blur: below ~0.75px renders as
+  0, and 0.8–1.2px renders as one kernel — so the achievable softness is coarse
+  and should be chosen by measurement, not by feel.</li>
+<li><strong>Radial falloff.</strong> For glows/beads, sample value vs radius and fit the
+  profile (flat core → steep shoulder → long halo); emit radial-gradient stops
+  from the fit.</li>
+<li><strong>ASCII luminance map.</strong> Quantize a region to 10 levels and print it. It reads
+  structure in near-black UI that a screenshot preview cannot show.</li>
+</ul>
+<h3 id="diff-and-ranking">Diff and ranking</h3>
+<ul>
+<li><strong>Align before scoring.</strong> Search ±2px <code>(dx,dy)</code> for the best SSIM before
+  blaming shape. A 1px offset otherwise reads as a structural error.</li>
+<li><strong>Region decomposition.</strong> Report RMSE/MAE per region (<code>bg_top</code>, <code>bg_bot</code>,
+  <code>card_text</code>, <code>dots</code>, <code>icon</code>, <code>edge</code>) — not one global number. Pick the next
+  edit from the highest-region that is above the noise floor.</li>
+<li><strong>Block ranking.</strong> 20×20 block-mean absolute diff, sorted. It finds the
+  residual you cannot see at 1:1.</li>
+<li><strong>The two gates.</strong> <code>ssim_mean</code> must not decrease and <code>mismatch_frac</code> must not
+  increase (allow a 0.002 / 0.2% tolerance for renderer noise). Global gate
+  first, region gate second.</li>
+</ul>
+<h2 id="anti-patterns-all-observed">Anti-patterns (all observed)</h2>
+<table>
+<thead>
+<tr>
+<th>anti-pattern</th>
+<th>what happened</th>
+<th>do instead</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>optimizing the semantic composite</td>
+<td>component fell 86.0 → 78.5 while SSIM rose 0.801 → 0.864 (plane → "arrow")</td>
+<td>optimize SSIM + region RMSE; composite is a coarse gate</td>
+</tr>
+<tr>
+<td>eyeballing geometry</td>
+<td>ref3 vision-only 0.544 vs measured 0.928</td>
+<td>one projection line beats ten glances</td>
+</tr>
+<tr>
+<td>bbox comparison without blur</td>
+<td>"reference is bolder" when it was softer</td>
+<td>compare ink mass at matched threshold</td>
+</tr>
+<tr>
+<td>scoring without alignment</td>
+<td>1px offset blamed on shape</td>
+<td>shift-search first</td>
+</tr>
+<tr>
+<td>multiple variables per edit</td>
+<td>cannot attribute the delta</td>
+<td>one variable, one cycle</td>
+</tr>
+<tr>
+<td>trusting palette hexes verbatim</td>
+<td>±4/channel bin centres</td>
+<td>sample the pixel</td>
+</tr>
+<tr>
+<td>reading normalized bboxes as px</td>
+<td>3.4× position error on a 400px image</td>
+<td>check units; <code>describe</code>/<code>parse</code> are [0,1000]</td>
+</tr>
+<tr>
+<td>rendering with naive <code>--window-size</code></td>
+<td>layout viewport ≠ capture size</td>
+<td>CDP device metrics</td>
+</tr>
+<tr>
+<td>keeping the last render</td>
+<td>a later edit regressed</td>
+<td>freeze the best measured state</td>
+</tr>
+</tbody>
+</table>
+<h2 id="a-cycle-concretely">A cycle, concretely</h2>
+<pre><code class="language-text">1. ref_spec = measure(reference.png)        # geometry, ink boxes, stops, softness
+2. html    = build(ref_spec)
+3. png     = render(html, W, H)             # exact viewport
+4. cand    = measure(png)                   # same instruments
+5. delta   = align_and_diff(ref_spec, cand) # ssim, mismatch, regions
+6. target  = argmax(region_rmse above floor)
+7. edit    = one CSS property for that region
+8. gate    = ssim_new ≥ ssim_old - ε and mismatch_new ≤ mismatch_old + ε
+   keep if gate else revert
+9. trace   = {&quot;iter&quot;: n, &quot;ssim&quot;: …, &quot;region&quot;: target, &quot;edit&quot;: …, &quot;kept&quot;: bool}
+</code></pre>
+<p>A <code>trace.jsonl</code> per run with exactly those fields makes the loop auditable and
+comparable; mixing composite and SSIM in one <code>score</code> field (observed in C/ref3)
+makes the trajectory unreadable.</p>
+<h2 id="what-this-implies-for-eyes">What this implies for <code>eyes</code></h2>
+<p>The agents did not lack descriptions; they lacked calipers. They re-wrote the
+same primitives in four separate cells. The instrument should ship them:</p>
+<ul>
+<li><code>eyes measure &lt;img&gt; --json</code> → per element <code>bbox_px</code>, <code>ink_bbox</code>,
+  <code>edge_crossings</code>, <code>radius</code>, <code>gradient_stops</code>, <code>ink_mass</code>, <code>font_metrics</code>,
+  <code>blur_sigma</code>, <code>dot_lattice</code>.</li>
+<li><code>eyes parse</code> promoted as the rebuild entry point (element boxes already exist;
+  nobody used it because it wasn't named in the task).</li>
+<li><code>eyes semantic</code> (old <code>score</code>) and <code>eyes pixel</code> (pixdiff) as separate verbs, so
+  the composite cannot be mistaken for fidelity.</li>
+<li>The gates above exposed as a tiny harness: <code>eyes loop &lt;ref&gt; &lt;cand&gt; --json</code>
+  returning pass/fail plus the ranked regions.</li>
+</ul>
+<p>See <a href="../ab_runs/TOOL_USAGE.html"><code>TOOL_USAGE.md</code></a> for what the agents actually
+invoked, and <a href="../ab_runs/REPORT.html"><code>REPORT.md</code></a> for the evidence behind the
+numbers in this document.</p>
+<div class="foot">Rendered from <code>MEASUREMENT_DISCIPLINE.md</code> · regenerate with
+<code>uv run --with markdown python ab_runs/render_reports.py</code></div>
+</div></body></html>

@@ -5,12 +5,14 @@ instrument improve screenshot→HTML/CSS reproduction, or is it redundant?
 
 **Short answer (details below).** As a *perception substitute* it is largely
 redundant and sometimes harmful: in the clean facts-only pair the sheet changes
-nothing (ref1 0.785 vs 0.781 SSIM; ref3 0.420 vs 0.375), and it injects errors.
+nothing (ref1 0.785 vs 0.782 SSIM; ref3 0.420 vs 0.375), and it injects errors.
 As a *measurement instrument* it is genuinely additive: vision-only averages
 **0.684 SSIM**, a measurement loop averages **0.888** — a +0.20 jump, and the
 same jump the agents got from building their own rigs (B 0.890, C 0.888). The
 useful artifact for this task is `parse`/`score`/`pixdiff`, not `interrogate`'s
 fact sheet.
+
+![A/B/C at a glance — reference, vision-only, facts, measurement loop](gallery_cover.png)
 
 ## Design
 
@@ -40,20 +42,43 @@ against each reference's *self-score ceiling*. The self ceiling matters: an
 identical image does **not** score 100 (see "Scorer calibration" below), so raw
 scores are not comparable across references.
 
-## Reference families (and a caveat about the test set)
-
-1. `ref1-collage` 1520×794 — four KODOR phone cards, real UI/typography, the
-   only reference that is genuinely HTML-reproducible.
-2. `ref2-knob` 438×393 — 3D product render of a keycap with a teal rim light.
-   Not reproducible in CSS beyond rough shape + glow.
-3. `ref3-bp` 394×210 — blood-pressure widget, dark UI, pink ECG dots.
-4. `ref4-flight` 400×155 — flight-status card, dark UI, turquoise progress line.
+## The four references, and what each arm produced
 
 Caveat: 3 of 4 references are photographic/3D product renders, so pixel fidelity
-is capped by "can CSS fake a render" rather than by perception. The references
-are deliberately different families, but the deck is weighted toward
-un-reproducible material. `ref1` carries most of the signal; `ref3`/`ref4` are
-tractable widgets; `ref2` mainly tests glow/shape approximation.
+is capped by "can CSS fake a render" rather than by perception. `ref1` carries
+most of the signal; `ref3`/`ref4` are tractable widgets; `ref2` mainly tests
+glow/shape approximation.
+
+### ref1 · KODOR collage (1520×794) — real UI, the most reproducible
+
+![ref1: reference vs A/B/C](strips/ref1-collage.png)
+
+Both A and B get the four cards, copy and layout; B pulls ahead on the orbs and
+spacing. C wins on pure geometry. B renders the sheet's `MOwQ` OCR error; A and C
+get `M0WQ` right.
+
+### ref2 · knob / keycap (438×393) — 3D product render
+
+![ref2: reference vs A/B/C](strips/ref2-knob.png)
+
+A reads it as a rounded square. B traces the plate silhouette and neon from
+sampled edges; C traces the silhouette and fits the tube arc. Both B and C are
+recognisably the same object; A is a sketch of it.
+
+### ref3 · BP widget (394×210) — dark UI
+
+![ref3: reference vs A/B/C](strips/ref3-bp.png)
+
+The biggest gap: A misses the card geometry and the bead rhythm (0.544). B
+measures 21 columns at 13.2px pitch (0.928); C closes the loop to 0.910.
+
+### ref4 · flight card (400×155) — dark UI
+
+![ref4: reference vs A/B/C](strips/ref4-flight.png)
+
+A's plane is an arrow. B measures every row's ink box (0.889); C's loop (0.864)
+is close but its semantic score fell while its pixels improved — see the
+calibration section.
 
 ## What the fact sheet actually says — and whether it is true
 
@@ -344,6 +369,8 @@ sheet says "1 row × 7 cols".
 Caveat: n=2 references, one run each. Directionally clear, not statistically
 strong.
 
+![clean facts-only pair](clean_pair.png)
+
 ### Arm C — the measurement loop
 
 | ref | A (vision) | B (facts + self-measure) | C (`eyes` loop) | winner |
@@ -388,7 +415,7 @@ self-estimate column is not evidence of anything except confidence.
 **Is `eyes` an addition to what a multimodal agent can already do?**
 
 *As a fact sheet: no.* The clean isolation pair is the answer — with perception
-held constant and only `facts.json` added, ref1 is a dead heat (0.785 vs 0.781)
+held constant and only `facts.json` added, ref1 is a dead heat (0.785 vs 0.782)
 and ref3 gets worse (0.420 vs 0.375). The sheet tells a seeing agent things it
 can already see (three strings, a dark card, pink blobs), omits the things it
 actually needs (per-bead pitch, card metrics, font metrics), and is wrong often

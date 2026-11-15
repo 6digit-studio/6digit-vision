@@ -1,0 +1,812 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Does `eyes` add anything? A controlled reproduction test — 6digit-vision</title>
+<style>
+:root { --bg:#0d1117; --panel:#161b22; --border:#30363d; --fg:#e6edf3;
+        --dim:#8b949e; --accent:#58a6ff; }
+* { box-sizing:border-box; }
+body { background:var(--bg); color:var(--fg); margin:0;
+       font:15px/1.65 -apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif; }
+.wrap { max-width:1080px; margin:0 auto; padding:40px 28px 72px; }
+nav { font:12px/1.5 -apple-system,"SF Mono",Menlo,monospace; color:var(--dim);
+      border-bottom:1px solid var(--border); padding-bottom:14px; margin-bottom:30px; }
+nav a { color:var(--accent); text-decoration:none; margin-right:14px; }
+nav a:hover { text-decoration:underline; }
+h1 { font-size:30px; line-height:1.2; margin:0 0 18px; letter-spacing:-.01em; }
+h2 { font-size:21px; margin:42px 0 12px; padding-bottom:6px; border-bottom:1px solid var(--border); }
+h3 { font-size:16px; margin:28px 0 8px; color:#cdd5df; }
+p, li { color:#cfd6df; }
+a { color:var(--accent); text-decoration:none; }
+a:hover { text-decoration:underline; }
+strong { color:#fff; }
+code { font:0.88em/1.4 "SF Mono",Menlo,monospace; background:#0b0f14;
+       padding:1px 5px; border-radius:4px; color:#c9d1d9; }
+pre { background:#0b0f14; border:1px solid var(--border); border-radius:8px;
+      padding:14px 16px; overflow:auto; }
+pre code { background:none; padding:0; }
+img { max-width:100%; height:auto; display:block; margin:16px 0 8px;
+      border:1px solid var(--border); border-radius:8px; background:#000; }
+table { border-collapse:collapse; width:100%; margin:14px 0 22px; font-size:13px; }
+th, td { border-bottom:1px solid var(--border); padding:7px 9px; text-align:left; }
+th { color:var(--dim); font-weight:600; }
+blockquote { margin:16px 0; padding:4px 0 4px 16px; border-left:3px solid var(--border); color:var(--dim); }
+hr { border:0; border-top:1px solid var(--border); margin:34px 0; }
+.foot { color:#6e7681; font-size:11px; margin-top:48px; border-top:1px solid var(--border); padding-top:14px; }
+.foot code { background:none; padding:0; color:#6e7681; }
+</style></head>
+<body><div class="wrap">
+<nav>
+  <a href="../MIMICRY_GALLERY.html">← gallery</a>
+  <a href="../ab_runs/REPORT.html">report</a>
+  <a href="../ab_runs/TOOL_USAGE.html">tool usage</a>
+  <a href="../docs/MEASUREMENT_DISCIPLINE.html">discipline</a>
+  <a href="https://github.com/6digit-studio/6digit-vision">github</a>
+</nav>
+<h1 id="does-eyes-add-anything-a-controlled-reproduction-test">Does <code>eyes</code> add anything? A controlled reproduction test</h1>
+<p><strong>Question.</strong> For a multimodal agent that can already see, does the <code>eyes</code>
+instrument improve screenshot→HTML/CSS reproduction, or is it redundant?</p>
+<p><strong>Short answer (details below).</strong> As a <em>perception substitute</em> it is largely
+redundant and sometimes harmful: in the clean facts-only pair the sheet changes
+nothing (ref1 0.785 vs 0.782 SSIM; ref3 0.420 vs 0.375), and it injects errors.
+As a <em>measurement instrument</em> it is genuinely additive: vision-only averages
+<strong>0.684 SSIM</strong>, a measurement loop averages <strong>0.888</strong> — a +0.20 jump, and the
+same jump the agents got from building their own rigs (B 0.890, C 0.888). The
+useful artifact for this task is <code>parse</code>/<code>score</code>/<code>pixdiff</code>, not <code>interrogate</code>'s
+fact sheet.</p>
+<p><img alt="A/B/C at a glance — reference, vision-only, facts, measurement loop" src="gallery_cover.png" /></p>
+<h2 id="design">Design</h2>
+<p>Four references from <code>deepseek_package/images/</code>, three sensing modes, isolated
+directories, identical renderer (<code>render.sh</code>, headless Chrome at exact reference
+size), identical iteration budget (3-5 render→look→fix cycles), same model for
+every cell (<code>deepseek-account/deepseek-flash</code>).</p>
+<table>
+<thead>
+<tr>
+<th>arm</th>
+<th>extra input</th>
+<th>live tools</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>A</strong></td>
+<td>none — vision only</td>
+<td>none</td>
+</tr>
+<tr>
+<td><strong>B</strong></td>
+<td><code>facts.json</code> = precomputed <code>eyes interrogate</code> sheet</td>
+<td>none (facts-in-context)</td>
+</tr>
+<tr>
+<td><strong>C</strong></td>
+<td>none</td>
+<td><code>eyes score</code>, <code>pixdiff</code>, <code>zoom</code> in the loop</td>
+</tr>
+</tbody>
+</table>
+<p>Arms are blind to each other: each cell is its own directory; Arm A never sees a
+fact sheet, Arm B never runs a tool, Arm C never reads the sheet.</p>
+<p>After the first run exposed a protocol confound (B agents built their own
+measurement rigs — see "Protocol adherence"), two clean isolation cells were
+added: <strong>A2 vs B2</strong>, identical perception-only rules, on ref1 and ref3, with the
+fact sheet as the only difference. One slot was free and the failure was
+systematic, so re-running all four was not necessary to establish the direction.</p>
+<p>Judging: <code>eyes pixdiff</code> SSIM (pixel truth, independent of the semantic scorer),
+changed-pixel fraction, full-resolution RMSE, and <code>eyes score</code> normalized
+against each reference's <em>self-score ceiling</em>. The self ceiling matters: an
+identical image does <strong>not</strong> score 100 (see "Scorer calibration" below), so raw
+scores are not comparable across references.</p>
+<h2 id="the-four-references-and-what-each-arm-produced">The four references, and what each arm produced</h2>
+<p>Caveat: 3 of 4 references are photographic/3D product renders, so pixel fidelity
+is capped by "can CSS fake a render" rather than by perception. <code>ref1</code> carries
+most of the signal; <code>ref3</code>/<code>ref4</code> are tractable widgets; <code>ref2</code> mainly tests
+glow/shape approximation.</p>
+<h3 id="ref1-kodor-collage-1520794-real-ui-the-most-reproducible">ref1 · KODOR collage (1520×794) — real UI, the most reproducible</h3>
+<p><img alt="ref1: reference vs A/B/C" src="strips/ref1-collage.png" /></p>
+<p>Both A and B get the four cards, copy and layout; B pulls ahead on the orbs and
+spacing. C wins on pure geometry. B renders the sheet's <code>MOwQ</code> OCR error; A and C
+get <code>M0WQ</code> right.</p>
+<h3 id="ref2-knob-keycap-438393-3d-product-render">ref2 · knob / keycap (438×393) — 3D product render</h3>
+<p><img alt="ref2: reference vs A/B/C" src="strips/ref2-knob.png" /></p>
+<p>A reads it as a rounded square. B traces the plate silhouette and neon from
+sampled edges; C traces the silhouette and fits the tube arc. Both B and C are
+recognisably the same object; A is a sketch of it.</p>
+<h3 id="ref3-bp-widget-394210-dark-ui">ref3 · BP widget (394×210) — dark UI</h3>
+<p><img alt="ref3: reference vs A/B/C" src="strips/ref3-bp.png" /></p>
+<p>The biggest gap: A misses the card geometry and the bead rhythm (0.544). B
+measures 21 columns at 13.2px pitch (0.928); C closes the loop to 0.910.</p>
+<h3 id="ref4-flight-card-400155-dark-ui">ref4 · flight card (400×155) — dark UI</h3>
+<p><img alt="ref4: reference vs A/B/C" src="strips/ref4-flight.png" /></p>
+<p>A's plane is an arrow. B measures every row's ink box (0.889); C's loop (0.864)
+is close but its semantic score fell while its pixels improved — see the
+calibration section.</p>
+<h2 id="what-the-fact-sheet-actually-says-and-whether-it-is-true">What the fact sheet actually says — and whether it is true</h2>
+<p><code>interrogate</code> emits six question groups: background, glow, text inventory,
+layout family, alignment, selection/accent blobs. Claim-by-claim audit against
+the images:</p>
+<h3 id="ref1-collage-the-weak-case">ref1-collage — the weak case</h3>
+<ul>
+<li><strong>palette</strong> <code>#f4f4f4 (42%)</code> — <strong>true</strong> (card background is ~<code>#f5f5f5</code>).</li>
+<li><strong>glow</strong> "bright region near cell (0,0) mean_rgb=[253,253,253]" — <strong>true but
+  useless</strong>: it found the white page.</li>
+<li><strong>layout family</strong> "unstructured (10 rows × 4 cols)" — <strong>true</strong>, there are four
+  columns. But <code>unstructured</code> undersells it: it is a 4-up card grid.</li>
+<li><strong>text inventory, 16 strings</strong> — the weak part. Real text has ~14 blocks plus
+  6 logo marks. Complete strings captured: ~5. Partial first-lines-only: ~6.
+  Missing entirely: the hero line <strong>"A New Dawn,"</strong>, <strong>"White Paper code"</strong>, the
+  entire faded paragraph, and every second/third line of the body blocks
+  ("simplify the work of utility-era 100+ qubit quantum executions.", "Summit
+  heralds the dawn of a new era for Quantum Utility.", etc.). Garbled:
+  <code>M0WQ</code>→<code>MOwQ</code>, "advanced quantum"→"advenced quentum", <code>Thinking...</code>→<code>Thinking..</code>.</li>
+<li><strong>alignment</strong> — <strong>actively misleading.</strong> Rows are grouped by y only, so a row
+  concatenates text from <em>different cards</em>: <code>y=151 "KKODOR KKODOR We unveiled a
+  new suite to"</code> → <code>"right"</code>. Three independent centered cards have been fused
+  into one right-aligned line. This is the single most dangerous output for a
+  reproducer, because it looks precise and is wrong.
+  (Cause: <code>eyes/interrogate.py</code> <code>_row_items()</code> groups by y with no x-clustering,
+  then classifies the union's bbox — <code>interrogate.py:135-157</code>.)</li>
+<li><strong>blobs</strong> — 5 regions with plausible x/y anchors for the orbs/gradients;
+  shapes ("ring-ish"/"disc-ish") are loose. Useful as coarse anchors, not specs.</li>
+</ul>
+<h3 id="ref2-knob">ref2-knob</h3>
+<ul>
+<li><strong>palette</strong> <code>#141c1c (18%)</code> — plausible for the dark teal-grey ground.</li>
+<li><strong>glow</strong> "bright region near cell (11,5) mean_rgb=[164,162,158]" — <strong>wrong
+  target</strong>: that is the grey/white specular rim, not the teal glow. The teal
+  glow is the one thing you would want from this image.</li>
+<li><strong>text</strong> 0 — <strong>true</strong>.</li>
+<li><strong>blob</strong> <code>[186,157,186,157]</code> <code>rgb(49,144,145)</code> <code>fill .16</code> — <strong>true and
+  useful</strong>: that is the teal rim light's position and hue. This blob is the
+  sheet's best contribution on this reference.</li>
+<li>Missing: keycap geometry, radius, inner/outer shells, the pixel-grid speaker
+  glyph, the black notch — i.e. everything that makes it a keycap.</li>
+</ul>
+<h3 id="ref3-bp">ref3-bp</h3>
+<ul>
+<li><strong>palette</strong> <code>#040404 (43%)</code> — <strong>true</strong>.</li>
+<li><strong>glow</strong> "none detected" — <strong>false negative</strong>: there is a soft pink glow
+  around the ECG dots.</li>
+<li><strong>text</strong> <code>82</code>, <code>mmhg</code>, <code>5 min</code> — <strong>3/3 correct</strong>.</li>
+<li><strong>blobs</strong> <code>[49,100,286,84]</code> <code>rgb(168,94,127)</code> and <code>[49,68,30,16]</code> — <strong>true</strong>:
+  the ECG band and the "82". Good anchors.</li>
+<li>Missing: type sizes/weights, card radius, pink hue per-dot (the mean is
+  diluted by background), the vertical connector lines.</li>
+</ul>
+<h3 id="ref4-flight">ref4-flight</h3>
+<ul>
+<li><strong>palette</strong> <code>#040404 (47%)</code> — <strong>true</strong>.</li>
+<li><strong>glow</strong> "none detected" — <strong>false negative</strong>: the turquoise line glows.</li>
+<li><strong>text, 12 strings</strong> — <strong>fragment soup</strong>: <code>San</code>, <code>San Francisco</code>, <code>9:59</code>,
+  <code>9:59 PM</code>, <code>12:59</code>, <code>12:59 AM</code>, <code>Arrives</code>, <code>20m</code>. All substrings are real,
+  but 7 real phrases have become 12 overlapping fragments. A reproducer that
+  renders the inventory literally will duplicate text. Missing <code>in</code>.</li>
+<li><strong>blob</strong> <code>[110,70,160,16]</code> <code>rgb(106,193,197)</code> — <strong>true</strong>: the turquoise
+  progress line's position and color. Shape "disc-ish" is wrong (it is a bar),
+  but the geometry is right.</li>
+</ul>
+<h3 id="pattern">Pattern</h3>
+<p>Probe-by-probe, across the four references:</p>
+<table>
+<thead>
+<tr>
+<th>probe</th>
+<th>ref1</th>
+<th>ref2</th>
+<th>ref3</th>
+<th>ref4</th>
+<th>usable?</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>background/palette</td>
+<td>correct</td>
+<td>bin vs true color dispute</td>
+<td>correct</td>
+<td>value right, label wrong</td>
+<td>3/4</td>
+</tr>
+<tr>
+<td>glow</td>
+<td>useless (white page)</td>
+<td>wrong target (specular)</td>
+<td>false negative</td>
+<td>false negative</td>
+<td><strong>0/4</strong></td>
+</tr>
+<tr>
+<td>text inventory</td>
+<td>missing hero line, garbled</td>
+<td>n/a (no text)</td>
+<td>correct</td>
+<td>fragment soup</td>
+<td>2/4</td>
+</tr>
+<tr>
+<td>layout family</td>
+<td>4 columns correct</td>
+<td>n/a</td>
+<td>"1×7" undercounts 21 columns</td>
+<td>"3×19" odd</td>
+<td>1/4</td>
+</tr>
+<tr>
+<td>alignment</td>
+<td>wrong (fuses cards)</td>
+<td>n/a</td>
+<td>"wide", useless</td>
+<td>"wide", useless</td>
+<td><strong>0/4</strong></td>
+</tr>
+<tr>
+<td>accent blobs</td>
+<td>coarse anchors</td>
+<td>teal rim correct</td>
+<td>ECG + "82" correct</td>
+<td>track correct</td>
+<td>3/4</td>
+</tr>
+</tbody>
+</table>
+<p>Independently, the four B agents recorded <strong>10 distinct fact-sheet conflicts</strong>
+in their VERDICTs (glow 3×, blob-is-not-a-selection 3×, palette 1×, structure
+1×, text fragments 1×) and corrected them from vision. The sheet's consumers
+spent part of their budget auditing the instrument.</p>
+<p>Also: the reported hexes are <strong>5-bit bin centers</strong>, not sampled colors
+(<code>eyes/color.py:34-55</code>). <code>#17181f</code> quantizes to <code>#141c1c</code>, <code>#f5f5f5</code> to
+<code>#f4f4f4</code>; every channel can be off by ±4. That is fine for "roughly this
+color", misleading if a reproducer uses the hex verbatim. B/ref2 caught exactly
+this and rendered the true <code>#17181f</code>.</p>
+<p>The sheet is <strong>QA-shaped, not rebuild-shaped</strong>. It answers "what is in this
+image?" — palette, rough regions, OCR tokens — and says nothing about what a
+reproducer actually needs: per-element bounding boxes, border radii, font
+size/weight/line-height, gradient stops, shadow parameters, per-column grouping.
+Worse, it stamps every field <code>"confidence": "measured"</code>, when the text inventory
+and alignment are frequently partial or wrong. That violates the project's own
+SCENE rule — <em>"if the instrument can't measure something, it says so, it doesn't
+guess"</em>. A consumer that trusts the label will be misled exactly where its own
+eyes were better.</p>
+<p>For comparison, <code>eyes parse</code> already emits normalized element/text bboxes — much
+closer to a rebuild spec than <code>interrogate</code>'s answers. It is the better artifact
+for this task, and <code>interrogate</code> is the wrong one to ship in an A/B package.</p>
+<h2 id="scorer-calibration-a-real-bug-worth-fixing">Scorer calibration (a real bug worth fixing)</h2>
+<p>Identical images do not score 100:</p>
+<table>
+<thead>
+<tr>
+<th>reference</th>
+<th>self-score</th>
+<th>palette component</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ref1-collage</td>
+<td>93.4</td>
+<td>0.737</td>
+</tr>
+<tr>
+<td>ref2-knob</td>
+<td>89.6</td>
+<td>0.584</td>
+</tr>
+<tr>
+<td>ref3-bp</td>
+<td>96.6</td>
+<td>0.863</td>
+</tr>
+<tr>
+<td>ref4-flight</td>
+<td>96.9</td>
+<td>0.874</td>
+</tr>
+</tbody>
+</table>
+<p>Cause: <code>score_palette</code> (<code>eyes/score.py:206-212</code>) intersects the <strong>top-8 palette
+bins only</strong>, and those bins cover less than all pixels, so the maximum reachable
+component is the top-8 <em>coverage</em> (exactly the numbers above: 0.7373, 0.5844,
+0.8630, 0.8741). Fix: normalize by <code>sum(ref_fracs)</code> in the denominator, or add
+an explicit <code>other</code> bin. Without that, a fixed 3-15 point penalty is baked into
+every score, and cross-reference comparisons are invalid.</p>
+<p>The same component is also <strong>brittle to tiny global color shifts</strong>, because it
+is an exact 5-bit-bin intersection with no color-distance tolerance. On
+<code>ref2-knob</code> (self-score 89.6):</p>
+<table>
+<thead>
+<tr>
+<th>perturbation</th>
+<th>composite <code>score</code></th>
+<th>palette</th>
+<th>SSIM</th>
+<th>mismatch</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>none</td>
+<td>89.6</td>
+<td>0.584</td>
+<td>1.000</td>
+<td>0.0%</td>
+</tr>
+<tr>
+<td>brightness +2%</td>
+<td>82.1</td>
+<td>0.545</td>
+<td>0.9999</td>
+<td>0.0%</td>
+</tr>
+<tr>
+<td>brightness −2%</td>
+<td>53.3</td>
+<td>0.342</td>
+<td>0.9982</td>
+<td>0.0%</td>
+</tr>
+<tr>
+<td>Gaussian blur 1px</td>
+<td>73.6</td>
+<td>0.578</td>
+<td>0.9848</td>
+<td>1.5%</td>
+</tr>
+</tbody>
+</table>
+<p>A 36-point composite swing for a change that is invisible in SSIM and to the
+eye. Consequences: (a) <code>score</code> is not a fidelity metric, it is a color-exactness
+metric with sharp cliffs; (b) <strong>B has an artificial advantage</strong> on <code>score</code>,
+because the fact sheet hands it the exact palette hexes while A must estimate
+them; (c) the repo's reproduction loop optimizes this scalar, so it is partly
+optimizing bin luck. Use <code>ssim_mean</code>/<code>mismatch_frac</code> for truth, and treat
+<code>score</code> as a semantic sanity check only. A perceptual palette distance
+(nearest-bin within a ΔE tolerance, or soft histogram) would fix the cliff.</p>
+<p>The composite can even move <strong>opposite</strong> to pixel truth on a fine edit. C/ref4's
+recorded trajectory:</p>
+<table>
+<thead>
+<tr>
+<th>iteration</th>
+<th>composite score</th>
+<th>SSIM</th>
+<th>what happened</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>86.0</td>
+<td>0.801</td>
+<td>crisp first build</td>
+</tr>
+<tr>
+<td>2</td>
+<td>78.1</td>
+<td>0.810</td>
+<td>redrew the plane as a swept-wing SVG</td>
+</tr>
+<tr>
+<td>3</td>
+<td>78.5</td>
+<td><strong>0.864</strong></td>
+<td>slimmed plane, 1px softening, brighter text — best by every pixel measure</td>
+</tr>
+</tbody>
+</table>
+<p>The composite dropped 7.5 points while SSIM rose 0.063, because Mirage began
+labelling the plane as an "arrow" and the card as a "smartphone screen". An agent
+that optimized the composite would have kept the worse image. That is textbook
+Goodhart: the semantic scorer is a useful <em>coarse</em> signal and a bad <em>fine</em>
+objective. The agent noticed and reported it — but a loop that only sees <code>score</code>
+would not.</p>
+<h2 id="protocol-adherence-an-important-confound">Protocol adherence — an important confound</h2>
+<p>The arms did <strong>not</strong> stay methodologically identical. Evidence in the cell
+directories:</p>
+<table>
+<thead>
+<tr>
+<th>cell</th>
+<th>what the agent actually did</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A/ref1</td>
+<td>crop/grid overlays of the reference (perception aid)</td>
+</tr>
+<tr>
+<td>A/ref2</td>
+<td>no extra artifacts; vision only</td>
+</tr>
+<tr>
+<td>A/ref3</td>
+<td><code>measure.html</code> overlays, reports 21 measured bar positions</td>
+</tr>
+<tr>
+<td>A/ref4</td>
+<td>no extra artifacts; vision only</td>
+</tr>
+<tr>
+<td>B/ref1</td>
+<td>reports "pixel samples of the reference to calibrate geometry, text sizes and gradient stops"</td>
+</tr>
+<tr>
+<td>B/ref2</td>
+<td><code>gen.py</code> + <code>diff.png</code> (rendered diff)</td>
+</tr>
+<tr>
+<td>B/ref3</td>
+<td><code>gen.py</code>, <code>probe.json</code>, <code>diff.png</code>; reports pixel MAE; <strong>7 render cycles</strong> (budget was 5)</td>
+</tr>
+<tr>
+<td>B/ref4</td>
+<td><code>work/diff.png</code></td>
+</tr>
+<tr>
+<td>A2/B2</td>
+<td>clean pair: full-image perception only, no crops/sampling/scripts; B2 read <code>facts.json</code></td>
+</tr>
+</tbody>
+</table>
+<p>So B is not "facts in context only". Given a sheet that presents itself as
+measured, the B agents spontaneously built measurement rigs and closed the loop
+by diffing their render against the reference. A did not (with the partial
+exception of A/ref3, which measured the reference but did not diff its output).</p>
+<p><strong>Consequence:</strong> the A→B gain cannot be attributed to the fact sheet's
+information content. It is confounded with "the agent started measuring". That
+is itself a real effect — the sheet changes the process — but it is not the
+effect the package claims to test. This is why a clean isolation pair
+(<code>A2</code>/<code>B2</code>, ref1, identical perception-only rules, no crops/scripts/sampling,
+fact sheet the only difference) was added.</p>
+<h2 id="proposed-fixes-not-applied">Proposed fixes (not applied)</h2>
+<ol>
+<li><strong><code>score_palette</code></strong> (<code>eyes/score.py:206-212</code>): normalize by top-8 coverage so
+   an identical image scores 1.0; optionally soft-assign each candidate bin to
+   the nearest reference bin (RGB/ΔE tolerance) instead of exact-hex
+   intersection. In a quick prototype, soft assignment gives 1.000 for identical,
+   0.990 for 1px blur, 0.934 for +2% brightness (vs 0.863 / 0.578 / 0.545 today).</li>
+<li><strong><code>interrogate</code> alignment</strong> (<code>eyes/interrogate.py:135-157</code>): cluster row items
+   by x-gap (or use <code>structure</code> cells) before classifying alignment, and emit a
+   bbox per cluster. Today a 4-column layout is fused into one right-aligned row.</li>
+<li><strong>Text inventory</strong>: dedupe nested fragments (<code>San</code> + <code>San Francisco</code>,
+   <code>9:59</code> + <code>9:59 PM</code>), report coverage (lines found / lines detected), and stop
+   labelling partial OCR <code>"measured"</code> — <code>"measured"</code> currently implies ground
+   truth, which is exactly where the sheet misleads.</li>
+<li><strong>Glow probe</strong>: the "brightest grid cell" finds white specular highlights
+   (ref2) and misses real colored glows (ref3, ref4 — both reported "none").
+   Search for saturated chroma adjacent to bright cells instead.</li>
+<li><strong>For reproduction specifically</strong>: ship <code>parse</code>'s per-element bboxes (they are
+   normalized and accurate to a few px) plus <code>layout</code>; leave <code>interrogate</code> for
+   QA-style questions. An A/B package that claims to test "screenshot→HTML"
+   should not hand the model QA answers.</li>
+</ol>
+<h2 id="harness-note-macos-headless-chrome-lies-about-its-viewport">Harness note — macOS headless Chrome lies about its viewport</h2>
+<p><code>RUNBOOK.md</code>'s render command is <code>chrome --headless --screenshot
+--window-size=W,H</code>. On this machine (Chrome 157 / macOS) that captures a W×H
+PNG but lays the page out in <strong>max(500, W) × (H−87)</strong> — the window frame and a
+500px minimum window width leak into CSS. Measured: 400×155 → <code>innerWidth
+500, innerHeight 68</code>; 394×210 → <code>500×123</code>; 1520×794 → <code>1520×707</code>.</p>
+<p>Consequences: <code>vw</code>/<code>vh</code>, <code>width:100%</code>, and <code>right</code>/<code>bottom</code> resolve against the
+wrong box; a <code>right:12px</code> element lands at x≈488 in a 400px capture, i.e.
+off-canvas. One arm hit exactly this mid-run.</p>
+<p>Fix: <code>tools/cdp_shot.js</code> (added) sets the layout viewport explicitly via
+<code>Emulation.setDeviceMetricsOverride</code> and captures with CDP. Verified: all twelve
+final A/B/C candidates re-render <strong>pixel-identically</strong> under it, so this quirk did
+not corrupt the results — but it will bite anyone who uses the documented
+command with viewport-relative CSS. <code>render.sh</code> in this experiment was left
+unchanged so all cells stayed comparable.</p>
+<h2 id="results">Results</h2>
+<h3 id="a-vs-b-as-specified-by-the-package">A vs B (as specified by the package)</h3>
+<p>Pixel metrics are the honest ones. <code>score</code> is shown against each reference's
+self-ceiling.</p>
+<table>
+<thead>
+<tr>
+<th>ref</th>
+<th>arm</th>
+<th>SSIM ↑</th>
+<th>mismatch ↓</th>
+<th>RMSE ↓</th>
+<th>score/ceiling</th>
+<th>self-est</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ref1-collage</td>
+<td>A</td>
+<td>0.833</td>
+<td>16.7%</td>
+<td>0.123</td>
+<td>67.5/93.4</td>
+<td>7</td>
+</tr>
+<tr>
+<td>ref1-collage</td>
+<td>B</td>
+<td><strong>0.885</strong></td>
+<td><strong>9.2%</strong></td>
+<td><strong>0.105</strong></td>
+<td>76.1/93.4</td>
+<td>6</td>
+</tr>
+<tr>
+<td>ref2-knob</td>
+<td>A</td>
+<td>0.692</td>
+<td>26.5%</td>
+<td>0.124</td>
+<td>50.8/89.6</td>
+<td>5</td>
+</tr>
+<tr>
+<td>ref2-knob</td>
+<td>B</td>
+<td><strong>0.856</strong></td>
+<td><strong>7.7%</strong></td>
+<td><strong>0.073</strong></td>
+<td>63.8/89.6</td>
+<td>6</td>
+</tr>
+<tr>
+<td>ref3-bp</td>
+<td>A</td>
+<td>0.544</td>
+<td>20.7%</td>
+<td>0.117</td>
+<td>51.3/96.6</td>
+<td>6</td>
+</tr>
+<tr>
+<td>ref3-bp</td>
+<td>B</td>
+<td><strong>0.928</strong></td>
+<td><strong>4.7%</strong></td>
+<td><strong>0.047</strong></td>
+<td>77.8/96.6</td>
+<td>7</td>
+</tr>
+<tr>
+<td>ref4-flight</td>
+<td>A</td>
+<td>0.665</td>
+<td>12.9%</td>
+<td>0.160</td>
+<td>76.4/96.9</td>
+<td>7</td>
+</tr>
+<tr>
+<td>ref4-flight</td>
+<td>B</td>
+<td><strong>0.889</strong></td>
+<td><strong>6.1%</strong></td>
+<td><strong>0.060</strong></td>
+<td>89.1/96.9</td>
+<td>8</td>
+</tr>
+</tbody>
+</table>
+<p>B wins every pixel metric on every reference, and the margin grows with how
+much the B agent measured:</p>
+<ul>
+<li><strong>ref1</strong> (+0.05 SSIM): both agents got the four cards, copy and layout right.
+  B reports pixel-sampling geometry/colors and its orbs are richer; A relied on
+  crops. B reproduced the fact sheet's OCR error <code>M0WQ</code>→<code>MOwQ</code> (A got <code>M0WQ</code>
+  right); B correctly took <code>A New Dawn,</code> from vision (the sheet omits it).</li>
+<li><strong>ref2</strong> (+0.16 SSIM): A read the keycap as a rounded square; B traced the
+  silhouette, bevel and neon from sampled edges, and lifted the 84 icon dots.</li>
+<li><strong>ref3</strong> (+0.38 SSIM): B measured 21 dot columns at 13.2px pitch, per-bead
+  colors and the card geometry, and ran 7 (not 5) cycles. A approximated.</li>
+<li><strong>ref4</strong> (+0.22 SSIM): B measured every row's ink box (<code>SFO</code> at 45, <code>YEG</code>
+  right edge 340, type sizes) and reports whole-image MAE 5.85/255.</li>
+</ul>
+<p>But per the protocol section above, B's agents were measuring, not just reading
+the sheet. The clean A2/B2 pairs isolate the sheet itself.</p>
+<h3 id="clean-isolation-pair-facts-alone">Clean isolation pair — facts alone</h3>
+<p>Same model, same references, same renderer, same cycle brief, <strong>perception-only
+rules identical in both cells</strong> (no crops, zooms, pixel sampling, scripts or
+diffs). The only difference is <code>facts.json</code>. (B2/ref1 ran 8 cycles against a
+3-5 brief, with no measurable benefit for it.)</p>
+<table>
+<thead>
+<tr>
+<th>ref</th>
+<th>arm</th>
+<th>SSIM ↑</th>
+<th>mismatch ↓</th>
+<th>RMSE ↓</th>
+<th>score/ceiling</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ref1-collage</td>
+<td>A2 (no facts)</td>
+<td><strong>0.785</strong></td>
+<td>22.6%</td>
+<td><strong>0.159</strong></td>
+<td>54.1/93.4</td>
+</tr>
+<tr>
+<td>ref1-collage</td>
+<td>B2 (facts)</td>
+<td>0.782</td>
+<td><strong>19.7%</strong></td>
+<td>0.162</td>
+<td>54.7/93.4</td>
+</tr>
+<tr>
+<td>ref3-bp</td>
+<td>A2 (no facts)</td>
+<td><strong>0.420</strong></td>
+<td><strong>22.9%</strong></td>
+<td><strong>0.183</strong></td>
+<td>51.1/96.6</td>
+</tr>
+<tr>
+<td>ref3-bp</td>
+<td>B2 (facts)</td>
+<td>0.375</td>
+<td>26.6%</td>
+<td>0.192</td>
+<td>48.7/96.6</td>
+</tr>
+</tbody>
+</table>
+<p><strong>The fact sheet adds nothing measurable when the agent cannot measure.</strong> ref1
+is a dead heat; ref3 is slightly <em>worse</em> with facts. This is the cleanest
+evidence for the central claim: the sheet's content (palette hexes, OCR tokens,
+rough blob positions, alignment labels) is redundant with what a multimodal
+agent can see, and it does not contain the geometry that the hard parts need
+(bead pitch/height, card metrics, font metrics). The B2/ref3 agent even noted
+that the sheet's structure claim under-counted the 21 waveform columns — the
+sheet says "1 row × 7 cols".</p>
+<p>Caveat: n=2 references, one run each. Directionally clear, not statistically
+strong.</p>
+<p><img alt="clean facts-only pair" src="clean_pair.png" /></p>
+<h3 id="arm-c-the-measurement-loop">Arm C — the measurement loop</h3>
+<table>
+<thead>
+<tr>
+<th>ref</th>
+<th>A (vision)</th>
+<th>B (facts + self-measure)</th>
+<th>C (<code>eyes</code> loop)</th>
+<th>winner</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ref1-collage</td>
+<td>0.833</td>
+<td>0.885</td>
+<td><strong>0.907</strong></td>
+<td>C</td>
+</tr>
+<tr>
+<td>ref2-knob</td>
+<td>0.692</td>
+<td>0.856</td>
+<td><strong>0.870</strong></td>
+<td>C</td>
+</tr>
+<tr>
+<td>ref3-bp</td>
+<td>0.544</td>
+<td><strong>0.928</strong></td>
+<td>0.910</td>
+<td>B</td>
+</tr>
+<tr>
+<td>ref4-flight</td>
+<td>0.665</td>
+<td><strong>0.889</strong></td>
+<td>0.864</td>
+<td>B</td>
+</tr>
+<tr>
+<td><strong>mean SSIM</strong></td>
+<td><strong>0.684</strong></td>
+<td><strong>0.890</strong></td>
+<td><strong>0.888</strong></td>
+<td>tie</td>
+</tr>
+</tbody>
+</table>
+<p>Mean RMSE: A 0.131, B 0.071, C 0.067.</p>
+<p>Two things stand out:</p>
+<ol>
+<li><strong>C is ~0.20 SSIM above A on every reference</strong> (+0.074, +0.178, +0.366,
+   +0.199). The loop — measure, localize, re-measure — is the capability. It is
+   not a small polish; it is the difference between "recognizable approximation"
+   and "same widget".</li>
+<li><strong>B and C are indistinguishable at this sample size</strong> (0.890 vs 0.888, with B
+   ahead on two references and C ahead on two). B reached that level by building
+   its own measurement rigs; C reached it with <code>eyes</code>. <em>The source of the
+   measurement barely matters; closing the loop does.</em></li>
+</ol>
+<p>C's traces also show the loop's real texture: positioning bugs found and fixed
+(ref3 iter1→2), font metrics fitted against ink stats (ref3 iter4), gradients
+rebuilt from sampled profiles (ref3 iter5), and — in ref1 and ref4 — composite
+scores that <em>fell</em> while pixel fidelity rose (see calibration above). The
+agents that succeeded used the score as a coarse signal and SSIM/pixdiff as
+truth. The agents that trusted the composite would have shipped worse images.</p>
+<h3 id="self-calibration-is-weak">Self-calibration is weak</h3>
+<p>Every agent was asked for a 1-10 fidelity estimate. The estimates cluster in
+5-8 and correlate only weakly with SSIM (Pearson 0.42 across the 12 cells that
+had both): A/ref3 rated itself 6 at SSIM 0.544, B/ref1 rated 6 at 0.885, A/ref1
+rated 7 at 0.833. The agents cannot reliably tell how close they are — which is
+exactly the gap a deterministic score is supposed to fill. It also means the
+self-estimate column is not evidence of anything except confidence.</p>
+<h2 id="interpretation">Interpretation</h2>
+<p><strong>Is <code>eyes</code> an addition to what a multimodal agent can already do?</strong></p>
+<p><em>As a fact sheet: no.</em> The clean isolation pair is the answer — with perception
+held constant and only <code>facts.json</code> added, ref1 is a dead heat (0.785 vs 0.782)
+and ref3 gets worse (0.420 vs 0.375). The sheet tells a seeing agent things it
+can already see (three strings, a dark card, pink blobs), omits the things it
+actually needs (per-bead pitch, card metrics, font metrics), and is wrong often
+enough that its consumers spent part of their budget auditing it: 10+ recorded
+conflicts, a 0/4 hit rate on the glow probe, a wrong alignment model for
+multi-column layouts, and an OCR error (<code>M0WQ</code> → <code>MOwQ</code>) that propagated into
+B/ref1's HTML while the vision-only A got it right. It is a compression of
+vision, and a lossy one.</p>
+<p><em>As a measurement instrument: yes, decisively.</em> Vision-only averages 0.684 SSIM.
+With a measurement loop — <code>eyes score</code>/<code>pixdiff</code>/<code>zoom</code> (C) or the agent's own
+recording rigs (B) — the average is 0.889 (B 0.890, C 0.888). That +0.20 is the difference between
+"recognizable approximation" and "same widget". The loop supplies the two things
+perception does not: a calibration signal (the agents' own 1-10 estimates
+correlate at only r≈0.42 with measured fidelity) and localization (where the
+error is, in pixels, at what magnitude). It also explains why the package's A/B
+looked so good for B: the fact sheet cued the agents to measure, and measuring
+did the work. B and C tie with their different instruments.</p>
+<p>This is not an argument against the project — it is the project's own thesis.
+<code>PRD.md</code> says frontier models "fall back to algorithmic tools (crops, color
+thresholding, intensity profiles, code execution) for precise quantitative
+analysis". <code>SCENE.md</code>'s ideal user is a text-only agent that "can run commands
+and read JSON". For that user the fact sheet <em>is</em> the eyes. For a multimodal
+agent, the eyes are already there; what is still missing is the ruler.</p>
+<p><strong>What I would ship next</strong></p>
+<ul>
+<li>For screenshot→HTML, feed <code>parse</code>'s per-element bboxes (normalized, accurate to
+  a few px) and <code>layout</code>, not <code>interrogate</code>'s answers. A "rebuild spec" probe —
+  element bboxes, radii, font size/weight, gradient stops, shadow params — is
+  the missing artifact.</li>
+<li>Make the loop's objective honest: <code>ssim_mean</code>/<code>mismatch_frac</code>, with <code>score</code> as
+  a coarse gate. Fix the palette term (normalize by coverage; soft/ΔE matching),
+  so identical images score 100 and ±2% brightness does not cost 36 points.</li>
+<li>Label uncertainty instead of stamping everything <code>"measured"</code>; cluster
+  alignment rows by x before classifying; dedupe nested OCR fragments.</li>
+<li>If the goal is a text-only agent: keep <code>interrogate</code>, fix its confidence, and
+  add the rebuild spec. If the goal is any agent: the loop is the product.</li>
+</ul>
+<h2 id="limitations">Limitations</h2>
+<ul>
+<li>n=4 references × 1 run per cell, plus 2 clean-pair references. A pilot, not a
+  significance test. Per-cell variance is real: the B advantage tracks how hard
+  each B agent measured, not the sheet.</li>
+<li>3 of 4 references are photographic/3D renders; CSS cannot reach them, so the
+  absolute SSIM ceiling is set by "can CSS fake a render", not by perception.</li>
+<li><code>eyes score</code> is the instrument under test <em>and</em> its judge; SSIM/RMSE are the
+  independent checks and the ones I trust. Even so, SSIM is dominated by large
+  flat areas: a wrong but well-placed orb costs less than a shifted card.</li>
+<li>B agents self-instrumented despite the protocol; C agents also wrote their own
+  pixel-sampling rigs. "Pure facts" is only the clean pair, and "pure eyes" only
+  the C/ref2 trace. The behavioral effect is part of the finding, not a bug.</li>
+<li>The macOS headless viewport quirk (see above) was present throughout; all
+  finalists re-rendered pixel-identically under the corrected CDP renderer, so
+  it did not change the results.</li>
+</ul>
+<h2 id="reproduce">Reproduce</h2>
+<pre><code class="language-bash">cd ab_runs
+python3 score_all.py        # A/B/C -&gt; results.json / results.md
+python3 score_clean.py      # A2/B2 -&gt; clean_results.json
+python3 gallery.py          # -&gt; gallery.png
+python3 clean_pair.py       # -&gt; clean_pair.png
+python3 gallery_html.py     # -&gt; gallery.html
+</code></pre>
+<p>Each cell keeps <code>reference.png</code>, <code>TASK.md</code>, <code>render.sh</code>, <code>candidate.html</code>,
+<code>candidate.png</code>, <code>VERDICT.md</code> (and <code>trace.jsonl</code> for arm C).</p>
+<div class="foot">Rendered from <code>REPORT.md</code> · regenerate with
+<code>uv run --with markdown python ab_runs/render_reports.py</code></div>
+</div></body></html>

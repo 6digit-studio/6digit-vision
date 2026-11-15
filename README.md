@@ -80,10 +80,10 @@ vision + a measurement loop averaged **0.888**; the precomputed `interrogate`
 fact sheet alone made no difference (clean pair: 0.785 vs 0.782 / 0.420 vs
 0.375). The usable surface was `pixdiff` + `score` as a coarse gate; agents
 built their own geometry/type/colour calipers because `parse` was never named.
-Full write-up: [`ab_runs/REPORT.md`](ab_runs/REPORT.md) ·
-gallery: [`ab_runs/gallery.html`](ab_runs/gallery.html) ·
-what was actually invoked: [`ab_runs/TOOL_USAGE.md`](ab_runs/TOOL_USAGE.md) ·
-the protocol: [`docs/MEASUREMENT_DISCIPLINE.md`](docs/MEASUREMENT_DISCIPLINE.md).
+Full write-up: [markdown](ab_runs/REPORT.md) · [rendered](ab_runs/REPORT.html) ·
+gallery: [ab_runs/gallery.html](ab_runs/gallery.html) ·
+what was actually invoked: [markdown](ab_runs/TOOL_USAGE.md) · [rendered](ab_runs/TOOL_USAGE.html) ·
+the protocol: [markdown](docs/MEASUREMENT_DISCIPLINE.md) · [rendered](docs/MEASUREMENT_DISCIPLINE.html).
 
 ## Requirements
 

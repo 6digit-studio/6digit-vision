@@ -4,6 +4,8 @@ Audit of the A/B/C reproduction run (`ab_runs/`). Sources: the four C agents'
 per-turn tool logs (self-reported after the run), the four B agents' logs, and
 artifact inspection. Counts are approximate where the agent said "approx".
 
+![eyes subcommands actually invoked across the 12 cells](tool_usage.png)
+
 ## Headline
 
 **Twelve cells, four sensing modes, 67 `eyes` invocations total — and every one

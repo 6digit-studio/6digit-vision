@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Which parts of `eyes` did the agents actually use? — 6digit-vision</title>
+<style>
+:root { --bg:#0d1117; --panel:#161b22; --border:#30363d; --fg:#e6edf3;
+        --dim:#8b949e; --accent:#58a6ff; }
+* { box-sizing:border-box; }
+body { background:var(--bg); color:var(--fg); margin:0;
+       font:15px/1.65 -apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif; }
+.wrap { max-width:1080px; margin:0 auto; padding:40px 28px 72px; }
+nav { font:12px/1.5 -apple-system,"SF Mono",Menlo,monospace; color:var(--dim);
+      border-bottom:1px solid var(--border); padding-bottom:14px; margin-bottom:30px; }
+nav a { color:var(--accent); text-decoration:none; margin-right:14px; }
+nav a:hover { text-decoration:underline; }
+h1 { font-size:30px; line-height:1.2; margin:0 0 18px; letter-spacing:-.01em; }
+h2 { font-size:21px; margin:42px 0 12px; padding-bottom:6px; border-bottom:1px solid var(--border); }
+h3 { font-size:16px; margin:28px 0 8px; color:#cdd5df; }
+p, li { color:#cfd6df; }
+a { color:var(--accent); text-decoration:none; }
+a:hover { text-decoration:underline; }
+strong { color:#fff; }
+code { font:0.88em/1.4 "SF Mono",Menlo,monospace; background:#0b0f14;
+       padding:1px 5px; border-radius:4px; color:#c9d1d9; }
+pre { background:#0b0f14; border:1px solid var(--border); border-radius:8px;
+      padding:14px 16px; overflow:auto; }
+pre code { background:none; padding:0; }
+img { max-width:100%; height:auto; display:block; margin:16px 0 8px;
+      border:1px solid var(--border); border-radius:8px; background:#000; }
+table { border-collapse:collapse; width:100%; margin:14px 0 22px; font-size:13px; }
+th, td { border-bottom:1px solid var(--border); padding:7px 9px; text-align:left; }
+th { color:var(--dim); font-weight:600; }
+blockquote { margin:16px 0; padding:4px 0 4px 16px; border-left:3px solid var(--border); color:var(--dim); }
+hr { border:0; border-top:1px solid var(--border); margin:34px 0; }
+.foot { color:#6e7681; font-size:11px; margin-top:48px; border-top:1px solid var(--border); padding-top:14px; }
+.foot code { background:none; padding:0; color:#6e7681; }
+</style></head>
+<body><div class="wrap">
+<nav>
+  <a href="../MIMICRY_GALLERY.html">← gallery</a>
+  <a href="../ab_runs/REPORT.html">report</a>
+  <a href="../ab_runs/TOOL_USAGE.html">tool usage</a>
+  <a href="../docs/MEASUREMENT_DISCIPLINE.html">discipline</a>
+  <a href="https://github.com/6digit-studio/6digit-vision">github</a>
+</nav>
+<h1 id="which-parts-of-eyes-did-the-agents-actually-use">Which parts of <code>eyes</code> did the agents actually use?</h1>
+<p>Audit of the A/B/C reproduction run (<code>ab_runs/</code>). Sources: the four C agents'
+per-turn tool logs (self-reported after the run), the four B agents' logs, and
+artifact inspection. Counts are approximate where the agent said "approx".</p>
+<p><img alt="eyes subcommands actually invoked across the 12 cells" src="tool_usage.png" /></p>
+<h2 id="headline">Headline</h2>
+<p><strong>Twelve cells, four sensing modes, 67 <code>eyes</code> invocations total — and every one
+of them came from the four C cells.</strong> The B cells, which received the
+<code>interrogate</code> sheet, ran <strong>zero</strong> <code>eyes</code> commands: they read <code>facts.json</code> once
+and then built their own measurement rigs. A and the clean pair also ran zero.</p>
+<p>Across 13 CLI subcommands, the agents used <strong>five</strong> (plus <code>--help</code>): <code>score</code>,
+<code>pixdiff</code>, <code>zoom</code>, <code>describe</code>, <code>palette</code>. The other eight — <code>parse</code>, <code>structure</code>,
+<code>layout</code>, <code>ask</code>, <code>grid</code>, <code>interrogate</code>, <code>diff</code>, <code>reel</code> — were never invoked.</p>
+<table>
+<thead>
+<tr>
+<th>arm</th>
+<th>cells</th>
+<th><code>eyes</code> calls</th>
+<th>what it actually consumed</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A · vision only</td>
+<td>4</td>
+<td>0</td>
+<td>crops / grid overlays only</td>
+</tr>
+<tr>
+<td>B · facts</td>
+<td>4</td>
+<td>0</td>
+<td><code>facts.json</code> once, then self-built measurement</td>
+</tr>
+<tr>
+<td>C · <code>eyes</code> loop</td>
+<td>4</td>
+<td><strong>67</strong></td>
+<td>score/pixdiff mostly; zoom/describe/palette partly</td>
+</tr>
+<tr>
+<td>A2/B2 · clean pair</td>
+<td>4</td>
+<td>0</td>
+<td>full-image vision (+ facts in B2)</td>
+</tr>
+</tbody>
+</table>
+<h2 id="cs-calls-by-cell">C's calls, by cell</h2>
+<table>
+<thead>
+<tr>
+<th>cell</th>
+<th><code>--help</code></th>
+<th><code>score</code></th>
+<th><code>pixdiff</code></th>
+<th><code>zoom</code></th>
+<th><code>describe</code></th>
+<th><code>palette</code></th>
+<th>everything else</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>C/ref1 collage</td>
+<td>1</td>
+<td>7</td>
+<td>2</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td>C/ref2 knob</td>
+<td>1</td>
+<td>3</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td>C/ref3 BP</td>
+<td>1</td>
+<td>4</td>
+<td>2</td>
+<td>4</td>
+<td>1</td>
+<td>2</td>
+<td>0</td>
+</tr>
+<tr>
+<td>C/ref4 flight</td>
+<td>0</td>
+<td>13</td>
+<td>16</td>
+<td>7</td>
+<td>2</td>
+<td>1</td>
+<td>0</td>
+</tr>
+<tr>
+<td><strong>total</strong></td>
+<td><strong>3</strong></td>
+<td><strong>27</strong></td>
+<td><strong>20</strong></td>
+<td><strong>11</strong></td>
+<td><strong>3</strong></td>
+<td><strong>3</strong></td>
+<td><strong>0</strong></td>
+</tr>
+</tbody>
+</table>
+<p>Usable signal (by the agents' own judgement): <code>score</code> 27/27 returned, but only
+as a coarse gate; <code>pixdiff</code> 20/20; <code>zoom</code> 11 calls of which 2 aborted and 2 had
+unusable analysis; <code>describe</code> 3 of 3 unusable; <code>palette</code> 3 calls of which 2
+failed on the flag and 1 succeeded.</p>
+<h2 id="what-earned-its-keep">What earned its keep</h2>
+<p><strong><code>pixdiff</code> is the workhorse.</strong> Every C agent that used it treated
+<code>ssim_mean</code> / <code>mismatch_frac</code> / hot regions as the truth signal:</p>
+<ul>
+<li>C/ref4: 16 calls, "SSIM/mismatch/hot-region map after every render and every
+  blur simulation".</li>
+<li>C/ref3: 2 calls, "<code>ssim_mean</code> 0.783 → 0.904 and the hottest-region list,
+  which pointed me at the dot band".</li>
+<li>C/ref1: 2 calls, but the hot regions were dominated by the spheres and a
+  ≤4-RGB gradient offset, "so I stopped relying on it".</li>
+</ul>
+<p><strong><code>score</code> is a gate, not an objective.</strong> All four C agents used it for a
+regression number and component breakdown, and all four said it was too noisy to
+optimize against. Two concrete reasons, both documented in
+<a href="REPORT.html"><code>REPORT.md</code></a>:</p>
+<ul>
+<li>the palette component caps at top-8 bin coverage, so an identical image
+  scores 89.6–96.9;</li>
+<li>Mirage's object labels churn with fine edits — C/ref4's composite fell
+  86.0 → 78.5 while SSIM rose 0.801 → 0.864, because the plane became an
+  "arrow" and the card a "smartphone screen".</li>
+</ul>
+<p><strong><code>zoom</code> is useful when it works.</strong> C/ref4 used 7 crops for letterforms and the
+airplane; C/ref3 had 2 of 4 abort and the <code>--analyze describe</code> bboxes come back
+mis-scaled.</p>
+<p><strong><code>describe</code>, <code>palette</code> — tried, then abandoned.</strong> C/ref3 called <code>describe</code> once
+and called it "unusable … bboxes at ~3× scale and with nonsense regions". The
+cause is real: <code>describe</code>/<code>parse</code> emit Mirage's <strong>normalized [0,1000]</strong>
+coordinates, while <code>zoom --bbox</code> takes <strong>source pixels</strong>. On a 400×155 image,
+117 means 47px, not 117px — a 3.4× error if read as pixels. C/ref4's
+<code>palette</code> call failed because the CLI accepts <code>-n</code>, not <code>--n</code>.</p>
+<h2 id="friction-log-reproducible">Friction log (reproducible)</h2>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>friction</th>
+<th>evidence</th>
+<th>fix</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td><code>describe</code>/<code>parse</code> bboxes are [0,1000] but <code>zoom</code> bboxes are px; no unit marker in the record</td>
+<td>C/ref3, C/ref4 both misread them</td>
+<td>add <code>bbox_px</code> alongside, or a <code>units</code> field; label in <code>--help</code></td>
+</tr>
+<tr>
+<td>2</td>
+<td><code>palette --n</code> rejected (only <code>-n</code>)</td>
+<td>C/ref3, C/ref4</td>
+<td>accept <code>--n</code> as an alias</td>
+</tr>
+<tr>
+<td>3</td>
+<td><code>describe --json</code> is not a flag (JSON is already default)</td>
+<td>this audit</td>
+<td>document, or accept it idempotently</td>
+</tr>
+<tr>
+<td>4</td>
+<td><code>zoom</code> default writes next to the input; one agent hit a read-only <code>/tmp</code></td>
+<td>C/ref3</td>
+<td>accept <code>--out</code> (it does) and document it</td>
+</tr>
+<tr>
+<td>5</td>
+<td>no primitive for "measure this ink box / radius / gradient / edge"</td>
+<td>all four C agents wrote their own PIL scanners (100+ probes)</td>
+<td>add a <code>measure</code> surface (below)</td>
+</tr>
+<tr>
+<td>6</td>
+<td><code>score</code> is presented as a fidelity score</td>
+<td>C/ref4's composite fell while SSIM rose</td>
+<td>rename to <code>semantic</code>, or print <code>ssim_mean</code> beside it</td>
+</tr>
+</tbody>
+</table>
+<h2 id="what-the-agents-built-instead">What the agents built instead</h2>
+<p>The B agents — which had no tools — wrote the measurement layer themselves. This
+is the strongest signal in the audit: <strong>the missing product is not more
+description, it is primitives.</strong></p>
+<table>
+<thead>
+<tr>
+<th>primitive</th>
+<th>who</th>
+<th>how it was used</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>background-difference mask + run-lengths</td>
+<td>B/ref1, B/ref2, C/ref1</td>
+<td>exact card/plate boxes</td>
+</tr>
+<tr>
+<td>row-projection ink bands</td>
+<td>B/ref1, B/ref3, B/ref4</td>
+<td>every text line's top/bottom</td>
+</tr>
+<tr>
+<td>column projection / threshold ladder</td>
+<td>B/ref1, B/ref3</td>
+<td>ink x-extents, blur-vs-weight separation</td>
+</tr>
+<tr>
+<td>ink-flux (Σ brightness)</td>
+<td>B/ref3, B/ref4, C/ref3, C/ref4</td>
+<td>blur-invariant weight/colour calibration</td>
+</tr>
+<tr>
+<td>50% edge crossing / sub-pixel fit</td>
+<td>C/ref3, C/ref4, B/ref4</td>
+<td>card edges, bar caps, bead diameter</td>
+</tr>
+<tr>
+<td>corner chord / circle fit</td>
+<td>B/ref1, B/ref4, C/ref1</td>
+<td>radii (27, 35.5, 37.5, 40px)</td>
+</tr>
+<tr>
+<td>flood-fill + ray-march silhouette → Catmull-Rom</td>
+<td>B/ref2, C/ref2</td>
+<td>non-rectangular keycap silhouettes</td>
+</tr>
+<tr>
+<td>scanline gradient stops</td>
+<td>B/ref1, C/ref1</td>
+<td>16–21-stop CSS gradients</td>
+</tr>
+<tr>
+<td>radial falloff → gradient stops</td>
+<td>B/ref3, C/ref3</td>
+<td>bead glow</td>
+</tr>
+<tr>
+<td>dot-lattice fitting + NMS</td>
+<td>B/ref2, B/ref4, C/ref2, C/ref3</td>
+<td>speaker glyphs, 21-column waveform</td>
+</tr>
+<tr>
+<td>FreeType / <code>measureText</code> font fitting</td>
+<td>B/ref1, B/ref3, B/ref4, C/ref1, C/ref3</td>
+<td>font family/size/weight</td>
+</tr>
+<tr>
+<td>aligned shift search before scoring</td>
+<td>C/ref3</td>
+<td>stops 1px offsets masquerading as shape errors</td>
+</tr>
+<tr>
+<td>region-decomposed RMSE/MAE</td>
+<td>B/ref4, C/ref3, C/ref4</td>
+<td>where to spend the next cycle</td>
+</tr>
+<tr>
+<td>blur-signature sweep</td>
+<td>C/ref4</td>
+<td>discovered Chromium quantizes blur &lt;0.75px to 0</td>
+</tr>
+<tr>
+<td>ASCII luminance map</td>
+<td>B/ref2, B/ref4, C/ref4</td>
+<td>read structure in near-black UI</td>
+</tr>
+</tbody>
+</table>
+<h2 id="implication-for-the-instrument">Implication for the instrument</h2>
+<p>The narrow usage is not a failure of the agents; it is the shape of the task.
+For screenshot→HTML the loop needs <strong>a ruler and a locator</strong>, and the agents
+improvised both. The product opportunity is to make those primitives callable so
+they are not re-derived per agent and are comparable across runs:</p>
+<ol>
+<li><strong><code>eyes measure &lt;img&gt; --json</code></strong> returning, per element: <code>bbox_px</code>, <code>ink_bbox</code>,
+   <code>edge_crossings</code>, <code>radius</code>, <code>gradient_stops</code>, <code>ink_mass</code>, <code>font_metrics</code>,
+   <code>blur_sigma</code>, <code>dot_lattice</code>. Units always px; include the normalized values
+   only as a secondary field.</li>
+<li><strong>Make <code>parse</code> the rebuild default</strong> (it already has the element boxes) and
+   say so in <code>RUNBOOK.md</code>; today not one agent invoked it.</li>
+<li><strong>Separate <code>semantic</code> from <code>pixel</code></strong>: <code>eyes semantic</code> (old <code>score</code>) and
+   <code>eyes pixel</code> (pixdiff), with <code>ssim_mean</code> first in the report. Keep the
+   composite for QA questions, not for optimization.</li>
+<li><strong>Alias/UX fixes</strong>: <code>--n</code>, <code>--json</code> on every subcommand, explicit units,
+   <code>zoom --analyze</code> coordinate fix.</li>
+<li><strong>A regression harness</strong> (the discipline doc below) so an agent can run
+   "measure → edit → re-measure → gate" without inventing the harness.</li>
+</ol>
+<p>The one-line finding: <strong><code>eyes</code> was used as a thermometer and a map
+(<code>score</code>, <code>pixdiff</code>); its rulers and calipers (<code>parse</code>, <code>structure</code>, <code>layout</code>)
+went untouched, and every agent built those calipers by hand.</strong></p>
+<div class="foot">Rendered from <code>TOOL_USAGE.md</code> · regenerate with
+<code>uv run --with markdown python ab_runs/render_reports.py</code></div>
+</div></body></html>
