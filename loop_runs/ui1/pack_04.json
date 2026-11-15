@@ -1,0 +1,1181 @@
+{
+  "scene": {
+    "background": "dark",
+    "style": "digital interface"
+  },
+  "objects": [
+    {
+      "name": "logo",
+      "position": "top center",
+      "score": 0.467,
+      "description": {
+        "color": "white"
+      }
+    },
+    {
+      "name": "text",
+      "position": "center",
+      "score": 0.597,
+      "description": {
+        "color": "white"
+      }
+    },
+    {
+      "name": "text",
+      "position": "center",
+      "score": 0.441,
+      "description": {
+        "color": "white"
+      }
+    },
+    {
+      "name": "button",
+      "position": "center",
+      "score": 0.36,
+      "description": {
+        "color": "green"
+      }
+    },
+    {
+      "name": "button",
+      "position": "center",
+      "score": 0.527,
+      "description": {
+        "color": "green"
+      }
+    },
+    {
+      "name": "button",
+      "position": "center",
+      "score": 0.447,
+      "description": {
+        "color": "green"
+      }
+    },
+    {
+      "name": "button",
+      "position": "center",
+      "score": 0.504,
+      "description": {
+        "color": "green"
+      }
+    },
+    {
+      "name": "button",
+      "position": "center",
+      "score": 0.598,
+      "description": {
+        "color": "green"
+      }
+    },
+    {
+      "name": "button",
+      "position": "center",
+      "score": 0.56,
+      "description": {
+        "color": "green"
+      }
+    },
+    {
+      "name": "button",
+      "position": "center",
+      "score": 0.314,
+      "description": {
+        "color": "green"
+      }
+    },
+    {
+      "name": "button",
+      "position": "center",
+      "score": 0.345,
+      "description": {
+        "color": "green"
+      }
+    },
+    {
+      "name": "button",
+      "position": "center",
+      "score": 0.341,
+      "description": {
+        "color": "green"
+      }
+    },
+    {
+      "name": "button",
+      "position": "center",
+      "score": 0.412,
+      "description": {
+        "color": "green"
+      }
+    }
+  ],
+  "text": [
+    {
+      "string": "Sign in to GitHub",
+      "score": 0.808,
+      "bbox": [
+        414,
+        133,
+        583,
+        168
+      ]
+    },
+    {
+      "string": "Username or email address",
+      "score": 0.512,
+      "bbox": [
+        373,
+        192,
+        522,
+        217
+      ]
+    },
+    {
+      "string": "Password",
+      "score": 0.64,
+      "bbox": [
+        374,
+        292,
+        430,
+        320
+      ]
+    },
+    {
+      "string": "Forgot password",
+      "score": 0.541,
+      "bbox": [
+        545,
+        294,
+        624,
+        316
+      ]
+    },
+    {
+      "string": "Slgn In",
+      "score": 0.475,
+      "bbox": [
+        477,
+        412,
+        523,
+        443
+      ]
+    },
+    {
+      "string": "New to GitHub? Create an account",
+      "score": 0.545,
+      "bbox": [
+        405,
+        485,
+        591,
+        512
+      ]
+    },
+    {
+      "string": "Privacy",
+      "score": 0.315,
+      "bbox": [
+        297,
+        963,
+        330,
+        981
+      ]
+    },
+    {
+      "string": "Contact GitHub Suppor",
+      "score": 0.357,
+      "bbox": [
+        386,
+        960,
+        484,
+        980
+      ]
+    },
+    {
+      "string": "Manage cookies",
+      "score": 0.39,
+      "bbox": [
+        503,
+        962,
+        576,
+        981
+      ]
+    },
+    {
+      "string": "Do not share my personal information",
+      "score": 0.4,
+      "bbox": [
+        591,
+        961,
+        746,
+        981
+      ]
+    }
+  ],
+  "findings": {
+    "objects_at_edge": [
+      {
+        "name": "button",
+        "sides": [
+          "bottom"
+        ],
+        "bbox": [
+          300,
+          965,
+          329,
+          982
+        ],
+        "score": 0.314,
+        "suspect": true
+      },
+      {
+        "name": "button",
+        "sides": [
+          "bottom"
+        ],
+        "bbox": [
+          396,
+          962,
+          485,
+          977
+        ],
+        "score": 0.345,
+        "suspect": true
+      },
+      {
+        "name": "button",
+        "sides": [
+          "bottom"
+        ],
+        "bbox": [
+          508,
+          966,
+          571,
+          979
+        ],
+        "score": 0.341,
+        "suspect": true
+      },
+      {
+        "name": "button",
+        "sides": [
+          "bottom"
+        ],
+        "bbox": [
+          597,
+          963,
+          741,
+          978
+        ],
+        "score": 0.412,
+        "suspect": true
+      }
+    ],
+    "bbox_overlaps": [],
+    "text_edge_flush": [],
+    "legibility_flagged": [
+      {
+        "string": "Username or email address",
+        "bbox": [
+          373,
+          192,
+          522,
+          217
+        ],
+        "contrast": 16.02,
+        "ocr_score": 0.512,
+        "flags": [
+          "low_ocr_confidence"
+        ]
+      },
+      {
+        "string": "Forgot password",
+        "bbox": [
+          545,
+          294,
+          624,
+          316
+        ],
+        "contrast": 6.11,
+        "ocr_score": 0.541,
+        "flags": [
+          "low_ocr_confidence"
+        ]
+      },
+      {
+        "string": "Slgn In",
+        "bbox": [
+          477,
+          412,
+          523,
+          443
+        ],
+        "contrast": 4.63,
+        "ocr_score": 0.475,
+        "flags": [
+          "low_ocr_confidence"
+        ]
+      },
+      {
+        "string": "New to GitHub? Create an account",
+        "bbox": [
+          405,
+          485,
+          591,
+          512
+        ],
+        "contrast": 16.02,
+        "ocr_score": 0.545,
+        "flags": [
+          "low_ocr_confidence"
+        ]
+      },
+      {
+        "string": "Privacy",
+        "bbox": [
+          297,
+          963,
+          330,
+          981
+        ],
+        "contrast": 6.15,
+        "ocr_score": 0.315,
+        "flags": [
+          "low_ocr_confidence"
+        ]
+      },
+      {
+        "string": "Contact GitHub Suppor",
+        "bbox": [
+          386,
+          960,
+          484,
+          980
+        ],
+        "contrast": 6.15,
+        "ocr_score": 0.357,
+        "flags": [
+          "low_ocr_confidence"
+        ]
+      },
+      {
+        "string": "Manage cookies",
+        "bbox": [
+          503,
+          962,
+          576,
+          981
+        ],
+        "contrast": 6.15,
+        "ocr_score": 0.39,
+        "flags": [
+          "low_ocr_confidence"
+        ]
+      },
+      {
+        "string": "Do not share my personal information",
+        "bbox": [
+          591,
+          961,
+          746,
+          981
+        ],
+        "contrast": 6.15,
+        "ocr_score": 0.4,
+        "flags": [
+          "low_ocr_confidence"
+        ]
+      }
+    ]
+  },
+  "detectors": {
+    "status_icons": {
+      "image": "loop_runs/ui1/candidate.png",
+      "size": [
+        1200,
+        800
+      ],
+      "candidates": 1,
+      "regions": [
+        {
+          "object_id": 1,
+          "name": "logo",
+          "mirage_score": 0.467,
+          "position": "top center",
+          "bbox_px": [
+            574,
+            46,
+            625,
+            91
+          ],
+          "container_hex": "#e8e8f8",
+          "container_hue": "gray",
+          "glyph": "solid",
+          "glyph_px": 0
+        }
+      ],
+      "status_icons": {}
+    },
+    "hue_census": {
+      "image": "loop_runs/ui1/candidate.png",
+      "size": [
+        1200,
+        800
+      ],
+      "saturated_px": 10860,
+      "saturated_pct_of_image": 1.131,
+      "mask": {
+        "s_min": 0.35,
+        "v_min": 0.35,
+        "bin_deg": 15.0
+      },
+      "thresholds": {
+        "min_family_share": 0.01,
+        "rel_to_dominant": 0.1
+      },
+      "families": [
+        {
+          "hue_center_deg": 131.3,
+          "hue_name": "green",
+          "hue_span_deg": 15.0,
+          "pixel_count": 9906,
+          "share_of_saturated": 0.9122,
+          "share_pct": 91.22,
+          "bbox": [
+            450,
+            326,
+            749,
+            359
+          ],
+          "x_profile": [
+            0.0,
+            0.0,
+            0.0,
+            0.1014,
+            0.3961,
+            0.4012,
+            0.1014,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "significant": true
+        },
+        {
+          "hue_center_deg": 213.2,
+          "hue_name": "azure",
+          "hue_span_deg": 15.0,
+          "pixel_count": 954,
+          "share_of_saturated": 0.0878,
+          "share_pct": 8.78,
+          "bbox": [
+            595,
+            239,
+            749,
+            404
+          ],
+          "x_profile": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0294,
+            0.8333,
+            0.1373,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "significant": false
+        }
+      ],
+      "significant_families": 1,
+      "verdict": "single_accent_family",
+      "notes": [
+        "one significant family: green (91.22% of saturated px)"
+      ],
+      "dominant_family": "green"
+    },
+    "lexical_screen": {
+      "sources": [
+        "dict:words",
+        "dict:connectives"
+      ],
+      "flagged": [
+        {
+          "string": "Username or email address",
+          "bbox": [
+            373,
+            192,
+            522,
+            217
+          ],
+          "ocr_score": 0.512,
+          "verdict": "non_lexical_text",
+          "oov_fraction": 0.667,
+          "tokens": [
+            {
+              "token": "Username",
+              "status": "out_of_vocabulary"
+            },
+            {
+              "token": "or",
+              "status": "exempt",
+              "reason": "<3 chars"
+            },
+            {
+              "token": "email",
+              "status": "out_of_vocabulary"
+            },
+            {
+              "token": "address",
+              "status": "known"
+            }
+          ],
+          "oov_tokens": [
+            "Username",
+            "email"
+          ]
+        },
+        {
+          "string": "Slgn In",
+          "bbox": [
+            477,
+            412,
+            523,
+            443
+          ],
+          "ocr_score": 0.475,
+          "verdict": "non_lexical_text",
+          "oov_fraction": 1.0,
+          "tokens": [
+            {
+              "token": "Slgn",
+              "status": "out_of_vocabulary"
+            },
+            {
+              "token": "In",
+              "status": "exempt",
+              "reason": "<3 chars"
+            }
+          ],
+          "oov_tokens": [
+            "Slgn"
+          ]
+        },
+        {
+          "string": "Contact GitHub Suppor",
+          "bbox": [
+            386,
+            960,
+            484,
+            980
+          ],
+          "ocr_score": 0.357,
+          "verdict": "contains_out_of_vocabulary",
+          "oov_fraction": 0.333,
+          "tokens": [
+            {
+              "token": "Contact",
+              "status": "known"
+            },
+            {
+              "token": "GitHub",
+              "status": "merged",
+              "parts": [
+                "Git",
+                "Hub"
+              ],
+              "unknown_parts": []
+            },
+            {
+              "token": "Suppor",
+              "status": "out_of_vocabulary"
+            }
+          ],
+          "oov_tokens": [
+            "Suppor"
+          ]
+        }
+      ],
+      "frag_bands": []
+    },
+    "anisotropy": {
+      "image": "loop_runs/ui1/candidate.png",
+      "size": [
+        1200,
+        800
+      ],
+      "thresholds": {
+        "ink_dist": 22.0,
+        "erode_iters": 2,
+        "min_cluster_members": 4,
+        "log_aspect_min": 0.15,
+        "glyph_w_over_h_band": [
+          0.35,
+          0.75
+        ]
+      },
+      "blobs": {
+        "surfaces": {
+          "page_bg": "#0d1117",
+          "card": "#238636"
+        },
+        "ink_px": 10776,
+        "cores": 21,
+        "candidates": 0,
+        "blobs": [],
+        "round_witnesses": 0,
+        "cluster": null,
+        "cluster_members": []
+      },
+      "glyphs": {
+        "ink_px": 0,
+        "lum_threshold": 200.0,
+        "n_lines": 0,
+        "median_glyph_w_over_h": null,
+        "population_median": null,
+        "notes": [
+          "dark background (border luminance <128); glyph census assumes dark-on-light \u2014 skipped"
+        ]
+      },
+      "glyph_lines": [],
+      "verdict": "insufficient_witnesses",
+      "notes": [
+        "dark background (border luminance <128); glyph census assumes dark-on-light \u2014 skipped"
+      ]
+    },
+    "totals_consistency": {
+      "image": "loop_runs/ui1/candidate.png",
+      "verdict": "no_currency_amounts",
+      "n_text_records": 10,
+      "n_amount_rows": 0,
+      "rows": [],
+      "findings": [],
+      "checks": [],
+      "notes": []
+    },
+    "edge_census": {
+      "params": {
+        "floor": 3.0,
+        "min_n": 2,
+        "xgap": 30.0,
+        "ygap": 25.0,
+        "row_min": 40.0,
+        "col_min": 40.0,
+        "row_same": 8.0,
+        "col_same": 8.0,
+        "width_guard": 15.0
+      },
+      "text_records": 10,
+      "repeated_strings": 0,
+      "clusters_audited": 0,
+      "audit": [],
+      "findings": [],
+      "verdict": "CLEAN"
+    },
+    "pixel_edge_drift": {
+      "image_size": [
+        1200,
+        800
+      ],
+      "bg": [
+        13.0,
+        17.0,
+        23.0
+      ],
+      "bands": [
+        {
+          "y": [
+            44,
+            90
+          ],
+          "h": 47
+        },
+        {
+          "y": [
+            112,
+            134
+          ],
+          "h": 23
+        },
+        {
+          "y": [
+            158,
+            169
+          ],
+          "h": 12
+        },
+        {
+          "y": [
+            238,
+            250
+          ],
+          "h": 13
+        },
+        {
+          "y": [
+            326,
+            359
+          ],
+          "h": 34
+        },
+        {
+          "y": [
+            394,
+            405
+          ],
+          "h": 12
+        },
+        {
+          "y": [
+            773,
+            783
+          ],
+          "h": 11
+        }
+      ],
+      "intervals": 15,
+      "params": {
+        "bg_dist": 30,
+        "surf_dist": 30,
+        "min_band_h": 8,
+        "min_col_ink": 3,
+        "merge_gap": 8,
+        "xcluster": 12,
+        "width_max": 25.0,
+        "min_bands": 3,
+        "floor_px": 3.0
+      },
+      "audit": [
+        {
+          "n_bands": 3,
+          "n_intervals": 3,
+          "x0_range": [
+            450,
+            451
+          ],
+          "x1_range": [
+            510,
+            749
+          ],
+          "width_spread": 240,
+          "left_spread": 1,
+          "right_spread": 239,
+          "center_spread": 119.0,
+          "anchored_spread": 1,
+          "bands": [
+            2,
+            3,
+            4
+          ],
+          "skipped": "variable_width"
+        }
+      ],
+      "findings": [],
+      "verdict": "CLEAN"
+    },
+    "luminance_theme": {
+      "image": "loop_runs/ui1/candidate.png",
+      "size": [
+        1200,
+        800
+      ],
+      "bg_luminance": 0.065,
+      "theme": "dark",
+      "island_frac": 0.0051,
+      "coherent_bands": 0,
+      "band_rows": 0,
+      "verdict": "single_luminance_theme",
+      "notes": [
+        "island frac 0.5% / coherent rows 0 below floors"
+      ]
+    },
+    "nonuniform_scale": {
+      "image": "loop_runs/ui1/candidate.png",
+      "size": [
+        1200,
+        800
+      ],
+      "text_bands": [],
+      "n_bands": 0,
+      "population_median_w_over_h": null,
+      "verdict": "insufficient_witnesses",
+      "notes": [
+        "no qualifying text bands"
+      ]
+    }
+  },
+  "question": "what differs from the reference UI?",
+  "instruction": "Answer the question using ONLY the evidence above. Report facts you can cite; say 'insufficient evidence' rather than guessing.",
+  "element_diff": {
+    "object_changes": [
+      {
+        "element": "text label",
+        "bbox": [
+          469,
+          412,
+          531,
+          443
+        ],
+        "deltas": {
+          "renamed": {
+            "ref": "text label",
+            "cand": "button"
+          }
+        }
+      },
+      {
+        "element": "text label",
+        "bbox": [
+          421,
+          135,
+          576,
+          166
+        ],
+        "deltas": {
+          "renamed": {
+            "ref": "text label",
+            "cand": "text"
+          }
+        }
+      },
+      {
+        "element": "text label",
+        "bbox": [
+          370,
+          271,
+          622,
+          337
+        ],
+        "deltas": {
+          "renamed": {
+            "ref": "text label",
+            "cand": "button"
+          }
+        }
+      },
+      {
+        "element": "text label",
+        "bbox": [
+          279,
+          244,
+          722,
+          755
+        ],
+        "deltas": {
+          "renamed": {
+            "ref": "text label",
+            "cand": "button"
+          }
+        }
+      },
+      {
+        "element": "text label",
+        "bbox": [
+          508,
+          966,
+          571,
+          979
+        ],
+        "deltas": {
+          "renamed": {
+            "ref": "text label",
+            "cand": "button"
+          }
+        }
+      },
+      {
+        "element": "text label",
+        "bbox": [
+          300,
+          965,
+          329,
+          982
+        ],
+        "deltas": {
+          "renamed": {
+            "ref": "text label",
+            "cand": "button"
+          }
+        }
+      },
+      {
+        "element": "text label",
+        "bbox": [
+          381,
+          194,
+          513,
+          218
+        ],
+        "deltas": {
+          "moved": 0.0182,
+          "renamed": {
+            "ref": "text label",
+            "cand": "text"
+          }
+        }
+      },
+      {
+        "element": "text label",
+        "bbox": [
+          543,
+          293,
+          626,
+          317
+        ],
+        "deltas": {
+          "moved": 0.0189,
+          "renamed": {
+            "ref": "text label",
+            "cand": "button"
+          }
+        }
+      },
+      {
+        "element": "text label",
+        "bbox": [
+          396,
+          962,
+          485,
+          977
+        ],
+        "deltas": {
+          "moved": 0.0226,
+          "renamed": {
+            "ref": "text label",
+            "cand": "button"
+          }
+        }
+      },
+      {
+        "element": "text label",
+        "bbox": [
+          374,
+          292,
+          430,
+          321
+        ],
+        "deltas": {
+          "moved": 0.0265,
+          "renamed": {
+            "ref": "text label",
+            "cand": "button"
+          }
+        }
+      },
+      {
+        "element": "text label",
+        "bbox": [
+          597,
+          963,
+          741,
+          978
+        ],
+        "deltas": {
+          "moved": 0.0421,
+          "renamed": {
+            "ref": "text label",
+            "cand": "button"
+          }
+        }
+      },
+      {
+        "element": "button",
+        "bbox": [
+          384,
+          185,
+          602,
+          232
+        ],
+        "deltas": {
+          "moved": 0.1436
+        }
+      }
+    ],
+    "objects_added": [],
+    "objects_removed": [
+      {
+        "name": "text label",
+        "bbox": [
+          190,
+          955,
+          226,
+          983
+        ]
+      },
+      {
+        "name": "text label",
+        "bbox": [
+          246,
+          956,
+          282,
+          983
+        ]
+      },
+      {
+        "name": "software interface",
+        "bbox": [
+          624,
+          955,
+          798,
+          980
+        ]
+      }
+    ],
+    "text_changes": [
+      {
+        "type": "text_edited",
+        "ref": "Sign in",
+        "cand": "Slgn In",
+        "bbox": [
+          477,
+          412,
+          523,
+          443
+        ]
+      },
+      {
+        "type": "text_edited",
+        "ref": "Forgot password?",
+        "cand": "Forgot password",
+        "bbox": [
+          545,
+          294,
+          624,
+          316
+        ]
+      },
+      {
+        "type": "text_edited",
+        "ref": "Contact GitHub Support",
+        "cand": "Contact GitHub Suppor",
+        "bbox": [
+          386,
+          960,
+          484,
+          980
+        ]
+      },
+      {
+        "type": "text_removed",
+        "ref": "Terms",
+        "bbox": [
+          190,
+          956,
+          225,
+          980
+        ]
+      },
+      {
+        "type": "text_removed",
+        "ref": "Docs",
+        "bbox": [
+          305,
+          956,
+          337,
+          980
+        ]
+      }
+    ],
+    "counts": {
+      "ref_objects": 16,
+      "cand_objects": 13,
+      "ref_text": 12,
+      "cand_text": 10
+    }
+  },
+  "score": {
+    "score": 60.2,
+    "components": {
+      "palette": {
+        "score": 0.9071
+      },
+      "objects": {
+        "score": 0.3624,
+        "matched": 13,
+        "missing": [
+          "text label",
+          "text label",
+          "software interface"
+        ],
+        "extra": [],
+        "attr_sim": 0.4042,
+        "attr_changes": [
+          {
+            "ref": "text label",
+            "cand": "button",
+            "attr_sim": 0.122
+          },
+          {
+            "ref": "text label",
+            "cand": "text",
+            "attr_sim": 0.746
+          },
+          {
+            "ref": "text label",
+            "cand": "button",
+            "attr_sim": 0.326
+          },
+          {
+            "ref": "text label",
+            "cand": "button",
+            "attr_sim": 0.272
+          },
+          {
+            "ref": "text label",
+            "cand": "button",
+            "attr_sim": 0.162
+          },
+          {
+            "ref": "text label",
+            "cand": "button",
+            "attr_sim": 0.229
+          },
+          {
+            "ref": "text label",
+            "cand": "button",
+            "attr_sim": 0.304
+          },
+          {
+            "ref": "text label",
+            "cand": "button",
+            "attr_sim": 0.261
+          },
+          {
+            "ref": "text label",
+            "cand": "button",
+            "attr_sim": 0.347
+          },
+          {
+            "ref": "text label",
+            "cand": "button",
+            "attr_sim": 0.214
+          },
+          {
+            "ref": "button",
+            "cand": "button",
+            "attr_sim": 0.459
+          }
+        ]
+      },
+      "layout": {
+        "score": 0.4104,
+        "mean_center_dist": 0.2064,
+        "pairs": 13
+      },
+      "text": {
+        "score": 0.8609
+      },
+      "scene": {
+        "score": 0.5577
+      }
+    },
+    "weights": {
+      "palette": 0.25,
+      "objects": 0.3,
+      "layout": 0.2,
+      "text": 0.15,
+      "scene": 0.1
+    }
+  }
+}
