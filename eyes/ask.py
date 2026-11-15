@@ -62,7 +62,8 @@ def evidence_pack(image, question: str | None = None) -> dict:
              "description": o.get("description")}
             for o in rec.get("objects", [])
         ],
-        "text": [{"string": t.get("string"), "score": t.get("score")}
+        "text": [{"string": t.get("string"), "score": t.get("score"),
+                  "bbox": t.get("bbox")}
                  for t in rec.get("text", [])],
         "findings": {
             "objects_at_edge": lay.get("objects_at_edge"),
