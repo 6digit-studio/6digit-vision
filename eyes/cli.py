@@ -51,6 +51,26 @@ def cmd_score(args) -> int:
     return 0
 
 
+def cmd_grid(args) -> int:
+    from . import color
+
+    cells = color.grid_stats(args.image, cols=args.cols)
+    if args.json:
+        print(json.dumps(cells, indent=1))
+        return 0
+    # ANSI truecolor map: bg = dominant cell color; ' ' = flat, '.' = textured
+    hi_std = args.hi_std
+    for row in cells:
+        line = []
+        for c in row:
+            r, g, b = c["mean"]
+            mark = " " if c["std"] < hi_std else "."
+            line.append(f"\x1b[48;2;{r};{g};{b}m{mark}\x1b[0m")
+        print("".join(line))
+    print(f"({args.cols}x{len(cells)} cells; '.' = std>{hi_std} textured)")
+    return 0
+
+
 def cmd_structure(args) -> int:
     from . import mirage, structure
 
@@ -249,6 +269,14 @@ def main(argv: list[str] | None = None) -> int:
     p.add_argument("b")
     p.add_argument("--json", action="store_true")
     p.set_defaults(fn=cmd_pixdiff)
+
+    p = sub.add_parser("grid", help="sample colors on a uniform grid (ANSI map / JSON)")
+    p.add_argument("image")
+    p.add_argument("--cols", type=int, default=16)
+    p.add_argument("--hi-std", type=float, default=30.0,
+                   help="stddev threshold marking textured (imagery) cells")
+    p.add_argument("--json", action="store_true")
+    p.set_defaults(fn=cmd_grid)
 
     p = sub.add_parser("structure", help="induce rows/columns/grids from OCR layout")
     p.add_argument("image")

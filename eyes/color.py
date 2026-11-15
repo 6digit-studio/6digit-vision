@@ -69,6 +69,51 @@ def mean_rgb(image, bbox_norm: list[float]) -> list[int] | None:
     return [sum(p[0] for p in px) // n, sum(p[1] for p in px) // n, sum(p[2] for p in px) // n]
 
 
+def grid_stats(image, cols: int = 16) -> list[list[dict]]:
+    """Sample the image on a uniform cols x rows grid.
+
+    Each cell reports mean RGB, the dominant 5-bit-quantized color, and
+    per-channel stddev — stddev is the texture signal: flat UI chrome
+    scores ~0, photographic/gradient content scores high. This is the
+    spatial complement to palette(): where palette() says WHAT colors
+    dominate globally, grid_stats() says WHERE they live.
+    """
+    img = _open(image)
+    w, h = img.size
+    rows = max(1, round(cols * h / w / 2))  # ~2:1 cells, terminal-friendly
+    cw, ch = w / cols, h / rows
+    cells = []
+    for ry in range(rows):
+        row = []
+        for rx in range(cols):
+            box = (
+                round(rx * cw), round(ry * ch),
+                round((rx + 1) * cw), round((ry + 1) * ch),
+            )
+            crop = img.crop(box)
+            px = list(crop.getdata())
+            n = len(px)
+            if not n:
+                row.append({"hex": "#000000", "mean": [0, 0, 0], "std": 0.0})
+                continue
+            means = [sum(p[c] for p in px) / n for c in range(3)]
+            var = sum(
+                sum((p[c] - means[c]) ** 2 for p in px) / n for c in range(3)
+            ) / 3
+            counts: dict[tuple[int, int, int], int] = {}
+            for p in px:
+                key = tuple(((v >> 3) << 3) | 4 for v in p)
+                counts[key] = counts.get(key, 0) + 1
+            dom = max(counts.items(), key=lambda kv: kv[1])[0]
+            row.append({
+                "hex": "#%02x%02x%02x" % dom,
+                "mean": [round(m) for m in means],
+                "std": round(var ** 0.5, 1),
+            })
+        cells.append(row)
+    return cells
+
+
 def object_color_stats(image, record: dict) -> list[dict]:
     """Attach measured mean RGB to each object in a compact record."""
     img = _open(image)
