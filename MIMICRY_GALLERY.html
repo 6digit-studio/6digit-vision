@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>6digit-vision — mimicry gallery</title>
+<style>
+  :root { --bg:#0d1117; --panel:#161b22; --border:#30363d; --fg:#e6edf3; --dim:#8b949e; --accent:#58a6ff; }
+  * { box-sizing:border-box; }
+  body { background:var(--bg); color:var(--fg); font:14px/1.5 -apple-system,"SF Mono",Menlo,monospace; margin:0; padding:32px; }
+  h1 { font-size:20px; margin:0 0 4px; }
+  .sub { color:var(--dim); margin-bottom:32px; }
+  .run { background:var(--panel); border:1px solid var(--border); border-radius:8px; padding:20px; margin-bottom:28px; }
+  .run h2 { font-size:15px; margin:0 0 2px; }
+  .run .meta { color:var(--dim); font-size:12px; margin-bottom:14px; }
+  .pair { display:flex; gap:16px; flex-wrap:wrap; }
+  .pair figure { margin:0; flex:1; min-width:280px; }
+  .pair img { width:100%; border:1px solid var(--border); border-radius:6px; display:block; background:#000; }
+  figcaption { color:var(--dim); font-size:11px; margin-top:6px; text-transform:uppercase; letter-spacing:.05em; }
+  .scores { display:flex; gap:6px; align-items:flex-end; height:48px; margin:14px 0 4px; }
+  .score { flex:1; background:var(--accent); border-radius:3px 3px 0 0; min-height:4px; position:relative; opacity:.85; }
+  .score span { position:absolute; bottom:-18px; left:0; right:0; text-align:center; font-size:10px; color:var(--dim); }
+  .traj { color:var(--dim); font-size:12px; margin-top:22px; }
+  .verdict { color:var(--dim); font-size:12px; border-left:3px solid var(--border); padding-left:12px; margin-top:12px; white-space:pre-wrap; }
+  .strip { display:flex; gap:8px; overflow-x:auto; padding-bottom:8px; }
+  .strip figure { margin:0; flex:0 0 auto; width:180px; }
+  .strip img { width:100%; border:1px solid var(--border); border-radius:4px; }
+</style>
+</head>
+<body>
+<h1>Mimicry gallery — screenshot → HTML/CSS → instrument → iterate</h1>
+<div class="sub">6digit-vision · agent-driven reproduction loop · references vs final candidates · scores from trace.jsonl</div>
+
+<div class="run">
+  <h2>ui1 — GitHub login page</h2>
+  <div class="meta">CONVERGED · 11 iterations · 59.2 → 65.1 · semantic floor: Mirage jitter on near-identical renders</div>
+  <div class="pair">
+    <figure><img src="evals/web-real/corpus/github_com_login.png"><figcaption>reference (real capture)</figcaption></figure>
+    <figure><img src="loop_runs/ui1/candidate.png"><figcaption>candidate — final HTML/CSS render</figcaption></figure>
+  </div>
+  <div class="scores" id="s-ui1"></div>
+  <div class="traj">trajectory: 59.2 → 63.9 → 63.9 → 60.2 → 60.2 → 65.1 → 60.6 → 65.1 → 65.1 → 65.1 → 65.1</div>
+  <div class="verdict">CONVERGES on structure: palette .91 (dark theme reproduced), layout .044→.42, text .66→.86, scene stable. STALLS honestly on Mirage noise floor: objects oscillates .35–.52 across near-identical renders — edit signal below detector jitter; OCR misreads ('Slgn In') below CSS reach. Verdict: instrument noise, not loop mechanics.</div>
+</div>
+
+<div class="run">
+  <h2>ui2 — calendar widget (Christmas Day view)</h2>
+  <div class="meta">PARTIAL · 3 iterations · 21.9 → 28.3 · dense-grid semantic floor ~0.1 + unmodelable chrome</div>
+  <div class="pair">
+    <figure><img src="Screenshot 2026-11-15 at 03.00.39.png"><figcaption>reference (Lars's screenshot)</figcaption></figure>
+    <figure><img src="loop_runs/ui2/candidate.png"><figcaption>candidate — final HTML/CSS render</figcaption></figure>
+  </div>
+  <div class="scores" id="s-ui2"></div>
+  <div class="traj">trajectory: 21.9 → 24.3 → 28.3</div>
+  <div class="verdict">Semantic matcher hits its floor on dense grids — pixdiff carries truth. objects+layout floor ~0.1: Mirage cannot parse 7×5 tiny day cells — detections collapse to noise. text .78→.92 + palette respond honestly to real edits; pixdiff .49 carries pixel truth where semantics are blind.</div>
+</div>
+
+<div class="run">
+  <h2>ui3 — calendar widget (New Year's Eve week view)</h2>
+  <div class="meta">PARTIAL · 7 iterations · 21.8 → 23.5 · same family floor; pixdiff localizes blind chrome</div>
+  <div class="pair">
+    <figure><img src="Screenshot 2026-11-15 at 03.00.47.png"><figcaption>reference (Lars's screenshot)</figcaption></figure>
+    <figure><img src="loop_runs/ui3/candidate.png"><figcaption>candidate — final HTML/CSS render</figcaption></figure>
+  </div>
+  <div class="scores" id="s-ui3"></div>
+  <div class="traj">trajectory: 21.8 → 23.9 → 23.6 → 23.8 → 23.8 → 23.8 → 23.5</div>
+  <div class="verdict">Family floor confirmed twice — pixdiff names the blind region. pixdiff regions LOCALIZE the blindness: a 16.7%-of-frame bbox covering the top chrome/sidebar = unmodelable graphical content (OCR gives positions, not appearance). Palette verified responsive (0→.29 on real color fix); text .96. Ceiling: CSS fidelity bounded by photographic content, not instrument blindness.</div>
+</div>
+
+<div class="run">
+  <h2>demo1 — parametric PIL candidates (earlier match_loop)</h2>
+  <div class="meta">reference vs 7 programmatic edits · 75.1 → 99.5 · proves loop mechanics on synthetic ground</div>
+  <div class="pair">
+    <figure><img src="loop_runs/demo1/reference.png"><figcaption>reference</figcaption></figure>
+    <figure><img src="loop_runs/demo1/cand_06.png"><figcaption>final candidate (iter 6)</figcaption></figure>
+  </div>
+  <div class="strip" id="demo1-strip"></div>
+  <div class="traj">per-iteration candidates below — cand_00 → cand_06</div>
+</div>
+
+<script>
+const runs = {
+  'ui1': [59.2,63.9,63.9,60.2,60.2,65.1,60.6,65.1,65.1,65.1,65.1],
+  'ui2': [21.9,24.3,28.3],
+  'ui3': [21.8,23.9,23.6,23.8,23.8,23.8,23.5]
+};
+for (const [k, arr] of Object.entries(runs)) {
+  const el = document.getElementById('s-'+k);
+  const max = Math.max(...arr);
+  arr.forEach((v,i) => {
+    const d = document.createElement('div');
+    d.className='score'; d.style.height = Math.max(6, v/max*100)+'%';
+    d.innerHTML = `<span>${v.toFixed(0)}</span>`;
+    el.appendChild(d);
+  });
+}
+const strip = document.getElementById('demo1-strip');
+for (let i=0;i<=6;i++) {
+  const f=document.createElement('figure');
+  f.innerHTML=`<img src="loop_runs/demo1/cand_0${i}.png"><figcaption>iter ${i}</figcaption>`;
+  strip.appendChild(f);
+}
+</script>
+</body>
+</html>

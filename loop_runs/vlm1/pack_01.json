@@ -1,0 +1,1628 @@
+{
+  "scene": {
+    "background": "black",
+    "style": "minimalist"
+  },
+  "objects": [
+    {
+      "name": "black rectangle",
+      "position": "center",
+      "score": 0.411,
+      "description": {
+        "color": "black",
+        "shape": "rectangular"
+      }
+    }
+  ],
+  "text": [],
+  "findings": {
+    "objects_at_edge": [
+      {
+        "name": "black rectangle",
+        "sides": [
+          "left",
+          "top",
+          "right",
+          "bottom"
+        ],
+        "bbox": [
+          4,
+          0,
+          995,
+          1000
+        ],
+        "score": 0.411,
+        "suspect": true
+      }
+    ],
+    "bbox_overlaps": [],
+    "text_edge_flush": [],
+    "legibility_flagged": []
+  },
+  "detectors": {
+    "status_icons": {
+      "image": "loop_runs/vlm1/candidate.png",
+      "size": [
+        1200,
+        800
+      ],
+      "candidates": 1,
+      "regions": [
+        {
+          "object_id": 1,
+          "name": "black rectangle",
+          "mirage_score": 0.411,
+          "position": "center",
+          "bbox_px": [
+            5,
+            0,
+            1194,
+            800
+          ],
+          "container_hex": "#081818",
+          "container_hue": "black",
+          "glyph": "solid",
+          "glyph_px": 0
+        }
+      ],
+      "status_icons": {}
+    },
+    "hue_census": {
+      "image": "loop_runs/vlm1/candidate.png",
+      "size": [
+        1200,
+        800
+      ],
+      "saturated_px": 0,
+      "saturated_pct_of_image": 0.0,
+      "mask": {
+        "s_min": 0.35,
+        "v_min": 0.35,
+        "bin_deg": 15.0
+      },
+      "thresholds": {
+        "min_family_share": 0.01,
+        "rel_to_dominant": 0.1
+      },
+      "families": [],
+      "significant_families": 0,
+      "verdict": "insufficient_chroma",
+      "notes": [
+        "only 0 saturated px (< 256); census unreliable \u2014 image is effectively grayscale"
+      ]
+    },
+    "lexical_screen": {
+      "sources": [
+        "dict:words",
+        "dict:connectives"
+      ],
+      "flagged": [],
+      "frag_bands": []
+    },
+    "anisotropy": {
+      "image": "loop_runs/vlm1/candidate.png",
+      "size": [
+        1200,
+        800
+      ],
+      "thresholds": {
+        "ink_dist": 22.0,
+        "erode_iters": 2,
+        "min_cluster_members": 4,
+        "log_aspect_min": 0.15,
+        "glyph_w_over_h_band": [
+          0.35,
+          0.75
+        ]
+      },
+      "blobs": {
+        "surfaces": {
+          "page_bg": "#0d1117",
+          "card": "#0d1117"
+        },
+        "ink_px": 0,
+        "cores": 0,
+        "candidates": 0,
+        "blobs": [],
+        "round_witnesses": 0,
+        "cluster": null,
+        "cluster_members": []
+      },
+      "glyphs": {
+        "ink_px": 0,
+        "lum_threshold": 200.0,
+        "n_lines": 0,
+        "median_glyph_w_over_h": null,
+        "population_median": null,
+        "notes": [
+          "dark background (border luminance <128); glyph census assumes dark-on-light \u2014 skipped"
+        ]
+      },
+      "glyph_lines": [],
+      "verdict": "insufficient_witnesses",
+      "notes": [
+        "dark background (border luminance <128); glyph census assumes dark-on-light \u2014 skipped"
+      ]
+    },
+    "totals_consistency": {
+      "image": "loop_runs/vlm1/candidate.png",
+      "verdict": "no_currency_amounts",
+      "n_text_records": 0,
+      "n_amount_rows": 0,
+      "rows": [],
+      "findings": [],
+      "checks": [],
+      "notes": []
+    },
+    "edge_census": {
+      "params": {
+        "floor": 3.0,
+        "min_n": 2,
+        "xgap": 30.0,
+        "ygap": 25.0,
+        "row_min": 40.0,
+        "col_min": 40.0,
+        "row_same": 8.0,
+        "col_same": 8.0,
+        "width_guard": 15.0
+      },
+      "text_records": 0,
+      "repeated_strings": 0,
+      "clusters_audited": 0,
+      "audit": [],
+      "findings": [],
+      "verdict": "CLEAN"
+    },
+    "pixel_edge_drift": {
+      "image_size": [
+        1200,
+        800
+      ],
+      "bg": [
+        13.0,
+        17.0,
+        23.0
+      ],
+      "bands": [],
+      "intervals": 0,
+      "params": {
+        "bg_dist": 30,
+        "surf_dist": 30,
+        "min_band_h": 8,
+        "min_col_ink": 3,
+        "merge_gap": 8,
+        "xcluster": 12,
+        "width_max": 25.0,
+        "min_bands": 3,
+        "floor_px": 3.0
+      },
+      "audit": [],
+      "findings": [],
+      "verdict": "CLEAN"
+    },
+    "luminance_theme": {
+      "image": "loop_runs/vlm1/candidate.png",
+      "size": [
+        1200,
+        800
+      ],
+      "bg_luminance": 0.065,
+      "theme": "dark",
+      "island_frac": 0.0,
+      "coherent_bands": 0,
+      "band_rows": 0,
+      "verdict": "single_luminance_theme",
+      "notes": [
+        "island frac 0.0% / coherent rows 0 below floors"
+      ]
+    },
+    "nonuniform_scale": {
+      "image": "loop_runs/vlm1/candidate.png",
+      "size": [
+        1200,
+        800
+      ],
+      "text_bands": [],
+      "n_bands": 0,
+      "population_median_w_over_h": null,
+      "verdict": "insufficient_witnesses",
+      "notes": [
+        "no qualifying text bands"
+      ]
+    }
+  },
+  "question": "what differs from the reference UI?",
+  "instruction": "Answer the question using ONLY the evidence above. Report facts you can cite; say 'insufficient evidence' rather than guessing.",
+  "element_diff": {
+    "object_changes": [
+      {
+        "element": "text label",
+        "bbox": [
+          4,
+          0,
+          995,
+          1000
+        ],
+        "deltas": {
+          "renamed": {
+            "ref": "text label",
+            "cand": "black rectangle"
+          }
+        }
+      }
+    ],
+    "objects_added": [],
+    "objects_removed": [
+      {
+        "name": "logo",
+        "bbox": [
+          480,
+          62,
+          520,
+          113
+        ]
+      },
+      {
+        "name": "text label",
+        "bbox": [
+          438,
+          138,
+          559,
+          167
+        ]
+      },
+      {
+        "name": "text label",
+        "bbox": [
+          359,
+          204,
+          506,
+          230
+        ]
+      },
+      {
+        "name": "text label",
+        "bbox": [
+          353,
+          309,
+          408,
+          335
+        ]
+      },
+      {
+        "name": "text label",
+        "bbox": [
+          353,
+          273,
+          644,
+          340
+        ]
+      },
+      {
+        "name": "text label",
+        "bbox": [
+          547,
+          308,
+          645,
+          332
+        ]
+      },
+      {
+        "name": "text label",
+        "bbox": [
+          478,
+          412,
+          520,
+          446
+        ]
+      },
+      {
+        "name": "text label",
+        "bbox": [
+          190,
+          955,
+          226,
+          983
+        ]
+      },
+      {
+        "name": "text label",
+        "bbox": [
+          246,
+          956,
+          282,
+          983
+        ]
+      },
+      {
+        "name": "text label",
+        "bbox": [
+          305,
+          956,
+          338,
+          982
+        ]
+      },
+      {
+        "name": "text label",
+        "bbox": [
+          362,
+          955,
+          474,
+          979
+        ]
+      },
+      {
+        "name": "text label",
+        "bbox": [
+          507,
+          956,
+          584,
+          980
+        ]
+      },
+      {
+        "name": "text label",
+        "bbox": [
+          624,
+          955,
+          798,
+          980
+        ]
+      },
+      {
+        "name": "button",
+        "bbox": [
+          351,
+          289,
+          648,
+          415
+        ]
+      },
+      {
+        "name": "software interface",
+        "bbox": [
+          624,
+          955,
+          798,
+          980
+        ]
+      }
+    ],
+    "text_changes": [
+      {
+        "type": "text_removed",
+        "ref": "Sign in to GitHub",
+        "bbox": [
+          433,
+          136,
+          565,
+          169
+        ]
+      },
+      {
+        "type": "text_removed",
+        "ref": "Username or email address",
+        "bbox": [
+          354,
+          204,
+          509,
+          228
+        ]
+      },
+      {
+        "type": "text_removed",
+        "ref": "Password",
+        "bbox": [
+          350,
+          304,
+          411,
+          329
+        ]
+      },
+      {
+        "type": "text_removed",
+        "ref": "Forgot password?",
+        "bbox": [
+          546,
+          305,
+          646,
+          329
+        ]
+      },
+      {
+        "type": "text_removed",
+        "ref": "Sign in",
+        "bbox": [
+          478,
+          415,
+          522,
+          443
+        ]
+      },
+      {
+        "type": "text_removed",
+        "ref": "New to GitHub? Create an account",
+        "bbox": [
+          407,
+          491,
+          599,
+          516
+        ]
+      },
+      {
+        "type": "text_removed",
+        "ref": "Terms",
+        "bbox": [
+          190,
+          956,
+          225,
+          980
+        ]
+      },
+      {
+        "type": "text_removed",
+        "ref": "Privacy",
+        "bbox": [
+          245,
+          956,
+          283,
+          980
+        ]
+      },
+      {
+        "type": "text_removed",
+        "ref": "Docs",
+        "bbox": [
+          305,
+          956,
+          337,
+          980
+        ]
+      },
+      {
+        "type": "text_removed",
+        "ref": "Contact GitHub Support",
+        "bbox": [
+          358,
+          952,
+          477,
+          979
+        ]
+      },
+      {
+        "type": "text_removed",
+        "ref": "Manage cookies",
+        "bbox": [
+          505,
+          954,
+          586,
+          979
+        ]
+      },
+      {
+        "type": "text_removed",
+        "ref": "Do not share my personal information",
+        "bbox": [
+          619,
+          954,
+          801,
+          981
+        ]
+      }
+    ],
+    "counts": {
+      "ref_objects": 16,
+      "cand_objects": 1,
+      "ref_text": 12,
+      "cand_text": 0
+    }
+  },
+  "score": {
+    "score": 24.8,
+    "components": {
+      "palette": {
+        "score": 0.8793
+      },
+      "objects": {
+        "score": 0.041,
+        "matched": 1,
+        "missing": [
+          "logo",
+          "text label",
+          "text label",
+          "text label",
+          "text label",
+          "text label",
+          "text label",
+          "text label",
+          "text label",
+          "text label",
+          "text label",
+          "text label",
+          "text label",
+          "button",
+          "software interface"
+        ],
+        "extra": [],
+        "attr_sim": 0.3487,
+        "attr_changes": [
+          {
+            "ref": "text label",
+            "cand": "black rectangle",
+            "attr_sim": 0.349
+          }
+        ]
+      },
+      "layout": {
+        "score": 0.0,
+        "mean_center_dist": 0.9378,
+        "pairs": 1
+      },
+      "text": {
+        "score": 0.0
+      },
+      "scene": {
+        "score": 0.16
+      }
+    },
+    "weights": {
+      "palette": 0.25,
+      "objects": 0.3,
+      "layout": 0.2,
+      "text": 0.15,
+      "scene": 0.1
+    }
+  },
+  "pixdiff": {
+    "score": 0.8627,
+    "ssim_mean": 0.9305,
+    "mismatch_frac": 0.02987,
+    "n_regions": 12,
+    "regions": [
+      {
+        "bbox_px": [
+          226,
+          172,
+          414,
+          194
+        ],
+        "area_px": 4128,
+        "area_frac": 0.01514
+      },
+      {
+        "bbox_px": [
+          226,
+          99,
+          414,
+          121
+        ],
+        "area_px": 816,
+        "area_frac": 0.00299
+      },
+      {
+        "bbox_px": [
+          308,
+          25,
+          332,
+          49
+        ],
+        "area_px": 294,
+        "area_frac": 0.00108
+      },
+      {
+        "bbox_px": [
+          327,
+          61,
+          361,
+          70
+        ],
+        "area_px": 211,
+        "area_frac": 0.00077
+      },
+      {
+        "bbox_px": [
+          226,
+          89,
+          263,
+          95
+        ],
+        "area_px": 167,
+        "area_frac": 0.00061
+      },
+      {
+        "bbox_px": [
+          377,
+          132,
+          414,
+          139
+        ],
+        "area_px": 156,
+        "area_frac": 0.00057
+      },
+      {
+        "bbox_px": [
+          226,
+          132,
+          261,
+          138
+        ],
+        "area_px": 154,
+        "area_frac": 0.00056
+      },
+      {
+        "bbox_px": [
+          279,
+          61,
+          301,
+          72
+        ],
+        "area_px": 145,
+        "area_frac": 0.00053
+      },
+      {
+        "bbox_px": [
+          478,
+          409,
+          512,
+          415
+        ],
+        "area_px": 140,
+        "area_frac": 0.00051
+      },
+      {
+        "bbox_px": [
+          295,
+          89,
+          324,
+          95
+        ],
+        "area_px": 137,
+        "area_frac": 0.0005
+      },
+      {
+        "bbox_px": [
+          287,
+          211,
+          311,
+          218
+        ],
+        "area_px": 112,
+        "area_frac": 0.00041
+      },
+      {
+        "bbox_px": [
+          352,
+          212,
+          380,
+          218
+        ],
+        "area_px": 110,
+        "area_frac": 0.0004
+      }
+    ],
+    "size": [
+      640,
+      426
+    ],
+    "notes": [],
+    "heat": [
+      [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.178,
+        0.178,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.189,
+        0.208,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.008,
+        0.289,
+        0.189,
+        0.238,
+        0.255,
+        0.013,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.003,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.21,
+        0.276,
+        0.241,
+        0.27,
+        0.299,
+        0.132,
+        0.094,
+        0.094,
+        0.094,
+        0.079,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.131,
+        0.082,
+        0.082,
+        0.082,
+        0.082,
+        0.082,
+        0.082,
+        0.082,
+        0.082,
+        0.107,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.132,
+        0.191,
+        0.012,
+        0.0,
+        0.0,
+        0.0,
+        0.055,
+        0.15,
+        0.155,
+        0.102,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.018,
+        0.012,
+        0.012,
+        0.012,
+        0.012,
+        0.012,
+        0.012,
+        0.012,
+        0.012,
+        0.018,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.166,
+        0.245,
+        0.245,
+        0.245,
+        0.245,
+        0.245,
+        0.245,
+        0.245,
+        0.245,
+        0.166,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.594,
+        0.862,
+        0.862,
+        0.862,
+        0.879,
+        0.875,
+        0.862,
+        0.862,
+        0.862,
+        0.594,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.014,
+        0.022,
+        0.025,
+        0.01,
+        0.004,
+        0.007,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.141,
+        0.126,
+        0.121,
+        0.151,
+        0.13,
+        0.141,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.045,
+        0.045,
+        0.045,
+        0.045,
+        0.045,
+        0.045,
+        0.045,
+        0.045,
+        0.045,
+        0.045,
+        0.045,
+        0.045,
+        0.045,
+        0.045,
+        0.045,
+        0.045,
+        0.045,
+        0.045,
+        0.045,
+        0.045,
+        0.045,
+        0.045,
+        0.045,
+        0.045,
+        0.045,
+        0.045,
+        0.045,
+        0.045,
+        0.045,
+        0.045,
+        0.045,
+        0.045
+      ],
+      [
+        0.094,
+        0.094,
+        0.094,
+        0.094,
+        0.094,
+        0.094,
+        0.169,
+        0.11,
+        0.188,
+        0.11,
+        0.155,
+        0.139,
+        0.182,
+        0.188,
+        0.198,
+        0.107,
+        0.174,
+        0.188,
+        0.163,
+        0.099,
+        0.179,
+        0.178,
+        0.186,
+        0.182,
+        0.191,
+        0.155,
+        0.094,
+        0.094,
+        0.094,
+        0.094,
+        0.094,
+        0.094
+      ]
+    ]
+  },
+  "fdiff": {
+    "score": 0.8202,
+    "regions": [
+      {
+        "bbox_px": [
+          407,
+          32,
+          805,
+          421
+        ],
+        "area_px": 77956,
+        "area_frac": 0.0812,
+        "mean_diff": 0.0726
+      },
+      {
+        "bbox_px": [
+          745,
+          768,
+          981,
+          798
+        ],
+        "area_px": 6597,
+        "area_frac": 0.00687,
+        "mean_diff": 0.0759
+      },
+      {
+        "bbox_px": [
+          428,
+          768,
+          582,
+          798
+        ],
+        "area_px": 4358,
+        "area_frac": 0.00454,
+        "mean_diff": 0.0769
+      },
+      {
+        "bbox_px": [
+          605,
+          768,
+          717,
+          798
+        ],
+        "area_px": 3065,
+        "area_frac": 0.00319,
+        "mean_diff": 0.0755
+      },
+      {
+        "bbox_px": [
+          292,
+          768,
+          351,
+          798
+        ],
+        "area_px": 1546,
+        "area_frac": 0.00161,
+        "mean_diff": 0.0682
+      },
+      {
+        "bbox_px": [
+          227,
+          768,
+          275,
+          798
+        ],
+        "area_px": 1282,
+        "area_frac": 0.00134,
+        "mean_diff": 0.0676
+      },
+      {
+        "bbox_px": [
+          365,
+          768,
+          414,
+          798
+        ],
+        "area_px": 1249,
+        "area_frac": 0.0013,
+        "mean_diff": 0.0643
+      }
+    ],
+    "notes": [
+      "global_align_px=[0, 0]",
+      "levels=6",
+      "level_mean_diff=[0.01547, 0.01543, 0.01537, 0.01525, 0.01499, 0.0141]",
+      "soft_energy=0.01115 changed_frac=0.07524"
+    ],
+    "n_regions": 7,
+    "align_shift_px": [
+      0,
+      0
+    ],
+    "size": [
+      1200,
+      800
+    ]
+  },
+  "region_map": {
+    "error": "No module named 'playwright'"
+  }
+}
