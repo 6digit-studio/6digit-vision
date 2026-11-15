@@ -108,6 +108,29 @@ def main() -> int:
         if fd_regs:
             pack["fdiff_region_map"] = rm.map_regions(
                 str(ref), str(cand_png), els, regions=fd_regs)
+        # gloss: unmatched regions get VLM reproduction descriptions —
+        # the chrome ceiling now has a describer (15-crop eval: ~14
+        # CAUGHT). Lazy: only fires when VLM server is up.
+        try:
+            from eyes import gloss as _gl
+            gloss_out = []
+            seen_boxes = set()
+            for section in ("region_map", "fdiff_region_map"):
+                for m in (pack.get(section) or {}).get("regions") or []:
+                    if not str(m.get("verdict", "")).startswith(
+                            ("unmatched", "mostly")):
+                        continue
+                    key = tuple(m["region_px"])
+                    if key in seen_boxes:
+                        continue
+                    seen_boxes.add(key)
+                    g = _gl.gloss(str(ref), m["region_px"], timeout=180)
+                    gloss_out.append({"region_px": m["region_px"],
+                                      "verdict": m["verdict"], **g})
+            if gloss_out:
+                pack["gloss"] = gloss_out
+        except Exception as e:
+            pack["gloss"] = {"error": str(e)[:120]}
     except Exception as e:
         pack["region_map"] = {"error": str(e)[:120]}
 
