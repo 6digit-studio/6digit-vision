@@ -243,3 +243,10 @@ This entry exists to be fixed against: the glyph-aspect and
 shape-fidelity checks above are demonstrated, model-free, and would
 flip instrument-alone to CAUGHT — the signature is sitting in the
 pixels the whole time.
+
+## Re-run 2026-11-15 (integrated instrument) — CAUGHT (attribution layer)
+
+`detectors/anisotropy-census` is now wired into `eyes ask` packs.
+Defect pack reports `anisotropic_squash` (blob cluster ~1.79, glyph
+w/h ~0.32) — the attribution `score` could not provide (letterbox
+probe scored lower than the defect). Instrument-alone MISS -> CAUGHT.

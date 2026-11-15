@@ -185,3 +185,10 @@ Also worth queuing: emit the palette symmetric difference
 (colors present in one top-N, absent in the other, with fractions) and
 diff `object_color_stats.mean_hex` for matched pairs — both use data
 the record already carries but currently discards.
+
+## Re-run 2026-11-15 (integrated instrument) — detector-backed CAUGHT
+
+`detectors/hue-census` is wired into `eyes ask` packs: state-b reports
+`accent_hue_split` (violet + blue families) zero-reference. The hue
+signal that `score` could not attribute now arrives as a named fact.
+PARTIAL -> detector-backed.

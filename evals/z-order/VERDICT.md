@@ -228,3 +228,19 @@ it. The corrupted string is the single fact that reaches the ask pack,
 and it arrives without the geometry needed to read it. This entry
 exists to be fixed against: the mid-bbox edge-bisection check (#1) is
 deterministic, cheap, and would have named the slice on the first run.
+
+## Re-run 2026-11-15 (integrated instrument) — CAUGHT (sliced half)
+
+`detectors/edge-bisect` is now wired into `eyes layout --describe`.
+Defect case reports:
+
+```
+edge bisects (edge_bisect):
+  'n..Eaakn'  horizontal line=239 cov=1.0 ink_dist=3px
+```
+
+The corrupted OCR string is named with its slice line — the exact
+y=237/239 card-edge bisection. Honest scope stands: catches the
+sliced-item half only; 'Archive'/'Delete' absence still needs
+pairwise/temporal context. Instrument-alone MISS -> CAUGHT (partial
+scope).

@@ -228,3 +228,10 @@ contains non-word OCR output a text model rejects instantly, with the
 control pack proving the same regions read clean. This entry exists to
 be fixed against: a lexical-validity screen or OCR-fragmentation
 detector should flip instrument-alone to CAUGHT without any model call.
+
+## Re-run 2026-11-15 (integrated instrument) — CAUGHT (detector-backed)
+
+`detectors/lexical-screen` is now wired into `eyes ask` packs.
+Defect pack reports 2 `non_lexical_text` flags ('delvered wechly',
+'NE WSPRINGCOLLECTIoN') plus OOV tokens — the hostile regions are
+named without a reasoning call. Instrument-alone PARTIAL -> CAUGHT.

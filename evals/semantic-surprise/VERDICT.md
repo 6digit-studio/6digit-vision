@@ -200,3 +200,11 @@ scores 97.4 with a perfect object match. This entry exists to be fixed
 against: a glyph-classification pass over detected icon regions should
 flip instrument+reasoning to CAUGHT — the contradiction is then a
 one-line reasoning call on facts the record actually contains.
+
+## Re-run 2026-11-15 (integrated instrument) — detector-backed CAUGHT
+
+`detectors/glyph-classifier` is wired into `eyes ask` packs:
+`status_icons` now carries the emblem classification (check on defect,
+x on control). The decisive fact that never reached the record now
+arrives in every pack — "check + Payment failed" is a one-line
+reasoning call. Instrument-alone MISS -> detector-backed.
