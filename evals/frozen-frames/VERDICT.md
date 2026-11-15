@@ -93,3 +93,18 @@ surfaces it at full signal strength: the frozen pair is the lone
 coherence. No detector names it — consistent with the instrument's
 facts-not-verdicts contract — but nothing needed to catch this was
 missing from the output.
+
+## Re-run 2026-11-15 — CAUGHT, upgraded
+
+`reel` now emits an explicit `static` flag per pair (changed_pct < 0.001)
+plus a `static_pairs` summary. The frozen pair is now a named fact:
+
+```
+frame_02.png -> frame_03.png: changed 0.0%  mean|d| 0.0  STATIC
+static pairs: [['frame_02.png', 'frame_03.png']]
+```
+
+The end-hold ambiguity stands (a legitimate final hold produces the
+same signature) — position in sequence remains the reasoning layer's
+call. What changed: the fact is now named rather than requiring the
+reader to notice a bare 0.0%.

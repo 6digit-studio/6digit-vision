@@ -160,6 +160,10 @@ def reel_report(inputs: list[str], *, with_records: bool = True,
         if with_records:
             pair["labels"] = label_stability(records[i], records[i + 1])
             pair["ocr"] = ocr_overlap(records[i], records[i + 1])
+        # static-pair fact: near-zero pixel change. Mid-sequence static is
+        # the freeze signature; first/last holds are legitimate — the
+        # reasoning layer judges position, the instrument reports the fact.
+        pair["static"] = pair["pixel"]["changed_pct"] < 0.001
         pairs.append(pair)
 
     return {
@@ -167,4 +171,5 @@ def reel_report(inputs: list[str], *, with_records: bool = True,
         "with_records": with_records,
         "frames_detail": frames,
         "pairs": pairs,
+        "static_pairs": [p["pair"] for p in pairs if p.get("static")],
     }

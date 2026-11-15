@@ -109,3 +109,22 @@ and the instrument walked past it on every surface:
 Re-run target: a `text_at_edge`-style detector over `record["text"]`
 bboxes against detected region/card boundaries should flip this to
 CAUGHT — the bbox evidence is already in the record today.
+
+## Re-run 2026-11-15 — still MISS, root cause found
+
+`text_edge_flush` + `interior_edge_lines` added: detects text bboxes
+landing flush against strong interior gradient lines (container
+boundaries). On the defect image it found **zero vertical edge lines** —
+the `overflow:hidden` clip boundary is pixel-invisible (no border, same
+background). There is no geometric edge to flush against.
+
+Remaining signatures, honestly assessed:
+- mid-glyph ink cutoff at the text bbox's right edge — needs
+  component-level CV (is the last glyph component sliced?), beyond v0
+  bbox geometry
+- OCR string ending in a word fragment ("Rep") — a lexical heuristic,
+  weak alone since abbreviations exist; possible future signal
+
+MISS stands. This defect class needs either glyph/component analysis or
+a language prior — recorded so the next instrument iteration knows
+where the wall actually is.

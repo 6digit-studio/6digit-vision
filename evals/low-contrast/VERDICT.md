@@ -135,3 +135,21 @@ ignored it, layout saw nothing, and the pairwise score called the defect
 against: a local-contrast detector over detected text bboxes (glyph
 pixels vs surround, not bbox mean) or an OCR-confidence floor should
 flip this to CAUGHT.
+
+## Re-run 2026-11-15 — CAUGHT (after legibility detector)
+
+`eyes/legibility.py` added: per-text-region WCAG-style contrast
+(2nd/98th percentile inside bbox) + OCR-confidence floor, surfaced in
+`eyes layout --describe` under `legibility flags`.
+
+Defect case now reports the planted footer fine print verbatim:
+
+```
+'and may differ. Delivery times shown in UTC. See'  contrast 1.18  low_contrast
+'Prices are estimates. Final amount is calculated' contrast 1.18  low_contrast + low_ocr_confidence
+'details and refund policy before confirming your' contrast 1.18  low_contrast
+```
+
+Also flags 'ORDER SUMMARY' (2.11) and 'View details' (2.46) — secondary
+low-contrast elements in the same card; plausible true positives, noted
+for the walk to judge. MISS → CAUGHT.

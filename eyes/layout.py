@@ -19,7 +19,7 @@ from pathlib import Path
 
 from PIL import Image
 
-from .color import _open, palette
+from .color import _open, denorm, palette
 
 _MAX_DIM = 256
 
@@ -164,6 +164,94 @@ def bbox_overlaps(record: dict, iou_thresh: float = 0.15,
     return pairs
 
 
+def interior_edge_lines(image, min_strength: float = 30.0,
+                        min_gap: int = 10, max_lines: int = 30) -> dict:
+    """Strong vertical/horizontal gradient lines inside the frame —
+    candidate container boundaries (card edges, dividers, clip lines).
+
+    Column/row mean-abs-diff profiles, peaks above min_strength picked
+    with min_gap suppression. Returns pixel positions on the _prep'd
+    (<=256px) canvas plus the canvas size for denorm'ing back.
+    """
+    img = _prep(image).convert("L")
+    w, h = img.size
+    px = img.load()
+
+    def profile(axis):
+        # axis 'v': per-column score = mean |px[x,y]-px[x-1,y]|
+        n = w if axis == "v" else h
+        scores = [0.0] * n
+        step = 2
+        count = max(1, (h if axis == "v" else w) // step)
+        for i in range(1, n):
+            s = 0
+            for j in range(0, h if axis == "v" else w, step):
+                if axis == "v":
+                    s += abs(px[i, j] - px[i - 1, j])
+                else:
+                    s += abs(px[j, i] - px[j, i - 1])
+            scores[i] = s / count
+        return scores
+
+    def peaks(scores):
+        idx = [i for i in range(1, len(scores) - 1)
+               if scores[i] >= scores[i - 1] and scores[i] >= scores[i + 1]
+               and scores[i] >= min_strength]
+        idx.sort(key=lambda i: -scores[i])
+        chosen = []
+        for i in idx:
+            if all(abs(i - c) >= min_gap for c in chosen):
+                chosen.append(i)
+            if len(chosen) >= max_lines:
+                break
+        return sorted(chosen)
+
+    return {
+        "vertical": peaks(profile("v")),
+        "horizontal": peaks(profile("h")),
+        "size": [w, h],
+    }
+
+
+def text_edge_flush(image, record: dict, tol_px: int = 8,
+                    min_strength: float = 30.0) -> list[dict]:
+    """Text regions whose bbox edge lands flush against an interior edge
+    line — the signature of text clipped at a container boundary
+    (overflow:hidden), as opposed to frame-edge clipping.
+
+    Reports facts: string, which side is flush, the line position.
+    """
+    lines = interior_edge_lines(image, min_strength=min_strength)
+    vw, vh = lines["size"]
+    vlines, hlines = lines["vertical"], lines["horizontal"]
+    img_w = _open(image).width
+    img_h = _open(image).height
+    # scale factor between _prep canvas and original pixels
+    sx, sy = img_w / vw, img_h / vh
+    findings = []
+    for t in record.get("text", []):
+        if "bbox" not in t:
+            continue
+        x0, y0, x1, y1 = denorm(t["bbox"], img_w, img_h)
+        hits = []
+        for lx in vlines:
+            lxp = lx * sx
+            if abs(x1 - lxp) <= tol_px:
+                hits.append({"side": "right", "line_x": round(lxp)})
+            if abs(x0 - lxp) <= tol_px:
+                hits.append({"side": "left", "line_x": round(lxp)})
+        for ly in hlines:
+            lyp = ly * sy
+            if abs(y1 - lyp) <= tol_px:
+                hits.append({"side": "bottom", "line_y": round(lyp)})
+            if abs(y0 - lyp) <= tol_px:
+                hits.append({"side": "top", "line_y": round(lyp)})
+        if hits:
+            findings.append({"string": (t.get("string") or "")[:48],
+                             "bbox": t["bbox"], "flush": hits})
+    return findings
+
+
 def layout_report(image, record: dict | None = None,
                   tol: int = 64) -> dict:
     """Combined layout facts for one image."""
@@ -171,4 +259,7 @@ def layout_report(image, record: dict | None = None,
     if record is not None:
         report["objects_at_edge"] = objects_at_edge(record)
         report["bbox_overlaps"] = bbox_overlaps(record)
+        report["text_edge_flush"] = text_edge_flush(image, record)
+        from .legibility import text_legibility
+        report["legibility"] = text_legibility(image, record)
     return report

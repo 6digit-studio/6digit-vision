@@ -67,6 +67,13 @@ def cmd_layout(args) -> int:
         print("\nbbox overlaps:")
         for o in report["bbox_overlaps"] or ["  (none)"]:
             print(f"  {o}")
+        print("\ntext flush at interior edge:")
+        for o in report.get("text_edge_flush") or ["  (none)"]:
+            print(f"  {o}")
+        flagged = [l for l in report.get("legibility", []) if l["flags"]]
+        print("\nlegibility flags:")
+        for l in flagged or ["  (none)"]:
+            print(f"  {l}")
     return 0
 
 
@@ -80,12 +87,15 @@ def cmd_reel(args) -> int:
     print(f"{report['frames']} frames, records={'on' if report['with_records'] else 'off'}\n")
     for pair in report["pairs"]:
         px = pair["pixel"]
+        static = "  STATIC" if pair.get("static") else ""
         line = (f"{pair['pair'][0]} -> {pair['pair'][1]}: "
                 f"changed {px['changed_pct'] * 100:.1f}%  "
-                f"mean|d| {px['mean_abs_diff']}")
+                f"mean|d| {px['mean_abs_diff']}{static}")
         if "labels" in pair:
             line += f"  labels {pair['labels']['score']:.2f}  ocr {pair['ocr']['score']:.2f}"
         print(line)
+    if report.get("static_pairs"):
+        print(f"\nstatic pairs: {report['static_pairs']}")
     return 0
 
 
