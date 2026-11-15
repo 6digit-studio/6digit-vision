@@ -143,6 +143,41 @@ the consuming text model. Two cases live there:
 - **Single-channel dropouts** degrade to `solo_departure`; elements
   Mirage never names are invisible to record-layer detectors.
 
+
+## The real-backend arc — synthetic art was the easy half
+
+Everything above was calibrated on PIL-drawn evals. The `evals/web-real/`
+corpus tests the same detectors on uncontrolled real content: headless
+Chrome captures of live sites (example.com, Wikipedia, MDN, BBC, GitHub,
+HN), dark-mode emulation, print stylesheets, canvas raster, and scroll
+sequences. What real content taught that synthetic art couldn't:
+
+- **`luminance-theme`** — hue drift has a sibling: luminance drift.
+  Dark theme + coherent light islands (web-theme-drift defect: 5.2%
+  opposite-luminance in 78 rows) fires `luminance_theme_split`.
+  BBC's dark masthead fires too — intentional vs drifted is a
+  reasoning call, documented boundary.
+- **`content-overflow`** — viewport clipping. Aggressive clip (480px
+  fixed-width) fires via same-edge row clusters; at 768px defect and
+  control converge to identical edge structure — a MEASURED hard
+  boundary, not a tuning gap.
+- **`nonuniform-scale`** — CSS scaleX(1.35) on canvas: glyph w/h
+  median 0.90 vs 0.65 control. The Omni/Metal witness pattern:
+  non-DOM raster needs pixel priors, not DOM semantics. Single-band
+  evidence = review-flag tier by design.
+- **Reel scroll-awareness** — `estimate_vshift` + `scroll_persistence`
+  separate "new content scrolled in" from detector churn on real
+  captures (verified ~300px steps, persistent_frac ~0.5).
+
+## Detector catalog state
+
+12 verified detectors + integrated layout/legibility/reel surfaces.
+Every documented real-content FP class is either gated at spec level
+(lexical prefix-noise, hue balance, pixel-edge chrome margin,
+edge-bisect underline guard, anisotropy merged-band guard) or proven
+unfixable-by-threshold with mechanism named (anisotropy tiny-glyph
+geometry, content-overflow moderate clip). 19 eval entries; 30 tests.
+
 ## The loop that built this
 
 `challenges/EYES_EVAL_CHALLENGE.md` generates defect cases →
