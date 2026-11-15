@@ -1,0 +1,442 @@
+{
+  "image": "repro/news_ycombinator_com/toolkit-a1/candidate.png",
+  "questions": [
+    {
+      "id": "background",
+      "question": "What kind of background?",
+      "answer": "mixed/textured; dominant #f4f4ec (86%)",
+      "probe": "grid+palette",
+      "confidence": "measured"
+    },
+    {
+      "id": "glow",
+      "question": "Is there a glow/gradient accent?",
+      "answer": "bright region near cell (0,0) mean_rgb=[244, 244, 236]",
+      "probe": "grid",
+      "confidence": "measured"
+    },
+    {
+      "id": "text_inventory",
+      "question": "What text is present?",
+      "answer": {
+        "count": 25,
+        "strings": [
+          "YNews",
+          "jobs submit",
+          "(spacex.com)",
+          "L. Spacex catches the Starship to end Flght 15",
+          ".284 points by dang 2 hours ago | hide | past | favonite | 94",
+          "2. Show HN: Gawain -Require type hints on all",
+          "Lovable apps expose passport details ang",
+          "187 points by sama 7 hours ago | hide I past | fav",
+          "142 points by jacquesm 1 day ago I hide I past | favor",
+          "How did Woz write the Apple 1 BASIC before",
+          "7pmments",
+          "building_the computer?",
+          ".231 points by tptacek 3 hours ago | hide | past | favorite",
+          "58 points by bo",
+          "DOM deltas and submit guards for MCP",
+          "132 Comment:",
+          "· Wetre Asking an Appeals COurt to Require ",
+          "118 comments",
+          "356 points by patio11 12 hours ago",
+          "The Evolving Story of How Chemistry Became",
+          "356 points by patio11 12 hours ago | hide I past | favonit",
+          "amily tree of software job titles",
+          "98 points by danso 6 hours ago | hide | past | favorite | 3",
+          "524 points by throwatape 2 days ago | hide I past | fav",
+          "Nvidia deliberately kept GPU prices high"
+        ]
+      },
+      "probe": "describe+structure",
+      "confidence": "measured"
+    },
+    {
+      "id": "layout_family",
+      "question": "What layout family?",
+      "answer": "unstructured (19 rows x 3 cols detected)",
+      "probe": "structure",
+      "confidence": "measured"
+    },
+    {
+      "id": "alignment",
+      "question": "How are text blocks aligned?",
+      "answer": [
+        {
+          "y": 60,
+          "alignment": "left",
+          "text": "YNews jobs submit"
+        },
+        {
+          "y": 114,
+          "alignment": "left",
+          "text": "(spacex.com) L. Spacex catches the Stars"
+        },
+        {
+          "y": 142,
+          "alignment": "left",
+          "text": "(spacex.com) .284 points by dang 2 hours"
+        },
+        {
+          "y": 190,
+          "alignment": "left",
+          "text": "2. Show HN: Gawain -Require type hints o"
+        },
+        {
+          "y": 278,
+          "alignment": "left",
+          "text": "Lovable apps expose passport details ang"
+        },
+        {
+          "y": 336,
+          "alignment": "left",
+          "text": "187 points by sama 7 hours ago | hide I "
+        },
+        {
+          "y": 404,
+          "alignment": "left",
+          "text": "142 points by jacquesm 1 day ago I hide "
+        },
+        {
+          "y": 459,
+          "alignment": "left",
+          "text": "How did Woz write the Apple 1 BASIC befo"
+        },
+        {
+          "y": 513,
+          "alignment": "left",
+          "text": "7pmments .231 points by tptacek 3 hours "
+        },
+        {
+          "y": 576,
+          "alignment": "left",
+          "text": "DOM deltas and submit guards for MCP"
+        },
+        {
+          "y": 620,
+          "alignment": "left",
+          "text": "58 points by bo"
+        },
+        {
+          "y": 667,
+          "alignment": "left",
+          "text": "· Wetre Asking an Appeals COurt to Requi"
+        },
+        {
+          "y": 711,
+          "alignment": "left",
+          "text": "132 Comment:"
+        },
+        {
+          "y": 748,
+          "alignment": "left",
+          "text": "The Evolving Story of How Chemistry Beca"
+        },
+        {
+          "y": 790,
+          "alignment": "left",
+          "text": "118 comments 356 points by patio11 12 ho"
+        },
+        {
+          "y": 833,
+          "alignment": "left",
+          "text": "amily tree of software job titles"
+        },
+        {
+          "y": 872,
+          "alignment": "left",
+          "text": "98 points by danso 6 hours ago | hide | "
+        },
+        {
+          "y": 918,
+          "alignment": "left",
+          "text": "Nvidia deliberately kept GPU prices high"
+        },
+        {
+          "y": 960,
+          "alignment": "left",
+          "text": "524 points by throwatape 2 days ago | hi"
+        }
+      ],
+      "probe": "structure+bboxes",
+      "confidence": "measured"
+    },
+    {
+      "id": "selection_state",
+      "question": "Is anything selected/highlighted?",
+      "answer": {
+        "blobs": [
+          {
+            "bbox_px": [
+              240,
+              140,
+              300,
+              40
+            ],
+            "centroid_px": [
+              390,
+              160
+            ],
+            "mean_rgb": [
+              66,
+              66,
+              237
+            ],
+            "fill": 0.17,
+            "shape": "ring-ish"
+          },
+          {
+            "bbox_px": [
+              240,
+              440,
+              300,
+              40
+            ],
+            "centroid_px": [
+              390,
+              460
+            ],
+            "mean_rgb": [
+              64,
+              64,
+              237
+            ],
+            "fill": 0.239,
+            "shape": "ring-ish"
+          },
+          {
+            "bbox_px": [
+              240,
+              520,
+              270,
+              40
+            ],
+            "centroid_px": [
+              375,
+              540
+            ],
+            "mean_rgb": [
+              66,
+              66,
+              237
+            ],
+            "fill": 0.217,
+            "shape": "ring-ish"
+          },
+          {
+            "bbox_px": [
+              240,
+              720,
+              210,
+              40
+            ],
+            "centroid_px": [
+              345,
+              740
+            ],
+            "mean_rgb": [
+              67,
+              67,
+              237
+            ],
+            "fill": 0.263,
+            "shape": "ring-ish"
+          },
+          {
+            "bbox_px": [
+              240,
+              80,
+              300,
+              20
+            ],
+            "centroid_px": [
+              390,
+              90
+            ],
+            "mean_rgb": [
+              64,
+              64,
+              237
+            ],
+            "fill": 0.246,
+            "shape": "ring-ish"
+          },
+          {
+            "bbox_px": [
+              240,
+              220,
+              270,
+              20
+            ],
+            "centroid_px": [
+              375,
+              230
+            ],
+            "mean_rgb": [
+              69,
+              69,
+              237
+            ],
+            "fill": 0.359,
+            "shape": "ring-ish"
+          },
+          {
+            "bbox_px": [
+              240,
+              300,
+              240,
+              20
+            ],
+            "centroid_px": [
+              360,
+              310
+            ],
+            "mean_rgb": [
+              67,
+              67,
+              237
+            ],
+            "fill": 0.253,
+            "shape": "ring-ish"
+          },
+          {
+            "bbox_px": [
+              300,
+              20,
+              120,
+              40
+            ],
+            "centroid_px": [
+              360,
+              40
+            ],
+            "mean_rgb": [
+              252,
+              147,
+              75
+            ],
+            "fill": 0.285,
+            "shape": "ring-ish"
+          },
+          {
+            "bbox_px": [
+              240,
+              660,
+              210,
+              20
+            ],
+            "centroid_px": [
+              345,
+              670
+            ],
+            "mean_rgb": [
+              67,
+              67,
+              237
+            ],
+            "fill": 0.26,
+            "shape": "ring-ish"
+          },
+          {
+            "bbox_px": [
+              240,
+              360,
+              180,
+              20
+            ],
+            "centroid_px": [
+              330,
+              370
+            ],
+            "mean_rgb": [
+              69,
+              69,
+              237
+            ],
+            "fill": 0.322,
+            "shape": "ring-ish"
+          },
+          {
+            "bbox_px": [
+              450,
+              360,
+              60,
+              20
+            ],
+            "centroid_px": [
+              480,
+              370
+            ],
+            "mean_rgb": [
+              52,
+              52,
+              237
+            ],
+            "fill": 0.176,
+            "shape": "ring-ish"
+          },
+          {
+            "bbox_px": [
+              240,
+              600,
+              60,
+              20
+            ],
+            "centroid_px": [
+              270,
+              610
+            ],
+            "mean_rgb": [
+              64,
+              64,
+              237
+            ],
+            "fill": 0.302,
+            "shape": "ring-ish",
+            "zoomed_label": "412"
+          },
+          {
+            "bbox_px": [
+              450,
+              600,
+              30,
+              20
+            ],
+            "centroid_px": [
+              465,
+              610
+            ],
+            "mean_rgb": [
+              55,
+              55,
+              237
+            ],
+            "fill": 0.155,
+            "shape": "ring-ish"
+          },
+          {
+            "bbox_px": [
+              510,
+              600,
+              30,
+              20
+            ],
+            "centroid_px": [
+              525,
+              610
+            ],
+            "mean_rgb": [
+              50,
+              50,
+              237
+            ],
+            "fill": 0.157,
+            "shape": "ring-ish"
+          }
+        ]
+      },
+      "probe": "accent-census+zoom",
+      "confidence": "measured"
+    }
+  ]
+}

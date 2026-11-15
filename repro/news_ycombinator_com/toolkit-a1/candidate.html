@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body {
+    width:1200px; height:800px;
+    background:#f4f4ec;
+    font-family:Verdana,Geneva,sans-serif;
+    font-size:10pt; color:#000;
+  }
+  .wrap { width:340px; margin:14px 0 0 205px; }
+  .topbar { display:flex; align-items:center; gap:6px; margin-bottom:14px; }
+  .logo {
+    width:18px; height:18px; background:#ff6600; color:#fff;
+    font-weight:bold; font-size:11pt; display:flex;
+    align-items:center; justify-content:center; border-radius:2px;
+  }
+  .sitename { font-weight:bold; font-size:10pt; }
+  .nav a { color:#ff6600; text-decoration:none; margin-right:8px; font-size:10pt; }
+  .nav { margin-left:10px; }
+  .story { display:flex; gap:6px; margin-bottom:5px; }
+  .rank { color:#828282; width:22px; text-align:right; flex:none; }
+  .main { flex:1; }
+  .titleline { font-size:10pt; }
+  .title a { color:#ff6600; text-decoration:none; }
+  .domain { color:#828282; font-size:8pt; }
+  .subtext { color:#828282; font-size:7pt; margin:2px 0 8px 28px; }
+  .subtext a { color:#828282; text-decoration:none; }
+  .morelink { margin:6px 0 20px 28px; }
+  .morelink a { color:#ff6600; font-size:8pt; text-decoration:none; }
+  .footer { border-top:1px solid #ddd; margin-top:10px; padding-top:8px;
+            font-size:8pt; color:#828282; }
+  .footer a { color:#828282; text-decoration:none; margin-right:10px; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="topbar">
+    <div class="logo">Y</div>
+    <span class="sitename">Hacker News</span>
+    <span class="nav">
+      <a href="#">new</a><a href="#">threads</a><a href="#">past</a>
+      <a href="#">comments</a><a href="#">ask</a><a href="#">show</a>
+      <a href="#">jobs</a><a href="#">submit</a>
+    </span>
+  </div>
+  <div id="stories"></div>
+  <div class="morelink"><a href="#">More</a></div>
+  <div class="footer">
+    <a href="#">Guidelines</a><a href="#">FAQ</a><a href="#">Lists</a>
+    <a href="#">API</a><a href="#">Security</a><a href="#">Legal</a>
+    <a href="#">Apply to YC</a><a href="#">Contact</a>
+  </div>
+</div>
+<script>
+const S = [
+ ["SpaceX catches the Starship to end Flight 15","spacex.com",284],
+ ["Show HN: Gawain – Require type hints on all Python variables","github.com/matheuzgomes",96],
+ ["Lovable apps expose passport details and more than 200K private messages","erissyrield.de",187],
+ ["Kiri – The Modern Container Runtime","",142],
+ ["How did Woz write the Apple 1 BASIC before building the computer?","retrocomputing.stackexchange.com",231],
+ ["Show HN: Turbo-Browser-MCP – Batch forms, DOM deltas and submit guards for MCP","github.com/tthanh2k6",58],
+ ["We're Asking an Appeals Court to Require a Warrant for ALPR Searches","eff.org",412],
+ ["The Evolving Story of How Chemistry Became Biology","quantamagazine.org",356],
+ ["A family tree of software job titles","zwischenzugs.com",98],
+ ["Nvidia deliberately kept GPU prices high through circular financing deals","techspot.com",524],
+ ["PyPI's redesigned project pages with clearer security signals are now live","pypi.org",301],
+ ["One Man's Quest to Create the Perfect Whiskey Glass","nytimes.com",189],
+ ["US loses measles-free status: Pan American Health Organization","paho.org",267],
+ ["Astro Spiral: Greatest Car Stunt Was Also First Computer-Modeled Stunt","boldengineer.com",145],
+ ["Why get an expensive Pi when I have an old phone?","thanks.fish",88],
+ ["Oxford Molecular Motors","ox.ac.uk",203],
+ ["Show HN: DeepSeek V3 in 200 lines of pure Jax","github.com/vaibhaav-tiwari",76],
+ ["My favourite modern NES games","",134],
+ ["'Grey Rocking': The Life-Improving Power of Being Really, Really Boring","esquire.com",171],
+];
+const el = document.getElementById('stories');
+S.forEach(([t,d,p],i)=>{
+  const div=document.createElement('div'); div.className='story';
+  div.innerHTML=`<span class="rank">${i+1}.</span><span class="main">
+    <div class="titleline"><a href="#">${t}</a>${d?` <span class="domain">(${d})</span>`:''}</div>
+    <div class="subtext">${p} points by ${['dang','pg','sama','jacquesm',"tptacek","bookofjoe","antirez","patio11","danso","throwatape","mike_hearn","jacquesm","vifyz","todsacerdoti","SignaL","mamcx","tptacek"][i%18]} ${["2 hours","4 hours","7 hours","1 day","3 hours","5 hours","9 hours","12 hours","6 hours","2 days","8 hours","1 hour","4 days","11 hours","3 days","6 hours","14 hours","5 hours","2 days"][i%19]} ago | <a href="#">hide</a> | <a href="#">past</a> | <a href="#">favorite</a> | <a href="#">${Math.floor(p/3)} comments</a></div>
+  </span>`;
+  el.appendChild(div);
+});
+</script>
+</body>
+</html>

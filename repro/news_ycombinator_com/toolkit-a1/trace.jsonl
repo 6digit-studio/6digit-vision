@@ -1,0 +1,2 @@
+{"iter": 0, "score": 48.4, "note": "first build: centered 620px column — layout 0.0, positions all wrong", "pixdiff": 0.3332}
+{"iter": 1, "score": 63.2, "note": "repositioned to measured geometry: left 205px width 340px (ref text x 233-477) — layout 0.0->97.5", "pixdiff": 0.3863}

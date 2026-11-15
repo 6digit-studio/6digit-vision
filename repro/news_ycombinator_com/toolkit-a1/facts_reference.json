@@ -1,0 +1,206 @@
+{
+  "image": "evals/web-real/corpus/news_ycombinator_com.png",
+  "questions": [
+    {
+      "id": "background",
+      "question": "What kind of background?",
+      "answer": "mixed/textured; dominant #f4f4ec (51%)",
+      "probe": "grid+palette",
+      "confidence": "measured"
+    },
+    {
+      "id": "glow",
+      "question": "Is there a glow/gradient accent?",
+      "answer": "bright region near cell (0,0) mean_rgb=[255, 255, 255]",
+      "probe": "grid",
+      "confidence": "measured"
+    },
+    {
+      "id": "text_inventory",
+      "question": "What text is present?",
+      "answer": {
+        "count": 32,
+        "strings": [
+          "1.ASpacex catches the Starship to end Flight 15 (spacex.com",
+          "3. AShow HN: Gawain - Require type hints",
+          "ALovable apps expose passport details and more than 200K private messages (erissyrield.de)",
+          "3.AShow HN: Gawain - Require type hints on all Python variables (oithub.com/matheuzgomes)",
+          "5.A Kiri - The Modern Container Runtime (rur",
+          "4. A How did Woz write the Apple 1 BASIC before",
+          "4. AHow did Woz write the Apple 1 BASIC before building the computer? (retrocomputing.stackexchange.",
+          "AShow HN: Turbo-Browser-MCP-",
+          "AShow HN: Turbo-Browser-MCP - Batch forms, DOM deltas and submit guards for MCP (oithub.com/tthanh2k6)",
+          ".A We're Asking an Appeals Court to",
+          "9.A The Evolving Story of How Chemistry Be",
+          "A We're Asking an Appeals Court to Require a Warrant for ALPR Searches (eff.or",
+          "A The Evolving Story of How Chemistry Became Biology (quantamagazine.org)",
+          "10.AA family tree of software job titles (ewische",
+          "11. ANvidia deliberately kept GPU prices high th",
+          "0. AA family tree of software job titles (zwischenzugs.com)",
+          "A Nvidia deliberately kept GPU prices high through circular financing deals (techsp",
+          "4. APyPI's redesigned project pages with cle",
+          "3. AKDE: The documentary [video] (kocketoo.",
+          "APyPr's redesigned project pages with clearer security signals are now live (pypi",
+          "5. A One Man's Quest to Create the Perfect Whiskey Glass (nytimes.com)",
+          "16. AUs loses measles-free status: Pan American Health Organization (2025) (paho.or",
+          "18. AAstro Spiral: Greatest Car Stunt Was Als",
+          "7.AWhy get an expensive Pi when I have an",
+          "8. A Astro Spiral: Greatest Car Stunt Was Also First Computer-Modeled Stunt (bolde",
+          "17. A Why get an expensive Pi when I have an old phone? (thanks .fish)",
+          "0. AOxford Molecular Motors (ox.ac.uk)",
+          "9.AShow HN: DeepSeek V3 in 200 I",
+          "AShow HN: DeepSeek V3 inZ00 lines of pure Jax (github.com/vaibhaav-tiwarl)",
+          "1.AMy favourite modern NES games",
+          "2.A'Grey Rocking': The Life-Improving",
+          "A'Grey Rocking': The Life-Improving Power of Being Really, Really Boring (2021) (esquire.cor"
+        ]
+      },
+      "probe": "describe+structure",
+      "confidence": "measured"
+    },
+    {
+      "id": "layout_family",
+      "question": "What layout family?",
+      "answer": "unstructured (20 rows x 6 cols detected)",
+      "probe": "structure",
+      "confidence": "measured"
+    },
+    {
+      "id": "alignment",
+      "question": "How are text blocks aligned?",
+      "answer": [
+        {
+          "y": 64,
+          "alignment": "left",
+          "text": "1.ASpacex catches the Starship to end Fl"
+        },
+        {
+          "y": 108,
+          "alignment": "left",
+          "text": "ALovable apps expose passport details an"
+        },
+        {
+          "y": 151,
+          "alignment": "left",
+          "text": "3. AShow HN: Gawain - Require type hints"
+        },
+        {
+          "y": 195,
+          "alignment": "left",
+          "text": "4. A How did Woz write the Apple 1 BASIC"
+        },
+        {
+          "y": 238,
+          "alignment": "left",
+          "text": "5.A Kiri - The Modern Container Runtime "
+        },
+        {
+          "y": 325,
+          "alignment": "left",
+          "text": "AShow HN: Turbo-Browser-MCP- AShow HN: T"
+        },
+        {
+          "y": 370,
+          "alignment": "left",
+          "text": ".A We're Asking an Appeals Court to A We"
+        },
+        {
+          "y": 414,
+          "alignment": "left",
+          "text": "9.A The Evolving Story of How Chemistry "
+        },
+        {
+          "y": 458,
+          "alignment": "left",
+          "text": "10.AA family tree of software job titles"
+        },
+        {
+          "y": 502,
+          "alignment": "left",
+          "text": "11. ANvidia deliberately kept GPU prices"
+        },
+        {
+          "y": 588,
+          "alignment": "left",
+          "text": "3. AKDE: The documentary [video] (kocket"
+        },
+        {
+          "y": 633,
+          "alignment": "left",
+          "text": "4. APyPI's redesigned project pages with"
+        },
+        {
+          "y": 676,
+          "alignment": "left",
+          "text": "5. A One Man's Quest to Create the Perfe"
+        },
+        {
+          "y": 719,
+          "alignment": "left",
+          "text": "16. AUs loses measles-free status: Pan A"
+        },
+        {
+          "y": 763,
+          "alignment": "left",
+          "text": "7.AWhy get an expensive Pi when I have a"
+        },
+        {
+          "y": 806,
+          "alignment": "left",
+          "text": "18. AAstro Spiral: Greatest Car Stunt Wa"
+        },
+        {
+          "y": 851,
+          "alignment": "left",
+          "text": "9.AShow HN: DeepSeek V3 in 200 I AShow H"
+        },
+        {
+          "y": 894,
+          "alignment": "left",
+          "text": "0. AOxford Molecular Motors (ox.ac.uk)"
+        },
+        {
+          "y": 938,
+          "alignment": "left",
+          "text": "1.AMy favourite modern NES games"
+        },
+        {
+          "y": 982,
+          "alignment": "left",
+          "text": "2.A'Grey Rocking': The Life-Improving A'"
+        }
+      ],
+      "probe": "structure+bboxes",
+      "confidence": "measured"
+    },
+    {
+      "id": "selection_state",
+      "question": "Is anything selected/highlighted?",
+      "answer": {
+        "blobs": [
+          {
+            "bbox_px": [
+              90,
+              0,
+              1020,
+              40
+            ],
+            "centroid_px": [
+              600,
+              20
+            ],
+            "mean_rgb": [
+              250,
+              100,
+              0
+            ],
+            "fill": 0.562,
+            "shape": "ring-ish"
+          }
+        ]
+      },
+      "probe": "accent-census+zoom",
+      "confidence": "measured"
+    }
+  ]
+}
