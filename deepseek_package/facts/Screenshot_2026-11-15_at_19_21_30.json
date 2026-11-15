@@ -1,0 +1,101 @@
+{
+  "image": "testcases/Screenshot 2026-11-15 at 19.21.30.png",
+  "questions": [
+    {
+      "id": "background",
+      "question": "What kind of background?",
+      "answer": "mixed/textured; dominant #040404 (47%)",
+      "probe": "grid+palette",
+      "confidence": "measured"
+    },
+    {
+      "id": "glow",
+      "question": "Is there a glow/gradient accent?",
+      "answer": "none detected",
+      "probe": "grid",
+      "confidence": "measured"
+    },
+    {
+      "id": "text_inventory",
+      "question": "What text is present?",
+      "answer": {
+        "count": 12,
+        "strings": [
+          "San",
+          "San Francisco",
+          "Edmonton",
+          "SFO",
+          "YEG",
+          "9:59",
+          "9:59 PM",
+          "Arrives",
+          "20m",
+          "12:59",
+          "12:59 AM",
+          "AM"
+        ]
+      },
+      "probe": "describe+structure",
+      "confidence": "measured"
+    },
+    {
+      "id": "layout_family",
+      "question": "What layout family?",
+      "answer": "unstructured (3 rows x 19 cols detected)",
+      "probe": "structure",
+      "confidence": "measured"
+    },
+    {
+      "id": "alignment",
+      "question": "How are text blocks aligned?",
+      "answer": [
+        {
+          "y": 306,
+          "alignment": "wide",
+          "text": "San San Francisco Edmonton"
+        },
+        {
+          "y": 504,
+          "alignment": "wide",
+          "text": "SFO YEG"
+        },
+        {
+          "y": 672,
+          "alignment": "wide",
+          "text": "9:59 9:59 PM Arrives 20m 12:59 12:59 AM "
+        }
+      ],
+      "probe": "structure+bboxes",
+      "confidence": "measured"
+    },
+    {
+      "id": "selection_state",
+      "question": "Is anything selected/highlighted?",
+      "answer": {
+        "blobs": [
+          {
+            "bbox_px": [
+              110,
+              70,
+              160,
+              16
+            ],
+            "centroid_px": [
+              190,
+              78
+            ],
+            "mean_rgb": [
+              106,
+              193,
+              197
+            ],
+            "fill": 0.766,
+            "shape": "disc-ish"
+          }
+        ]
+      },
+      "probe": "accent-census+zoom",
+      "confidence": "measured"
+    }
+  ]
+}
