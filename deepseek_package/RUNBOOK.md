@@ -2,15 +2,17 @@
 
 ## If you can run shell commands on this machine
 
-The full `eyes` toolkit lives at `/Users/larsde/src/6digit-vision`:
+`eyes` is installed globally (symlinked to the repo venv, works from
+any directory as this user):
 
 ```
-cd /Users/larsde/src/6digit-vision
-.venv/bin/python -m eyes.cli interrogate <image> --json   # fact sheet
-.venv/bin/python -m eyes.cli score <ref> <candidate.png>  # 0-100 similarity
-.venv/bin/python -m eyes.cli pixdiff <ref> <candidate.png>
-.venv/bin/python -m eyes.cli zoom <image> --bbox x,y,w,h --analyze describe
+eyes interrogate <image> --json   # fact sheet
+eyes score <ref> <candidate.png>  # 0-100 similarity
+eyes pixdiff <ref> <candidate.png>
+eyes zoom <image> --bbox x,y,w,h --analyze describe
 ```
+
+Source repo (for reading implementation): `/Users/larsde/src/6digit-vision`
 
 With-eyes arm becomes a measured loop: render -> score -> pixdiff ->
 zoom the hottest diff region -> targeted edit -> repeat. Record every
