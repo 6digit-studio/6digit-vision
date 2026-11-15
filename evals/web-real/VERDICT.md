@@ -102,3 +102,30 @@ The slice signature (edge through glyph mid-section) and underline
 vs ink-band check, queued not built. Everything else held: the
 linear-light legibility fix survived uncontrolled real text, and the
 edge-object suspect flags on Wikipedia are true facts about real UI.
+
+## Update 4 — corpus expansion: 4 layout families (docs/media/form/dense-links)
+
+Captured: MDN docs, BBC News, GitHub login, HN front page — all
+headless Chrome, uncontrolled real content.
+
+**Floors that held:** 0 low_contrast across all four (legibility
+linear-light fix survives dense real text); edge_bisect clean
+everywhere (underline guard holds at scale); suspects modest and
+plausible (1-6, real edge controls).
+
+**Honest residual FPs/limitations, quantified:**
+- `pixel_edge_drift` fired on MDN — chrome-margin exclusion added
+  (EDGE_MARGIN=1% kills scrollbar/right-edge intervals) but interior
+  sparse-band clusters (n_bands=3, the floor) on complex pages still
+  flag. Weak-evidence class documented, not threshold-fished.
+- `lexical_screen` flagged 23 strings on HN — systematic OCR prefix
+  noise (vote triangles misread as 'A': 'AShow HN:...', 'ASpacex...').
+  Lossy-OCR non-words at scale, documented limitation confirmed.
+- `anisotropy` glyph_anisotropy on HN — dense small text produces
+  out-of-band w/h stats; witness-quality gate is the queued fix.
+- `hue_census` accent_hue_split on GitHub login — legitimate
+  multi-accent UI; measures families not intent (documented caveat).
+
+Corpus verdict: floors hold on layout-simple real pages; complex pages
+produce documented weak-evidence flags, not silent failures. Omni/Metal
+framebuffer path: PARKED (needs physical access — BLOCKED-marked).

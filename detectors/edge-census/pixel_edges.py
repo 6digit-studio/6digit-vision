@@ -65,6 +65,9 @@ MERGE_GAP = 8     # px; closer x-intervals within a band are one element
 XCLUSTER = 12     # px; linkage gap for clustering intervals across bands
 MIN_BANDS = 3     # clusters must span at least this many row bands
 FLOOR_PX = 3.0    # flag threshold on anchored-edge and center spread
+EDGE_MARGIN = 0.01  # fraction of width; intervals this close to the
+                    # frame edge are browser chrome (scrollbar, margin),
+                    # not drifting layout — real-corpus FP fix
 WIDTH_MAX = 25.0  # px; max interval-width spread — rejects prose columns.
                  # Measured: pill/avatar/dots columns <= ~15px; every
                  # false positive on non-grid evals had width spread
@@ -140,6 +143,10 @@ def census(img: np.ndarray, floor_px: float = FLOOR_PX,
         for x0, x1 in band_intervals(ink):
             intervals.append({"band": bi, "y": (y0, y1),
                               "x0": x0, "x1": x1})
+
+    edge_px = max(8, int(w * EDGE_MARGIN))
+    intervals = [it for it in intervals
+                 if it["x0"] > edge_px and it["x1"] < w - edge_px]
 
     # cluster intervals across bands by left edge
     xs = sorted(intervals, key=lambda it: it["x0"])
