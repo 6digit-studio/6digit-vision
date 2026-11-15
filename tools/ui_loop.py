@@ -83,6 +83,20 @@ def main() -> int:
     pd_res = _pd.pixdiff(str(ref), str(cand_png), max_dim=640)
     pack["pixdiff"] = {k: v for k, v in pd_res.items() if k != "heat"}
     pack["pixdiff"]["heat"] = pd_res["heat"]
+    # region->element mapping: pixdiff WHERE -> DOM WHICH (earned by
+    # the ui3 payoff test — mechanism verified at element level)
+    try:
+        import importlib.util
+        spec = importlib.util.spec_from_file_location(
+            "region_map", Path(__file__).parent / "region_map.py")
+        rm = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(rm)
+        from PIL import Image as _I
+        vw, vh = _I.open(str(cand_png)).size
+        els = rm.dump_elements(html, vw, vh)
+        pack["region_map"] = rm.map_regions(str(ref), str(cand_png), els)
+    except Exception as e:
+        pack["region_map"] = {"error": str(e)[:120]}
 
     trace = run / "trace.jsonl"
     it = args.iter
