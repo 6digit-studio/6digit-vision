@@ -214,3 +214,28 @@ HN FP persists via small-text geometry — documented limitation,
 needs min-cap-height witness gate calibrated on measured data, not
 threshold fishing. aspect-abuse defect still fires anisotropic_squash,
 control isotropic — no regression.
+
+## Update — min-cap-height calibration: NO SEPARATION EXISTS (measured)
+
+Commissioned to find a cap-height gate for the HN glyph_anisotropy FP.
+Measured band_ink_h + population w/h distributions:
+
+| image | band_h min/med | pop w/h | verdict |
+|-------|---------------|---------|---------|
+| HN (dense small text) | 9 / 27 | 0.278 | glyph_anisotropy (FP) |
+| aspect-abuse defect | 10 / 24 | 0.309 | anisotropic_squash (TP) |
+| aspect-abuse control | 7 / 16 | 0.587 | isotropic |
+
+band_h ranges overlap completely (HN min 9 vs defect min 10; HN median
+27 > defect 24). w/h populations: HN 0.278 vs defect 0.309 — nearly
+identical, both far from control 0.587. **There is no threshold in the
+real separation**: tiny dense text genuinely produces low glyph w/h —
+the statistic measures rasterized glyph geometry, and ~10px glyphs are
+anisotropic-looking for the same pixel reason squashed text is.
+
+Honest resolution: the detector's two-tier design already handles this
+correctly — `glyph_anisotropy` is the SINGLE-channel candidate verdict;
+`anisotropic_squash` requires blob-cluster corroboration, which HN
+lacks (fires only glyph channel). The FP is a weak candidate flag, not
+a false claim. No threshold change shipped — that would be fishing.
+Consumers should weight corroborated verdicts; documented here.
