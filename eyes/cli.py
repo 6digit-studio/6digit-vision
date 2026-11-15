@@ -47,6 +47,29 @@ def cmd_score(args) -> int:
     return 0
 
 
+def cmd_layout(args) -> int:
+    from . import layout, mirage
+
+    rec = mirage.describe(args.image) if args.describe else None
+    report = layout.layout_report(args.image, record=rec, tol=args.tol)
+    if args.json:
+        print(json.dumps(report, indent=2, ensure_ascii=False))
+        return 0
+    ec = report["edge_contact"]
+    print(f"edge contact (bg {ec['bg']}, strip {ec['strip_px']}px):")
+    for s in ("top", "right", "bottom", "left"):
+        flag = "  <-- TOUCHING" if s in ec["touching"] else ""
+        print(f"  {s:<7} {ec[s] * 100:5.1f}%{flag}")
+    if "objects_at_edge" in report:
+        print("\nobjects at edge:")
+        for o in report["objects_at_edge"] or ["  (none)"]:
+            print(f"  {o}")
+        print("\nbbox overlaps:")
+        for o in report["bbox_overlaps"] or ["  (none)"]:
+            print(f"  {o}")
+    return 0
+
+
 def cmd_palette(args) -> int:
     from . import color
 
@@ -73,6 +96,15 @@ def main(argv: list[str] | None = None) -> int:
     p.add_argument("candidate")
     p.add_argument("--json", action="store_true")
     p.set_defaults(fn=cmd_score)
+
+    p = sub.add_parser("layout", help="overflow/layout facts: edge contact, edge objects, overlaps")
+    p.add_argument("image")
+    p.add_argument("--describe", action="store_true",
+                   help="also run Mirage and include object-level findings")
+    p.add_argument("--tol", type=int, default=64,
+                   help="color distance from background counted as content")
+    p.add_argument("--json", action="store_true")
+    p.set_defaults(fn=cmd_layout)
 
     p = sub.add_parser("palette", help="dominant color histogram")
     p.add_argument("image")
