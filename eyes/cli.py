@@ -71,6 +71,44 @@ def cmd_grid(args) -> int:
     return 0
 
 
+def cmd_zoom(args) -> int:
+    from . import color, mirage, structure, zoom
+
+    bbox = [int(v) for v in args.bbox.split(",")]
+    out = args.out or f"zoom_{bbox[0]}_{bbox[1]}_{args.scale}x.png"
+    crop, used = zoom.save_zoom(args.image, bbox, out,
+                                scale=args.scale, pad_frac=args.pad)
+    print(f"crop {used} -> {out} ({crop.width}x{crop.height})")
+
+    modes = args.analyze or []
+    if "all" in modes:
+        modes = ["describe", "grid", "structure"]
+    if "describe" in modes or "structure" in modes:
+        rec = mirage.describe(crop)
+        texts = [t for t in rec.get("text", []) if t.get("score", 0) > args.min_score]
+        if "describe" in modes:
+            print(f"\n-- describe: {len(texts)} text items, {len(rec.get('objects', []))} objects")
+            for t in texts:
+                print(f"   {t.get('string')!r} @{t.get('bbox')}")
+        if "structure" in modes:
+            s = structure.summarize(texts)
+            print(f"\n-- structure: {s['n_rows']} rows x {s['n_cols']} cols, col_xs={s['col_xs']}")
+            for r in s["grid"]:
+                print(f"   y={r['y']:>5}  {' | '.join('' if c is None else c for c in r['cells'])}")
+            if "inference" in s:
+                print(f"   inference: {s['inference']}")
+    if "grid" in modes:
+        cells = color.grid_stats(crop, cols=args.cols)
+        hi = args.hi_std
+        print("\n-- grid:")
+        for row in cells:
+            print("".join(
+                f"\x1b[48;2;{c['mean'][0]};{c['mean'][1]};{c['mean'][2]}m"
+                + (" " if c["std"] < hi else ".") + "\x1b[0m"
+                for c in row))
+    return 0
+
+
 def cmd_structure(args) -> int:
     from . import mirage, structure
 
@@ -277,6 +315,20 @@ def main(argv: list[str] | None = None) -> int:
                    help="stddev threshold marking textured (imagery) cells")
     p.add_argument("--json", action="store_true")
     p.set_defaults(fn=cmd_grid)
+
+    p = sub.add_parser("zoom", help="crop+upscale a region, optionally re-perceive it")
+    p.add_argument("image")
+    p.add_argument("--bbox", required=True, help="x,y,w,h in source pixels")
+    p.add_argument("--scale", type=int, default=3)
+    p.add_argument("--pad", type=float, default=0.12)
+    p.add_argument("--out", help="output PNG path (default: zoom_X_Y_Sx.png)")
+    p.add_argument("--analyze", nargs="*", default=[],
+                   choices=["describe", "grid", "structure", "all"],
+                   help="re-run perception on the magnified crop")
+    p.add_argument("--cols", type=int, default=16)
+    p.add_argument("--hi-std", type=float, default=30.0)
+    p.add_argument("--min-score", type=float, default=0.4)
+    p.set_defaults(fn=cmd_zoom)
 
     p = sub.add_parser("structure", help="induce rows/columns/grids from OCR layout")
     p.add_argument("image")
