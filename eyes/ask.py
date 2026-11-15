@@ -96,6 +96,11 @@ def evidence_pack(image, question: str | None = None) -> dict:
             arr, floor_px=pe.FLOOR_PX, width_max=pe.WIDTH_MAX)
     except Exception:
         detector_errors.append("pixel-edge-drift")
+    try:
+        lt = _load_detector("luminance-theme/luminance_theme.py")
+        findings_extra["luminance_theme"] = lt.census(image)
+    except Exception:
+        detector_errors.append("luminance-theme")
 
     pack = {
         "scene": rec.get("scene"),
