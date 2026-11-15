@@ -73,6 +73,20 @@ def evidence_pack(image, question: str | None = None) -> dict:
             str(image), Namespace(max_blobs=12))
     except Exception:
         detector_errors.append("anisotropy-census")
+    try:
+        tc = _load_detector("totals-consistency/totals_consistency.py")
+        findings_extra["totals_consistency"] = tc.analyze(str(image))
+    except Exception:
+        detector_errors.append("totals-consistency")
+    try:
+        ec = _load_detector("edge-census/edge_census.py")
+        findings_extra["edge_census"] = ec.census(
+            rec, floor=ec.FLOOR, min_n=ec.MIN_N, xgap=ec.XGAP,
+            ygap=ec.YGAP, row_min=ec.ROW_MIN, col_min=ec.COL_MIN,
+            row_same=ec.ROW_SAME, col_same=ec.COL_SAME,
+            width_guard=ec.WIDTH_GUARD)
+    except Exception:
+        detector_errors.append("edge-census")
 
     pack = {
         "scene": rec.get("scene"),

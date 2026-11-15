@@ -174,7 +174,34 @@ def reel_report(inputs: list[str], *, with_records: bool = True,
         "static_pairs": [p["pair"] for p in pairs if p.get("static")],
     }
     report["lifecycle"] = _lifecycle_diff(report)
+    report["strobe"] = _strobe(report, paths)
     return report
+
+
+def _load_detector(rel: str):
+    import importlib.util
+
+    path = Path(__file__).resolve().parents[1] / "detectors" / rel
+    spec = importlib.util.spec_from_file_location(
+        rel.replace("/", "_").replace("-", "_"), path)
+    mod = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(mod)
+    return mod
+
+
+def _strobe(report: dict, paths: list) -> dict:
+    """Strobe/flicker + motion-coherence via detectors/strobe catalog
+    entry. json_path anchors frame resolution to the input dir."""
+    try:
+        mod = _load_detector("strobe/strobe.py")
+        strobes, alternating, stats = mod.find_strobes(
+            report.get("frames_detail") or [], 3, 1)
+        anchor = str(paths[0]) if paths else None
+        coherence = mod.motion_coherence(report, json_path=anchor)
+        return {"strobes": strobes, "alternating": alternating,
+                "stats": stats, "motion_coherence": coherence}
+    except Exception as e:
+        return {"unavailable": type(e).__name__}
 
 
 def _lifecycle_diff(report: dict) -> dict:
