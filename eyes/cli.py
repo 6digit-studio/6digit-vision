@@ -133,6 +133,60 @@ def cmd_palette(args) -> int:
     return 0
 
 
+def cmd_parse(args) -> int:
+    from . import mirage, scene_tree
+
+    rec = mirage.describe(args.image)
+    tree = scene_tree.build_tree(rec)
+    if args.json:
+        print(json.dumps(tree, indent=2, ensure_ascii=False))
+        return 0
+    print(f"scene: {tree.get('scene')}")
+    print(f"\nregions ({len(tree['regions'])}):")
+    for i, r in enumerate(tree["regions"]):
+        names = ", ".join(e["name"][:24] for e in r["elements"][:6])
+        more = f" +{len(r['elements']) - 6}" if len(r["elements"]) > 6 else ""
+        print(f"  [{i}] bbox={r['bbox']}  {len(r['elements'])} elements: {names}{more}")
+    if tree["loose_objects"]:
+        print(f"\nloose objects ({len(tree['loose_objects'])}):")
+        for r in tree["loose_objects"]:
+            print(f"  {r['elements'][0]['name'][:40]}  bbox={r['bbox']}")
+    return 0
+
+
+def cmd_diff(args) -> int:
+    from PIL import Image
+
+    from . import mirage, scene_tree
+
+    ref_rec = mirage.describe(args.reference)
+    cand_rec = mirage.describe(args.candidate)
+    result = scene_tree.diff_records(
+        ref_rec, cand_rec,
+        ref_size=Image.open(args.reference).size,
+        cand_size=Image.open(args.candidate).size)
+    if args.json:
+        print(json.dumps(result, indent=2, ensure_ascii=False))
+        return 0
+    print(f"objects: {result['counts']['ref_objects']} ref / "
+          f"{result['counts']['cand_objects']} cand, "
+          f"{result['counts']['ref_text']} / {result['counts']['cand_text']} text")
+    for ch in result["object_changes"]:
+        print(f"  ~ {ch['element'][:36]:<38} {ch['deltas']}")
+    for o in result["objects_added"]:
+        print(f"  + {o['name'][:40]}")
+    for o in result["objects_removed"]:
+        print(f"  - {o['name'][:40]}")
+    for t in result["text_changes"]:
+        if t["type"] == "text_edited":
+            print(f"  T {t['ref'][:30]!r} -> {t['cand'][:30]!r}")
+        elif t["type"] == "text_added":
+            print(f"  T+ {t['cand'][:40]!r}")
+        else:
+            print(f"  T- {t['ref'][:40]!r}")
+    return 0
+
+
 def main(argv: list[str] | None = None) -> int:
     ap = argparse.ArgumentParser(prog="eyes", description=__doc__,
                                  formatter_class=argparse.RawDescriptionHelpFormatter)
@@ -176,6 +230,17 @@ def main(argv: list[str] | None = None) -> int:
     p.add_argument("image")
     p.add_argument("-n", type=int, default=8)
     p.set_defaults(fn=cmd_palette)
+
+    p = sub.add_parser("parse", help="hierarchical scene tree: regions + elements")
+    p.add_argument("image")
+    p.add_argument("--json", action="store_true")
+    p.set_defaults(fn=cmd_parse)
+
+    p = sub.add_parser("diff", help="element-level change list: reference vs candidate")
+    p.add_argument("reference")
+    p.add_argument("candidate")
+    p.add_argument("--json", action="store_true")
+    p.set_defaults(fn=cmd_diff)
 
     args = ap.parse_args(argv)
     try:
