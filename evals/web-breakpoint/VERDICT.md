@@ -38,3 +38,16 @@ edge-pinned left/right + same-edge row cluster (>=2, >=30% y-overlap).
 Verified: defect overflow_detected (right-edge cluster named), control
 + all 7 corpus images clean. Wired into `eyes layout --describe`.
 Instrument-alone upgraded PARTIAL -> detector-backed CAUGHT.
+
+## Update — breakpoint generalization test (768px, 320px)
+
+Same defect/control pair recaptured at tablet (768px) and small
+mobile (320px) widths. content_overflow verdict: **clean on all
+four** — the row-cluster signature does NOT generalize across
+breakpoints. At 768px the defect produces 3 edge findings but no
+same-edge y-overlap cluster (clipping pattern differs — fewer cards
+visible, different row geometry); at 320px Mirage edge-pinning itself
+delivers 0 findings (heavy clip changes detection). Honest floor:
+detector calibrated at 480px holds there; other breakpoints need
+either wider cluster tolerance or per-width calibration — documented
+limitation, not threshold-fished.
