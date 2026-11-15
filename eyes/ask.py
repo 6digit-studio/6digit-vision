@@ -37,13 +37,15 @@ def evidence_pack(image, question: str | None = None) -> dict:
     lay = layout.layout_report(image, record=rec)
     leg = legibility.text_legibility(image, rec)
 
-    # verified detectors/ catalog entries, lazy-loaded
+    # verified detectors/ catalog entries, lazy-loaded. Failures record
+    # the detector NAME only — exception text stays out of the pack.
     findings_extra = {}
+    detector_errors = []
     try:
         glyph = _load_detector("glyph-classifier/glyph_classifier.py")
         findings_extra["status_icons"] = glyph.classify_image(str(image), rec)
-    except Exception as e:
-        findings_extra["status_icons_error"] = str(e)[:200]
+    except Exception:
+        detector_errors.append("glyph-classifier")
     try:
         hc = _load_detector("hue-census/hue_census.py")
         args = Namespace(s_min=hc.S_MIN, v_min=hc.V_MIN, bin_deg=hc.BIN_DEG,
@@ -51,8 +53,8 @@ def evidence_pack(image, question: str | None = None) -> dict:
                          rel_to_dominant=hc.REL_TO_DOMINANT,
                          min_saturated_px=hc.MIN_SATURATED_PX)
         findings_extra["hue_census"] = hc.census(str(image), args)
-    except Exception as e:
-        findings_extra["hue_census_error"] = str(e)[:200]
+    except Exception:
+        detector_errors.append("hue-census")
     try:
         lex = _load_detector("lexical-screen/lexical_screen.py")
         words, sources, zipf_fn = lex.load_lexicon()
@@ -63,14 +65,14 @@ def evidence_pack(image, question: str | None = None) -> dict:
             "flagged": [s for s in screened if s.get("verdict") != "clean"],
             "frag_bands": lex.fragmented_bands(rec.get("text", [])),
         }
-    except Exception as e:
-        findings_extra["lexical_screen_error"] = str(e)[:200]
+    except Exception:
+        detector_errors.append("lexical-screen")
     try:
         an = _load_detector("anisotropy-census/anisotropy_census.py")
         findings_extra["anisotropy"] = an.census(
             str(image), Namespace(max_blobs=12))
-    except Exception as e:
-        findings_extra["anisotropy_error"] = str(e)[:200]
+    except Exception:
+        detector_errors.append("anisotropy-census")
 
     pack = {
         "scene": rec.get("scene"),
@@ -91,6 +93,8 @@ def evidence_pack(image, question: str | None = None) -> dict:
         },
         "detectors": findings_extra,
     }
+    if detector_errors:
+        pack["detectors_unavailable"] = detector_errors
     if question:
         pack["question"] = question
         pack["instruction"] = (
