@@ -1,0 +1,119 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<style>
+  html, body {
+    margin: 0; padding: 0;
+    width: 400px; height: 155px;
+    overflow: hidden;
+    background: #2b2b2b;
+  }
+  .stage {
+    position: relative;
+    width: 400px; height: 155px;
+    overflow: hidden;
+    background: #2b2b2b;
+    filter: blur(1px);
+  }
+  .card {
+    position: absolute;
+    left: 16px; top: 18px;
+    width: 350px; height: 121px;
+    background: #000;
+    border-radius: 40px;
+    box-shadow: 0 12px 34px -12px rgba(0,0,0,0.95);
+  }
+  .txt {
+    position: absolute;
+    font-family: -apple-system, "SF Pro Text", "Helvetica Neue", Arial, sans-serif;
+    white-space: nowrap;
+    line-height: 1;
+  }
+  .city {
+    font-size: 15px;
+    font-weight: 400;
+    letter-spacing: 0.75px;
+    color: #f6f6f6;
+    top: 40px;
+  }
+  #sf { left: 45px; }
+  #ed { left: 267px; }
+  .code {
+    font-size: 26.5px;
+    font-weight: 400;
+    color: #ffffff;
+    top: 65.5px;
+  }
+  #sfo { left: 44.5px; letter-spacing: -0.15px; }
+  #yeg { left: 290px; letter-spacing: -1px; }
+  .time {
+    font-size: 16px;
+    font-weight: 500;
+    color: #d4d4d4;
+    top: 96px;
+  }
+  #dep { left: 46px; }
+  #arr { left: 273px; }
+  .teal {
+    font-size: 15.8px;
+    font-weight: 400;
+    color: #94b2b2;
+    top: 97px;
+    left: 127px;
+  }
+  .track {
+    position: absolute;
+    left: 110px; top: 70.6px;
+    width: 151px; height: 12.4px;
+    border-radius: 6px;
+    background: #6ed8de;
+    box-shadow: 0 0 4px 0px rgba(107,211,217,0.35);
+  }
+  .plane {
+    position: absolute;
+    left: 250px; top: 60px;
+    width: 40px; height: 34px;
+  }
+</style>
+</head>
+<body>
+<div class="stage">
+  <div class="card"></div>
+
+  <div class="txt city" id="sf">San Francisco</div>
+  <div class="txt city" id="ed">Edmonton</div>
+
+  <div class="txt code" id="sfo">SFO</div>
+  <div class="txt code" id="yeg">YEG</div>
+
+  <div class="txt time" id="dep">9:59 PM</div>
+  <div class="txt teal" id="eta">Arrives in 20m</div>
+  <div class="txt time" id="arr">12:59 AM</div>
+
+  <div class="track"></div>
+
+<svg class="plane" style="transform: rotate(-8deg) translate(1.5px,0.5px)" viewBox="0 0 40 34" width="40" height="34">
+    <defs>
+      <filter id="glow" x="-250%" y="-250%" width="600%" height="600%"><feGaussianBlur stdDeviation="3.4"/></filter>
+      <filter id="glow2" x="-150%" y="-150%" width="400%" height="400%"><feGaussianBlur stdDeviation="1.6"/></filter>
+      <filter id="soft" x="-100%" y="-100%" width="300%" height="300%"><feGaussianBlur stdDeviation="0.35"/></filter>
+    </defs>
+    <g filter="url(#glow)" opacity="0.95">
+      <path d="M6 17 L27.5 17" stroke="#ffffff" stroke-width="3" stroke-linecap="round" fill="none"/>
+      <path d="M12 7 L10.5 25" stroke="#ffffff" stroke-width="3.4" stroke-linecap="round" fill="none"/>
+    </g>
+    <g filter="url(#glow2)" opacity="0.7">
+      <path d="M6 17 L27.5 17" stroke="#ffffff" stroke-width="4" stroke-linecap="round" fill="none"/>
+      <path d="M12 7 L10.5 25" stroke="#ffffff" stroke-width="5" stroke-linecap="round" fill="none"/>
+    </g>
+    <g filter="url(#soft)">
+      <path d="M6 17 L27.5 17" stroke="#ffffff" stroke-width="2.0" stroke-linecap="round" fill="none"/>
+      <path d="M12 7 L10.5 25" stroke="#ffffff" stroke-width="3.2" stroke-linecap="round" fill="none"/>
+      
+    </g>
+  </svg>
+
+</div>
+</body>
+</html>

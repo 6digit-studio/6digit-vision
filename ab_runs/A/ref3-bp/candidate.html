@@ -1,0 +1,117 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>bp card</title>
+<style>
+  html, body {
+    margin: 0; padding: 0;
+    width: 394px; height: 210px;
+    overflow: hidden;
+  }
+  body {
+    background:
+      radial-gradient(130% 140% at 16% 2%, #312f2d 0%, #2d2b29 48%, #2a2826 100%);
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+  .card {
+    position: absolute;
+    left: 28px; top: 37px;
+    width: 337px; height: 154px;
+    border-radius: 36px;
+    background:
+      radial-gradient(58% 44% at 48% 69%, rgba(115,24,55,.2) 0%, rgba(60,12,30,.09) 55%, rgba(30,6,16,0) 100%),
+      radial-gradient(80% 130% at 45% 62%, #0a0708 0%, #050405 40%, #020202 100%);
+    box-shadow:
+      0 0 8px 2px rgba(0,0,0,.6),
+      0 0 2px 1px rgba(0,0,0,.85);
+  }
+  .sys {
+    position: absolute;
+    left: 54px; top: 62.5px;
+    font-size: 22px;
+    font-weight: 500;
+    letter-spacing: 1.1px;
+    color: #d79faf;
+    text-shadow: 1px 1.5px 2px rgba(92,10,36,.9), 0 0 7px rgba(255,110,160,.2);
+    line-height: 1;
+  }
+  .unit {
+    position: absolute;
+    left: 91px; top: 67.5px;
+    font-size: 14.5px;
+    font-weight: 500;
+    letter-spacing: .45px;
+    color: #d292a4;
+    text-shadow: 1px 1px 2px rgba(92,10,36,.85), 0 0 6px rgba(255,110,160,.16);
+    line-height: 1;
+  }
+  .time {
+    position: absolute;
+    left: 294px; top: 63px;
+    font-size: 15.5px;
+    font-weight: 700;
+    letter-spacing: .6px;
+    color: #e4e8e6;
+    text-shadow: 0 0 6px rgba(180,220,210,.15), 1px 1px 2px rgba(0,10,10,.7);
+    line-height: 1;
+  }
+  .wave { position: absolute; left: 0; top: 0; width: 394px; height: 210px; filter: blur(.35px); }
+
+  .b {
+    position: absolute;
+    width: 6.0px;
+    border-radius: 3px;
+    background: linear-gradient(90deg, #e08ba0 0%, #c96480 45%, #8c3150 100%);
+    box-shadow:
+      2px 0 2px rgba(45,0,16,.95),
+      0 0 6px rgba(225,70,130,.3);
+  }
+  .b::before, .b::after {
+    content: "";
+    position: absolute;
+    left: -2.30px;
+    width: 10.6px;
+    height: 10.6px;
+    border-radius: 50%;
+    background: radial-gradient(circle at 44% 38%, #ffbccd 0%, #ff93b7 30%, #ec6f98 64%, #b44067 100%);
+    box-shadow:
+      0 0 9px 2.5px rgba(255,95,155,.42),
+      0 0 19px 7px rgba(195,30,95,.2),
+      1.5px 1px 2.5px rgba(60,0,20,.85);
+  }
+  .b::before { top: -5.30px; }
+  .b::after  { bottom: -5.30px; }
+</style>
+</head>
+<body>
+  <div class="card"></div>
+  <div class="sys">82</div>
+  <div class="unit">mmhg</div>
+  <div class="time">5 min</div>
+  <div class="wave">
+    <div class="b" style="left:55.5px;top:135.5px;height:10.5px"></div>
+    <div class="b" style="left:68.9px;top:135.0px;height:12.0px"></div>
+    <div class="b" style="left:82.2px;top:128.5px;height:11.5px"></div>
+    <div class="b" style="left:95.6px;top:142.5px;height:14.0px"></div>
+    <div class="b" style="left:108.9px;top:123.5px;height:19.0px"></div>
+    <div class="b" style="left:122.3px;top:111.5px;height:38.5px"></div>
+    <div class="b" style="left:135.6px;top:104.0px;height:67.0px"></div>
+    <div class="b" style="left:149.0px;top:123.0px;height:36.0px"></div>
+    <div class="b" style="left:160.5px;top:122.5px;height:20.5px"></div>
+    <div class="b" style="left:174.5px;top:130.5px;height:23.5px"></div>
+    <div class="b" style="left:189.0px;top:129.0px;height:23.0px"></div>
+    <div class="b" style="left:201.0px;top:126.5px;height:23.0px"></div>
+    <div class="b" style="left:215.0px;top:128.0px;height:21.0px"></div>
+    <div class="b" style="left:228.0px;top:114.5px;height:33.5px"></div>
+    <div class="b" style="left:241.0px;top:107.0px;height:53.0px"></div>
+    <div class="b" style="left:255.0px;top:117.0px;height:33.5px"></div>
+    <div class="b" style="left:269.0px;top:129.5px;height:10.5px"></div>
+    <div class="b" style="left:282.0px;top:136.0px;height:8.0px"></div>
+    <div class="b" style="left:295.0px;top:133.0px;height:10.0px"></div>
+    <div class="b" style="left:308.5px;top:137.5px;height:9.5px"></div>
+    <div class="b" style="left:322.0px;top:134.5px;height:16.5px"></div>
+  </div>
+</body>
+</html>

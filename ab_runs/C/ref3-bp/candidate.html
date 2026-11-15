@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8"><title>candidate</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{width:394px;height:210px;overflow:hidden;background:#2b2b2b}
+html{background:#2b2b2b}
+.stage{position:absolute;left:0;top:0;width:394px;height:210px}
+body{position:relative;font-family:"Helvetica Neue",Helvetica,Arial,sans-serif;-webkit-font-smoothing:antialiased}
+.bgtop{position:absolute;left:0;top:0;width:394px;height:60px;
+  background:radial-gradient(ellipse 300px 52px at 197px -12px, rgba(0,0,0,0.44) 0%, rgba(0,0,0,0.30) 32%, rgba(0,0,0,0.10) 64%, rgba(0,0,0,0) 100%);}
+.bgbot{position:absolute;left:0;top:150px;width:394px;height:60px;
+  background:radial-gradient(ellipse 320px 80px at 197px 84px, rgba(0,0,0,0.42) 0%, rgba(0,0,0,0.30) 38%, rgba(0,0,0,0.10) 72%, rgba(0,0,0,0) 100%);}
+.card{position:absolute;left:25.5px;top:37.5px;width:337.5px;height:154.5px;
+  background:#010101;border-radius:35.0px;
+  box-shadow:0 7px 18px rgba(0,0,0,0.42), 0 2px 4px rgba(0,0,0,0.5);}
+.val{position:absolute;left:28.5px;top:22.0px;font-size:26.0px;font-weight:300;
+  line-height:1;color:#f0afc8;letter-spacing:0px;white-space:nowrap;filter:url(#b08)}
+.unit{position:absolute;left:64.6px;top:29.700000000000003px;font-size:16.5px;font-weight:400;
+  line-height:1;color:#a0808c;white-space:nowrap;filter:url(#b08)}
+.time{position:absolute;left:267.2px;top:26.700000000000003px;font-size:17.0px;font-weight:500;
+  line-height:1;color:#e8e8e8;white-space:nowrap;filter:url(#b08)}
+.bar{position:absolute;width:8.0px;background:linear-gradient(90deg, rgba(99,52,79,0.0) 0.0%, rgba(99,52,79,0.3) 13.0%, rgba(99,52,79,0.6) 25.0%, rgba(99,52,79,0.89) 38.0%, rgba(99,52,79,1.0) 50.0%, rgba(99,52,79,0.89) 62.0%, rgba(99,52,79,0.6) 75.0%, rgba(99,52,79,0.3) 87.0%, rgba(99,52,79,0.0) 100.0%);}
+.dot{position:absolute;width:16.0px;height:16.0px;border-radius:50%;
+  background:radial-gradient(circle closest-side at 50% 50%, rgba(245,137,172,1.0) 0.0%, rgba(245,137,172,0.97) 25.0%, rgba(245,137,172,0.94) 37.5%, rgba(245,137,172,0.85) 50.0%, rgba(245,137,172,0.72) 56.0%, rgba(245,137,172,0.55) 62.5%, rgba(245,137,172,0.4) 69.0%, rgba(245,137,172,0.25) 75.0%, rgba(245,137,172,0.13) 81.0%, rgba(245,137,172,0.02) 87.5%, rgba(245,137,172,0.0) 100.0%);}
+</style></head>
+<body>
+<div class="stage">
+<svg width="0" height="0" style="position:absolute"><filter id="b08"><feGaussianBlur stdDeviation="0.8"/></filter></svg>
+<div class="bgtop"></div><div class="bgbot"></div>
+<div class="card">
+  <div class="val">82</div>
+  <div class="unit">mmhg</div>
+  <div class="time">5 min</div>
+  <div class="bar" style="left:30.30px;top:101.50px;height:5.00px"></div>
+  <div class="bar" style="left:43.60px;top:101.50px;height:5.50px"></div>
+  <div class="bar" style="left:56.90px;top:94.50px;height:5.00px"></div>
+  <div class="bar" style="left:70.00px;top:106.30px;height:12.40px"></div>
+  <div class="bar" style="left:83.20px;top:86.90px;height:18.90px"></div>
+  <div class="bar" style="left:96.50px;top:73.70px;height:40.20px"></div>
+  <div class="bar" style="left:109.80px;top:67.70px;height:69.40px"></div>
+  <div class="bar" style="left:123.10px;top:85.80px;height:35.50px"></div>
+  <div class="bar" style="left:136.30px;top:84.70px;height:21.10px"></div>
+  <div class="bar" style="left:149.60px;top:95.50px;height:16.50px"></div>
+  <div class="bar" style="left:163.00px;top:92.90px;height:17.70px"></div>
+  <div class="bar" style="left:176.00px;top:90.40px;height:21.60px"></div>
+  <div class="bar" style="left:189.40px;top:90.80px;height:18.30px"></div>
+  <div class="bar" style="left:202.70px;top:77.30px;height:33.20px"></div>
+  <div class="bar" style="left:216.00px;top:70.30px;height:52.10px"></div>
+  <div class="bar" style="left:229.00px;top:80.80px;height:31.30px"></div>
+  <div class="bar" style="left:242.80px;top:94.50px;height:5.50px"></div>
+  <div class="bar" style="left:255.80px;top:99.50px;height:5.00px"></div>
+  <div class="bar" style="left:268.90px;top:98.00px;height:7.00px"></div>
+  <div class="bar" style="left:282.50px;top:103.00px;height:5.00px"></div>
+  <div class="bar" style="left:295.50px;top:100.60px;height:13.70px"></div>
+  <div class="dot" style="left:26.30px;top:93.50px"></div>
+  <div class="dot" style="left:26.30px;top:98.50px"></div>
+  <div class="dot" style="left:39.60px;top:93.50px"></div>
+  <div class="dot" style="left:39.60px;top:99.00px"></div>
+  <div class="dot" style="left:52.90px;top:86.50px"></div>
+  <div class="dot" style="left:52.90px;top:91.50px"></div>
+  <div class="dot" style="left:66.00px;top:98.30px"></div>
+  <div class="dot" style="left:66.00px;top:110.70px"></div>
+  <div class="dot" style="left:79.20px;top:78.90px"></div>
+  <div class="dot" style="left:79.20px;top:97.80px"></div>
+  <div class="dot" style="left:92.50px;top:65.70px"></div>
+  <div class="dot" style="left:92.50px;top:105.90px"></div>
+  <div class="dot" style="left:105.80px;top:59.70px"></div>
+  <div class="dot" style="left:105.80px;top:129.10px"></div>
+  <div class="dot" style="left:119.10px;top:77.80px"></div>
+  <div class="dot" style="left:119.10px;top:113.30px"></div>
+  <div class="dot" style="left:132.30px;top:76.70px"></div>
+  <div class="dot" style="left:132.30px;top:97.80px"></div>
+  <div class="dot" style="left:145.60px;top:87.50px"></div>
+  <div class="dot" style="left:145.60px;top:104.00px"></div>
+  <div class="dot" style="left:159.00px;top:84.90px"></div>
+  <div class="dot" style="left:159.00px;top:102.60px"></div>
+  <div class="dot" style="left:172.00px;top:82.40px"></div>
+  <div class="dot" style="left:172.00px;top:104.00px"></div>
+  <div class="dot" style="left:185.40px;top:82.80px"></div>
+  <div class="dot" style="left:185.40px;top:101.10px"></div>
+  <div class="dot" style="left:198.70px;top:69.30px"></div>
+  <div class="dot" style="left:198.70px;top:102.50px"></div>
+  <div class="dot" style="left:212.00px;top:62.30px"></div>
+  <div class="dot" style="left:212.00px;top:114.40px"></div>
+  <div class="dot" style="left:225.00px;top:72.80px"></div>
+  <div class="dot" style="left:225.00px;top:104.10px"></div>
+  <div class="dot" style="left:238.80px;top:86.50px"></div>
+  <div class="dot" style="left:238.80px;top:92.00px"></div>
+  <div class="dot" style="left:251.80px;top:91.50px"></div>
+  <div class="dot" style="left:251.80px;top:96.50px"></div>
+  <div class="dot" style="left:264.90px;top:90.00px"></div>
+  <div class="dot" style="left:264.90px;top:97.00px"></div>
+  <div class="dot" style="left:278.50px;top:95.00px"></div>
+  <div class="dot" style="left:278.50px;top:100.00px"></div>
+  <div class="dot" style="left:291.50px;top:92.60px"></div>
+  <div class="dot" style="left:291.50px;top:106.30px"></div>
+</div>
+</div>
+</body></html>

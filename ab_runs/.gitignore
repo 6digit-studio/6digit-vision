@@ -1,0 +1,23 @@
+# Scratch from the A/B run. Reports, cells, candidates, verdicts and traces are
+# committed; intermediate crops / sweeps / variant renders stay local.
+work/
+_work/
+crops/
+C/ref4-flight/arrives6x.png
+C/ref4-flight/cand1.*
+C/ref4-flight/cand2.*
+C/ref4-flight/candidate_v2.html
+C/ref4-flight/ident.*
+C/ref4-flight/measure.html
+C/ref4-flight/metrics.json
+C/ref4-flight/montage*
+C/ref4-flight/plane*.png
+C/ref4-flight/ref_big.png
+C/ref4-flight/search*
+C/ref4-flight/sim_*
+C/ref4-flight/test*
+C/ref4-flight/var_*
+C/ref4-flight/z_*
+C/ref4-flight/cand_plane.png
+C/ref4-flight/cand_sfo.png
+C/ref4-flight/sidebyside.png

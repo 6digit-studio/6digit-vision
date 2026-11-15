@@ -1,0 +1,216 @@
+{
+  "image": "testcases/Screenshot 2026-11-15 at 19.20.14.png",
+  "questions": [
+    {
+      "id": "background",
+      "question": "What kind of background?",
+      "answer": "mixed/textured; dominant #f4f4f4 (42%)",
+      "probe": "grid+palette",
+      "confidence": "measured"
+    },
+    {
+      "id": "glow",
+      "question": "Is there a glow/gradient accent?",
+      "answer": "bright region near cell (0,0) mean_rgb=[253, 253, 253]",
+      "probe": "grid",
+      "confidence": "measured"
+    },
+    {
+      "id": "text_inventory",
+      "question": "What text is present?",
+      "answer": {
+        "count": 16,
+        "strings": [
+          "The Era of Quantum Utility",
+          "KKODOR",
+          "Designed to explore the",
+          "KKODOR",
+          "We unveiled a new suite to",
+          "computing to the world",
+          "Quantum Theory MOwQ 2026",
+          "Powered by Odor",
+          "<KODOR",
+          "dawn of a new era for Quantum Utility. Drawing",
+          "KKODOR",
+          "inception of this transformative journey.",
+          "Thinking..",
+          "The most advenced quentum",
+          "The 2026 Sentracore Quantum",
+          "KKODOR"
+        ]
+      },
+      "probe": "describe+structure",
+      "confidence": "measured"
+    },
+    {
+      "id": "layout_family",
+      "question": "What layout family?",
+      "answer": "unstructured (10 rows x 4 cols detected)",
+      "probe": "structure",
+      "confidence": "measured"
+    },
+    {
+      "id": "alignment",
+      "question": "How are text blocks aligned?",
+      "answer": [
+        {
+          "y": 151,
+          "alignment": "right",
+          "text": "KKODOR KKODOR We unveiled a new suite to"
+        },
+        {
+          "y": 192,
+          "alignment": "left",
+          "text": "The Era of Quantum Utility Designed to e"
+        },
+        {
+          "y": 227,
+          "alignment": "center",
+          "text": "Designed to explore the computing to the"
+        },
+        {
+          "y": 486,
+          "alignment": "right",
+          "text": "Powered by Odor <KODOR"
+        },
+        {
+          "y": 532,
+          "alignment": "left",
+          "text": "Quantum Theory MOwQ 2026"
+        },
+        {
+          "y": 644,
+          "alignment": "left",
+          "text": "dawn of a new era for Quantum Utility. D"
+        },
+        {
+          "y": 700,
+          "alignment": "right",
+          "text": "Thinking.."
+        },
+        {
+          "y": 735,
+          "alignment": "wide",
+          "text": "KKODOR inception of this transformative "
+        },
+        {
+          "y": 783,
+          "alignment": "left",
+          "text": "The 2026 Sentracore Quantum"
+        },
+        {
+          "y": 842,
+          "alignment": "right",
+          "text": "KKODOR"
+        }
+      ],
+      "probe": "structure+bboxes",
+      "confidence": "measured"
+    },
+    {
+      "id": "selection_state",
+      "question": "Is anything selected/highlighted?",
+      "answer": {
+        "blobs": [
+          {
+            "bbox_px": [
+              1140,
+              218,
+              342,
+              318
+            ],
+            "centroid_px": [
+              1311,
+              377
+            ],
+            "mean_rgb": [
+              166,
+              98,
+              107
+            ],
+            "fill": 0.491,
+            "shape": "ring-ish"
+          },
+          {
+            "bbox_px": [
+              418,
+              139,
+              342,
+              139
+            ],
+            "centroid_px": [
+              589,
+              208
+            ],
+            "mean_rgb": [
+              63,
+              116,
+              150
+            ],
+            "fill": 0.862,
+            "shape": "disc-ish"
+          },
+          {
+            "bbox_px": [
+              1140,
+              576,
+              342,
+              119
+            ],
+            "centroid_px": [
+              1311,
+              635
+            ],
+            "mean_rgb": [
+              67,
+              120,
+              151
+            ],
+            "fill": 0.887,
+            "shape": "disc-ish"
+          },
+          {
+            "bbox_px": [
+              152,
+              179,
+              152,
+              159
+            ],
+            "centroid_px": [
+              228,
+              258
+            ],
+            "mean_rgb": [
+              179,
+              103,
+              108
+            ],
+            "fill": 0.398,
+            "shape": "ring-ish"
+          },
+          {
+            "bbox_px": [
+              912,
+              576,
+              76,
+              60
+            ],
+            "centroid_px": [
+              950,
+              605
+            ],
+            "mean_rgb": [
+              112,
+              134,
+              155
+            ],
+            "fill": 0.593,
+            "shape": "ring-ish"
+          }
+        ]
+      },
+      "probe": "accent-census+zoom",
+      "confidence": "measured"
+    }
+  ]
+}

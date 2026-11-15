@@ -1,0 +1,5 @@
+{"iter": 1, "score": 9.12, "note": "First build: flat bg, rounded-rect plate/well/face, ring-band neon tube, dot-matrix icon from measured dot centres. Metric here = mean abs pixel diff (lower is better), full image."}
+{"iter": 2, "score": 7.75, "note": "Tube converted from filled ring to open stroked paths (ring bled cyan over the whole plate); plate/face palette calibrated against sampled reference pixels; ground shadow tightened."}
+{"iter": 3, "score": 7.53, "note": "Plate silhouette replaced by a smooth Catmull-Rom path traced from the reference (organic squircle), well radius 72, face given per-corner radii; tube rebuilt on an independently fitted path."}
+{"iter": 4, "score": 7.98, "note": "Rim specular inset 3px onto the face bevel, tube moved onto its own fitted corner (r=39, bottom y=300), second light-pipe strand added. Regression on tube placement."}
+{"iter": 5, "score": 7.66, "note": "Fixed SVG filter bbox bug on vertical tube strokes (zero-width bbox killed the right-hand glow), brighter echo strand, tube raised 2px, rim inset 4.2px. eyes score 63.8 (palette 0.29 / objects 0.64 / layout 0.97 / scene 0.28)."}

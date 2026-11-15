@@ -1,0 +1,123 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<style>
+  html, body {
+    margin: 0; padding: 0;
+    width: 400px; height: 155px;
+    overflow: hidden;
+    background: #2f2f31;
+  }
+  body {
+    position: relative;
+    font-family: -apple-system, "SF Pro Display", "SF Pro Text", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+  .bg {
+    position: absolute; inset: 0;
+    background:
+      radial-gradient(120% 95% at 50% 0%, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0) 62%),
+      linear-gradient(180deg, #35353a 0%, #303034 42%, #2a2a2c 100%);
+  }
+  .card {
+    position: absolute;
+    left: 20px; top: 18px;
+    width: 343px; height: 116px;
+    border-radius: 27px;
+    background: #000;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.50), 0 2px 10px rgba(0,0,0,0.30);
+  }
+
+  .city {
+    position: absolute;
+    top: 18.4px;
+    font-size: 14.2px;
+    font-weight: 600;
+    letter-spacing: 0.1px;
+    color: #dcdcdc;
+    white-space: nowrap;
+  }
+  .city.l { left: 24px; }
+  .city.r { right: 22px; text-align: right; }
+
+  .code {
+    position: absolute;
+    top: 42.9px;
+    font-size: 24.8px;
+    font-weight: 400;
+    letter-spacing: -0.1px;
+    color: #f1f1f1;
+    white-space: nowrap;
+  }
+  .code.l { left: 23px; }
+  .code.r { right: 22px; }
+
+  .time {
+    position: absolute;
+    top: 79.5px;
+    font-size: 13.3px;
+    font-weight: 600;
+    letter-spacing: 0.45px;
+    color: #e0e0e0;
+    white-space: nowrap;
+  }
+  .time.l { left: 24px; }
+  .time.r { right: 22px; }
+
+  .status {
+    position: absolute;
+    top: 79.7px;
+    left: 104px;
+    font-size: 12.5px;
+    font-weight: 600;
+    letter-spacing: 0.05px;
+    color: #a7bfbe;
+    white-space: nowrap;
+  }
+
+  .bar {
+    position: absolute;
+    left: 88px; top: 50.6px;
+    width: 149px; height: 13.4px;
+    border-radius: 6.7px;
+    background: linear-gradient(90deg, #64ded8 0%, #6ae1db 50%, #6be2dc 85%, #a8efeb 95%, #e9fcfb 99%, #f7ffff 100%);
+  }
+
+  .planeGlow {
+    position: absolute;
+    left: 236px; top: 44px;
+    width: 32px; height: 28px;
+    background: radial-gradient(closest-side, rgba(255,255,255,0.55) 0%, rgba(255,255,255,0.16) 55%, rgba(255,255,255,0) 78%);
+    filter: blur(2px);
+  }
+  .plane {
+    position: absolute;
+    left: 232px; top: 44px;
+    width: 32px; height: 28px;
+    filter: blur(0.45px) drop-shadow(0 0 3px rgba(255,255,255,0.60));
+  }
+</style>
+</head>
+<body>
+  <div class="bg"></div>
+  <div class="card">
+    <div class="city l">San Francisco</div>
+    <div class="city r">Edmonton</div>
+    <div class="code l">SFO</div>
+    <div class="code r">YEG</div>
+    <div class="time l">9:59 PM</div>
+    <div class="time r">12:59 AM</div>
+    <div class="status">Arrives in 20m</div>
+    <div class="bar"></div>
+    <div class="planeGlow"></div>
+    <div class="plane">
+      <svg width="32" height="28" viewBox="0 0 32 28" xmlns="http://www.w3.org/2000/svg">
+        <polygon fill="#ffffff" points="0,12.0 14,11.4 24,12.2 32,14 24,15.8 14,16.6 0,16.0"/>
+        <polygon fill="#ffffff" points="19.0,12.2 6.0,0.4 2.6,2.3 13.0,12.6"/>
+        <polygon fill="#ffffff" points="19.0,15.8 6.0,27.6 2.6,25.7 13.0,15.4"/>
+      </svg>
+    </div>
+  </div>
+</body>
+</html>

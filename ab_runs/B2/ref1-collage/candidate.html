@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html, body { width:1520px; height:794px; overflow:hidden; }
+  body {
+    background:#f4f4f4;
+    font-family:"Helvetica Neue", Helvetica, Arial, sans-serif;
+    -webkit-font-smoothing:antialiased;
+    position:relative;
+  }
+  .page {
+    position:absolute; inset:0;
+    background:#f4f4f4;
+  }
+  .card {
+    position:absolute;
+    top:57px; height:687px; width:327px;
+    border-radius:26px;
+    overflow:hidden;
+    box-shadow:0 1px 2px rgba(0,0,0,.04), 0 10px 26px rgba(0,0,0,.05);
+  }
+  .c1 { left:52px;  background:linear-gradient(180deg,#fbfbfb 0%,#f5f5f5 55%,#eeeeee 100%); }
+  .c2 { left:414px; background:#fcfcfc; }
+  .c3 { left:777px; background:linear-gradient(180deg,#fdfdfd 0%,#f7f7f7 60%,#f2f2f2 100%); }
+  .c4 { left:1139px; }
+
+  /* ---------- logo ---------- */
+  .logo {
+    display:block; text-align:center;
+    font-weight:600; letter-spacing:1.3px;
+    color:#141414; line-height:1;
+    font-size:12.7px;
+  }
+  .logo .mark { display:inline-block; vertical-align:middle; margin-right:5px; margin-top:-1px; }
+  .logo .mark i {
+    display:inline-block; width:6px; height:6px;
+    border-left:1.5px solid currentColor;
+    border-bottom:1.5px solid currentColor;
+    transform:rotate(45deg);
+    margin-right:1px;
+  }
+  .logo .mark i:last-child { margin-right:0; }
+  .logo .word { display:inline-block; vertical-align:middle; }
+  .light { color:#ffffff; }
+
+  /* ---------- card 1 ---------- */
+  .intro {
+    position:absolute; top:56px; left:0; width:100%;
+    text-align:center; color:#1b1b1b;
+    font-size:12.6px; line-height:19px; font-weight:400;
+  }
+  .ball { position:absolute; border-radius:50%; }
+  .ball1 {
+    top:126px; left:50%; margin-left:-76px;
+    width:152px; height:156px;
+    background:
+      radial-gradient(ellipse 30% 20% at 63% 66%, #061821 0%, #0a2530 45%, rgba(12,34,44,.65) 70%, rgba(14,38,48,0) 92%),
+      radial-gradient(ellipse 17% 24% at 71% 42%, rgba(58,6,20,.82) 0%, rgba(58,6,20,0) 82%),
+      radial-gradient(ellipse 31% 27% at 42% 39%, #fffaf2 0%, #ffe8da 28%, #f2c2b7 54%, rgba(228,158,152,0) 82%),
+      radial-gradient(ellipse 11% 8% at 30% 84%, rgba(170,204,230,.95) 0%, rgba(170,204,230,0) 82%),
+      radial-gradient(ellipse 18% 9% at 36% 55%, rgba(255,232,222,.55) 0%, rgba(255,232,222,0) 82%),
+      conic-gradient(from 200deg at 49% 51%,
+        #5a0b22, #a72f4b, #f0cabe, #d0607a, #71122c, #e2a69e,
+        #5e0c23, #b8435d, #f2d6c8, #94213e, #5a0b22),
+      #6b0f27;
+    box-shadow:0 12px 20px rgba(80,20,35,.18), 0 3px 6px rgba(0,0,0,.08);
+  }
+  .b1rim {
+    position:absolute; inset:0; border-radius:50%;
+    background:conic-gradient(from 235deg at 50% 50%,
+      rgba(255,235,228,0) 0deg, rgba(255,250,246,.85) 18deg,
+      rgba(255,255,252,1) 52deg, rgba(255,244,236,.9) 82deg,
+      rgba(255,228,218,.4) 110deg, rgba(255,228,218,0) 145deg, transparent 360deg);
+    -webkit-mask:radial-gradient(circle at 50% 50%, transparent 0 82%, #000 86%, #000 97%, transparent 100%);
+    filter:blur(.6px);
+    mix-blend-mode:screen;
+  }
+  .b1gloss {
+    position:absolute; inset:0; border-radius:50%;
+    background:
+      radial-gradient(ellipse 6% 22% at 13% 60%, rgba(255,255,255,.85) 0%, rgba(255,244,238,.3) 55%, rgba(255,255,255,0) 85%),
+      radial-gradient(ellipse 3% 4% at 33% 31%, rgba(255,255,255,.95) 0%, rgba(255,255,255,0) 90%),
+      radial-gradient(ellipse 8% 9% at 27% 87%, rgba(185,215,236,.9) 0%, rgba(185,215,236,0) 85%),
+      radial-gradient(ellipse 20% 10% at 72% 22%, rgba(255,230,220,.45) 0%, rgba(255,230,220,0) 85%),
+      radial-gradient(ellipse 14% 4% at 46% 76%, rgba(190,220,240,.55) 0%, rgba(190,220,240,0) 85%);
+    filter:blur(.7px);
+  }
+  .powered1 {
+    position:absolute; top:499px; left:0; width:100%;
+    text-align:center; color:#121212; font-size:13px; font-weight:500;
+  }
+  .logo1 { position:absolute; top:521px; left:0; width:100%; font-size:13.1px; }
+  .p1 {
+    position:absolute; top:550px; left:22px; right:22px;
+    text-align:center; color:#9c9c9c;
+    font-size:12.4px; line-height:21.5px;
+  }
+
+  /* ---------- card 2 ---------- */
+  .media2 {
+    position:absolute; top:0; left:0; width:100%; height:398px;
+    background:
+      radial-gradient(ellipse 100% 26% at 50% -3%, rgba(255,255,255,.7) 0%, rgba(255,255,255,0) 62%),
+      linear-gradient(180deg,
+        #eef4f9 0%, #e9f1f7 4%, #e2edf5 8%, #d9e8f2 12%,
+        #c9e0ee 15%, #b3d3e5 18%, #95bdd5 21%, #74a4c3 24%,
+        #538db1 28%, #3a7a9f 32%, #2a6b8f 37%, #206183 42%,
+        #165473 48%, #0e4460 54%, #072b3d 62%, #011825 72%,
+        #000b12 80%, #000000 88%, #000000 100%);
+  }
+  .logo2 { position:absolute; top:52px; left:0; width:100%; font-size:13.2px; }
+  .logo2, .logo2 .word { color:#ffffff; }
+  .tag2 {
+    position:absolute; top:94px; left:0; width:100%;
+    text-align:center; color:#ffffff;
+    font-size:13.8px; line-height:20px; font-weight:400;
+  }
+  .paper2 {
+    position:absolute; top:346px; left:0; width:100%;
+    text-align:center; color:#ffffff;
+  }
+  .paper2 .a { font-size:9.8px; line-height:14px; }
+  .paper2 .b { font-size:12.3px; line-height:16px; margin-top:3px; }
+  .panel2 {
+    position:absolute; top:398px; left:0; width:100%; height:289px;
+    background:linear-gradient(180deg,#fdfdfd,#fcfcfc);
+  }
+  .p2a {
+    position:absolute; top:426px; left:36px; right:36px;
+    color:#535a62; font-size:11.9px; line-height:20.4px;
+  }
+  .p2b {
+    position:absolute; top:552px; left:36px; right:36px;
+    color:#c6d5e1; font-size:11.9px; line-height:20.4px;
+  }
+
+  /* ---------- card 3 ---------- */
+  .logo3 { position:absolute; top:52px; left:0; width:100%; font-size:12.8px; letter-spacing:1.4px; }
+  .p3 {
+    position:absolute; top:91px; left:0; width:100%;
+    text-align:center; color:#2c2c2c;
+    font-size:13.9px; line-height:20.8px;
+  }
+  .powered3 {
+    position:absolute; top:310px; left:0; width:100%;
+    text-align:center; color:#171717; font-size:13.2px; font-weight:500;
+  }
+  .thinking {
+    position:absolute; top:488px; left:0; width:100%;
+    text-align:center; color:#9097a0; font-size:11.7px;
+  }
+  .ball3 {
+    top:516px; left:50%; margin-left:-39px;
+    width:78px; height:78px;
+    background:
+      radial-gradient(ellipse 72% 58% at 35% 23%, rgba(255,255,255,.98) 0%, rgba(240,248,253,.7) 20%, rgba(200,222,236,0) 48%),
+      radial-gradient(ellipse 66% 54% at 65% 82%, rgba(26,50,66,.7) 0%, rgba(42,68,86,.35) 50%, rgba(42,68,86,0) 80%),
+      linear-gradient(154deg, #f6fbfe 0%, #d5e4ee 14%, #a4c1d3 32%, #7496ac 52%, #4e7086 72%, #3a586b 100%);
+    box-shadow:0 8px 12px rgba(30,50,70,.14), inset -3px -4px 9px rgba(10,26,38,.24);
+  }
+  .ball3::before {
+    content:""; position:absolute; inset:0; border-radius:50%;
+    background:
+      radial-gradient(ellipse 34% 26% at 31% 19%, rgba(255,255,255,.95), rgba(255,255,255,0) 72%),
+      radial-gradient(ellipse 55% 30% at 46% 104%, rgba(190,218,235,.5), rgba(190,218,235,0) 72%),
+      radial-gradient(ellipse 60% 50% at 50% 50%, rgba(0,0,0,0) 72%, rgba(130,168,190,.3) 91%, rgba(210,235,248,.3) 100%);
+    filter:blur(1px);
+  }
+  .shadow3 {
+    position:absolute; top:637px; left:50%; margin-left:-48px;
+    width:96px; height:11px; border-radius:50%;
+    background:radial-gradient(ellipse at 50% 50%, rgba(40,60,80,.12), rgba(40,60,80,0) 70%);
+    filter:blur(4px);
+  }
+
+  /* ---------- card 4 ---------- */
+  .c4 {
+    background:
+      radial-gradient(ellipse 46% 20% at 54% 103%, rgba(225,244,252,.9) 0%, rgba(195,228,242,.55) 45%, rgba(195,228,242,0) 80%),
+      radial-gradient(ellipse 70% 14% at 50% 0%, rgba(255,255,255,.5) 0%, rgba(255,255,255,0) 70%),
+      linear-gradient(180deg,
+        #eef4f9 0%, #e7eff6 7%, #dce8f2 14%, #ccdceb 21%,
+        #b6cddf 28%, #9cbcd3 35%, #7fa7c3 42%, #6392b2 49%,
+        #4b80a2 56%, #387395 63%, #2c688a 70%, #2b6688 77%,
+        #377395 84%, #4f8aa8 90%, #7bb0c6 96%, #a5cada 100%);
+  }
+  .p4top {
+    position:absolute; top:58px; left:20px; right:20px;
+    text-align:center; color:#ffffff;
+    font-size:13.1px; line-height:20px;
+  }
+  .sphere4 {
+    top:157px; left:50%; margin-left:-168px;
+    width:336px; height:336px;
+    background:
+      radial-gradient(ellipse 30% 24% at 60% 82%, rgba(6,38,58,.98) 0 40%, rgba(10,50,74,.94) 54%, rgba(14,62,86,.55) 70%, rgba(16,66,92,0) 88%),
+      radial-gradient(ellipse 24% 18% at 74% 26%, rgba(42,2,13,.92) 0 38%, rgba(52,3,16,.62) 60%, rgba(52,3,16,0) 86%),
+      radial-gradient(ellipse 18% 14% at 83% 48%, rgba(60,4,20,.8) 0 30%, rgba(60,4,20,0) 80%),
+      radial-gradient(ellipse 24% 20% at 42% 39%, #fffdf8 0 16%, #ffeadf 40%, rgba(250,205,195,.4) 64%, rgba(240,170,170,0) 86%),
+      radial-gradient(ellipse 30% 26% at 61% 54%, rgba(255,100,145,.38) 0 22%, rgba(255,100,145,0) 76%),
+      radial-gradient(ellipse 46% 38% at 51% 48%, rgba(255,196,196,.5) 0 24%, rgba(255,160,175,.2) 55%, rgba(200,80,110,0) 82%),
+      radial-gradient(circle at 50% 50%, rgba(0,0,0,0) 0 76%, rgba(88,12,32,.4) 84%, rgba(62,6,22,.7) 91%, rgba(62,6,22,0) 97%),
+      conic-gradient(from 205deg at 51% 49%,
+        #5c0922, #a6294a, #efc8ba, #c2506b, #7a1230, #e4afa3,
+        #621028, #bd4966, #f5dbca, #90203e, #5c0922),
+      #7c1030;
+    box-shadow:inset 0 0 0 1.4px rgba(255,215,235,.6), 0 12px 40px rgba(10,40,60,.18), 0 0 30px rgba(225,150,190,.25);
+  }
+  .sphere4::before {
+    content:""; position:absolute; inset:0; border-radius:50%;
+    background:
+      radial-gradient(circle at 50% 50%,
+        rgba(0,0,0,0) 82%, rgba(255,170,200,.18) 88%,
+        rgba(255,200,225,.5) 94%, rgba(255,248,252,.85) 97%,
+        rgba(255,200,225,.3) 99%, rgba(0,0,0,0) 100%);
+    mix-blend-mode:screen;
+    filter:blur(1px);
+  }
+  .s4rim {
+    position:absolute; inset:0; border-radius:50%;
+    background:conic-gradient(from 200deg at 50% 50%,
+      rgba(255,240,248,.95) 0deg, rgba(255,208,228,.9) 45deg,
+      rgba(255,168,200,.85) 95deg, rgba(255,210,232,.9) 150deg,
+      rgba(255,225,240,.8) 210deg, rgba(255,244,250,.95) 255deg,
+      rgba(255,198,222,.9) 305deg, rgba(255,240,248,.95) 360deg);
+    -webkit-mask:radial-gradient(circle at 50% 50%, transparent 0 89%, #000 91.5%, #000 96.5%, rgba(0,0,0,.4) 98.5%, transparent 100%);
+    filter:blur(1px);
+    mix-blend-mode:screen;
+  }
+  .s4blue {
+    position:absolute; inset:0; border-radius:50%;
+    background:radial-gradient(ellipse 68% 48% at 61% 79%, rgba(4,29,46,.98) 0%, rgba(8,41,61,.94) 32%, rgba(12,54,78,.6) 50%, rgba(16,62,88,0) 78%);
+    filter:blur(2px);
+  }
+  .s4gloss {
+    position:absolute; inset:0; border-radius:50%;
+    background:
+      radial-gradient(ellipse 27% 8% at 25% 76%, rgba(255,254,252,1) 0%, rgba(255,236,226,.6) 46%, rgba(255,200,190,0) 82%),
+      radial-gradient(ellipse 30% 7% at 41% 67%, rgba(200,230,248,.6) 0%, rgba(200,230,248,0) 84%);
+    transform:rotate(-16deg);
+    filter:blur(1.1px);
+    mix-blend-mode:screen;
+  }
+  .logoband {
+    position:absolute; top:315px; left:50%; margin-left:-104px;
+    width:208px; height:32px;
+    background:radial-gradient(ellipse at 50% 50%, rgba(84,20,42,.55), rgba(84,20,42,0) 74%);
+    filter:blur(7px);
+  }
+  .logo4 { position:absolute; top:321px; left:0; width:100%; font-size:15.2px; letter-spacing:2.3px; }
+  .p4cap {
+    position:absolute; top:512px; left:18px; right:18px;
+    text-align:center; color:#f6fafc;
+    font-size:13.3px; line-height:20px;
+  }
+  .logo4b { position:absolute; top:602px; left:0; width:100%; font-size:15.2px; letter-spacing:2.3px; }
+</style>
+</head>
+<body>
+  <div class="page"></div>
+
+  <!-- card 1 -->
+  <div class="card c1">
+    <div class="intro">A New Dawn,<br>The Era of Quantum Utility</div>
+    <div class="ball ball1">
+      <div class="b1gloss"></div>
+      <div class="b1rim"></div>
+    </div>
+    <div class="powered1">Powered by</div>
+    <div class="logo logo1"><span class="mark"><i></i><i></i></span><span class="word">KODOR</span></div>
+    <div class="p1">The 2026 Sentracore Quantum<br>Summit heralds the dawn of a new era<br>for Quantum Utility.</div>
+  </div>
+
+  <!-- card 2 -->
+  <div class="card c2">
+    <div class="media2"></div>
+    <div class="logo logo2 light"><span class="mark"><i></i><i></i></span><span class="word">KODOR</span></div>
+    <div class="tag2">Bringing the useful quantum<br>computing to the world</div>
+    <div class="paper2"><div class="a">White Paper code</div><div class="b">Quantum Theory M0WQ 2026</div></div>
+    <div class="panel2"></div>
+    <div class="p2a">The 2023 IBM Quantum Summit heralds the<br>dawn of a new era for Quantum Utility. Drawing<br>inspiration from the captivating qualities of first<br>light in the natural world, we built upon and<br>evolved the brand visuals, to symbolise the<br>inception of this transformative journey.</div>
+    <div class="p2b">A generative dawn evolves throughout the<br>course of the day, forever adapting the light<br>washing throughout the venue.</div>
+  </div>
+
+  <!-- card 3 -->
+  <div class="card c3">
+    <div class="logo logo3"><span class="mark"><i></i><i></i></span><span class="word">KODOR</span></div>
+    <div class="p3">Designed to explore the<br>intricate relationship and interplay<br>of quantum states.</div>
+    <div class="powered3">Powered by Odor</div>
+    <div class="thinking">Thinking...</div>
+    <div class="shadow3"></div>
+    <div class="ball ball3"></div>
+  </div>
+
+  <!-- card 4 -->
+  <div class="card c4">
+    <div class="p4top">We unveiled a new suite to<br>simplify the work of utility-era 100+<br>qubit quantum executions.</div>
+    <div class="ball sphere4">
+      <div class="s4blue"></div>
+      <div class="s4gloss"></div>
+      <div class="s4rim"></div>
+    </div>
+    <div class="logoband"></div>
+    <div class="logo logo4 light"><span class="mark"><i></i><i></i></span><span class="word">KODOR</span></div>
+    <div class="p4cap">The most advanced quantum<br>processor in the world is just revealed</div>
+    <div class="logo logo4b light"><span class="mark"><i></i><i></i></span><span class="word">KODOR</span></div>
+  </div>
+</body>
+</html>

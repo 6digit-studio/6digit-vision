@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>knob</title>
+<style>
+  html, body {
+    margin: 0; padding: 0;
+    width: 438px; height: 393px;
+    overflow: hidden;
+    background: #242a30;
+  }
+  * { box-sizing: border-box; }
+  .stage {
+    position: relative;
+    width: 438px; height: 393px;
+    overflow: hidden;
+    background: #262c32;
+  }
+  .bg {
+    position: absolute; inset: 0;
+    background:
+      radial-gradient(65% 55% at 22% 0%, rgba(125,145,160,0.10) 0%, rgba(120,140,155,0.03) 45%, rgba(0,0,0,0) 72%),
+      radial-gradient(50% 45% at 84% 90%, rgba(38,160,148,0.13) 0%, rgba(30,120,112,0.05) 50%, rgba(0,0,0,0) 80%),
+      linear-gradient(180deg, #262c32 0%, #252b31 45%, #22282e 72%, #1f262b 100%);
+  }
+  .vignette {
+    position: absolute; inset: 0;
+    background: radial-gradient(105% 100% at 45% 42%, rgba(0,0,0,0) 52%, rgba(0,0,0,0.08) 78%, rgba(0,0,0,0.20) 100%);
+  }
+  .grain {
+    position: absolute; inset: 0;
+    width: 438px; height: 393px;
+    mix-blend-mode: overlay;
+    opacity: 0.32;
+    pointer-events: none;
+  }
+
+  /* ---------------- button base plate ---------------- */
+  .tray {
+    position: absolute;
+    left: 74px; top: 59px;
+    width: 318px; height: 291px;
+    border-radius: 92px;
+    corner-shape: squircle;
+    background:
+      radial-gradient(58% 48% at 18% 4%, rgba(255,255,255,0.075) 0%, rgba(255,255,255,0.02) 45%, rgba(0,0,0,0) 70%),
+      radial-gradient(55% 52% at 90% 94%, rgba(18,110,103,0.30) 0%, rgba(15,80,76,0.10) 45%, rgba(0,0,0,0) 74%),
+      linear-gradient(156deg, #454647 0%, #3f4041 12%, #363738 28%, #2e2f30 44%, #262728 60%, #1e1f20 76%, #171819 89%, #111213 100%);
+    box-shadow:
+      inset 0 1px 1px rgba(255,255,255,0.10),
+      inset 0 -8px 12px rgba(0,0,0,0.55),
+      inset -5px 0 10px rgba(0,0,0,0.4),
+      inset 0 0 0 1px rgba(0,0,0,0.55),
+      0 28px 45px rgba(0,0,0,0.6),
+      0 9px 18px rgba(0,0,0,0.55),
+      0 2px 5px rgba(0,0,0,0.5);
+  }
+
+  /* teal light spilling out of the slot onto the plate */
+  .spill {
+    position: absolute;
+    left: 110px; top: 205px;
+    width: 230px; height: 76px;
+    background: radial-gradient(50% 50% at 54% 50%, rgba(40,235,214,0.55) 0%, rgba(30,190,175,0.20) 40%, rgba(0,0,0,0) 100%);
+    filter: blur(8px);
+    opacity: 0.6;
+  }
+
+  /* ---------------- keycap surface ---------------- */
+  .face {
+    position: absolute;
+    left: 37px; top: 25px;
+    width: 242px; height: 219px;
+    border-radius: 80px;
+    corner-shape: squircle;
+    background:
+      radial-gradient(85% 65% at 22% 4%, rgba(255,255,255,0.08) 0%, rgba(255,255,255,0.02) 42%, rgba(0,0,0,0) 64%),
+      radial-gradient(66% 62% at 88% 94%, rgba(60,238,218,0.26) 0%, rgba(48,200,185,0.08) 42%, rgba(0,0,0,0) 72%),
+      linear-gradient(154deg, #43474a 0%, #3f4346 18%, #393d40 36%, #33373a 54%, #2d3234 72%, #272d2f 88%, #23292b 100%);
+    box-shadow:
+      inset 0 0 0 1px rgba(0,0,0,0.32),
+      inset 0 -18px 34px rgba(0,0,0,0.34),
+      inset 12px 0 30px rgba(0,0,0,0.10),
+      0 0 3px 2px rgba(0,0,0,0.82),
+      0 0 14px 5px rgba(0,0,0,0.6),
+      0 14px 26px 8px rgba(0,0,0,0.85),
+      -7px 8px 18px 5px rgba(0,0,0,0.62),
+      9px 9px 20px 4px rgba(0,0,0,0.58);
+  }
+  /* soft bloom of the edge light */
+  .face::before {
+    content: "";
+    position: absolute;
+    inset: -7px;
+    border-radius: 86px;
+    corner-shape: squircle;
+    padding: 9px;
+    background:
+      conic-gradient(from 0deg at 50% 50%,
+        rgba(255,255,255,0) 0deg 80deg,
+        rgba(40,210,195,0.10) 96deg,
+        rgba(55,235,215,0.34) 114deg,
+        rgba(70,250,230,0.52) 132deg,
+        rgba(80,255,238,0.58) 152deg,
+        rgba(60,240,220,0.52) 176deg,
+        rgba(55,225,205,0.34) 198deg,
+        rgba(50,205,190,0.12) 218deg,
+        rgba(0,0,0,0) 232deg),
+      conic-gradient(from 0deg at 50% 50%,
+        rgba(255,255,255,0) 0deg 212deg,
+        rgba(255,255,255,0.05) 230deg,
+        rgba(255,255,255,0.22) 250deg,
+        rgba(255,255,255,0.48) 270deg,
+        rgba(255,255,255,0.44) 292deg,
+        rgba(255,255,255,0.16) 314deg,
+        rgba(255,255,255,0.03) 330deg,
+        rgba(255,255,255,0) 344deg 360deg);
+    -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor;
+    mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+    mask-composite: exclude;
+    filter: blur(4px);
+    opacity: 0.9;
+    pointer-events: none;
+  }
+  /* crisp edge light */
+  .face::after {
+    content: "";
+    position: absolute;
+    inset: -1px;
+    border-radius: 81px;
+    corner-shape: squircle;
+    padding: 3.5px;
+    background:
+      conic-gradient(from 0deg at 50% 50%,
+        rgba(0,0,0,0) 0deg 92deg,
+        rgba(46,215,200,0.20) 104deg,
+        rgba(70,245,225,0.70) 120deg,
+        #b8fff5 136deg,
+        #a8fff6 146deg,
+        #78f8e6 160deg,
+        #56e8d5 178deg,
+        #3fd6c3 196deg,
+        rgba(45,200,185,0.70) 214deg,
+        rgba(42,190,175,0.22) 228deg,
+        rgba(0,0,0,0) 240deg 360deg),
+      conic-gradient(from 0deg at 50% 50%,
+        rgba(255,255,255,0) 0deg 214deg,
+        rgba(255,255,255,0.06) 234deg,
+        rgba(255,255,255,0.42) 256deg,
+        rgba(255,255,255,0.90) 274deg,
+        rgba(255,255,255,0.72) 294deg,
+        rgba(255,255,255,0.26) 314deg,
+        rgba(255,255,255,0.04) 330deg,
+        rgba(255,255,255,0) 342deg 360deg);
+    -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor;
+    mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+    mask-composite: exclude;
+    filter: blur(0.4px);
+    pointer-events: none;
+  }
+  .face-glow {
+    position: absolute;
+    inset: 0;
+    border-radius: 80px;
+    corner-shape: squircle;
+    overflow: hidden;
+  }
+  .face-glow::before {
+    content: "";
+    position: absolute;
+    left: 28%; top: 50%;
+    width: 74%; height: 70%;
+    border-radius: 46%;
+    background: radial-gradient(closest-side, rgba(78,245,226,0.34), rgba(45,200,185,0.11) 52%, rgba(0,0,0,0) 100%);
+    filter: blur(9px);
+  }
+  /* faint second reflection of the light inside the face */
+  .face-glow::after {
+    content: "";
+    position: absolute;
+    inset: 9px;
+    border-radius: 72px;
+    corner-shape: squircle;
+    padding: 1.5px;
+    background: conic-gradient(from 0deg at 50% 50%,
+        rgba(0,0,0,0) 0deg 104deg,
+        rgba(70,245,225,0.40) 128deg,
+        rgba(140,255,242,0.62) 152deg,
+        rgba(70,245,225,0.40) 180deg,
+        rgba(0,0,0,0) 204deg 360deg);
+    -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor;
+    mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+    mask-composite: exclude;
+    filter: blur(1.2px);
+    opacity: 0.7;
+  }
+  .halo {
+    position: absolute;
+    left: 10px; top: 22px;
+    width: 212px; height: 176px;
+    border-radius: 50%;
+    background: radial-gradient(closest-side, rgba(205,240,235,0.09), rgba(160,210,205,0.03) 55%, rgba(0,0,0,0) 100%);
+  }
+
+  /* ---------------- dot-matrix icon ---------------- */
+  .icon {
+    position: absolute;
+    left: 0; top: 0;
+    width: 438px; height: 393px;
+  }
+  .dot { fill: #f5faf9; }
+  .dot.speaker { fill: #eef5f4; }
+  .dot.hot { fill: #d8fff8; }
+</style>
+</head>
+<body>
+<div class="stage">
+  <div class="bg"></div>
+  <div class="vignette"></div>
+
+  <div class="tray">
+    <div class="spill"></div>
+    <div class="face">
+      <div class="face-glow"></div>
+      <div class="halo"></div>
+    </div>
+  </div>
+
+  <svg class="icon" viewBox="0 0 438 393" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <filter id="blurBig" x="-40%" y="-40%" width="180%" height="180%">
+        <feGaussianBlur stdDeviation="12"/>
+      </filter>
+      <filter id="blurSmall" x="-30%" y="-30%" width="160%" height="160%">
+        <feGaussianBlur stdDeviation="2.6"/>
+      </filter>
+      <filter id="tiny" x="-10%" y="-10%" width="120%" height="120%">
+        <feGaussianBlur stdDeviation="0.35"/>
+      </filter>
+    </defs>
+    <g filter="url(#blurBig)" opacity="0.34">
+      <rect class="dot speaker" x="170.0" y="168.0" width="5.5" height="5.5" rx="1.6"/>
+      <rect class="dot speaker" x="170.0" y="175.0" width="5.5" height="5.5" rx="1.6"/>
+      <rect class="dot speaker" x="170.0" y="182.0" width="5.5" height="5.5" rx="1.6"/>
+      <rect class="dot speaker" x="170.0" y="189.0" width="5.5" height="5.5" rx="1.6"/>
+      <rect class="dot speaker" x="170.0" y="196.0" width="5.5" height="5.5" rx="1.6"/>
+      <rect class="dot speaker" x="176.7" y="168.0" width="5.5" height="5.5" rx="1.6"/>
+      <rect class="dot speaker" x="176.7" y="175.0" width="5.5" height="5.5" rx="1.6"/>
+      <rect class="dot speaker" x="176.7" y="182.0" width="5.5" height="5.5" rx="1.6"/>
+      <rect class="dot speaker" x="176.7" y="189.0" width="5.5" height="5.5" rx="1.6"/>
+      <rect class="dot speaker" x="176.7" y="196.0" width="5.5" height="5.5" rx="1.6"/>
+      <rect class="dot speaker" x="183.4" y="168.0" width="5.5" height="5.5" rx="1.6"/>
+      <rect class="dot speaker" x="183.4" y="175.0" width="5.5" height="5.5" rx="1.6"/>
+      <rect class="dot speaker" x="183.4" y="182.0" width="5.5" height="5.5" rx="1.6"/>
+      <rect class="dot speaker" x="183.4" y="189.0" width="5.5" height="5.5" rx="1.6"/>
+      <rect class="dot speaker" x="183.4" y="196.0" width="5.5" height="5.5" rx="1.6"/>
+      <rect class="dot speaker" x="190.1" y="168.0" width="5.5" height="5.5" rx="1.6"/>
+      <rect class="dot speaker" x="190.1" y="175.0" width="5.5" height="5.5" rx="1.6"/>
+      <rect class="dot speaker" x="190.1" y="182.0" width="5.5" height="5.5" rx="1.6"/>
+      <rect class="dot speaker" x="190.1" y="189.0" width="5.5" height="5.5" rx="1.6"/>
+      <rect class="dot speaker" x="190.1" y="196.0" width="5.5" height="5.5" rx="1.6"/>
+      <rect class="dot speaker" x="196.8" y="161.0" width="5.5" height="5.5" rx="1.6"/>
+      <rect class="dot speaker" x="196.8" y="168.0" width="5.5" height="5.5" rx="1.6"/>
+      <rect class="dot speaker" x="196.8" y="175.0" width="5.5" height="5.5" rx="1.6"/>
+      <rect class="dot speaker" x="196.8" y="182.0" width="5.5" height="5.5" rx="1.6"/>
+      <rect class="dot speaker" x="196.8" y="189.0" width="5.5" height="5.5" rx="1.6"/>
+      <rect class="dot speaker" x="196.8" y="196.0" width="5.5" height="5.5" rx="1.6"/>
+      <rect class="dot speaker" x="196.8" y="203.0" width="5.5" height="5.5" rx="1.6"/>
+      <rect class="dot speaker" x="203.5" y="154.0" width="5.5" height="5.5" rx="1.6"/>
+      <rect class="dot speaker" x="203.5" y="161.0" width="5.5" height="5.5" rx="1.6"/>
+      <rect class="dot speaker" x="203.5" y="168.0" width="5.5" height="5.5" rx="1.6"/>
+      <rect class="dot speaker" x="203.5" y="175.0" width="5.5" height="5.5" rx="1.6"/>
+      <rect class="dot speaker" x="203.5" y="182.0" width="5.5" height="5.5" rx="1.6"/>
+      <rect class="dot speaker" x="203.5" y="189.0" width="5.5" height="5.5" rx="1.6"/>
+      <rect class="dot speaker" x="203.5" y="196.0" width="5.5" height="5.5" rx="1.6"/>
+      <rect class="dot speaker" x="203.5" y="203.0" width="5.5" height="5.5" rx="1.6"/>
+      <rect class="dot speaker" x="203.5" y="210.0" width="5.5" height="5.5" rx="1.6"/>
+      <rect class="dot speaker" x="210.2" y="147.0" width="5.5" height="5.5" rx="1.6"/>
+      <rect class="dot speaker" x="210.2" y="154.0" width="5.5" height="5.5" rx="1.6"/>
+      <rect class="dot speaker" x="210.2" y="161.0" width="5.5" height="5.5" rx="1.6"/>
+      <rect class="dot speaker" x="210.2" y="168.0" width="5.5" height="5.5" rx="1.6"/>
+      <rect class="dot speaker" x="210.2" y="175.0" width="5.5" height="5.5" rx="1.6"/>
+      <rect class="dot speaker" x="210.2" y="182.0" width="5.5" height="5.5" rx="1.6"/>
+      <rect class="dot speaker" x="210.2" y="189.0" width="5.5" height="5.5" rx="1.6"/>
+      <rect class="dot speaker" x="210.2" y="196.0" width="5.5" height="5.5" rx="1.6"/>
+      <rect class="dot speaker" x="210.2" y="203.0" width="5.5" height="5.5" rx="1.6"/>
+      <rect class="dot speaker" x="210.2" y="210.0" width="5.5" height="5.5" rx="1.6"/>
+      <rect class="dot speaker" x="210.2" y="217.0" width="5.5" height="5.5" rx="1.6"/>
+      <rect class="dot speaker" x="216.9" y="140.0" width="5.5" height="5.5" rx="1.6"/>
+      <rect class="dot speaker" x="216.9" y="147.0" width="5.5" height="5.5" rx="1.6"/>
+      <rect class="dot speaker" x="216.9" y="154.0" width="5.5" height="5.5" rx="1.6"/>
+      <rect class="dot speaker" x="216.9" y="161.0" width="5.5" height="5.5" rx="1.6"/>
+      <rect class="dot speaker" x="216.9" y="168.0" width="5.5" height="5.5" rx="1.6"/>
+      <rect class="dot speaker" x="216.9" y="175.0" width="5.5" height="5.5" rx="1.6"/>
+      <rect class="dot speaker" x="216.9" y="182.0" width="5.5" height="5.5" rx="1.6"/>
+      <rect class="dot speaker" x="216.9" y="189.0" width="5.5" height="5.5" rx="1.6"/>
+      <rect class="dot speaker" x="216.9" y="196.0" width="5.5" height="5.5" rx="1.6"/>
+      <rect class="dot speaker" x="216.9" y="203.0" width="5.5" height="5.5" rx="1.6"/>
+      <rect class="dot speaker" x="216.9" y="210.0" width="5.5" height="5.5" rx="1.6"/>
+      <rect class="dot speaker" x="216.9" y="217.0" width="5.5" height="5.5" rx="1.6"/>
+      <rect class="dot speaker" x="216.9" y="224.0" width="5.5" height="5.5" rx="1.6"/>
+      <rect class="dot " x="231.5" y="197.1" width="5.5" height="5.5" rx="1.6"/>
+      <rect class="dot " x="238.8" y="187.9" width="5.5" height="5.5" rx="1.6"/>
+      <rect class="dot " x="238.8" y="176.6" width="5.5" height="5.5" rx="1.6"/>
+      <rect class="dot " x="231.5" y="167.4" width="5.5" height="5.5" rx="1.6"/>
+      <rect class="dot " x="255.1" y="210.8" width="5.5" height="5.5" rx="1.6"/>
+      <rect class="dot " x="260.0" y="203.9" width="5.5" height="5.5" rx="1.6"/>
+      <rect class="dot " x="263.5" y="196.2" width="5.5" height="5.5" rx="1.6"/>
+      <rect class="dot " x="265.4" y="188.0" width="5.5" height="5.5" rx="1.6"/>
+      <rect class="dot " x="265.7" y="179.5" width="5.5" height="5.5" rx="1.6"/>
+      <rect class="dot " x="264.3" y="171.2" width="5.5" height="5.5" rx="1.6"/>
+      <rect class="dot " x="261.4" y="163.3" width="5.5" height="5.5" rx="1.6"/>
+      <rect class="dot " x="257.0" y="156.1" width="5.5" height="5.5" rx="1.6"/>
+      <rect class="dot hot hot" x="271.3" y="226.4" width="5.5" height="5.5" rx="1.6"/>
+      <rect class="dot hot hot" x="277.2" y="218.8" width="5.5" height="5.5" rx="1.6"/>
+      <rect class="dot hot hot" x="282.0" y="210.4" width="5.5" height="5.5" rx="1.6"/>
+      <rect class="dot hot hot" x="285.4" y="201.3" width="5.5" height="5.5" rx="1.6"/>
+      <rect class="dot hot" x="287.5" y="191.9" width="5.5" height="5.5" rx="1.6"/>
+      <rect class="dot hot" x="288.2" y="182.2" width="5.5" height="5.5" rx="1.6"/>
+      <rect class="dot hot" x="287.5" y="172.6" width="5.5" height="5.5" rx="1.6"/>
+      <rect class="dot hot" x="285.4" y="163.2" width="5.5" height="5.5" rx="1.6"/>
+      <rect class="dot hot" x="282.0" y="154.1" width="5.5" height="5.5" rx="1.6"/>
+      <rect class="dot hot" x="277.2" y="145.7" width="5.5" height="5.5" rx="1.6"/>
+      <rect class="dot hot" x="271.3" y="138.1" width="5.5" height="5.5" rx="1.6"/>
+    </g>
+    <g filter="url(#blurSmall)" opacity="0.78">
+      <rect class="dot speaker" x="170.0" y="168.0" width="5.5" height="5.5" rx="1.6"/>
+      <rect class="dot speaker" x="170.0" y="175.0" width="5.5" height="5.5" rx="1.6"/>
+      <rect class="dot speaker" x="170.0" y="182.0" width="5.5" height="5.5" rx="1.6"/>
+      <rect class="dot speaker" x="170.0" y="189.0" width="5.5" height="5.5" rx="1.6"/>
+      <rect class="dot speaker" x="170.0" y="196.0" width="5.5" height="5.5" rx="1.6"/>
+      <rect class="dot speaker" x="176.7" y="168.0" width="5.5" height="5.5" rx="1.6"/>
+      <rect class="dot speaker" x="176.7" y="175.0" width="5.5" height="5.5" rx="1.6"/>
+      <rect class="dot speaker" x="176.7" y="182.0" width="5.5" height="5.5" rx="1.6"/>
+      <rect class="dot speaker" x="176.7" y="189.0" width="5.5" height="5.5" rx="1.6"/>
+      <rect class="dot speaker" x="176.7" y="196.0" width="5.5" height="5.5" rx="1.6"/>
+      <rect class="dot speaker" x="183.4" y="168.0" width="5.5" height="5.5" rx="1.6"/>
+      <rect class="dot speaker" x="183.4" y="175.0" width="5.5" height="5.5" rx="1.6"/>
+      <rect class="dot speaker" x="183.4" y="182.0" width="5.5" height="5.5" rx="1.6"/>
+      <rect class="dot speaker" x="183.4" y="189.0" width="5.5" height="5.5" rx="1.6"/>
+      <rect class="dot speaker" x="183.4" y="196.0" width="5.5" height="5.5" rx="1.6"/>
+      <rect class="dot speaker" x="190.1" y="168.0" width="5.5" height="5.5" rx="1.6"/>
+      <rect class="dot speaker" x="190.1" y="175.0" width="5.5" height="5.5" rx="1.6"/>
+      <rect class="dot speaker" x="190.1" y="182.0" width="5.5" height="5.5" rx="1.6"/>
+      <rect class="dot speaker" x="190.1" y="189.0" width="5.5" height="5.5" rx="1.6"/>
+      <rect class="dot speaker" x="190.1" y="196.0" width="5.5" height="5.5" rx="1.6"/>
+      <rect class="dot speaker" x="196.8" y="161.0" width="5.5" height="5.5" rx="1.6"/>
+      <rect class="dot speaker" x="196.8" y="168.0" width="5.5" height="5.5" rx="1.6"/>
+      <rect class="dot speaker" x="196.8" y="175.0" width="5.5" height="5.5" rx="1.6"/>
+      <rect class="dot speaker" x="196.8" y="182.0" width="5.5" height="5.5" rx="1.6"/>
+      <rect class="dot speaker" x="196.8" y="189.0" width="5.5" height="5.5" rx="1.6"/>
+      <rect class="dot speaker" x="196.8" y="196.0" width="5.5" height="5.5" rx="1.6"/>
+      <rect class="dot speaker" x="196.8" y="203.0" width="5.5" height="5.5" rx="1.6"/>
+      <rect class="dot speaker" x="203.5" y="154.0" width="5.5" height="5.5" rx="1.6"/>
+      <rect class="dot speaker" x="203.5" y="161.0" width="5.5" height="5.5" rx="1.6"/>
+      <rect class="dot speaker" x="203.5" y="168.0" width="5.5" height="5.5" rx="1.6"/>
+      <rect class="dot speaker" x="203.5" y="175.0" width="5.5" height="5.5" rx="1.6"/>
+      <rect class="dot speaker" x="203.5" y="182.0" width="5.5" height="5.5" rx="1.6"/>
+      <rect class="dot speaker" x="203.5" y="189.0" width="5.5" height="5.5" rx="1.6"/>
+      <rect class="dot speaker" x="203.5" y="196.0" width="5.5" height="5.5" rx="1.6"/>
+      <rect class="dot speaker" x="203.5" y="203.0" width="5.5" height="5.5" rx="1.6"/>
+      <rect class="dot speaker" x="203.5" y="210.0" width="5.5" height="5.5" rx="1.6"/>
+      <rect class="dot speaker" x="210.2" y="147.0" width="5.5" height="5.5" rx="1.6"/>
+      <rect class="dot speaker" x="210.2" y="154.0" width="5.5" height="5.5" rx="1.6"/>
+      <rect class="dot speaker" x="210.2" y="161.0" width="5.5" height="5.5" rx="1.6"/>
+      <rect class="dot speaker" x="210.2" y="168.0" width="5.5" height="5.5" rx="1.6"/>
+      <rect class="dot speaker" x="210.2" y="175.0" width="5.5" height="5.5" rx="1.6"/>
+      <rect class="dot speaker" x="210.2" y="182.0" width="5.5" height="5.5" rx="1.6"/>
+      <rect class="dot speaker" x="210.2" y="189.0" width="5.5" height="5.5" rx="1.6"/>
+      <rect class="dot speaker" x="210.2" y="196.0" width="5.5" height="5.5" rx="1.6"/>
+      <rect class="dot speaker" x="210.2" y="203.0" width="5.5" height="5.5" rx="1.6"/>
+      <rect class="dot speaker" x="210.2" y="210.0" width="5.5" height="5.5" rx="1.6"/>
+      <rect class="dot speaker" x="210.2" y="217.0" width="5.5" height="5.5" rx="1.6"/>
+      <rect class="dot speaker" x="216.9" y="140.0" width="5.5" height="5.5" rx="1.6"/>
+      <rect class="dot speaker" x="216.9" y="147.0" width="5.5" height="5.5" rx="1.6"/>
+      <rect class="dot speaker" x="216.9" y="154.0" width="5.5" height="5.5" rx="1.6"/>
+      <rect class="dot speaker" x="216.9" y="161.0" width="5.5" height="5.5" rx="1.6"/>
+      <rect class="dot speaker" x="216.9" y="168.0" width="5.5" height="5.5" rx="1.6"/>
+      <rect class="dot speaker" x="216.9" y="175.0" width="5.5" height="5.5" rx="1.6"/>
+      <rect class="dot speaker" x="216.9" y="182.0" width="5.5" height="5.5" rx="1.6"/>
+      <rect class="dot speaker" x="216.9" y="189.0" width="5.5" height="5.5" rx="1.6"/>
+      <rect class="dot speaker" x="216.9" y="196.0" width="5.5" height="5.5" rx="1.6"/>
+      <rect class="dot speaker" x="216.9" y="203.0" width="5.5" height="5.5" rx="1.6"/>
+      <rect class="dot speaker" x="216.9" y="210.0" width="5.5" height="5.5" rx="1.6"/>
+      <rect class="dot speaker" x="216.9" y="217.0" width="5.5" height="5.5" rx="1.6"/>
+      <rect class="dot speaker" x="216.9" y="224.0" width="5.5" height="5.5" rx="1.6"/>
+      <rect class="dot " x="231.5" y="197.1" width="5.5" height="5.5" rx="1.6"/>
+      <rect class="dot " x="238.8" y="187.9" width="5.5" height="5.5" rx="1.6"/>
+      <rect class="dot " x="238.8" y="176.6" width="5.5" height="5.5" rx="1.6"/>
+      <rect class="dot " x="231.5" y="167.4" width="5.5" height="5.5" rx="1.6"/>
+      <rect class="dot " x="255.1" y="210.8" width="5.5" height="5.5" rx="1.6"/>
+      <rect class="dot " x="260.0" y="203.9" width="5.5" height="5.5" rx="1.6"/>
+      <rect class="dot " x="263.5" y="196.2" width="5.5" height="5.5" rx="1.6"/>
+      <rect class="dot " x="265.4" y="188.0" width="5.5" height="5.5" rx="1.6"/>
+      <rect class="dot " x="265.7" y="179.5" width="5.5" height="5.5" rx="1.6"/>
+      <rect class="dot " x="264.3" y="171.2" width="5.5" height="5.5" rx="1.6"/>
+      <rect class="dot " x="261.4" y="163.3" width="5.5" height="5.5" rx="1.6"/>
+      <rect class="dot " x="257.0" y="156.1" width="5.5" height="5.5" rx="1.6"/>
+      <rect class="dot hot hot" x="271.3" y="226.4" width="5.5" height="5.5" rx="1.6"/>
+      <rect class="dot hot hot" x="277.2" y="218.8" width="5.5" height="5.5" rx="1.6"/>
+      <rect class="dot hot hot" x="282.0" y="210.4" width="5.5" height="5.5" rx="1.6"/>
+      <rect class="dot hot hot" x="285.4" y="201.3" width="5.5" height="5.5" rx="1.6"/>
+      <rect class="dot hot" x="287.5" y="191.9" width="5.5" height="5.5" rx="1.6"/>
+      <rect class="dot hot" x="288.2" y="182.2" width="5.5" height="5.5" rx="1.6"/>
+      <rect class="dot hot" x="287.5" y="172.6" width="5.5" height="5.5" rx="1.6"/>
+      <rect class="dot hot" x="285.4" y="163.2" width="5.5" height="5.5" rx="1.6"/>
+      <rect class="dot hot" x="282.0" y="154.1" width="5.5" height="5.5" rx="1.6"/>
+      <rect class="dot hot" x="277.2" y="145.7" width="5.5" height="5.5" rx="1.6"/>
+      <rect class="dot hot" x="271.3" y="138.1" width="5.5" height="5.5" rx="1.6"/>
+    </g>
+    <g filter="url(#tiny)">
+      <rect class="dot speaker" x="170.0" y="168.0" width="5.5" height="5.5" rx="1.6"/>
+      <rect class="dot speaker" x="170.0" y="175.0" width="5.5" height="5.5" rx="1.6"/>
+      <rect class="dot speaker" x="170.0" y="182.0" width="5.5" height="5.5" rx="1.6"/>
+      <rect class="dot speaker" x="170.0" y="189.0" width="5.5" height="5.5" rx="1.6"/>
+      <rect class="dot speaker" x="170.0" y="196.0" width="5.5" height="5.5" rx="1.6"/>
+      <rect class="dot speaker" x="176.7" y="168.0" width="5.5" height="5.5" rx="1.6"/>
+      <rect class="dot speaker" x="176.7" y="175.0" width="5.5" height="5.5" rx="1.6"/>
+      <rect class="dot speaker" x="176.7" y="182.0" width="5.5" height="5.5" rx="1.6"/>
+      <rect class="dot speaker" x="176.7" y="189.0" width="5.5" height="5.5" rx="1.6"/>
+      <rect class="dot speaker" x="176.7" y="196.0" width="5.5" height="5.5" rx="1.6"/>
+      <rect class="dot speaker" x="183.4" y="168.0" width="5.5" height="5.5" rx="1.6"/>
+      <rect class="dot speaker" x="183.4" y="175.0" width="5.5" height="5.5" rx="1.6"/>
+      <rect class="dot speaker" x="183.4" y="182.0" width="5.5" height="5.5" rx="1.6"/>
+      <rect class="dot speaker" x="183.4" y="189.0" width="5.5" height="5.5" rx="1.6"/>
+      <rect class="dot speaker" x="183.4" y="196.0" width="5.5" height="5.5" rx="1.6"/>
+      <rect class="dot speaker" x="190.1" y="168.0" width="5.5" height="5.5" rx="1.6"/>
+      <rect class="dot speaker" x="190.1" y="175.0" width="5.5" height="5.5" rx="1.6"/>
+      <rect class="dot speaker" x="190.1" y="182.0" width="5.5" height="5.5" rx="1.6"/>
+      <rect class="dot speaker" x="190.1" y="189.0" width="5.5" height="5.5" rx="1.6"/>
+      <rect class="dot speaker" x="190.1" y="196.0" width="5.5" height="5.5" rx="1.6"/>
+      <rect class="dot speaker" x="196.8" y="161.0" width="5.5" height="5.5" rx="1.6"/>
+      <rect class="dot speaker" x="196.8" y="168.0" width="5.5" height="5.5" rx="1.6"/>
+      <rect class="dot speaker" x="196.8" y="175.0" width="5.5" height="5.5" rx="1.6"/>
+      <rect class="dot speaker" x="196.8" y="182.0" width="5.5" height="5.5" rx="1.6"/>
+      <rect class="dot speaker" x="196.8" y="189.0" width="5.5" height="5.5" rx="1.6"/>
+      <rect class="dot speaker" x="196.8" y="196.0" width="5.5" height="5.5" rx="1.6"/>
+      <rect class="dot speaker" x="196.8" y="203.0" width="5.5" height="5.5" rx="1.6"/>
+      <rect class="dot speaker" x="203.5" y="154.0" width="5.5" height="5.5" rx="1.6"/>
+      <rect class="dot speaker" x="203.5" y="161.0" width="5.5" height="5.5" rx="1.6"/>
+      <rect class="dot speaker" x="203.5" y="168.0" width="5.5" height="5.5" rx="1.6"/>
+      <rect class="dot speaker" x="203.5" y="175.0" width="5.5" height="5.5" rx="1.6"/>
+      <rect class="dot speaker" x="203.5" y="182.0" width="5.5" height="5.5" rx="1.6"/>
+      <rect class="dot speaker" x="203.5" y="189.0" width="5.5" height="5.5" rx="1.6"/>
+      <rect class="dot speaker" x="203.5" y="196.0" width="5.5" height="5.5" rx="1.6"/>
+      <rect class="dot speaker" x="203.5" y="203.0" width="5.5" height="5.5" rx="1.6"/>
+      <rect class="dot speaker" x="203.5" y="210.0" width="5.5" height="5.5" rx="1.6"/>
+      <rect class="dot speaker" x="210.2" y="147.0" width="5.5" height="5.5" rx="1.6"/>
+      <rect class="dot speaker" x="210.2" y="154.0" width="5.5" height="5.5" rx="1.6"/>
+      <rect class="dot speaker" x="210.2" y="161.0" width="5.5" height="5.5" rx="1.6"/>
+      <rect class="dot speaker" x="210.2" y="168.0" width="5.5" height="5.5" rx="1.6"/>
+      <rect class="dot speaker" x="210.2" y="175.0" width="5.5" height="5.5" rx="1.6"/>
+      <rect class="dot speaker" x="210.2" y="182.0" width="5.5" height="5.5" rx="1.6"/>
+      <rect class="dot speaker" x="210.2" y="189.0" width="5.5" height="5.5" rx="1.6"/>
+      <rect class="dot speaker" x="210.2" y="196.0" width="5.5" height="5.5" rx="1.6"/>
+      <rect class="dot speaker" x="210.2" y="203.0" width="5.5" height="5.5" rx="1.6"/>
+      <rect class="dot speaker" x="210.2" y="210.0" width="5.5" height="5.5" rx="1.6"/>
+      <rect class="dot speaker" x="210.2" y="217.0" width="5.5" height="5.5" rx="1.6"/>
+      <rect class="dot speaker" x="216.9" y="140.0" width="5.5" height="5.5" rx="1.6"/>
+      <rect class="dot speaker" x="216.9" y="147.0" width="5.5" height="5.5" rx="1.6"/>
+      <rect class="dot speaker" x="216.9" y="154.0" width="5.5" height="5.5" rx="1.6"/>
+      <rect class="dot speaker" x="216.9" y="161.0" width="5.5" height="5.5" rx="1.6"/>
+      <rect class="dot speaker" x="216.9" y="168.0" width="5.5" height="5.5" rx="1.6"/>
+      <rect class="dot speaker" x="216.9" y="175.0" width="5.5" height="5.5" rx="1.6"/>
+      <rect class="dot speaker" x="216.9" y="182.0" width="5.5" height="5.5" rx="1.6"/>
+      <rect class="dot speaker" x="216.9" y="189.0" width="5.5" height="5.5" rx="1.6"/>
+      <rect class="dot speaker" x="216.9" y="196.0" width="5.5" height="5.5" rx="1.6"/>
+      <rect class="dot speaker" x="216.9" y="203.0" width="5.5" height="5.5" rx="1.6"/>
+      <rect class="dot speaker" x="216.9" y="210.0" width="5.5" height="5.5" rx="1.6"/>
+      <rect class="dot speaker" x="216.9" y="217.0" width="5.5" height="5.5" rx="1.6"/>
+      <rect class="dot speaker" x="216.9" y="224.0" width="5.5" height="5.5" rx="1.6"/>
+      <rect class="dot " x="231.5" y="197.1" width="5.5" height="5.5" rx="1.6"/>
+      <rect class="dot " x="238.8" y="187.9" width="5.5" height="5.5" rx="1.6"/>
+      <rect class="dot " x="238.8" y="176.6" width="5.5" height="5.5" rx="1.6"/>
+      <rect class="dot " x="231.5" y="167.4" width="5.5" height="5.5" rx="1.6"/>
+      <rect class="dot " x="255.1" y="210.8" width="5.5" height="5.5" rx="1.6"/>
+      <rect class="dot " x="260.0" y="203.9" width="5.5" height="5.5" rx="1.6"/>
+      <rect class="dot " x="263.5" y="196.2" width="5.5" height="5.5" rx="1.6"/>
+      <rect class="dot " x="265.4" y="188.0" width="5.5" height="5.5" rx="1.6"/>
+      <rect class="dot " x="265.7" y="179.5" width="5.5" height="5.5" rx="1.6"/>
+      <rect class="dot " x="264.3" y="171.2" width="5.5" height="5.5" rx="1.6"/>
+      <rect class="dot " x="261.4" y="163.3" width="5.5" height="5.5" rx="1.6"/>
+      <rect class="dot " x="257.0" y="156.1" width="5.5" height="5.5" rx="1.6"/>
+      <rect class="dot hot hot" x="271.3" y="226.4" width="5.5" height="5.5" rx="1.6"/>
+      <rect class="dot hot hot" x="277.2" y="218.8" width="5.5" height="5.5" rx="1.6"/>
+      <rect class="dot hot hot" x="282.0" y="210.4" width="5.5" height="5.5" rx="1.6"/>
+      <rect class="dot hot hot" x="285.4" y="201.3" width="5.5" height="5.5" rx="1.6"/>
+      <rect class="dot hot" x="287.5" y="191.9" width="5.5" height="5.5" rx="1.6"/>
+      <rect class="dot hot" x="288.2" y="182.2" width="5.5" height="5.5" rx="1.6"/>
+      <rect class="dot hot" x="287.5" y="172.6" width="5.5" height="5.5" rx="1.6"/>
+      <rect class="dot hot" x="285.4" y="163.2" width="5.5" height="5.5" rx="1.6"/>
+      <rect class="dot hot" x="282.0" y="154.1" width="5.5" height="5.5" rx="1.6"/>
+      <rect class="dot hot" x="277.2" y="145.7" width="5.5" height="5.5" rx="1.6"/>
+      <rect class="dot hot" x="271.3" y="138.1" width="5.5" height="5.5" rx="1.6"/>
+    </g>
+  </svg>
+
+  <svg class="grain" viewBox="0 0 438 393" xmlns="http://www.w3.org/2000/svg">
+    <filter id="noise">
+      <feTurbulence type="fractalNoise" baseFrequency="1.1" numOctaves="2" stitchTiles="stitch"/>
+      <feColorMatrix type="saturate" values="0"/>
+    </filter>
+    <rect width="438" height="393" filter="url(#noise)"/>
+  </svg>
+</div>
+</body>
+</html>

@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>KODOR collage</title>
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html, body { width:1520px; height:794px; overflow:hidden; }
+  body {
+    position:relative;
+    background:#fbfaf9;
+    font-family:"Helvetica Neue", Helvetica, Arial, sans-serif;
+    -webkit-font-smoothing:antialiased;
+    color:#1b1b1b;
+  }
+
+  .card { position:absolute; top:58px; width:325px; height:683px; border-radius:22px; overflow:hidden; }
+  .c1 { left:52px;  background:linear-gradient(178deg,#f8f7f5 0%,#f6f5f3 45%,#f4f3f1 100%); }
+  .c2 { left:416px; background:#fcfcfb; }
+  .c3 { left:780px; background:#fcfcfb; }
+  .c4 { left:1144px; background:#f2f1ef; }
+
+  /* ---------- logo lockup ---------- */
+  .logo { display:flex; align-items:center; justify-content:center; gap:5px;
+          font-weight:700; font-size:17px; letter-spacing:0.6px; line-height:1; }
+  .mark { display:flex; gap:1.5px; height:13px; margin-right:1px; }
+  .mark i { display:block; width:6px; height:13px; background:currentColor;
+            clip-path:polygon(100% 0,58% 0,0 50%,58% 100%,100% 100%,42% 50%); }
+  .logo.light { color:rgba(255,255,255,0.92); }
+
+  /* ---------- marble sphere ---------- */
+  .sphere { position:absolute; border-radius:50%; overflow:hidden; }
+  .paint { position:absolute; inset:-10px; filter:blur(1.6px) saturate(1.12) contrast(1.05); }
+  .fibers { position:absolute; inset:-8px; filter:blur(1.3px); opacity:.8;
+    -webkit-mask-image:radial-gradient(ellipse 76% 66% at 56% 38%, #000 0%, #000 48%, rgba(0,0,0,0) 88%);
+            mask-image:radial-gradient(ellipse 76% 66% at 56% 38%, #000 0%, #000 48%, rgba(0,0,0,0) 88%); }
+
+  .base-marble {
+    background:
+      radial-gradient(ellipse 15% 10% at 60% 30%, #fff6f5 0%, rgba(255,228,230,0) 100%),
+      radial-gradient(ellipse 12% 9% at 45% 27%, #ffedee 0%, rgba(255,225,230,0) 100%),
+      radial-gradient(ellipse 11% 8% at 70% 41%, #ffe7e8 0%, rgba(255,220,225,0) 100%),
+      radial-gradient(ellipse 9% 7% at 34% 40%, #ffdfe2 0%, rgba(255,215,220,0) 100%),
+      radial-gradient(ellipse 10% 8% at 55% 52%, #ffeaea 0%, rgba(255,222,225,0) 100%),
+      radial-gradient(ellipse 36% 30% at 55% 43%, #f6b6c0 0%, rgba(244,168,182,0) 100%),
+      radial-gradient(ellipse 26% 20% at 70% 50%, #f9c9cb 0%, rgba(249,201,203,0) 100%),
+      radial-gradient(ellipse 24% 19% at 40% 48%, #f0a4b2 0%, rgba(240,164,178,0) 100%),
+      radial-gradient(ellipse 32% 26% at 60% 55%, #d9556f 0%, rgba(217,85,111,0) 100%),
+      radial-gradient(ellipse 22% 18% at 44% 60%, #c4405c 0%, rgba(196,64,92,0) 100%),
+      radial-gradient(ellipse 20% 16% at 72% 66%, #b8385a 0%, rgba(184,56,90,0) 100%),
+      radial-gradient(ellipse 18% 14% at 52% 70%, #8d2b42 0%, rgba(141,43,66,0) 100%),
+      radial-gradient(ellipse 14% 11% at 84% 46%, #8e2b40 0%, rgba(142,43,64,0) 100%),
+      radial-gradient(circle at 24% 80%, rgba(155,198,255,0.95) 0%, rgba(72,124,220,0.8) 4%, rgba(40,78,150,0.45) 9%, rgba(30,60,120,0) 17%),
+      radial-gradient(circle at 18% 85%, rgba(125,95,210,0.32) 0%, rgba(110,80,190,0) 13%),
+      radial-gradient(circle at 6% 88%, #03050a 0%, #05080f 26%, rgba(5,8,15,0) 50%),
+      radial-gradient(ellipse 58% 22% at 50% 108%, #04060b 0%, rgba(4,6,11,0.9) 24%, rgba(4,6,11,0) 62%),
+      radial-gradient(circle at 103% 62%, #06050b 0%, rgba(6,5,11,0.8) 12%, rgba(6,5,11,0) 32%),
+      radial-gradient(circle at 4% 14%, rgba(10,7,16,0.85) 0%, rgba(10,7,16,0) 19%),
+      radial-gradient(circle at 54% 45%, #b85a6d 0%, #6d2838 50%, #2a131d 84%, #0a0810 100%);
+  }
+  .base-fibers {
+    background:
+      radial-gradient(ellipse 12% 8% at 58% 34%, rgba(255,250,248,.9) 0%, rgba(255,244,240,0) 100%),
+      radial-gradient(ellipse 10% 7% at 67% 44%, rgba(255,238,235,.8) 0%, rgba(255,228,224,0) 100%),
+      radial-gradient(ellipse 9% 7% at 49% 45%, rgba(255,244,240,.8) 0%, rgba(255,236,232,0) 100%),
+      radial-gradient(ellipse 10% 7% at 42% 53%, rgba(214,74,104,.8) 0%, rgba(202,62,94,0) 100%),
+      radial-gradient(ellipse 9% 7% at 62% 58%, rgba(192,54,82,.8) 0%, rgba(182,50,78,0) 100%),
+      radial-gradient(ellipse 8% 6% at 72% 34%, rgba(255,247,244,.8) 0%, rgba(255,238,234,0) 100%),
+      radial-gradient(ellipse 8% 6% at 36% 32%, rgba(255,240,238,.7) 0%, rgba(255,230,228,0) 100%),
+      radial-gradient(ellipse 8% 6% at 55% 26%, rgba(255,244,242,.7) 0%, rgba(255,234,232,0) 100%),
+      radial-gradient(ellipse 8% 6% at 48% 64%, rgba(152,38,64,.7) 0%, rgba(142,34,60,0) 100%),
+      radial-gradient(ellipse 8% 6% at 66% 68%, rgba(162,42,70,.65) 0%, rgba(152,38,64,0) 100%),
+      radial-gradient(ellipse 7% 5% at 55% 40%, rgba(255,252,250,.8) 0%, rgba(255,246,242,0) 100%),
+      radial-gradient(ellipse 7% 5% at 62% 49%, rgba(255,238,235,.7) 0%, rgba(255,228,224,0) 100%),
+      radial-gradient(ellipse 62% 54% at 56% 46%, rgba(0,0,0,0) 26%, rgba(255,214,220,.16) 30%, rgba(0,0,0,0) 34%),
+      radial-gradient(ellipse 52% 46% at 56% 46%, rgba(0,0,0,0) 36%, rgba(255,228,232,.17) 41%, rgba(0,0,0,0) 46%),
+      radial-gradient(ellipse 42% 38% at 56% 46%, rgba(0,0,0,0) 50%, rgba(120,26,52,.2) 55%, rgba(0,0,0,0) 61%),
+      radial-gradient(ellipse 32% 30% at 56% 46%, rgba(0,0,0,0) 58%, rgba(255,214,220,.16) 64%, rgba(0,0,0,0) 71%),
+      radial-gradient(ellipse 22% 21% at 56% 46%, rgba(0,0,0,0) 52%, rgba(255,235,238,.18) 60%, rgba(0,0,0,0) 70%),
+      conic-gradient(from 200deg at 56% 46%,
+        rgba(255,205,212,.14) 0deg 4deg, rgba(0,0,0,0) 4deg 9deg,
+        rgba(80,10,30,.12) 9deg 13deg, rgba(0,0,0,0) 13deg 18deg,
+        rgba(255,215,220,.13) 18deg 23deg, rgba(0,0,0,0) 23deg 29deg,
+        rgba(90,14,36,.12) 29deg 34deg, rgba(0,0,0,0) 34deg 40deg,
+        rgba(255,205,212,.13) 40deg 46deg, rgba(0,0,0,0) 46deg 53deg,
+        rgba(80,10,30,.12) 53deg 59deg, rgba(0,0,0,0) 59deg 66deg,
+        rgba(255,215,220,.13) 66deg 73deg, rgba(0,0,0,0) 73deg 81deg,
+        rgba(90,14,36,.12) 81deg 89deg, rgba(0,0,0,0) 89deg 98deg,
+        rgba(255,205,212,.13) 98deg 107deg, rgba(0,0,0,0) 107deg 117deg,
+        rgba(80,10,30,.12) 117deg 127deg, rgba(0,0,0,0) 127deg 138deg,
+        rgba(255,215,220,.13) 138deg 149deg, rgba(0,0,0,0) 149deg 161deg,
+        rgba(90,14,36,.12) 161deg 174deg, rgba(0,0,0,0) 174deg 188deg,
+        rgba(255,205,212,.13) 188deg 202deg, rgba(0,0,0,0) 202deg 217deg,
+        rgba(80,10,30,.12) 217deg 233deg, rgba(0,0,0,0) 233deg 250deg,
+        rgba(255,215,220,.13) 250deg 268deg, rgba(0,0,0,0) 268deg 287deg,
+        rgba(90,14,36,.12) 287deg 307deg, rgba(0,0,0,0) 307deg 328deg,
+        rgba(255,205,212,.13) 328deg 350deg, rgba(0,0,0,0) 350deg 374deg);
+  }
+
+  /* ============ CARD 1 ============ */
+  .c1-title { position:absolute; top:53px; left:0; right:0; text-align:center;
+              font-size:13.2px; line-height:19px; letter-spacing:-0.05px; color:#1a1a1a; }
+
+  .s1 { left:94px; top:124px; width:141px; height:141px;
+        box-shadow:0 7px 20px rgba(70,45,55,0.16); }
+  .s1 .paint { inset:-10px; }
+  .s1 .fibers { inset:-8px; }
+  .s1::after { content:""; position:absolute; inset:0; border-radius:50%;
+        box-shadow:inset -6px -8px 22px rgba(4,4,10,0.55), inset 2px 2px 10px rgba(255,255,255,0.06); }
+
+  .c1-powered { position:absolute; top:490px; left:0; right:0; text-align:center;
+                font-size:12.5px; color:#232323; letter-spacing:0.1px; }
+  .c1 .logo { position:absolute; top:512px; left:0; right:0; font-size:17px; }
+  .c1-body { position:absolute; top:556px; left:0; right:0; text-align:center;
+             font-size:12.3px; line-height:21px; color:#6d6c6a; letter-spacing:0.05px; }
+
+  /* ============ CARD 2 ============ */
+  .c2-hero { position:absolute; top:0; left:0; width:325px; height:400px; overflow:hidden;
+    background:
+      radial-gradient(ellipse 130% 50% at 50% 122%, rgba(2,8,20,0.8) 0%, rgba(2,8,20,0) 65%),
+      linear-gradient(180deg,
+        #eef2f4 0%,
+        #e7eef0 6%,
+        #d2e2e8 12%,
+        #a9cbd8 18%,
+        #7cb2c6 24%,
+        #3d8fa8 31%,
+        #157490 39%,
+        #0a5b78 47%,
+        #074662 56%,
+        #05304a 66%,
+        #031f33 78%,
+        #02141f 90%,
+        #010d16 100%);
+  }
+  .c2-hero .logo { position:absolute; top:52px; left:0; right:0; font-size:16.5px; color:rgba(255,255,255,0.78); }
+  .c2-head { position:absolute; top:96px; left:0; right:0; text-align:center;
+             font-size:14.2px; line-height:20px; color:rgba(255,255,255,0.94); }
+  .c2-foot { position:absolute; bottom:22px; left:0; right:0; text-align:center;
+             font-size:12.6px; line-height:18px; color:rgba(255,255,255,0.95); }
+  .c2-body { position:absolute; top:424px; left:28px; right:28px;
+             font-size:12.5px; line-height:22px; color:#74726d; letter-spacing:0.05px; }
+  .c2-fade { position:absolute; top:557px; left:28px; right:28px;
+             font-size:12.5px; line-height:22px; color:#d4d2ce; letter-spacing:0.05px; }
+
+  /* ============ CARD 3 ============ */
+  .c3 .logo { position:absolute; top:52px; left:0; right:0; font-size:17px; }
+  .c3-head { position:absolute; top:93px; left:0; right:0; text-align:center;
+             font-size:14.2px; line-height:22px; color:#1b1b1b; }
+  .c3-powered { position:absolute; top:320px; left:0; right:0; text-align:center;
+                font-size:12.8px; color:#242424; }
+  .c3-think { position:absolute; top:490px; left:0; right:0; text-align:center;
+              font-size:11.5px; color:#c6c4c1; }
+  .s3-shadow { position:absolute; left:118px; top:648px; width:90px; height:26px;
+               background:radial-gradient(ellipse at 50% 50%, rgba(100,115,130,0.28) 0%, rgba(100,115,130,0) 70%);
+               filter:blur(4px); }
+  .s3 { left:127px; top:525px; width:74px; height:74px;
+    background:
+      radial-gradient(circle at 32% 23%, #fbfdfe 0%, #dfe8ee 20%, #b4c4d0 42%, #8b9dad 66%, #6c7e90 86%, #5d6f81 100%);
+  }
+  .s3::after { content:""; position:absolute; left:10%; top:8%; width:34%; height:22%;
+    background:radial-gradient(ellipse at 50% 50%, rgba(255,255,255,0.98), rgba(255,255,255,0) 72%);
+    border-radius:50%; filter:blur(2px); }
+  .s3::before { content:""; position:absolute; inset:0; border-radius:50%;
+    box-shadow:inset -3px -6px 12px rgba(50,65,80,0.45), inset 2px 2px 8px rgba(255,255,255,0.35); }
+
+  /* ============ CARD 4 ============ */
+  .c4-scene { position:absolute; inset:0;
+    background:
+      radial-gradient(ellipse 95% 26% at 50% 101%, rgba(200,232,242,0.5) 0%, rgba(200,232,242,0) 72%),
+      linear-gradient(180deg,
+        #f3f2f0 0%,
+        #eeeceb 9%,
+        #d3d8d8 16%,
+        #93a4ab 22%,
+        #41556a 28%,
+        #1d3349 34%,
+        #1b3247 43%,
+        #1d3d58 52%,
+        #24596f 60%,
+        #286c8b 68%,
+        #3783a1 76%,
+        #4b94af 84%,
+        #66a9c1 91%,
+        #86bdd1 96%,
+        #9bcada 100%);
+  }
+  .c4-head { position:absolute; top:59px; left:0; right:0; text-align:center;
+             font-size:13.2px; line-height:19px; color:rgba(255,255,255,0.96); z-index:3; }
+  .s4 { left:16px; top:162px; width:290px; height:290px; z-index:1;
+        background:radial-gradient(circle at 50% 50%, #14283c 58%, #162b40 74%, #1b3450 100%);
+        box-shadow:0 0 34px rgba(8,16,28,0.45); }
+  .s4 .paint { inset:-16px; filter:blur(3.2px) saturate(1.1) contrast(1.04); transform:scale(1.14); }
+  .s4 .fibers { inset:-14px; filter:blur(3px); opacity:.72; transform:scale(1.14); }
+  .s4::after { content:""; position:absolute; inset:0; border-radius:50%;
+        box-shadow:inset 0 0 34px 14px rgba(18,32,50,0.55), inset 0 0 12px 3px rgba(20,36,56,0.35); }
+  .s4 .glint { position:absolute; left:15%; top:64%; width:28%; height:22%;
+        background:radial-gradient(ellipse 50% 50% at 50% 50%, rgba(196,228,255,0.8) 0%, rgba(110,168,240,0.4) 42%, rgba(50,95,175,0) 76%);
+        filter:blur(5px); }
+  .badge { position:absolute; left:94px; top:309px; width:138px; height:36px; z-index:4;
+           border-radius:18px; background:rgba(152,94,110,0.78);
+           display:flex; align-items:center; justify-content:center; }
+  .badge .logo { font-size:14.5px; color:rgba(255,255,255,0.95); }
+  .c4-body { position:absolute; top:505px; left:0; right:0; text-align:center;
+             font-size:13.2px; line-height:20px; color:rgba(255,255,255,0.96); z-index:3; }
+  .c4 .logo { position:absolute; top:604px; left:0; right:0; font-size:16px; color:rgba(255,255,255,0.9); z-index:3; }
+</style>
+</head>
+<body>
+
+  <div class="card c1">
+    <div class="c1-title">A New Dawn,<br>The Era of Quantum Utility</div>
+    <div class="sphere s1"><div class="paint base-marble"></div><div class="fibers base-fibers"></div></div>
+    <div class="c1-powered">Powered by</div>
+    <div class="logo"><span class="mark"><i></i><i></i></span>KODOR</div>
+    <div class="c1-body">The 2026 Sentracore Quantum<br>Summit heralds the dawn of a new era<br>for Quantum Utility.</div>
+  </div>
+
+  <div class="card c2">
+    <div class="c2-hero">
+      <div class="logo light"><span class="mark"><i></i><i></i></span>KODOR</div>
+      <div class="c2-head">Bringing the useful quantum<br>computing to the world</div>
+      <div class="c2-foot">White Paper code<br>Quantum Theory M0WQ 2026</div>
+    </div>
+    <div class="c2-body">The 2023 IBM Quantum Summit heralds the dawn of a new era for Quantum Utility. Drawing inspiration from the captivating qualities of first light in the natural world, we built upon and evolved the brand visuals, to symbolise the inception of this transformative journey.</div>
+    <div class="c2-fade">A generative dawn evolves throughout the course of the day, forever adapting the light washing throughout the venue.</div>
+  </div>
+
+  <div class="card c3">
+    <div class="logo"><span class="mark"><i></i><i></i></span>KODOR</div>
+    <div class="c3-head">Designed to explore the<br>intricate relationship and interplay<br>of quantum states.</div>
+    <div class="c3-powered">Powered by Odor</div>
+    <div class="c3-think">Thinking...</div>
+    <div class="s3-shadow"></div>
+    <div class="sphere s3"></div>
+  </div>
+
+  <div class="card c4">
+    <div class="c4-scene"></div>
+    <div class="c4-head">We unveiled a new suite to<br>simplify the work of utility-era 100+<br>qubit quantum executions.</div>
+    <div class="sphere s4"><div class="paint base-marble"></div><div class="fibers base-fibers"></div><div class="glint"></div></div>
+    <div class="badge"><div class="logo"><span class="mark"><i></i><i></i></span>KODOR</div></div>
+    <div class="c4-body">The most advanced quantum<br>processor in the world is just revealed</div>
+    <div class="logo light"><span class="mark"><i></i><i></i></span>KODOR</div>
+  </div>
+
+</body>
+</html>

@@ -1,0 +1,5 @@
+{"iter": 1, "score": 39.1, "note": "first build: 394x210 stage, #2b2b2b bg, 337.5x154.5 black card r=35, 21 vertical dumbbell bars (dots + connector) derived from blob centroids, Helvetica Neue text; eyes composite 39.1, pixel SSIM 0.643"}
+{"iter": 2, "score": 0.816, "note": "fixed positioning bug (children were offset by the card origin), text nowrap, radial-gradient sizing -> closest-side; pixel SSIM 0.643->0.816"}
+{"iter": 3, "score": 0.890, "note": "dot radial profile refit to measured falloff (flat to r=4 then steep), colour #f589ac, per-element Gaussian softening (SVG feGaussianBlur 0.8), 5 min set to weight 400/18.3px; SSIM 0.890"}
+{"iter": 4, "score": 0.911, "note": "text metrics tuned against reference ink stats (82 = 26px/300/#f0afc8, mmhg = 16.5px/400/#a0808c, 5 min = 17.8px/500/#e8e8e8), anchor nudges; card_text RMSE 25->11.5, SSIM 0.911"}
+{"iter": 5, "score": 77.8, "note": "background vignette rebuilt as two correctly-anchored radial gradients (bg_top RMSE 3.7->1.8, bg_bot 6.2->3.4) and +0.5px dot-column offset; final pixel SSIM 0.918, eyes composite 77.8"}

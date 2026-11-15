@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>KODOR collage</title>
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html, body { width:1520px; height:794px; overflow:hidden; background:#fefefe; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    color:#111;
+  }
+  .stage { position:relative; width:1520px; height:794px; }
+  .card {
+    position:absolute; top:60px; width:328px; height:696px;
+    border-radius:27px; background:#f2f2f2; overflow:hidden;
+  }
+  #c1 { left:53px; }
+  #c2 { left:415px; }
+  #c3 { left:777px; }
+  #c4 { left:1139px; }
+
+  .txt { position:absolute; left:0; width:100%; text-align:center; }
+  .h13 { font-size:13px; line-height:17.5px; }
+  .c14 { color:#0d0d0d; }
+  .foot { color:#8d8d8d; font-size:13px; line-height:18px; }
+  .semi { font-weight:600; }
+
+  /* ---------- logo ---------- */
+  .logo { position:absolute; left:0; width:100%; display:flex; align-items:center; justify-content:center; gap:2.5px; height:14px; }
+  .logo svg { width:10.5px; height:14px; display:block; }
+  .logo svg path { fill:none; stroke:currentColor; stroke-width:4.2; stroke-linejoin:miter; stroke-linecap:butt; }
+  .logo .word {
+    font-size:16.8px; line-height:13px; font-weight:700; letter-spacing:1.9px;
+    padding-left:0.4px; margin-right:-1.9px;
+  }
+
+  /* ---------- card 1 ---------- */
+  #c1 .head { top:59px; }
+  .orbwrap { position:absolute; }
+  #c1 .orbwrap { left:92px; top:129px; width:144px; height:144px; }
+  .orb { display:block; width:100%; height:100%; }
+  #c1 .orb-shadow {
+    position:absolute; left:47px; top:260px; width:200px; height:90px;
+    background: radial-gradient(closest-side, rgba(58,72,84,.33), rgba(58,72,84,.16) 45%, rgba(58,72,84,0) 78%);
+    filter: blur(7px);
+  }
+  #c1 .pow { top:492px; font-size:12.5px; line-height:14px; }
+  #c1 .logo { top:513px; color:#000; }
+  #c1 .foot { top:555px; line-height:17.5px; }
+
+  /* ---------- card 2 ---------- */
+  #c2 .grad {
+    position:absolute; left:0; top:0; width:328px; height:401px;
+    background: linear-gradient(180deg,
+      rgb(219,230,239) 0px,
+      rgb(219,230,239) 20px,
+      rgb(218,229,238) 35px,
+      rgb(216,229,237) 45px,
+      rgb(210,223,231) 60px,
+      rgb(186,210,224) 75px,
+      rgb(156,192,212) 90px,
+      rgb(117,169,193) 105px,
+      rgb(71,140,169) 120px,
+      rgb(40,120,159) 135px,
+      rgb(30,97,140) 150px,
+      rgb(24,78,119) 165px,
+      rgb(19,62,100) 180px,
+      rgb(16,51,88) 195px,
+      rgb(14,44,76) 210px,
+      rgb(11,37,66) 225px,
+      rgb(10,31,58) 240px,
+      rgb(8,27,50) 255px,
+      rgb(7,23,45) 270px,
+      rgb(6,20,38) 285px,
+      rgb(6,19,35) 300px,
+      rgb(5,16,30) 315px,
+      rgb(4,14,24) 330px,
+      rgb(4,12,21) 345px,
+      rgb(1,5,14) 360px,
+      rgb(1,4,10) 375px,
+      rgb(1,2,6) 390px,
+      rgb(0,0,5) 401px);
+  }
+  #c2 .logo { top:51px; color:#fbfdfe; opacity:.92; }
+  #c2 .head { top:93px; font-size:13px; line-height:18px; color:#fff; }
+  #c2 .paper { top:340px; font-size:12.5px; line-height:15px; color:#fff; }
+  #c2 .paper b { font-weight:600; }
+  #c2 .panel { position:absolute; left:0; top:401px; width:328px; height:295px; background:#f2f2f2; }
+  #c2 .para { position:absolute; left:25px; top:424px; width:280px; font-size:13px; line-height:19px; }
+  #c2 .para div { white-space:nowrap; }
+
+  /* ---------- card 3 ---------- */
+  #c3 .logo { top:51px; color:#000; }
+  #c3 .head { top:94.5px; font-size:13px; line-height:18px; }
+  #c3 .pow { top:320px; font-size:12.5px; line-height:14px; }
+  #c3 .think { top:493px; font-size:10px; line-height:12px; color:#9e9e9e; }
+  #c3 .sphere-shadow {
+    position:absolute; left:92px; top:592px; width:100px; height:44px;
+    background: radial-gradient(closest-side, rgba(48,62,76,.36), rgba(48,62,76,.14) 50%, rgba(48,62,76,0) 82%);
+    filter: blur(9px);
+  }
+  #c3 .sphere {
+    position:absolute; left:130px; top:519px; width:74px; height:74px; border-radius:50%;
+    background:
+      radial-gradient(ellipse 36% 26% at 33% 16%, rgba(255,255,255,.95) 0%, rgba(255,255,255,0) 76%),
+      radial-gradient(ellipse 50% 55% at 70% 40%, rgba(200,218,232,.45) 0%, rgba(200,218,232,0) 70%),
+      radial-gradient(circle at 56% 32%, #a9bccc 0%, #93a8ba 22%, #778ca1 45%, #5a7085 68%, #42576b 86%, #33475a 100%);
+    box-shadow:
+      inset -8px -10px 18px rgba(8,22,36,.5),
+      inset 2px 3px 8px rgba(235,245,252,.2),
+      0 0 14px 4px rgba(160,190,215,.35);
+    overflow:hidden;
+  }
+  #c3 .sphere::before {
+    content:""; position:absolute; left:0%; top:-8%; width:78%; height:52%;
+    background: repeating-conic-gradient(from 176deg at 44% 124%,
+      rgba(255,255,255,.72) 0deg 3.4deg, rgba(255,255,255,0) 3.4deg 8.6deg);
+    filter: blur(1px);
+    opacity:.6;
+    -webkit-mask-image: radial-gradient(ellipse 62% 92% at 50% 100%, #000 25%, rgba(0,0,0,.45) 60%, transparent 88%);
+    mask-image: radial-gradient(ellipse 62% 92% at 50% 100%, #000 25%, rgba(0,0,0,.45) 60%, transparent 88%);
+  }
+  #c3 .sphere::after {
+    content:""; position:absolute; left:12%; top:7%; width:36%; height:20%;
+    background: radial-gradient(ellipse at 50% 50%, rgba(255,255,255,.8), rgba(255,255,255,0) 72%);
+    filter: blur(2px); transform: rotate(-30deg);
+  }
+
+  /* ---------- card 4 ---------- */
+  #c4 .grad {
+    position:absolute; left:0; top:0; width:328px; height:696px;
+    background: linear-gradient(180deg,
+      #f2f2f2 0px,
+      #f2f2f2 270px,
+      rgb(236,236,236) 285px,
+      rgb(226,226,226) 293px,
+      rgb(214,214,214) 298px,
+      rgb(196,196,196) 303px,
+      rgb(178,178,178) 308px,
+      rgb(160,160,160) 313px,
+      rgb(140,140,140) 318px,
+      rgb(120,120,120) 323px,
+      rgb(101,101,101) 328px,
+      rgb(80,80,80) 333px,
+      rgb(58,63,69) 338px,
+      rgb(42,48,56) 344px,
+      rgb(30,36,44) 350px,
+      rgb(20,27,35) 356px,
+      rgb(13,21,29) 363px,
+      rgb(9,18,25) 370px,
+      rgb(7,17,24) 380px,
+      rgb(6,19,27) 400px,
+      rgb(7,21,38) 420px,
+      rgb(8,24,43) 440px,
+      rgb(9,28,51) 460px,
+      rgb(11,35,62) 480px,
+      rgb(12,39,68) 495px,
+      rgb(13,42,73) 505px,
+      rgb(15,49,82) 515px,
+      rgb(18,56,92) 525px,
+      rgb(20,65,101) 535px,
+      rgb(24,76,115) 545px,
+      rgb(28,88,128) 555px,
+      rgb(32,102,142) 565px,
+      rgb(40,118,155) 575px,
+      rgb(54,135,172) 585px,
+      rgb(85,153,182) 595px,
+      rgb(120,170,195) 605px,
+      rgb(150,188,207) 615px,
+      rgb(174,202,219) 625px,
+      rgb(190,212,224) 635px,
+      rgb(204,220,233) 645px,
+      rgb(214,225,235) 655px,
+      rgb(218,229,236) 665px,
+      rgb(218,230,242) 675px,
+      rgb(219,230,239) 695px);
+  }
+  #c4 .orbwrap { box-shadow: 0 26px 44px 0 rgba(95,28,40,.38), 0 8px 22px 6px rgba(55,18,30,.32); border-radius:50%; }
+  #c4 .head { top:59px; }
+  #c4 .orb-shadow {
+    position:absolute; left:-30px; top:190px; width:390px; height:380px;
+    background: radial-gradient(closest-side, rgba(20,26,34,.38), rgba(20,26,34,.20) 55%, rgba(20,26,34,0) 80%);
+    filter: blur(16px);
+  }
+  #c4 .orbwrap { left:17px; top:157px; width:292px; height:292px; }
+  .pill {
+    position:absolute; left:83px; top:294px; width:162px; height:54px; border-radius:50%;
+    background: radial-gradient(ellipse at 50% 32%, rgba(206,132,140,.96), rgba(190,112,121,.96) 58%, rgba(170,92,102,.96));
+    box-shadow: 0 3px 10px rgba(30,5,15,.15);
+    display:flex; align-items:center; justify-content:center;
+  }
+  .pill .logo { position:static; color:#fff; height:13px; }
+  #c4 .low { top:507px; font-size:13px; line-height:18px; color:#fff; }
+  #c4 .logo.bot { top:601px; color:#fff; }
+</style>
+</head>
+<body>
+<div class="stage">
+
+  <!-- hidden orb artwork -->
+  <svg width="0" height="0" style="position:absolute">
+    <defs>
+<clipPath id="orbClip"><circle cx="100" cy="100" r="99"/></clipPath>
+<radialGradient id="oBase" cx="50%" cy="42%" r="68%">
+  <stop offset="0" stop-color="#3a1b33"/><stop offset="0.45" stop-color="#1a1028"/><stop offset="1" stop-color="#080a16"/>
+</radialGradient>
+<radialGradient id="oPinkA" cx="50%" cy="50%" r="50%">
+  <stop offset="0" stop-color="#ffeef0"/><stop offset="0.3" stop-color="#f3b6c2"/><stop offset="0.62" stop-color="#c05a72"/><stop offset="0.85" stop-color="#701b36"/><stop offset="1" stop-color="#701b36" stop-opacity="0"/>
+</radialGradient>
+<radialGradient id="oPinkB" cx="50%" cy="50%" r="50%">
+  <stop offset="0" stop-color="#f7cdd4"/><stop offset="0.35" stop-color="#dd8d9e"/><stop offset="0.68" stop-color="#a63c55"/><stop offset="0.9" stop-color="#5c1028"/><stop offset="1" stop-color="#5c1028" stop-opacity="0"/>
+</radialGradient>
+<radialGradient id="oPinkC" cx="50%" cy="50%" r="50%">
+  <stop offset="0" stop-color="#fff4f5"/><stop offset="0.3" stop-color="#f6cdd4"/><stop offset="0.6" stop-color="#d9859a"/><stop offset="0.85" stop-color="#8c2b45"/><stop offset="1" stop-color="#8c2b45" stop-opacity="0"/>
+</radialGradient>
+<radialGradient id="oBlue" cx="50%" cy="50%" r="50%">
+  <stop offset="0" stop-color="#4f7394"/><stop offset="0.55" stop-color="#395975"/><stop offset="1" stop-color="#1e3448" stop-opacity="0"/>
+</radialGradient>
+<linearGradient id="oRim" x1="0" y1="0" x2="1" y2="1">
+  <stop offset="0" stop-color="#ff9c4a"/><stop offset="0.14" stop-color="#ff4f78"/><stop offset="0.3" stop-color="#ff2fa0"/><stop offset="0.44" stop-color="#a14dff"/><stop offset="0.58" stop-color="#35c8ff"/><stop offset="0.72" stop-color="#ffe75e"/><stop offset="0.86" stop-color="#ff6b3d"/><stop offset="1" stop-color="#ff3d8f"/>
+</linearGradient>
+<filter id="oWarp" x="-40%" y="-40%" width="180%" height="180%">
+  <feTurbulence type="fractalNoise" baseFrequency="0.014 0.022" numOctaves="4" seed="17" result="n"/>
+  <feDisplacementMap in="SourceGraphic" in2="n" scale="34" xChannelSelector="R" yChannelSelector="G"/>
+</filter>
+<filter id="oBlur8"><feGaussianBlur stdDeviation="8"/></filter>
+<filter id="oBlur3"><feGaussianBlur stdDeviation="3"/></filter>
+<filter id="oBlur1"><feGaussianBlur stdDeviation="1.1"/></filter>
+<filter id="oBlur04"><feGaussianBlur stdDeviation="0.5"/></filter>
+<filter id="oGrain" x="0" y="0" width="100%" height="100%">
+  <feTurbulence type="fractalNoise" baseFrequency="0.75" numOctaves="3" stitchTiles="stitch" result="t"/>
+  <feColorMatrix in="t" type="matrix" values="0 0 0 0 .9  0 0 0 0 .85  0 0 0 0 .9  1.4 0 0 0 0"/>
+</filter>
+<symbol id="orbArt" viewBox="0 0 200 200">
+<g clip-path="url(#orbClip)">
+  <rect width="200" height="200" fill="url(#oBase)"/>
+  <ellipse cx="150" cy="58" rx="46" ry="34" fill="#c8405c" opacity=".5" filter="url(#oBlur8)"/>
+  <ellipse cx="68" cy="150" rx="42" ry="28" fill="#8c2540" opacity=".45" filter="url(#oBlur8)"/>
+  <ellipse cx="162" cy="132" rx="40" ry="28" fill="#d76a80" opacity=".4" filter="url(#oBlur8)"/>
+  <ellipse cx="58" cy="52" rx="32" ry="30" fill="#6f2a63" opacity=".35" filter="url(#oBlur8)"/>
+
+  <g filter="url(#oWarp)">
+    <ellipse cx="118" cy="82" rx="64" ry="56" fill="url(#oPinkB)" opacity=".7"/>
+    <g transform="translate(116 84) scale(1.5) translate(-116 -84)">
+      <ellipse cx="118" cy="84" rx="62" ry="54" fill="url(#oPinkB)" opacity=".55"/>
+      <ellipse cx="130.5" cy="82.8" rx="11.7" ry="37.8" fill="url(#oPinkA)" transform="rotate(93 130.5 82.8)"/>
+      <ellipse cx="127.1" cy="87.8" rx="11.3" ry="35.5" fill="url(#oPinkB)" transform="rotate(109 127.1 87.8)"/>
+      <ellipse cx="126.7" cy="90.9" rx="18.4" ry="28.7" fill="url(#oPinkC)" transform="rotate(119 126.7 90.9)"/>
+      <ellipse cx="130.5" cy="108.9" rx="16.2" ry="34.7" fill="url(#oPinkB)" transform="rotate(172 130.5 108.9)"/>
+      <ellipse cx="113.4" cy="95.1" rx="13.6" ry="29.2" fill="url(#oPinkA)" transform="rotate(211 113.4 95.1)"/>
+      <ellipse cx="112.1" cy="102.8" rx="12.6" ry="38.8" fill="url(#oPinkB)" transform="rotate(208 112.1 102.8)"/>
+      <ellipse cx="100.0" cy="97.9" rx="11.6" ry="27.3" fill="url(#oPinkC)" transform="rotate(231 100.0 97.9)"/>
+      <ellipse cx="89.9" cy="99.5" rx="13.8" ry="38.9" fill="url(#oPinkB)" transform="rotate(236 89.9 99.5)"/>
+      <ellipse cx="97.0" cy="84.4" rx="17.3" ry="31.4" fill="url(#oPinkA)" transform="rotate(283 97.0 84.4)"/>
+      <ellipse cx="92.6" cy="73.3" rx="17.6" ry="32.3" fill="url(#oPinkB)" transform="rotate(313 92.6 73.3)"/>
+      <ellipse cx="108.9" cy="72.5" rx="17.8" ry="29.3" fill="url(#oPinkC)" transform="rotate(324 108.9 72.5)"/>
+      <ellipse cx="111.7" cy="73.7" rx="17.9" ry="38.6" fill="url(#oPinkB)" transform="rotate(346 111.7 73.7)"/>
+      <ellipse cx="119.5" cy="64.9" rx="16.3" ry="38.8" fill="url(#oPinkA)" transform="rotate(380 119.5 64.9)"/>
+      <ellipse cx="128.8" cy="51.2" rx="15.3" ry="40.6" fill="url(#oPinkB)" transform="rotate(404 128.8 51.2)"/>
+      <ellipse cx="132.8" cy="57.9" rx="19.9" ry="44.1" fill="url(#oPinkC)" transform="rotate(400 132.8 57.9)"/>
+      <ellipse cx="135.0" cy="73.7" rx="11.2" ry="36.2" fill="url(#oPinkB)" transform="rotate(430 135.0 73.7)"/>
+      <path d="M119.6 90.4 Q135.8 98.8 139.2 125.0" fill="none" stroke="#ffdbe1" stroke-width="1.1" opacity="0.37"/>
+      <path d="M120.8 79.0 Q140.6 68.7 158.0 40.1" fill="none" stroke="#ffdbe1" stroke-width="1.9" opacity="0.51"/>
+      <path d="M114.0 94.8 Q119.1 128.7 105.8 140.6" fill="none" stroke="#ffdbe1" stroke-width="1.0" opacity="0.30"/>
+      <path d="M117.0 92.7 Q122.1 113.5 123.0 145.6" fill="none" stroke="#ffdbe1" stroke-width="0.8" opacity="0.38"/>
+      <path d="M107.3 93.4 Q89.5 117.7 62.6 141.4" fill="none" stroke="#ffdbe1" stroke-width="1.7" opacity="0.45"/>
+      <path d="M131.8 89.6 Q167.0 106.0 184.2 108.1" fill="none" stroke="#ffdbe1" stroke-width="1.3" opacity="0.37"/>
+      <path d="M126.8 92.2 Q129.8 95.4 153.5 112.6" fill="none" stroke="#ffdbe1" stroke-width="1.0" opacity="0.35"/>
+      <path d="M121.7 85.9 Q133.1 89.9 163.6 100.3" fill="none" stroke="#ffdbe1" stroke-width="0.8" opacity="0.51"/>
+      <path d="M110.1 78.9 Q89.1 60.5 75.4 48.6" fill="none" stroke="#ffdbe1" stroke-width="1.0" opacity="0.50"/>
+      <path d="M127.6 83.5 Q142.8 72.9 177.9 81.3" fill="none" stroke="#ffdbe1" stroke-width="1.3" opacity="0.33"/>
+      <path d="M119.8 77.0 Q139.6 61.0 137.8 43.7" fill="none" stroke="#ffdbe1" stroke-width="1.0" opacity="0.41"/>
+      <path d="M128.2 86.1 Q169.9 96.5 194.1 97.4" fill="none" stroke="#ffdbe1" stroke-width="1.2" opacity="0.36"/>
+      <path d="M123.6 97.2 Q142.3 114.1 147.7 139.2" fill="none" stroke="#ffdbe1" stroke-width="1.1" opacity="0.49"/>
+      <path d="M132.2 82.5 Q168.2 85.5 188.9 77.1" fill="none" stroke="#ffdbe1" stroke-width="1.1" opacity="0.41"/>
+      <path d="M112.1 89.0 Q94.6 98.8 87.7 120.2" fill="none" stroke="#ffdbe1" stroke-width="1.8" opacity="0.54"/>
+      <path d="M99.7 89.6 Q81.1 96.5 40.8 109.9" fill="none" stroke="#ffdbe1" stroke-width="1.1" opacity="0.32"/>
+      <path d="M118.8 92.0 Q138.0 127.7 138.0 147.1" fill="none" stroke="#ffdbe1" stroke-width="1.5" opacity="0.45"/>
+      <path d="M118.2 77.3 Q137.4 55.0 136.9 19.2" fill="none" stroke="#ffdbe1" stroke-width="1.9" opacity="0.39"/>
+      <path d="M118 84 Q104 70 88 64" fill="none" stroke="#2a0710" stroke-width="3.4" opacity=".55" filter="url(#oBlur1)"/>
+      <path d="M118 84 Q132 74 148 66" fill="none" stroke="#2a0710" stroke-width="2.8" opacity=".5" filter="url(#oBlur1)"/>
+      <path d="M118 84 Q130 98 142 118" fill="none" stroke="#2a0710" stroke-width="3" opacity=".5" filter="url(#oBlur1)"/>
+      <path d="M118 84 Q102 100 92 122" fill="none" stroke="#2a0710" stroke-width="2.6" opacity=".45" filter="url(#oBlur1)"/>
+    </g>
+    <ellipse cx="118" cy="82" rx="26" ry="22" fill="#fff0f2" opacity=".95" filter="url(#oBlur3)"/>
+    <!-- veins -->
+    <path d="M118 55 C132 70 124 82 136 96 C148 110 132 118 142 130" fill="none" stroke="#ffdfe4" stroke-width="2.4" opacity=".5"/>
+    <path d="M118 55 C104 68 112 80 100 94" fill="none" stroke="#ffd2da" stroke-width="1.8" opacity=".45"/>
+    <path d="M118 55 C126 74 112 86 122 100 C132 112 120 122 128 134" fill="none" stroke="#ffd2da" stroke-width="2" opacity=".4"/>
+    <path d="M90 70 C104 84 96 96 108 110" fill="none" stroke="#ffc3ce" stroke-width="1.6" opacity=".35"/>
+    <path d="M140 60 C130 78 140 90 132 104" fill="none" stroke="#ffc3ce" stroke-width="1.6" opacity=".35"/>
+  </g>
+  <ellipse cx="44" cy="102" rx="34" ry="52" fill="#05040a" filter="url(#oBlur8)" opacity=".95"/>
+  <ellipse cx="671" cy="0" rx="0" ry="0"/>
+  <ellipse cx="94" cy="158" rx="42" ry="18" fill="url(#oBlue)" opacity=".8" filter="url(#oBlur3)"/>
+  <ellipse cx="70" cy="150" rx="30" ry="14" fill="#446a88" opacity=".45" filter="url(#oBlur8)"/>
+  <path d="M150 18 A 90 90 0 0 1 189 72" fill="none" stroke="#ffe4e9" stroke-width="5" opacity=".4" filter="url(#oBlur3)"/>
+  <ellipse cx="152" cy="42" rx="58" ry="46" fill="#ff8a4a" opacity=".18" filter="url(#oBlur8)"/>
+  <ellipse cx="58" cy="70" rx="40" ry="52" fill="#7a2a6a" opacity=".25" filter="url(#oBlur8)"/>
+  <circle cx="100" cy="100" r="118" fill="none" stroke="url(#oRim)" stroke-width="22" opacity=".16" filter="url(#oBlur8)"/>
+  <circle cx="100" cy="100" r="132" fill="none" stroke="url(#oRim)" stroke-width="14" opacity=".14" filter="url(#oBlur8)"/>
+  <circle cx="100" cy="100" r="96" fill="none" stroke="url(#oRim)" stroke-width="6" opacity=".35" filter="url(#oBlur3)"/>
+  <circle cx="100" cy="100" r="97" fill="none" stroke="url(#oRim)" stroke-width="3.4" opacity=".7" filter="url(#oBlur1)"/>
+  <circle cx="100" cy="100" r="99" fill="none" stroke="url(#oRim)" stroke-width="1.8" opacity=".9"/>
+  <circle cx="100" cy="100" r="99.4" fill="none" stroke="#ffe9c9" stroke-width=".7" opacity=".4"/>
+  <path d="M124 2 A 98 98 0 0 1 197 76" fill="none" stroke="#ffe8b0" stroke-width="3.4" opacity=".5" filter="url(#oBlur1)"/>
+  <path d="M12 62 A 98 98 0 0 1 58 6" fill="none" stroke="#ff9c5a" stroke-width="2.4" opacity=".38" filter="url(#oBlur1)"/>
+  <rect width="200" height="200" filter="url(#oGrain)" opacity=".10" style="mix-blend-mode:overlay"/>
+</g>
+</symbol>
+</defs>
+  </svg>
+
+  <!-- CARD 1 -->
+  <div class="card" id="c1">
+    <div class="txt h13 c14 head">A New Dawn,<br>The Era of Quantum Utility</div>
+    <div class="orb-shadow"></div>
+    <div class="orbwrap"><svg class="orb" viewBox="0 0 200 200"><use href="#orbArt"/></svg></div>
+    <div class="txt semi pow">Powered by</div>
+    <div class="logo"><svg viewBox="0 0 20 22"><path d="M7 2 L2 11 L7 20"/><path d="M15 2 L10 11 L15 20"/></svg><span class="word">KODOR</span></div>
+    <div class="txt foot">The 2026 Sentracore Quantum<br>Summit heralds the dawn of a new era<br>for Quantum Utility.</div>
+  </div>
+
+  <!-- CARD 2 -->
+  <div class="card" id="c2">
+    <div class="grad"></div>
+    <div class="logo"><svg viewBox="0 0 20 22"><path d="M7 2 L2 11 L7 20"/><path d="M15 2 L10 11 L15 20"/></svg><span class="word">KODOR</span></div>
+    <div class="txt head">Bringing the useful quantum<br>computing to the world</div>
+    <div class="txt paper"><b>White Paper code</b><br>Quantum Theory MOwQ 2026</div>
+    <div class="panel"></div>
+    <div class="para">
+      <div style="color:#646464">The 2023 IBM Quantum Summit heralds the</div>
+      <div style="color:#6c6c6c">dawn of a new era for Quantum Utility. Drawing</div>
+      <div style="color:#757575">inspiration from the captivating qualities of first</div>
+      <div style="color:#828282">light in the natural world, we built upon and</div>
+      <div style="color:#8d8d8d">evolved the brand visuals, to symbolise the</div>
+      <div style="color:#979797">inception of this transformative journey.</div>
+      <div>&nbsp;</div>
+      <div style="color:#cfcfcf">A generative dawn evolves throughout the</div>
+      <div style="color:#d7d7d7">course of the day, forever adapting the light</div>
+      <div style="color:#dedede">washing throughout the venue.</div>
+    </div>
+  </div>
+
+  <!-- CARD 3 -->
+  <div class="card" id="c3">
+    <div class="logo"><svg viewBox="0 0 20 22"><path d="M7 2 L2 11 L7 20"/><path d="M15 2 L10 11 L15 20"/></svg><span class="word">KODOR</span></div>
+    <div class="txt head">Designed to explore the<br>intricate relationship and interplay<br>of quantum states.</div>
+    <div class="txt semi pow">Powered by Odor</div>
+    <div class="txt think">Thinking...</div>
+    <div class="sphere-shadow"></div>
+    <div class="sphere"></div>
+  </div>
+
+  <!-- CARD 4 -->
+  <div class="card" id="c4">
+    <div class="grad"></div>
+    <div class="txt h13 c14 head">We unveiled a new suite to<br>simplify the work of utility-era 100+<br>qubit quantum executions.</div>
+    <div class="orb-shadow"></div>
+    <div class="orbwrap"><svg class="orb" viewBox="0 0 200 200"><use href="#orbArt"/></svg></div>
+    <div class="pill"><div class="logo"><svg viewBox="0 0 20 22"><path d="M7 2 L2 11 L7 20"/><path d="M15 2 L10 11 L15 20"/></svg><span class="word">KODOR</span></div></div>
+    <div class="txt low">The most advanced quantum<br>processor in the world is just revealed</div>
+    <div class="logo bot"><svg viewBox="0 0 20 22"><path d="M7 2 L2 11 L7 20"/><path d="M15 2 L10 11 L15 20"/></svg><span class="word">KODOR</span></div>
+  </div>
+
+</div>
+</body>
+</html>

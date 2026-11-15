@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<style>
+  html, body {
+    margin: 0;
+    padding: 0;
+    width: 394px;
+    height: 210px;
+    overflow: hidden;
+  }
+  body {
+    background: linear-gradient(180deg, #2d2d2d 0%, #2a2a2a 45%, #242424 100%);
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  }
+  .card {
+    position: absolute;
+    left: 30px;
+    top: 30px;
+    width: 333px;
+    height: 151px;
+    border-radius: 31px;
+    background: radial-gradient(85% 115% at 50% 88%, #150b11 0%, #080608 42%, #040404 100%);
+    box-shadow:
+      0 0 0 1px rgba(0,0,0,0.5),
+      0 8px 20px rgba(0,0,0,0.45);
+    overflow: hidden;
+  }
+  .haze {
+    position: absolute;
+    left: 14%;
+    top: 42%;
+    width: 72%;
+    height: 60%;
+    background: radial-gradient(50% 50% at 50% 54%, rgba(255,60,150,0.13) 0%, rgba(255,60,150,0.05) 46%, rgba(255,60,150,0) 76%);
+  }
+  .wave {
+    position: absolute;
+    inset: 0;
+  }
+  .wave > i {
+    position: absolute;
+    display: block;
+    border-radius: 99px;
+    background: linear-gradient(180deg, #ff8ec4 0%, #ff4ea3 48%, #ee368f 100%);
+    box-shadow: 0 0 6px rgba(255,80,165,0.7), 0 0 15px rgba(255,40,130,0.42);
+    filter: blur(0.3px);
+  }
+  .wave > i > b {
+    position: absolute;
+    display: block;
+    width: 8px;
+    height: 8px;
+    left: 50%;
+    border-radius: 50%;
+    background: radial-gradient(circle at 42% 35%, #ffd6ea 0%, #ffa8d2 52%, #ff7ab8 100%);
+    box-shadow: 0 0 6px rgba(255,130,190,0.85), 0 0 12px rgba(255,55,145,0.5);
+  }
+  .wave > i.bd > b { bottom: -4px; transform: translateX(-50%); }
+  .wave > i.td > b { top: -4px; transform: translateX(-50%); }
+  .wave > i.stem {
+    width: 3px;
+    background: #ff60ac;
+    box-shadow: 0 0 4px rgba(255,70,155,0.7), 0 0 9px rgba(255,40,130,0.35);
+  }
+  .wave > i.stem > b { top: -3.5px; transform: translateX(-50%); }
+  .wave > i.stem.bb > b + b { top: auto; bottom: -3.5px; }
+  .wave > i.knob > b + b { width: 10px; height: 10px; bottom: -5px; top: auto; }
+
+  .num {
+    position: absolute;
+    left: 22px;
+    top: 20px;
+    color: #ff86bd;
+    font-size: 25px;
+    line-height: 1;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+    text-shadow: 0 0 9px rgba(255,60,150,0.35);
+  }
+  .unit {
+    position: absolute;
+    left: 59px;
+    top: 37px;
+    color: #ff9fcc;
+    font-size: 10px;
+    line-height: 1;
+    font-weight: 400;
+    letter-spacing: 0.1px;
+    text-shadow: 0 0 7px rgba(255,60,150,0.3);
+  }
+  .time {
+    position: absolute;
+    right: 31px;
+    top: 35px;
+    color: #eaeaea;
+    font-size: 12px;
+    line-height: 1;
+    font-weight: 400;
+    letter-spacing: 0.3px;
+  }
+</style>
+</head>
+<body>
+  <div class="card">
+    <div class="haze"></div>
+    <div class="wave">
+      <i style="left:21px; width:6px; height:14px; top:103px"></i>
+      <i style="left:29px; width:5px; height:9px; top:105px"></i>
+      <i style="left:37px; width:6px; height:18px; top:101px"></i>
+      <i class="bd" style="left:46px; width:5px; height:10px; top:105px"><b></b></i>
+      <i class="bd" style="left:54px; width:6px; height:16px; top:102px"><b></b></i>
+      <i style="left:63px; width:6px; height:20px; top:100px"></i>
+      <i class="bd" style="left:71px; width:5px; height:10px; top:105px"><b></b></i>
+      <i style="left:79px; width:6px; height:24px; top:98px"></i>
+      <i class="bd" style="left:88px; width:5px; height:12px; top:104px"><b></b></i>
+      <i style="left:96px; width:6px; height:20px; top:100px"></i>
+      <i class="stem bb knob" style="left:103px; height:58px; top:81px"><b></b><b></b></i>
+      <i style="left:112px; width:6px; height:38px; top:91px"></i>
+      <i style="left:121px; width:6px; height:22px; top:99px"></i>
+      <i class="stem bb" style="left:128px; height:76px; top:72px"><b></b><b></b></i>
+      <i class="bd" style="left:137px; width:6px; height:30px; top:95px"><b></b></i>
+      <i style="left:146px; width:5px; height:16px; top:102px"></i>
+      <i class="bd" style="left:154px; width:5px; height:12px; top:104px"><b></b></i>
+      <i class="td bd" style="left:162px; width:5px; height:16px; top:102px"><b></b><b></b></i>
+      <i class="bd" style="left:170px; width:5px; height:10px; top:105px"><b></b></i>
+      <i class="td bd" style="left:179px; width:5px; height:20px; top:100px"><b></b><b></b></i>
+      <i class="bd" style="left:188px; width:5px; height:9px; top:105px"><b></b></i>
+      <i class="td bd" style="left:196px; width:5px; height:14px; top:103px"><b></b><b></b></i>
+      <i style="left:205px; width:6px; height:14px; top:103px"></i>
+      <i class="td bd" style="left:213px; width:5px; height:12px; top:104px"><b></b><b></b></i>
+      <i style="left:221px; width:5px; height:14px; top:103px"></i>
+      <i class="bd" style="left:229px; width:6px; height:34px; top:93px"><b></b></i>
+      <i class="stem bb" style="left:238px; height:60px; top:80px"><b></b><b></b></i>
+      <i style="left:248px; width:6px; height:46px; top:87px"></i>
+      <i style="left:258px; width:5px; height:20px; top:100px"></i>
+      <i class="bd" style="left:266px; width:6px; height:28px; top:96px"><b></b></i>
+      <i style="left:275px; width:6px; height:22px; top:99px"></i>
+      <i class="bd" style="left:284px; width:6px; height:26px; top:97px"><b></b></i>
+      <i style="left:293px; width:5px; height:14px; top:103px"></i>
+      <i class="bd" style="left:301px; width:5px; height:10px; top:105px"><b></b></i>
+      <i class="bd" style="left:308px; width:5px; height:12px; top:104px"><b></b></i>
+    </div>
+    <div class="num">82</div>
+    <div class="unit">mmhg</div>
+    <div class="time">5 min</div>
+  </div>
+</body>
+</html>

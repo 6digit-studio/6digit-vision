@@ -1,0 +1,104 @@
+{
+  "image": "testcases/Screenshot 2026-11-15 at 19.21.25.png",
+  "questions": [
+    {
+      "id": "background",
+      "question": "What kind of background?",
+      "answer": "mixed/textured; dominant #040404 (43%)",
+      "probe": "grid+palette",
+      "confidence": "measured"
+    },
+    {
+      "id": "glow",
+      "question": "Is there a glow/gradient accent?",
+      "answer": "none detected",
+      "probe": "grid",
+      "confidence": "measured"
+    },
+    {
+      "id": "text_inventory",
+      "question": "What text is present?",
+      "answer": {
+        "count": 3,
+        "strings": [
+          "82",
+          "mmhg",
+          "5 min"
+        ]
+      },
+      "probe": "describe+structure",
+      "confidence": "measured"
+    },
+    {
+      "id": "layout_family",
+      "question": "What layout family?",
+      "answer": "unstructured (1 rows x 7 cols detected)",
+      "probe": "structure",
+      "confidence": "measured"
+    },
+    {
+      "id": "alignment",
+      "question": "How are text blocks aligned?",
+      "answer": [
+        {
+          "y": 353,
+          "alignment": "wide",
+          "text": "82 mmhg 5 min"
+        }
+      ],
+      "probe": "structure+bboxes",
+      "confidence": "measured"
+    },
+    {
+      "id": "selection_state",
+      "question": "Is anything selected/highlighted?",
+      "answer": {
+        "blobs": [
+          {
+            "bbox_px": [
+              49,
+              100,
+              286,
+              84
+            ],
+            "centroid_px": [
+              192,
+              142
+            ],
+            "mean_rgb": [
+              168,
+              94,
+              127
+            ],
+            "fill": 0.177,
+            "shape": "ring-ish",
+            "zoomed_label": "82"
+          },
+          {
+            "bbox_px": [
+              49,
+              68,
+              30,
+              16
+            ],
+            "centroid_px": [
+              64,
+              76
+            ],
+            "mean_rgb": [
+              136,
+              88,
+              105
+            ],
+            "fill": 0.192,
+            "shape": "ring-ish",
+            "nearest_day_ocr": "82",
+            "dist_norm": 22
+          }
+        ]
+      },
+      "probe": "accent-census+zoom",
+      "confidence": "measured"
+    }
+  ]
+}

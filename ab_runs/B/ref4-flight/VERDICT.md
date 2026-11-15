@@ -1,0 +1,15 @@
+## Sensing mode
+
+Vision only through my own eyes: `read_image` on `reference.png` (plus 2–8× crops and a pixel/ASCII probe I ran myself) combined with the precomputed `facts.json` fact sheet; the `eyes` tool was not run.
+
+## What is missing
+
+1. **Stroke sharpness of the small type.** The reference is clearly a 2×-rendered capture downsampled to 400×155: glyph cores stay bright (peak ≈232 for "San Francisco", ≈252 for "SFO") while edges are soft. My only lever at 1× is a single `filter: blur(1px)` over the stage (Chrome quantises every blur below that to *no* blur), which softens edges the way the reference does but also dims the cores — my "San Francisco" peak is ≈180, "9:59 PM" ≈205. Text is therefore ~1 stop dimmer/smother than the reference even though its ink mass, bbox and position match within 1 px.
+2. **The aircraft glyph.** The reference plane reads as a swept-wing jet (chevron wings converging toward a nose at x≈277, y≈77) sitting on a hot white halo that also washes the right end of the cyan track to near-white. Mine is an SVG cross/short-fuselage silhouette rotated −8° with a two-stage Gaussian glow. Its footprint, brightness (peak 253) and halo extent match, but the silhouette itself is a plus-sign rather than swept wings; every true-chevron variant I tried scored ~2× worse on plane-region error, so I kept the pixel-fitter shape.
+3. **Track edge crispness and hue drift.** The reference bar's top/bottom ramps are ~2 px wide (40→108→168→184) and its core drifts from greener (#7FD6C9-ish) on the left to bluer (#7AD1DA-ish) on the right; mine ramps over ~3 px and is a flat `#6ed8de`. The bar's circumferential glow is also slightly tighter in the reference.
+4. **Card corner curvature.** The reference is an iOS continuous-curvature squircle: at the tangent the black surface extends ~5 px further than a circular corner of the same nominal radius. `border-radius: 40px` is circular, so the diagonal of each corner is 1–2 px off (why the top-left/bottom-right corner arcs still show in the diff).
+5. **Fact-sheet conflicts (eyes vs. my eyes).** `glow: "none detected"` is wrong — there is a clear cyan bloom around the progress track and a strong white halo around the plane. `background: dominant #040404 (47%)` is measuring the black card, not the page; the surrounding field is ≈#2b2b2b with a soft downward shadow (bottom edge drops to ≈#1c1c1c). The "selection blob" at bbox [110,70,160,16], mean rgb (106,193,197) is not a selection — it is the cyan progress track (my core sample: #6ed8de, bbox 110–260 × 71–83). The 12-entry text inventory is 7 real strings plus sub-word fragments ("San", "SFO", "AM", "20m"…).
+
+## Self-estimate
+
+8 — every element is present and lands within ~1 px of the reference (card 16,18/350×121, three text rows, track 110–261 × 71–83, plane, shadow), palette and text metrics were fitted numerically (final whole-image MAE 5.85/255, 86 % of pixels within 8/255), with the remaining loss coming from the 1× blur compromise on glyph cores and the approximate plane silhouette.

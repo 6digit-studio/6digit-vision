@@ -1,0 +1,101 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<style>
+  html, body {
+    margin: 0; padding: 0;
+    width: 394px; height: 210px;
+    overflow: hidden;
+    background: #131313;
+    background-image: radial-gradient(150% 120% at 47% -18%, #292929 0%, #181818 52%, #0a0a0a 100%);
+  }
+  .card {
+    position: absolute;
+    left: 26px; top: 29px;
+    width: 342px; height: 153px;
+    border-radius: 26px;
+    background: #050505;
+    box-shadow: 0 4px 14px rgba(0,0,0,.45);
+  }
+  .val {
+    position: absolute; left: 28px; top: 26px;
+    font: 500 28px/1.15 -apple-system, "Helvetica Neue", Arial, sans-serif;
+    color: #d99ab0;
+    letter-spacing: -.2px;
+    text-shadow: 0 0 6px rgba(240,120,165,.25);
+  }
+  .unit {
+    position: absolute; left: 71px; top: 44px;
+    font: 400 10.5px/1 -apple-system, "Helvetica Neue", Arial, sans-serif;
+    color: #9a9a9a;
+    letter-spacing: .4px;
+  }
+  .time {
+    position: absolute; right: 26px; top: 32px;
+    font: 500 15.5px/1.2 -apple-system, "Helvetica Neue", Arial, sans-serif;
+    color: #d99ab0;
+    text-shadow: 0 0 6px rgba(240,120,165,.2);
+  }
+  .wave {
+    position: absolute; left: 0; top: 0;
+    width: 342px; height: 153px;
+    filter: drop-shadow(0 0 1.5px rgba(255,145,198,.8))
+            drop-shadow(0 0 6px rgba(245,60,145,.5))
+            drop-shadow(0 0 11px rgba(235,45,135,.28));
+  }
+  .bead {
+    position: absolute;
+    transform: translateY(-50%);
+    width: 10.6px;
+    background: linear-gradient(to right,
+      rgba(252,120,180,0) 0 3.6px,
+      #f971b0 3.6px 7px,
+      rgba(252,120,180,0) 7px 10.6px);
+  }
+  .bead::before, .bead::after {
+    content: "";
+    position: absolute; left: 0;
+    width: 10.6px; height: 10.6px; border-radius: 50%;
+    background: radial-gradient(circle at 40% 34%, #ffb4d8 0%, #fb7fb8 48%, #df4089 100%);
+  }
+  .bead::before { top: -4.9px; }
+  .bead::after  { bottom: -4.9px; }
+</style>
+</head>
+<body>
+  <div class="card">
+    <div class="val">82</div>
+    <div class="unit">mmhg</div>
+    <div class="time">5 min</div>
+    <div class="wave">
+      <div class="bead" style="left:31.7px;  top:115px; height:16px"></div>
+      <div class="bead" style="left:42.7px;  top:113px; height:21px"></div>
+      <div class="bead" style="left:53.7px;  top:116px; height:12px"></div>
+      <div class="bead" style="left:64.7px;  top:112px; height:18px"></div>
+      <div class="bead" style="left:75.7px;  top:112px; height:40px"></div>
+      <div class="bead" style="left:86.7px;  top:114px; height:14px"></div>
+      <div class="bead" style="left:97.7px;  top:116px; height:12px"></div>
+      <div class="bead" style="left:109.7px; top:112px; height:20px"></div>
+      <div class="bead" style="left:120.7px; top:111px; height:70px"></div>
+      <div class="bead" style="left:131.7px; top:112px; height:22px"></div>
+      <div class="bead" style="left:142.7px; top:113px; height:14px"></div>
+      <div class="bead" style="left:153.7px; top:111px; height:27px"></div>
+      <div class="bead" style="left:164.7px; top:113px; height:22px"></div>
+      <div class="bead" style="left:175.7px; top:114px; height:12px"></div>
+      <div class="bead" style="left:186.7px; top:113px; height:30px"></div>
+      <div class="bead" style="left:197.7px; top:111px; height:52px"></div>
+      <div class="bead" style="left:208.7px; top:112px; height:14px"></div>
+      <div class="bead" style="left:219.7px; top:111px; height:52px"></div>
+      <div class="bead" style="left:230.7px; top:112px; height:32px"></div>
+      <div class="bead" style="left:241.7px; top:113px; height:14px"></div>
+      <div class="bead" style="left:252.7px; top:114px; height:14px"></div>
+      <div class="bead" style="left:263.7px; top:112px; height:28px"></div>
+      <div class="bead" style="left:274.7px; top:114px; height:14px"></div>
+      <div class="bead" style="left:285.7px; top:113px; height:18px"></div>
+      <div class="bead" style="left:296.7px; top:114px; height:16px"></div>
+      <div class="bead" style="left:307.7px; top:113px; height:34px"></div>
+    </div>
+  </div>
+</body>
+</html>

@@ -51,6 +51,8 @@ not pixels — go through `eyes.color.denorm`.
 | `evals/` | Defect catalog: planted visual bugs + recorded CAUGHT / PARTIAL / MISS verdicts |
 | `detectors/` | Standalone detectors built to fill gaps the evals exposed |
 | `challenges/` | Standing generator briefs that grow `evals/` and `detectors/` |
+| `ab_runs/` | Controlled A/B/C experiment: does `eyes` improve screenshot→HTML? report, gallery, tool-usage audit |
+| `docs/MEASUREMENT_DISCIPLINE.md` | The measure→edit→re-measure protocol distilled from that run |
 | `PRD.md` | Original product spec (the closed-loop critique architecture) |
 | `SCENE.md` | Project scene doc (north star, ideal user, what it says no to) |
 
@@ -70,6 +72,18 @@ The repo is instrumented against its own blind spots:
 - **`challenges/`** — sealed generator briefs (`EYES_EVAL_CHALLENGE.md`,
   `EYES_DETECTOR_CHALLENGE.md`) that any agent can replay to grow the
   catalogs.
+
+## Does the instrument add anything? (measured)
+
+A controlled run on four screenshots: vision-only averaged **0.684 SSIM**,
+vision + a measurement loop averaged **0.888**; the precomputed `interrogate`
+fact sheet alone made no difference (clean pair: 0.785 vs 0.782 / 0.420 vs
+0.375). The usable surface was `pixdiff` + `score` as a coarse gate; agents
+built their own geometry/type/colour calipers because `parse` was never named.
+Full write-up: [`ab_runs/REPORT.md`](ab_runs/REPORT.md) ·
+gallery: [`ab_runs/gallery.html`](ab_runs/gallery.html) ·
+what was actually invoked: [`ab_runs/TOOL_USAGE.md`](ab_runs/TOOL_USAGE.md) ·
+the protocol: [`docs/MEASUREMENT_DISCIPLINE.md`](docs/MEASUREMENT_DISCIPLINE.md).
 
 ## Requirements
 
