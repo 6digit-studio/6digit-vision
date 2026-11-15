@@ -28,3 +28,13 @@ the tell, and suspect flags alone don't name "clipped", they name
 exceed frame bounds in normalized coords) is the queued spec-level
 fix — Mirage bboxes are normalized so clipped content should show
 x1 > 1.0 or edge-pinned x0.
+
+## Update — content-overflow detector landed (detector-backed)
+
+`detectors/content-overflow/` built through three measured iterations:
+pixel edge-ink abandoned (clipped rules mimic full-bleed), record
+edge-pinning FP'd on corpus chrome, final spec = non-container objects
+edge-pinned left/right + same-edge row cluster (>=2, >=30% y-overlap).
+Verified: defect overflow_detected (right-edge cluster named), control
++ all 7 corpus images clean. Wired into `eyes layout --describe`.
+Instrument-alone upgraded PARTIAL -> detector-backed CAUGHT.

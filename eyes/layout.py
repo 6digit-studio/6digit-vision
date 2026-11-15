@@ -263,7 +263,23 @@ def layout_report(image, record: dict | None = None,
         from .legibility import text_legibility
         report["legibility"] = text_legibility(image, record)
         report["edge_bisect"] = _edge_bisect(image, record)
+        report["content_overflow"] = _content_overflow(image, record)
     return report
+
+
+def _content_overflow(image, record: dict) -> dict:
+    """Viewport side-edge clipping via the verified detector catalog
+    entry (detectors/content-overflow). Record-level: same-edge row
+    clusters of non-container objects."""
+    import importlib.util
+    from pathlib import Path
+
+    path = (Path(__file__).resolve().parents[1]
+            / "detectors" / "content-overflow" / "content_overflow.py")
+    spec = importlib.util.spec_from_file_location("content_overflow", path)
+    mod = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(mod)
+    return mod.census(image, record)
 
 
 def _edge_bisect(image, record: dict) -> dict:

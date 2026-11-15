@@ -86,6 +86,12 @@ def cmd_layout(args) -> int:
                       f"cov={f.get('coverage')} ink_dist={f.get('ink_dist_px')}px")
             else:
                 print(f"  {f}")
+        co = report.get("content_overflow") or {}
+        print(f"\ncontent overflow ({co.get('verdict','?')}):")
+        for f in co.get("findings") or ["  (none)"]:
+            print(f"  {f}")
+        for n in co.get("notes") or []:
+            print(f"  {n}")
     return 0
 
 
