@@ -178,6 +178,35 @@ edge-bisect underline guard, anisotropy merged-band guard) or proven
 unfixable-by-threshold with mechanism named (anisotropy tiny-glyph
 geometry, content-overflow moderate clip). 19 eval entries; 30 tests.
 
+
+## The mimicry arc — screenshot -> working UI approximation
+
+`tools/ui_loop.py` closes the product loop: reference screenshot ->
+HTML/CSS candidate -> headless Chrome render -> eyes score + diff +
+ask + **pixdiff** -> agent critic edits -> iterate. Three traced runs:
+
+- **ui1 GitHub login** (`loop_runs/ui1/`): 59.2 -> 65.1, CONVERGES on
+  structure — palette .91, layout .04->.42, text .66->.86. Stalls on
+  Mirage object jitter (.35-.52 oscillation below edit signal) and
+  OCR misreads below CSS reach.
+- **ui2/ui3 calendar month views** (`loop_runs/ui2/`, `ui3/`):
+  21.9->28.3 / 21.8->23.9, PARTIAL — dense day-cell grids break
+  Mirage's object/layout components (floor ~0.1, heaviest weights).
+  Same app, different months AND different palettes — both channels
+  verified responsive to real edits.
+
+### `eyes pixdiff` — the fine-edit channel
+
+Pixel-level diff where semantic score can't see: gaussian-window SSIM
+map + pixelmatch-style luminance-scaled threshold + connected-
+component regions + heat grid. Verified: identical -> 1.0 exact,
+planted shift -> localized regions, ui1 ref-vs-cand -> 0.83 with 12
+named diff locations. On ui3 it LOCALIZED the blindness itself — a
+16.7%-of-frame top-chrome bbox the blind critic couldn't model.
+Division of labor: semantic score = WHAT, pixdiff = WHERE.
+Honest blinds: no alignment step, AA/compression noise on dense text,
+fidelity-not-correctness (color swaps score high).
+
 ## The loop that built this
 
 `challenges/EYES_EVAL_CHALLENGE.md` generates defect cases →
