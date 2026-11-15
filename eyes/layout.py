@@ -262,4 +262,26 @@ def layout_report(image, record: dict | None = None,
         report["text_edge_flush"] = text_edge_flush(image, record)
         from .legibility import text_legibility
         report["legibility"] = text_legibility(image, record)
+        report["edge_bisect"] = _edge_bisect(image, record)
     return report
+
+
+def _edge_bisect(image, record: dict) -> dict:
+    """Mid-bbox edge-bisection via the verified detector catalog entry
+    (detectors/edge-bisect). Lazy-loaded like ask.py's detector wiring."""
+    import importlib.util
+    from argparse import Namespace
+    from pathlib import Path
+
+    path = (Path(__file__).resolve().parents[1]
+            / "detectors" / "edge-bisect" / "edge_bisect.py")
+    spec = importlib.util.spec_from_file_location("edge_bisect", path)
+    mod = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(mod)
+    img_path = image if isinstance(image, (str, Path)) else None
+    if img_path is None:
+        import tempfile
+        tmp = tempfile.NamedTemporaryFile(suffix=".png", delete=False)
+        image.save(tmp.name)
+        img_path = tmp.name
+    return mod.detect(str(img_path), record, Namespace(ink_k=mod.INK_K))

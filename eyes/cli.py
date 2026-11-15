@@ -74,6 +74,14 @@ def cmd_layout(args) -> int:
         print("\nlegibility flags:")
         for l in flagged or ["  (none)"]:
             print(f"  {l}")
+        eb = report.get("edge_bisect") or {}
+        print(f"\nedge bisects ({eb.get('verdict','?')}):")
+        for f in eb.get("findings") or ["  (none)"]:
+            if isinstance(f, dict):
+                print(f"  {f.get('string')!r}  {f.get('axis')} line={f.get('line_px')} "
+                      f"cov={f.get('coverage')} ink_dist={f.get('ink_dist_px')}px")
+            else:
+                print(f"  {f}")
     return 0
 
 

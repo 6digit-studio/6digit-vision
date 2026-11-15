@@ -53,6 +53,24 @@ def evidence_pack(image, question: str | None = None) -> dict:
         findings_extra["hue_census"] = hc.census(str(image), args)
     except Exception as e:
         findings_extra["hue_census_error"] = str(e)[:200]
+    try:
+        lex = _load_detector("lexical-screen/lexical_screen.py")
+        words, sources, zipf_fn = lex.load_lexicon()
+        screened = [lex.screen_string(t, words, zipf_fn)
+                    for t in rec.get("text", [])]
+        findings_extra["lexical_screen"] = {
+            "sources": sources,
+            "flagged": [s for s in screened if s.get("verdict") != "clean"],
+            "frag_bands": lex.fragmented_bands(rec.get("text", [])),
+        }
+    except Exception as e:
+        findings_extra["lexical_screen_error"] = str(e)[:200]
+    try:
+        an = _load_detector("anisotropy-census/anisotropy_census.py")
+        findings_extra["anisotropy"] = an.census(
+            str(image), Namespace(max_blobs=12))
+    except Exception as e:
+        findings_extra["anisotropy_error"] = str(e)[:200]
 
     pack = {
         "scene": rec.get("scene"),
