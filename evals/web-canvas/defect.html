@@ -1,0 +1,11 @@
+<!doctype html><html><body style="margin:0;background:#f8fafc;display:flex;align-items:center;justify-content:center;height:800px">
+<canvas id="c" width="600" height="300" style="background:#fff;border-radius:12px;box-shadow:0 2px 8px #0002;transform:scaleX(1.35);transform-origin:center"></canvas>
+<script>
+const x=document.getElementById('c').getContext('2d');
+x.fillStyle='#fff';x.fillRect(0,0,600,300);
+const bars=[[80,220],[160,180],[240,140],[320,200],[400,120],[480,90]];
+x.fillStyle='#2563eb';
+bars.forEach(([bx,by],i)=>x.fillRect(bx,300-by-30,60,by));
+x.fillStyle='#64748b';x.font='12px sans-serif';
+x.fillText('Q1',100,290);x.fillText('Q2',180,290);x.fillText('Q3',260,290);x.fillText('Q4',340,290);
+</script></body></html>
