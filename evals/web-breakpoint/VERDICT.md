@@ -51,3 +51,18 @@ delivers 0 findings (heavy clip changes detection). Honest floor:
 detector calibrated at 480px holds there; other breakpoints need
 either wider cluster tolerance or per-width calibration — documented
 limitation, not threshold-fished.
+
+## Boundary confirmed structural (w768 deep-dive)
+
+At 768px the defect and control produce NEARLY IDENTICAL edge-finding
+structure: both left+right pins at overlapping y-bands with similar
+widths (defect button w=0.48/0.43 vs control tab w=0.45/0.44). The
+responsive control's wide min-width cards legitimately edge-pin the
+same way clipped content does — at record level the two are
+genuinely indistinguishable. content_overflow's clean verdict on both
+is CORRECT behavior, not a miss: the detector discriminates aggressive
+clip (480px, 620px overflow) where edge structure diverges, and
+honestly reports clean where defect≈control. Per-width calibration
+can't fix this — the signal itself converges. Documented as a hard
+boundary: horizontal-overflow detection needs either pixel-level clip
+cues (the abandoned edge-ink path) or viewport-vs-layout metadata.
