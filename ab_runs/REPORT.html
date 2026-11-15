@@ -58,7 +58,7 @@ B and C reproduce the reference's blur while A stays crisp, so on the
 legibility axis the unmeasured arm is the better UI (see "Fidelity ≠ quality").</p>
 <p><img alt="A/B/C at a glance — reference, vision-only, facts, measurement loop" src="gallery_cover.png" /></p>
 <h2 id="design">Design</h2>
-<p>Four references from <code>deepseek_package/images/</code>, three sensing modes, isolated
+<p>Four references from <code>deepseek_package/images/</code>, three <em>additions to vision</em>, isolated
 directories, identical renderer (<code>render.sh</code>, headless Chrome at exact reference
 size), identical iteration budget (3-5 render→look→fix cycles), same model for
 every cell (<code>deepseek-account/deepseek-flash</code>).</p>
@@ -88,6 +88,13 @@ every cell (<code>deepseek-account/deepseek-flash</code>).</p>
 </tr>
 </tbody>
 </table>
+<p><strong>All four arms are multimodal.</strong> Every cell looked at the reference and its own
+render with <code>read_image</code>; "vision only" means no measurement <em>input</em> was added
+(A still made zoomed crops), not that the agent was blind. B adds a static fact
+sheet; C adds live measurement. There is no text-only arm in this experiment —
+that is <code>eyes</code>' original user, not this test. So C is best read as <strong>vision in a
+measurement loop</strong>, not "the eyes loop": the HTML is authored from visual
+understanding, and the instrument calibrates and localizes the edits.</p>
 <p>Arms are blind to each other: each cell is its own directory; Arm A never sees a
 fact sheet, Arm B never runs a tool, Arm C never reads the sheet.</p>
 <p>After the first run exposed a protocol confound (B agents built their own
@@ -667,14 +674,14 @@ sheet says "1 row × 7 cols".</p>
 <p>Caveat: n=2 references, one run each. Directionally clear, not statistically
 strong.</p>
 <p><img alt="clean facts-only pair" src="clean_pair.png" /></p>
-<h3 id="arm-c-the-measurement-loop">Arm C — the measurement loop</h3>
+<h3 id="arm-c-vision-in-a-measurement-loop">Arm C — vision in a measurement loop</h3>
 <table>
 <thead>
 <tr>
 <th>ref</th>
 <th>A (vision)</th>
 <th>B (facts + self-measure)</th>
-<th>C (<code>eyes</code> loop)</th>
+<th>C (vision + measurement)</th>
 <th>winner</th>
 </tr>
 </thead>

@@ -7,7 +7,7 @@ ROOT = pathlib.Path(__file__).resolve().parent
 REFS = [("ref1-collage", "1 · KODOR collage"),
         ("ref4-flight", "4 · flight card")]
 COLS = [("ref", "REFERENCE"), ("A", "A · vision only"),
-        ("B", "B · vision + facts"), ("C", "C · eyes loop")]
+        ("B", "B · vision + facts"), ("C", "C · vision + measurement")]
 res = {(r["ref"], r["arm"]): r for r in json.loads((ROOT / "results.json").read_text())["rows"]}
 
 def font(sz, bold=False):

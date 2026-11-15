@@ -11,7 +11,7 @@ REFS = [("ref1-collage", "ref1 · KODOR collage", "1520×794"),
         ("ref3-bp", "ref3 · BP widget", "394×210"),
         ("ref4-flight", "ref4 · flight card", "400×155")]
 COLS = [("ref", "REFERENCE"), ("A", "A · vision only"),
-        ("B", "B · vision + facts"), ("C", "C · eyes loop")]
+        ("B", "B · vision + facts"), ("C", "C · vision + measurement")]
 res = {(r["ref"], r["arm"]): r for r in json.loads((ROOT / "results.json").read_text())["rows"]}
 
 def font(sz, bold=False):

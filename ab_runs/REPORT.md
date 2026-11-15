@@ -18,7 +18,7 @@ legibility axis the unmeasured arm is the better UI (see "Fidelity ≠ quality")
 
 ## Design
 
-Four references from `deepseek_package/images/`, three sensing modes, isolated
+Four references from `deepseek_package/images/`, three *additions to vision*, isolated
 directories, identical renderer (`render.sh`, headless Chrome at exact reference
 size), identical iteration budget (3-5 render→look→fix cycles), same model for
 every cell (`deepseek-account/deepseek-flash`).
@@ -28,6 +28,14 @@ every cell (`deepseek-account/deepseek-flash`).
 | **A** | none — vision only | none |
 | **B** | `facts.json` = precomputed `eyes interrogate` sheet | none (facts-in-context) |
 | **C** | none | `eyes score`, `pixdiff`, `zoom` in the loop |
+
+**All four arms are multimodal.** Every cell looked at the reference and its own
+render with `read_image`; "vision only" means no measurement *input* was added
+(A still made zoomed crops), not that the agent was blind. B adds a static fact
+sheet; C adds live measurement. There is no text-only arm in this experiment —
+that is `eyes`' original user, not this test. So C is best read as **vision in a
+measurement loop**, not "the eyes loop": the HTML is authored from visual
+understanding, and the instrument calibrates and localizes the edits.
 
 Arms are blind to each other: each cell is its own directory; Arm A never sees a
 fact sheet, Arm B never runs a tool, Arm C never reads the sheet.
@@ -373,9 +381,9 @@ strong.
 
 ![clean facts-only pair](clean_pair.png)
 
-### Arm C — the measurement loop
+### Arm C — vision in a measurement loop
 
-| ref | A (vision) | B (facts + self-measure) | C (`eyes` loop) | winner |
+| ref | A (vision) | B (facts + self-measure) | C (vision + measurement) | winner |
 |---|---|---|---|---|
 | ref1-collage | 0.833 | 0.885 | **0.907** | C |
 | ref2-knob | 0.692 | 0.856 | **0.870** | C |
