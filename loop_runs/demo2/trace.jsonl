@@ -1,0 +1,3 @@
+{"iter": 0, "score": 75.1, "components": {"palette": 0.92, "objects": 0.492, "layout": 0.714, "text": 0.872, "scene": 1.0}, "params": {"title_y": 86, "accent": [220, 38, 38], "chip_gap": 34, "button_color": [124, 58, 237], "radius": 4, "subtitle_y": 78}, "ms": 221}
+{"iter": 0, "critic_edit": {"param": "accent", "value": "blue", "reason": "smoke-test edit"}}
+{"iter": 1, "score": 76.8, "components": {"palette": 0.945, "objects": 0.527, "layout": 0.714, "text": 0.872, "scene": 1.0}, "params": {"title_y": 86, "accent": [37, 99, 235], "chip_gap": 34, "button_color": [124, 58, 237], "radius": 4, "subtitle_y": 78}, "ms": 292}

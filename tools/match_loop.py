@@ -65,29 +65,40 @@ def render(params: dict, path: Path) -> None:
     img.save(path)
 
 
-def score_candidate(ref_rec, ref_pal, ref_size, cand_path, workdir) -> dict:
+def score_candidate(ref_rec, ref_pal, ref_size, cand_path, workdir,
+                    cand_rec=None) -> tuple[dict, dict]:
     from eyes import color, mirage, score
-    cand_rec = mirage.describe(str(cand_path))
+    if cand_rec is None:
+        cand_rec = mirage.describe(str(cand_path))
     cand_pal = color.palette(str(cand_path))
-    return score.score_pair(
+    res = score.score_pair(
         ref_rec, cand_rec, ref_pal=ref_pal, cand_pal=cand_pal,
         ref_size=ref_size, cand_size=(W, H))
+    return res, cand_rec
 
 
-def build_ask_pack(cand_path: Path, question: str) -> dict:
-    """Compact evidence pack for the critic — score summary + top
-    detector findings, not the full describe dump."""
+def build_ask_pack(cand_path: Path, question: str,
+                   ref_rec: dict | None = None,
+                   cand_rec: dict | None = None,
+                   ref_size=None, cand_size=None) -> dict:
+    """Compact evidence pack for the critic — score summary + element-level
+    diff vs reference (eyes diff schema) + top detector findings."""
     from eyes import ask
     pack = ask.evidence_pack(str(cand_path), question=question)
     det = pack.get("detectors") or {}
     slim = {k: v for k, v in det.items() if v}
-    return {
+    out = {
         "question": question,
         "objects": pack.get("objects"),
         "text": pack.get("text"),
         "findings": pack.get("findings"),
         "detectors": slim,
     }
+    if ref_rec is not None and cand_rec is not None:
+        from eyes import scene_tree
+        out["element_diff"] = scene_tree.diff_records(
+            ref_rec, cand_rec, ref_size=ref_size, cand_size=cand_size)
+    return out
 
 
 def apply_edit(params: dict, edit: dict) -> dict:
@@ -140,7 +151,7 @@ def main() -> int:
         cand = work / f"cand_{it:02d}.png"
         render(params, cand)
         t0 = time.time()
-        res = score_candidate(ref_rec, ref_pal, ref_size, cand, work)
+        res, cand_rec = score_candidate(ref_rec, ref_pal, ref_size, cand, work)
         dt = time.time() - t0
         comp = {k: round(v["score"], 3) for k, v in res["components"].items()}
         rec = {"iter": it, "score": res["score"], "components": comp,
@@ -160,7 +171,9 @@ def main() -> int:
         # --- critic step ---
         pack = build_ask_pack(
             cand, "List the concrete visual differences vs the reference "
-                  "design and the single most impactful fix.")
+                  "design and the single most impactful fix.",
+            ref_rec=ref_rec, cand_rec=cand_rec,
+            ref_size=ref_size, cand_size=(W, H))
         pack_path = work / f"pack_{it:02d}.json"
         pack_path.write_text(json.dumps(pack, indent=2, default=str))
 
