@@ -15,10 +15,18 @@ body{background:#1c1c1c;color:#e6edf3;font-family:-apple-system,"Segoe UI",sans-
       color:#c9d1d9;background:#242424;border-right:1px solid #141414;border-bottom:1px solid #141414}
 .cell.dim{color:#484f58}
 .cell.hi{background:#2a3a55;color:#fff}
+.nav{position:absolute;top:80px;width:34px;height:34px;border-radius:50%;
+     background:#2c2c2c;border:1px solid #444;display:flex;align-items:center;
+     justify-content:center;font-size:15px;color:#aaa;cursor:pointer}
+.nav.l{left:560px}.nav.r{left:610px}
+.datestrip{position:absolute;left:99px;top:700px;width:315px;height:16px;
+     display:flex;gap:14px;font-size:9px;color:#777;align-items:center}
 </style></head><body>
 <div class="dayhead">THU 31 DEC</div>
 <div class="banner">New Year's Eve</div>
 <div class="dow"><span>MON</span><span>TUE</span><span>WED</span><span>THU</span><span>FRI</span><span>SAT</span><span>SUN</span></div>
+<div class="nav l">&#8249;</div><div class="nav r">&#8250;</div>
+<div class="datestrip"><span>28</span><span>29</span><span>30</span><span style="color:#f0b429">31</span><span>1</span><span>2</span></div>
 <div class="grid" id="g"></div>
 <script>
 // Dec 2025 Mon-first: Dec 1 = Monday -> clean 5 rows, no leading days
