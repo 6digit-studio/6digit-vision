@@ -128,3 +128,21 @@ Remaining signatures, honestly assessed:
 MISS stands. This defect class needs either glyph/component analysis or
 a language prior — recorded so the next instrument iteration knows
 where the wall actually is.
+
+## Re-run 2026-11-15 (round 2) — CAUGHT at the reasoning layer
+
+Lars's distinction applied: this is TEXT-level truncation (the string
+"Quarterly Revenue Overview Rep" is incomplete), not container
+overflow — a different axis entirely, and an inference problem on the
+OCR output rather than a pixel problem.
+
+`eyes ask` (new) packages the evidence — record + flagged findings —
+for the consuming text model. The pack surfaces the truncated string
+verbatim; the reasoning layer (me, reading it) calls it: "Rep" is a
+sliced "Report" — CAUGHT by judgment, not by detector.
+
+Also measured: cactus.Needle().extract returned null on this judgment
+task — the on-device model is not yet a reliable reasoning court.
+Verdict: instrument-alone MISS stands; instrument + reasoning layer
+CAUGHT. That IS the PRD architecture working — facts out, judgment
+department decides.

@@ -99,6 +99,14 @@ def cmd_reel(args) -> int:
     return 0
 
 
+def cmd_ask(args) -> int:
+    from . import ask
+
+    pack = ask.evidence_pack(args.image, question=args.question)
+    print(json.dumps(pack, indent=2, ensure_ascii=False))
+    return 0
+
+
 def cmd_palette(args) -> int:
     from . import color
 
@@ -141,6 +149,11 @@ def main(argv: list[str] | None = None) -> int:
                    help="pixel diffs only, skip Mirage (faster)")
     p.add_argument("--json", action="store_true")
     p.set_defaults(fn=cmd_reel)
+
+    p = sub.add_parser("ask", help="evidence pack for the reasoning layer (optionally framed with a question)")
+    p.add_argument("image")
+    p.add_argument("-q", "--question", default=None)
+    p.set_defaults(fn=cmd_ask)
 
     p = sub.add_parser("palette", help="dominant color histogram")
     p.add_argument("image")
