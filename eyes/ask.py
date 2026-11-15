@@ -14,7 +14,20 @@ is the deliverable; the call-site LLM is the court by design.
 
 from __future__ import annotations
 
+import importlib.util
 import json
+from argparse import Namespace
+from pathlib import Path
+
+_ROOT = Path(__file__).resolve().parents[1]
+
+
+def _load_detector(rel: str):
+    spec = importlib.util.spec_from_file_location(
+        rel.replace("/", "_").replace("-", "_"), _ROOT / "detectors" / rel)
+    mod = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(mod)
+    return mod
 
 
 def evidence_pack(image, question: str | None = None) -> dict:
@@ -23,6 +36,23 @@ def evidence_pack(image, question: str | None = None) -> dict:
     rec = mirage.describe(image)
     lay = layout.layout_report(image, record=rec)
     leg = legibility.text_legibility(image, rec)
+
+    # verified detectors/ catalog entries, lazy-loaded
+    findings_extra = {}
+    try:
+        glyph = _load_detector("glyph-classifier/glyph_classifier.py")
+        findings_extra["status_icons"] = glyph.classify_image(str(image), rec)
+    except Exception as e:
+        findings_extra["status_icons_error"] = str(e)[:200]
+    try:
+        hc = _load_detector("hue-census/hue_census.py")
+        args = Namespace(s_min=hc.S_MIN, v_min=hc.V_MIN, bin_deg=hc.BIN_DEG,
+                         min_family_share=hc.MIN_FAMILY_SHARE,
+                         rel_to_dominant=hc.REL_TO_DOMINANT,
+                         min_saturated_px=hc.MIN_SATURATED_PX)
+        findings_extra["hue_census"] = hc.census(str(image), args)
+    except Exception as e:
+        findings_extra["hue_census_error"] = str(e)[:200]
 
     pack = {
         "scene": rec.get("scene"),
@@ -40,6 +70,7 @@ def evidence_pack(image, question: str | None = None) -> dict:
             "text_edge_flush": lay.get("text_edge_flush"),
             "legibility_flagged": [l for l in leg if l["flags"]],
         },
+        "detectors": findings_extra,
     }
     if question:
         pack["question"] = question
