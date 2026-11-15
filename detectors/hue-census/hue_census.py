@@ -201,14 +201,27 @@ def census(path: str | Path, args: argparse.Namespace) -> dict:
     result["dominant_family"] = sig[0]["hue_name"] if sig else None
 
     if len(sig) >= 2:
-        result["verdict"] = "accent_hue_split"
-        names = " + ".join(f"{f['hue_name'] or '?'}({f['share_pct']}%)"
-                           for f in sig)
-        result["notes"].append(
-            f"{len(sig)} hue families over significance floors: {names}. "
-            "Candidate theme-token split — e.g. shared chrome on one accent "
-            "and regenerated content on another. Check family bboxes/"
-            "x_profiles for chrome-vs-content segregation.")
+        # balance gate: theme inconsistency means COMPETING accent
+        # families of comparable weight (theme-drift measured ~49/49).
+        # A dominant brand color plus a small secondary accent is
+        # normal design (GitHub login measured ~85/15). Secondary
+        # share <0.30 of saturated -> dominant_with_accent, not split.
+        second_share = sig[1]["share_of_saturated"]
+        if second_share < 0.30:
+            result["verdict"] = "dominant_with_accent"
+            result["notes"].append(
+                f"dominant {sig[0]['hue_name']} ({sig[0]['share_pct']}%) "
+                f"with secondary {sig[1]['hue_name']} "
+                f"({sig[1]['share_pct']}%) — accent, not a split")
+        else:
+            result["verdict"] = "accent_hue_split"
+            names = " + ".join(f"{f['hue_name'] or '?'}({f['share_pct']}%)"
+                               for f in sig)
+            result["notes"].append(
+                f"{len(sig)} hue families over significance floors: {names}. "
+                "Candidate theme-token split — e.g. shared chrome on one accent "
+                "and regenerated content on another. Check family bboxes/"
+                "x_profiles for chrome-vs-content segregation.")
     elif len(sig) == 1:
         result["verdict"] = "single_accent_family"
         result["notes"].append(
