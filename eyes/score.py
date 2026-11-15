@@ -7,6 +7,7 @@ is a weighted sum — weights are v0 heuristics, tuned by use.
 
 from __future__ import annotations
 
+import math
 import re
 from difflib import SequenceMatcher
 
@@ -40,6 +41,13 @@ _SYNONYMS = {
     "oval": "ellipse",
 }
 
+# Location-first matching: on UI imagery Mirage's names are unstable
+# ("blue app icon" vs "orange light" for the same element), so identity
+# is POSITION. radius in normalized [0,1] center-distance units —
+# generous enough for detection jitter, tight enough that adjacent
+# elements don't cross-claim.
+_MATCH_RADIUS = 0.15
+
 
 def _tokens(name: str) -> set[str]:
     return {_SYNONYMS.get(t, t) for t in re.findall(r"[a-z]+", name.lower())}
@@ -53,70 +61,146 @@ def _obj_signature(obj: dict) -> tuple[frozenset, frozenset]:
     return frozenset(words & _COLOR_WORDS), frozenset(words - _COLOR_WORDS)
 
 
-def _greedy_match(a: list[dict], b: list[dict]) -> list[tuple[dict, dict | None]]:
-    """Match objects by color+shape token overlap; returns (a_obj, b_obj|None).
+def _center01(bbox: list[float]) -> tuple[float, float]:
+    return ((bbox[0] + bbox[2]) / 2000.0, (bbox[1] + bbox[3]) / 2000.0)
 
-    Hard rule: if both objects name colors (or both name shapes) and the
-    sets are disjoint, they cannot match — a red circle is not a blue
-    circle, it is a missing red circle plus an extra blue one.
+
+def _match_by_location(ref_objs: list[dict], cand_objs: list[dict],
+                       radius: float = _MATCH_RADIUS
+                       ) -> tuple[dict[int, int], set[int]]:
+    """Greedy nearest-center matching. Returns (ref_idx->cand_idx, used_cand).
+
+    Objects without bboxes cannot be located — excluded from matching
+    (they surface as missing/extra).
     """
-    remaining = list(b)
-    pairs = []
-    for obj in a:
-        ca, sa = _obj_signature(obj)
-        best_i, best_score = -1, 0.0
-        for i, cand in enumerate(remaining):
-            cb, sb = _obj_signature(cand)
-            if (ca and cb and not ca & cb) or (sa and sb and not sa & sb):
-                continue
-            score = len(ca & cb) * 2.0 + len(sa & sb)
-            if score > best_score:
-                best_i, best_score = i, score
-        if best_i >= 0 and best_score > 0:
-            pairs.append((obj, remaining.pop(best_i)))
-        else:
-            pairs.append((obj, None))
-    return pairs
+    loc = []
+    for i, o in enumerate(ref_objs):
+        if "bbox" in o:
+            loc.append((i, _center01(o["bbox"])))
+    cand_loc = [(j, _center01(c["bbox"])) for j, c in enumerate(cand_objs)
+                if "bbox" in c]
+    cand_idx_of = {j: c for j, c in enumerate(cand_objs)}
+    pairs: list[tuple[float, int, int]] = []
+    for i, rc in loc:
+        for j, cc in cand_loc:
+            d = ((rc[0] - cc[0]) ** 2 + (rc[1] - cc[1]) ** 2) ** 0.5
+            if d <= radius:
+                pairs.append((d, i, j))
+    pairs.sort(key=lambda p: (p[0], p[1], p[2]))
+    used_r: set[int] = set()
+    used_c: set[int] = set()
+    out: dict[int, int] = {}
+    for _, i, j in pairs:
+        if i in used_r or j in used_c:
+            continue
+        used_r.add(i)
+        used_c.add(j)
+        out[i] = j
+    return out, used_c
 
 
-def score_objects(ref_objs: list[dict], cand_objs: list[dict]) -> dict:
-    """Recall/precision over object identity (color+shape signature)."""
+def _pixel_aspect(bbox: list[float], size: tuple[int, int]) -> float:
+    w, h = size
+    bw = (bbox[2] - bbox[0]) / 1000.0 * w
+    bh = (bbox[3] - bbox[1]) / 1000.0 * h
+    return bw / max(bh, 1e-6)
+
+
+def _aspect_sim(o: dict, b: dict,
+                ref_size: tuple[int, int] | None,
+                cand_size: tuple[int, int] | None) -> float:
+    """1.0 identical aspect -> 0.0 at 2x ratio. Needs image sizes;
+    neutral 1.0 when unknown (records carry no dimensions)."""
+    if not ref_size or not cand_size or "bbox" not in o or "bbox" not in b:
+        return 1.0
+    try:
+        ra = _pixel_aspect(o["bbox"], ref_size)
+        ca = _pixel_aspect(b["bbox"], cand_size)
+    except (KeyError, TypeError, ZeroDivisionError):
+        return 1.0
+    if ra <= 0 or ca <= 0:
+        return 1.0
+    return max(0.0, 1.0 - abs(math.log(ca / ra)) / math.log(2.0))
+
+
+def _attr_sim(o: dict, b: dict,
+              ref_size: tuple[int, int] | None,
+              cand_size: tuple[int, int] | None) -> float:
+    """Attribute agreement for a location-matched pair: token jaccard
+    (color+shape+name words) blended with pixel-space aspect fidelity."""
+    co, so = _obj_signature(o)
+    cb, sb = _obj_signature(b)
+    inter = len(co & cb) * 2.0 + len(so & sb)
+    union = len(co | cb) * 2.0 + len(so | sb)
+    tok = inter / union if union else 1.0
+    asp = _aspect_sim(o, b, ref_size, cand_size)
+    return 0.6 * tok + 0.4 * asp
+
+
+def score_objects(ref_objs: list[dict], cand_objs: list[dict],
+                  ref_size: tuple[int, int] | None = None,
+                  cand_size: tuple[int, int] | None = None) -> dict:
+    """Location-first object score: F1 over position-matched pairs,
+    scaled by attribute agreement. Attribute diffs are reported as
+    named facts, not match failures."""
     if not ref_objs and not cand_objs:
         return {"score": 1.0, "matched": 0, "missing": [], "extra": []}
-    pairs = _greedy_match(ref_objs, cand_objs)
-    matched = sum(1 for _, b in pairs if b is not None)
-    matched_cand_ids = {id(b) for _, b in pairs if b is not None}
-    missing = [o.get("name") for o, b in pairs if b is None]
-    extra = [o.get("name") for o in cand_objs if id(o) not in matched_cand_ids]
+    pairs, used_c = _match_by_location(ref_objs, cand_objs)
+    matched = len(pairs)
+    matched_cand = set(used_c)
+    missing = [o.get("name") for i, o in enumerate(ref_objs) if i not in pairs]
+    extra = [o.get("name") for j, o in enumerate(cand_objs) if j not in matched_cand]
     recall = matched / max(len(ref_objs), 1)
     precision = matched / max(len(cand_objs), 1)
     f1 = 2 * recall * precision / max(recall + precision, 1e-9)
+    sims = []
+    attr_changes = []
+    for i, j in pairs.items():
+        s = _attr_sim(ref_objs[i], cand_objs[j], ref_size, cand_size)
+        sims.append(s)
+        if s < 0.8:
+            attr_changes.append({
+                "ref": ref_objs[i].get("name"),
+                "cand": cand_objs[j].get("name"),
+                "attr_sim": round(s, 3),
+            })
+    attr = sum(sims) / len(sims) if sims else 0.0
     return {
-        "score": round(f1, 4),
+        "score": round(f1 * attr, 4),
         "matched": matched,
         "missing": missing,
         "extra": extra,
+        "attr_sim": round(attr, 4),
+        "attr_changes": attr_changes,
     }
 
 
 def _center(bbox: list[float]) -> tuple[float, float]:
-    return ((bbox[0] + bbox[2]) / 2 / 1000.0, (bbox[1] + bbox[3]) / 2 / 1000.0)
+    return _center01(bbox)
 
 
-def score_layout(ref_objs: list[dict], cand_objs: list[dict]) -> dict:
-    """Mean center distance over matched objects, in normalized coords."""
-    pairs = [(o, b) for o, b in _greedy_match(ref_objs, cand_objs) if b is not None]
-    if not pairs:
-        return {"score": 0.0, "pairs": 0}
+def score_layout(ref_objs: list[dict], cand_objs: list[dict],
+                 radius: float = _MATCH_RADIUS) -> dict:
+    """Positional similarity: mean center distance over location-matched
+    pairs; unmatched ref objects count as worst-case distance. Location
+    matching bounds pair distances by `radius`, so this measures both
+    'same elements' (matches) and 'same places' (distances)."""
+    if not ref_objs:
+        return {"score": 1.0 if not cand_objs else 0.0, "pairs": 0}
+    pairs, _ = _match_by_location(ref_objs, cand_objs, radius)
     dists = []
-    for o, b in pairs:
-        ox, oy = _center(o["bbox"])
-        bx, by = _center(b["bbox"])
-        dists.append(((ox - bx) ** 2 + (oy - by) ** 2) ** 0.5)
+    for i, o in enumerate(ref_objs):
+        if i in pairs:
+            ox, oy = _center(o["bbox"])
+            bx, by = _center(cand_objs[pairs[i]]["bbox"])
+            dists.append(((ox - bx) ** 2 + (oy - by) ** 2) ** 0.5)
+        else:
+            dists.append(1.0)
     mean_d = sum(dists) / len(dists)
     # 0 distance -> 1.0; ~0.35 normalized units (a third of frame) -> 0.0
     score = max(0.0, 1.0 - mean_d / 0.35)
-    return {"score": round(score, 4), "mean_center_dist": round(mean_d, 4), "pairs": len(pairs)}
+    return {"score": round(score, 4), "mean_center_dist": round(mean_d, 4),
+            "pairs": len(pairs)}
 
 
 def score_palette(ref_pal: list[dict], cand_pal: list[dict]) -> dict:
@@ -164,14 +248,18 @@ def score_pair(
     ref_pal: list[dict] | None = None,
     cand_pal: list[dict] | None = None,
     weights: dict | None = None,
+    ref_size: tuple[int, int] | None = None,
+    cand_size: tuple[int, int] | None = None,
 ) -> dict:
-    """Full decomposed score. Returns components + weighted composite 0..1."""
+    """Full decomposed score. Returns components + weighted composite 0..1.
+    ref_size/cand_size are (w,h) pixel dims — needed for aspect fidelity;
+    omit and aspect scoring stays neutral."""
     w = weights or WEIGHTS
     ref_objs = ref_rec.get("objects", [])
     cand_objs = cand_rec.get("objects", [])
     components = {
         "palette": score_palette(ref_pal or [], cand_pal or []),
-        "objects": score_objects(ref_objs, cand_objs),
+        "objects": score_objects(ref_objs, cand_objs, ref_size, cand_size),
         "layout": score_layout(ref_objs, cand_objs),
         "text": score_text(
             [t.get("string", "") for t in ref_rec.get("text", [])],

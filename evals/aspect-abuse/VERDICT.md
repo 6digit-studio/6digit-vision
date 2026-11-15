@@ -250,3 +250,38 @@ pixels the whole time.
 Defect pack reports `anisotropic_squash` (blob cluster ~1.79, glyph
 w/h ~0.32) — the attribution `score` could not provide (letterbox
 probe scored lower than the defect). Instrument-alone MISS -> CAUGHT.
+
+## Re-run 2026-11-15 (location-first matcher rewrite) — honest FAIL on the flip, rewrite still correct
+
+`score` matcher rewritten location-first: objects match by bbox-center
+proximity (radius 0.15), attributes (tokens + pixel-space aspect) become
+named `attr_changes` instead of match failures. `score_pair` accepts
+image sizes for aspect fidelity.
+
+Post-rewrite numbers: `score control defect` = **66.0** (was 58.7),
+`score control letterbox` = **51.3** (was 36.7). Defect still outscores
+letterbox — done-bar NOT met, and the reason is structural, not tuning:
+
+- Non-uniform resize preserves normalized positions -> defect layout
+  0.845 is *correct* in that space; letterbox's compressed band is a
+  real positional difference (0.412)
+- Resize preserves palette/text/scene -> defect legitimately wins those
+  components; the letterbox's black bars are real differences
+- Aspect evidence via Mirage bboxes is real but noisy: distortion
+  fraction 17/19 pairs <0.5 (defect) vs 7/17 (letterbox) — signal
+  exists, insufficient to overcome ~15pt without weight-fishing
+
+**The deeper problem, named plainly:** `eyes score ref cand` measures
+RELATIVE similarity, and the defect genuinely IS more similar to the
+control than an honest letterbox is — its crime is INTERNAL distortion,
+an absolute property needing a shape prior. That prior already exists:
+`detectors/anisotropy-census` reports `anisotropic_squash` in every ask
+pack. Score can't be both similarity metric and distortion detector
+without becoming unfalsifiable. Division of labor stands: score =
+relative similarity, detectors = absolute defect facts.
+
+Rewrite verdict: location-first matching is correct and improved
+attribution everywhere (theme-drift objects 64.8->80.9 with named
+attr_changes; semantic-surprise names the emblem pair's attr diff;
+ocr-hostile 72.5->80.7). The flip failure is a property of the eval's
+falsifiable check, not the matcher.

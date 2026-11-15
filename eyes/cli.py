@@ -26,6 +26,8 @@ def cmd_describe(args) -> int:
 
 
 def cmd_score(args) -> int:
+    from PIL import Image
+
     from . import color, mirage, score
 
     ref_rec = mirage.describe(args.reference)
@@ -35,6 +37,8 @@ def cmd_score(args) -> int:
         cand_rec,
         ref_pal=color.palette(args.reference),
         cand_pal=color.palette(args.candidate),
+        ref_size=Image.open(args.reference).size,
+        cand_size=Image.open(args.candidate).size,
     )
     if args.json:
         print(json.dumps(result, indent=2, ensure_ascii=False))

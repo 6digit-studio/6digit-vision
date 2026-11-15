@@ -33,12 +33,22 @@ def test_missing_object_lowers_score():
     assert comp["score"] < 1.0
 
 
-def test_wrong_color_does_not_match():
+def test_same_position_different_color_matches_with_attr_diff():
+    # location-first: position is identity; color is an attribute diff
     ref = [obj("circle", color="red", shape="circle")]
     cand = [obj("circle", color="blue", shape="circle")]
     comp = score.score_objects(ref, cand)
+    assert comp["matched"] == 1
+    assert comp["score"] > 0.0
+    assert comp["attr_changes"]
+
+
+def test_distant_object_does_not_match():
+    ref = [obj("circle", bbox=(100, 100, 200, 200), color="red")]
+    cand = [obj("circle", bbox=(700, 700, 800, 800), color="red")]
+    comp = score.score_objects(ref, cand)
     assert comp["matched"] == 0
-    assert comp["score"] == 0.0
+    assert comp["missing"] and comp["extra"]
 
 
 def test_layout_prefers_same_position():
