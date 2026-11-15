@@ -70,6 +70,25 @@ def cmd_layout(args) -> int:
     return 0
 
 
+def cmd_reel(args) -> int:
+    from . import temporal
+
+    report = temporal.reel_report(args.inputs, with_records=not args.no_records)
+    if args.json:
+        print(json.dumps(report, indent=2, ensure_ascii=False))
+        return 0
+    print(f"{report['frames']} frames, records={'on' if report['with_records'] else 'off'}\n")
+    for pair in report["pairs"]:
+        px = pair["pixel"]
+        line = (f"{pair['pair'][0]} -> {pair['pair'][1]}: "
+                f"changed {px['changed_pct'] * 100:.1f}%  "
+                f"mean|d| {px['mean_abs_diff']}")
+        if "labels" in pair:
+            line += f"  labels {pair['labels']['score']:.2f}  ocr {pair['ocr']['score']:.2f}"
+        print(line)
+    return 0
+
+
 def cmd_palette(args) -> int:
     from . import color
 
@@ -105,6 +124,13 @@ def main(argv: list[str] | None = None) -> int:
                    help="color distance from background counted as content")
     p.add_argument("--json", action="store_true")
     p.set_defaults(fn=cmd_layout)
+
+    p = sub.add_parser("reel", help="frame-sequence coherence: pixel diffs + record stability")
+    p.add_argument("inputs", nargs="+", help="image paths and/or directories")
+    p.add_argument("--no-records", action="store_true",
+                   help="pixel diffs only, skip Mirage (faster)")
+    p.add_argument("--json", action="store_true")
+    p.set_defaults(fn=cmd_reel)
 
     p = sub.add_parser("palette", help="dominant color histogram")
     p.add_argument("image")
