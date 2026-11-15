@@ -216,6 +216,42 @@ def interrogate(image) -> dict:
             add("muted_cells", "Are some cells muted (prev/next month)?",
                 muted if muted else "no muted cells detected",
                 "mean_rgb+luminance")
+        else:
+            med = None
+
+        # grid continuation: does the calendar run into adjacent
+        # months? Trailing next-month digits sit in the SAME row as
+        # the month's last days (e.g. 28 29 30 31 | 1 2 3) and are
+        # dim enough that full-frame OCR misses them — zoom the
+        # last day row itself.
+        int_rows = [r for r in s["grid"]
+                    if r["cell_kinds"].count("int") >= 3]
+        if int_rows:
+            last_y = max(r["y"] for r in int_rows)
+            y_px = last_y / 1000 * H
+            band = zoom.crop_zoom(img, (0, max(0, y_px - 42), W, 84),
+                                  scale=4, pad_frac=0.0)[0]
+            rec_c = mirage.describe(band)
+            cont = []
+            for t in rec_c.get("text", []):
+                st = t.get("string", "")
+                if not st.strip().isdigit() or t.get("score", 0) <= 0.3:
+                    continue
+                rgb = color.mean_rgb(band, t["bbox"])
+                lum = _lum(rgb) if rgb else None
+                cont.append({
+                    "text": st,
+                    "luminance": round(lum, 1) if lum else None,
+                    "muted": bool(med and lum and lum < med * 0.65),
+                })
+            if cont:
+                add("grid_continuation",
+                    "Does the grid continue into adjacent months?",
+                    cont, "zoom+describe+luminance")
+            else:
+                add("grid_continuation",
+                    "Does the grid continue into adjacent months?",
+                    "no trailing digits detected", "zoom+describe")
 
         # weekday header: full-frame OCR misses labels — verify via zoom
         wk_row = next((r for r in s["grid"]
